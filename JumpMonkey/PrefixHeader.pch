@@ -1,0 +1,17 @@
+//
+//  PrefixHeader.pch
+//  JumpMonkey
+//
+//  Created by 罗谨 on 2019/5/27.
+//  Copyright © 2019 finger. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//#ifdef  __OJBC__
+
+#import "CommonDefine.h"
+//#endif
+
+#endif /* PrefixHeader_pch */
