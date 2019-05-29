@@ -32,4 +32,7 @@
 
 #define FPS 35
 
+
+#define BASE_HOOK_SCORE 10
+
 #endif /* CommonDefine_h */

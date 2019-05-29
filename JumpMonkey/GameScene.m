@@ -139,6 +139,8 @@
     [self.backgroundNodeA moveWithSceneVelocity:self.monkey.sceneMoveVelocity/BACKGROUND_MOVE_RATE];
     [self. backgroundNodeB moveWithSceneVelocity:self.monkey.sceneMoveVelocity/BACKGROUND_MOVE_RATE];
    
+    [self switchBackgroundPosition];
+    [self switchForegroundPosition];
 }
 
 #pragma mark - MonkeyDelegate
@@ -148,8 +150,7 @@
         [self gameDidEnd];
     }
     
-    [self switchBackgroundPosition];
-    [self switchForegroundPosition];
+ 
 }
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
@@ -167,6 +168,10 @@
     if ([newNode isKindOfClass:[Spider class]]) {
         NormalNode *line = ((Spider*)newNode).line;
         [self insertChild:line atIndex:fgIndex-1];
+    }
+    
+    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
+        [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
     }
 }
 

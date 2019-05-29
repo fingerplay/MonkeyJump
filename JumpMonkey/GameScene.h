@@ -12,6 +12,8 @@
 
 - (void)gameDidEnd;
 
+- (void)scoreDidUpdate:(NSInteger)score;
+
 @end
 
 @interface GameScene : SKScene

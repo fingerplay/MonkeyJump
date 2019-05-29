@@ -34,15 +34,6 @@
     self.isHooked = NO;
 }
 
-//- (void)moveWithSceneVelocity:(CGFloat)velocity {
-//    if (velocity <= 0) {
-//        return;
-//    }
-//    CGFloat x = self.position.x - velocity;
-//    if (self.isHookTarget && x < MONKEY_MIN_X) {
-//        x = MONKEY_MIN_X;
-//    }
-//    self.position = CGPointMake(x, self.position.y);
-//}
+
 
 @end

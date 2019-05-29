@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger){
 @property (nonatomic, strong) HookNode *nextNode;
 @property (nonatomic, strong) HookNode *preNode;
 @property (nonatomic, assign) CGPoint hookPoint;
+@property (nonatomic ,assign) NSInteger number; //第几个挂点
 @property (nonatomic, assign) BOOL isHooked; //是否被挂住
 @property (nonatomic, assign) BOOL isHookTarget; //是否是猴子跳跃过程中即将挂到的点
 

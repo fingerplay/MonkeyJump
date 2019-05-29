@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "HookNode.h"
+#import "ScoreInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,7 +36,7 @@ typedef NS_ENUM(NSInteger){
 @property (nonatomic, assign) CGFloat currentAngle; //当前摆动的角度
 @property (nonatomic, assign) MonkeyState state; //猴子当前的状态
 @property (nonatomic, strong) HookNode *hookNode;
-
+@property (nonatomic, strong) ScoreInfo *mScore;
 @property (nonatomic, weak) id<MonkeyDelegate> delegate;
 
 - (instancetype)initWithImageNamed:(NSString *)name hookNode:(HookNode*)hookNode;

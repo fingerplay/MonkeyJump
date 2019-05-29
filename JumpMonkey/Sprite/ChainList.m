@@ -26,9 +26,9 @@
     
     for (NSUInteger i=0; i<count; i++) {
         HookNodeType type = arc4random_uniform(HookNodeTypeCount);
-//        HookNodeType type = HookNodeTypeStable;
         CGPoint location = CGPointMake([lastNode getRealHook].x + distance, TREE_POSITION_Y);
         HookNode *node = [self generateSingleNodeWithType:type position:location];
+//        node.number = self.nodes.count + i;
         [newNodes addObject:node];
         if (lastNode) {
             lastNode.nextNode = node;
@@ -48,6 +48,7 @@
     }else {
         node = [[Tree alloc] initWithImageNamed:@"tree" position:position];
     }
+    node.number = self.nodes.count;
     
     if (node) {
         [self addNodeToTail:node];

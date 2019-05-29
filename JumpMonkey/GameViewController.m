@@ -15,6 +15,7 @@
 @property (nonatomic, strong) GameScene *scene;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *restartBtn;
+@property (nonatomic, strong) UILabel *scoreLabel;
 @end
 
 @implementation GameViewController
@@ -43,6 +44,7 @@
     
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.restartBtn];
+    [self.view addSubview:self.scoreLabel];
 }
 
 - (BOOL)shouldAutorotate {
@@ -68,6 +70,11 @@
     self.restartBtn.hidden = NO;
 }
 
+-(void)scoreDidUpdate:(NSInteger)score {
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld",(long)score];
+}
+
+#pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {
     [self.scene gameRestart];
     self.titleLabel.hidden = YES;
@@ -98,4 +105,14 @@
     }
     return _restartBtn;
 }
+
+- (UILabel *)scoreLabel {
+    if (!_scoreLabel) {
+        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width - 60, 20, 40, 40)];
+        _scoreLabel.textColor = [UIColor whiteColor];
+        _scoreLabel.font = [UIFont systemFontOfSize:18];
+    }
+    return _scoreLabel;
+}
+
 @end

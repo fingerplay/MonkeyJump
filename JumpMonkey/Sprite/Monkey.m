@@ -8,7 +8,7 @@
 
 #import "Monkey.h"
 #import "PhysicsUtil.h"
-#import "CommonDefine.h"
+
 
 @interface Monkey ()
 @property (nonatomic, assign) CGPoint mPostion; //相对挂点的位置
@@ -21,6 +21,9 @@
 @property (nonatomic, assign) BOOL isInHighestPosition; //是否在最高点
 @property (nonatomic, assign) CGFloat mY; //y位置
 @property (nonatomic, assign) CGFloat mX; //y位置
+@property (nonatomic, assign) NSInteger mCurrentHops;//连跳次数
+@property (nonatomic, assign) NSInteger mMaxHops; //历史最多连跳
+
 @end
 
 @implementation Monkey
@@ -41,6 +44,9 @@
         self.armLength = ARM_LENGTH;
         self.currentAngle = -PI/2; //0表示圆最下方的点，顺时针<0，逆时针>0
         self.state = MonkeyStateSwing;
+        self.mCurrentHops = 0;
+        self.mMaxHops = 0;
+        self.mScore = [ScoreInfo new];
     }
     return self;
 }
@@ -85,13 +91,6 @@
     self.hookNode.isHookTarget = YES;
 }
 
-//移动微小的高度，然后计算最高位置
-- (void)caculateHeightAndEnergy {
-    self.mMaxHeight += self.armLength * ENERGY_COEFFCIENT;
-    self.mMaxHeight = (self.mMaxHeight > self.armLength) ? self.armLength : self.mMaxHeight;//最高的高度不能超过一个臂长，即角度不能超过正负PI/2;
-}
-
-
 - (void)move {
     switch (self.state) {
         case MonkeyStateSwing:
@@ -99,8 +98,10 @@
             //当摆到水平方向时，角速度为0，需要给一个速度，否则无法落下
             if (self.mOmega == 0) {
                 self.isInHighestPosition = YES;
+                NSCAssert(self.armLength!=0, @"armLength = 0");
                 self.mOmega = -(float) (G * sinf(self.currentAngle) / self.armLength);
                 [self caculateHeightAndEnergy];
+                [self clearHops];
             }else{
                 self.isInHighestPosition = NO;
             }
@@ -120,13 +121,15 @@
             }
             float v = (float) sqrt(value);
 //            NSLog(@"v = %f",v);
+            NSCAssert(self.armLength!=0, @"armLength = 0");
             if (self.mOmega > 0) {
                 self.mOmega = v / (float)self.armLength;
             } else {
                 self.mOmega = -v / (float)self.armLength;
             }
             self.zRotation = self.currentAngle;
-//            NSLog(@"mOmega = %f", self.mOmega);
+            NSLog(@"mOmega = %f", self.mOmega);
+            NSCAssert(self.mOmega!=NAN, @"omega = nan");
 //            NSLog(@"angle = %f",self.currentAngle);
         }
             break;
@@ -137,7 +140,7 @@
             self.mY = self.mY + self.mVty - G / 2;
             self.position = CGPointMake(self.mX, self.mY);
             NSLog(@"monkey position X:%f Y:%f",self.mX,self.mY);
- 
+            NSCAssert(self.mX!=NAN, @"mx = nan");
             self.mVy -= G;
             self.mVty = self.mVy * JUMP_COEFFCIENT;
             
@@ -195,6 +198,10 @@
 
 - (void)switch2Swing:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
+    [self countHop];
+    [self.mScore updateHooksScore:self.hookNode.number];
+    [self.mScore updateHopsScore:self.mCurrentHops];
+    
     float dY = ABS(hookPoint.y - self.position.y);
     self.mMaxHeight = self.mVx * self.mVx / (2 * G) + (self.armLength - dY); // 能量守恒定律计算,注意，这里略去了垂直方向的动能
     self.mMaxHeight = (self.mMaxHeight < self.armLength) ? self.mMaxHeight : self.armLength;
@@ -206,8 +213,9 @@
     float height = self.armLength - dY;
     
     float v = (float) sqrt(2 * G * (self.mMaxHeight - height));
+
     self.mOmega = v / self.armLength;
-    
+    NSCAssert(self.mOmega!=NAN, @"omega = nan");
     if (self.mVx < 0) {
         self.mOmega = -self.mOmega;
     }
@@ -227,12 +235,29 @@
     }
 }
 
+//移动微小的高度，然后计算最高位置
+- (void)caculateHeightAndEnergy {
+    self.mMaxHeight += self.armLength * ENERGY_COEFFCIENT;
+    self.mMaxHeight = (self.mMaxHeight > self.armLength) ? self.armLength : self.mMaxHeight;//最高的高度不能超过一个臂长，即角度不能超过正负PI/2;
+}
+
 - (CGFloat)sceneMoveVelocity {
-//    NSLog(@"self.mVtx = %f",self.mVtx);
+    //    NSLog(@"self.mVtx = %f",self.mVtx);
     if (self.state == MonkeyStateSwing) {
         return MIN(self.hookNode.position.x - MONKEY_MIN_X , 5);
     }else {
         return MIN( self.position.x - (MONKEY_MIN_X + TREE_HOOKPOINT_X) , 20);
     }
 }
+
+- (void)clearHops {
+    self.mCurrentHops = 0;
+}
+
+- (void)countHop{
+    self.mCurrentHops++;
+    self.mMaxHops = self.mMaxHops > self.mCurrentHops ? self.mMaxHops : self.mCurrentHops;
+}
+
+
 @end

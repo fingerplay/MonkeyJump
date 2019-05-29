@@ -11,6 +11,7 @@
 		AF106C8E22955695003ABD22 /* ChainList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8D22955695003ABD22 /* ChainList.m */; };
 		AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */; };
 		AF1172DA229E1B0C001A1F17 /* Spider.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1172D9229E1B0C001A1F17 /* Spider.m */; };
+		AF1172DD229EA2A2001A1F17 /* ScoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1172DC229EA2A2001A1F17 /* ScoreInfo.m */; };
 		AF1AC7D7229BB920008B3418 /* NormalNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1AC7D6229BB920008B3418 /* NormalNode.m */; };
 		AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23157C22850E2C008522D0 /* AppDelegate.m */; };
 		AF23158122850E2C008522D0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF23158022850E2C008522D0 /* Actions.sks */; };
@@ -35,6 +36,8 @@
 		AF106C9022956B9B003ABD22 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		AF1172D8229E1B0C001A1F17 /* Spider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spider.h; sourceTree = "<group>"; };
 		AF1172D9229E1B0C001A1F17 /* Spider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Spider.m; sourceTree = "<group>"; };
+		AF1172DB229EA2A2001A1F17 /* ScoreInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreInfo.h; sourceTree = "<group>"; };
+		AF1172DC229EA2A2001A1F17 /* ScoreInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreInfo.m; sourceTree = "<group>"; };
 		AF18AAC6228945BB00414469 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		AF1AC7D5229BB920008B3418 /* NormalNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalNode.h; sourceTree = "<group>"; };
 		AF1AC7D6229BB920008B3418 /* NormalNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalNode.m; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				AF23158022850E2C008522D0 /* Actions.sks */,
 				AF23158222850E2C008522D0 /* GameScene.h */,
 				AF23158322850E2C008522D0 /* GameScene.m */,
+				AF1172DB229EA2A2001A1F17 /* ScoreInfo.h */,
+				AF1172DC229EA2A2001A1F17 /* ScoreInfo.m */,
 				AF18AAC6228945BB00414469 /* CommonDefine.h */,
 				AF1AC7D8229BC10F008B3418 /* PrefixHeader.pch */,
 				AF23158522850E2C008522D0 /* GameViewController.h */,
@@ -215,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1172DD229EA2A2001A1F17 /* ScoreInfo.m in Sources */,
 				AF6862BC228D8A5500927901 /* TreesList.m in Sources */,
 				AF1AC7D7229BB920008B3418 /* NormalNode.m in Sources */,
 				AF6862B8228D89E100927901 /* Monkey.m in Sources */,
