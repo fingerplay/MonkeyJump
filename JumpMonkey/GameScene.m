@@ -12,6 +12,7 @@
 #import "TreesList.h"
 #import "NormalNode.h"
 #import "CommonDefine.h"
+#import "Spider.h"
 
 @interface GameScene ()<MonkeyDelegate>
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
@@ -49,7 +50,11 @@
     [self addChild:firstTree];
     NSArray *nodes = [self.treesList generateNodesWithDistanceX:kDefaultTreeDistanceX count:5];
     for (NSUInteger i=0; i<nodes.count; i++) {
-        Tree *node = [nodes objectAtIndex:i];
+        HookNode *node = [nodes objectAtIndex:i];
+        if ([node isKindOfClass:[Spider class]]) {
+            NormalNode *line = ((Spider*)node).line;
+            [self addChild:line];
+        }
         [self addChild:node];
     }
     
@@ -159,6 +164,10 @@
     HookNode* newNode = [self.treesList generateSingleNodeWithType:type distance:kDefaultTreeDistanceX];
     NSInteger fgIndex = [self.children indexOfObject:self.foregroundNodeA];
     [self insertChild:newNode atIndex:fgIndex-1];
+    if ([newNode isKindOfClass:[Spider class]]) {
+        NormalNode *line = ((Spider*)newNode).line;
+        [self insertChild:line atIndex:fgIndex-1];
+    }
 }
 
 #pragma mark - Logic

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Spider : HookNode
-
+@property (nonatomic, strong) NormalNode *line;
 @property (nonatomic, assign) CGFloat maxY;
 @property (nonatomic, assign) CGFloat minY;
 @property (nonatomic, assign) CGFloat vy;

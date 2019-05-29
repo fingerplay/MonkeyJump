@@ -8,8 +8,11 @@
 
 #import "Spider.h"
 
-@implementation Spider
+@interface Spider ()
 
+@end
+
+@implementation Spider
 
 - (instancetype)initWithImageNamed:(NSString *)imageName position:(CGPoint)position {
     self = [super initWithImageNamed:imageName position:position];
@@ -18,19 +21,32 @@
         self.size = image.size;
         self.hookPoint = CGPointMake(0, self.size.height/2);
         self.type = HookNodeTypeClimb;
-        self.maxY = [UIScreen mainScreen].bounds.size.height - self.size.height;
-        self.minY = SPIDER_POSITION_MIN_Y + arc4random_uniform(100);
-        CGFloat positionY = self.minY + arc4random_uniform(self.maxY - self.minY);
-        self.position = CGPointMake(self.position.x, positionY);
-        NSArray *velocitySet = @[ @(-SPIDER_MOVE_VELOCITY) , @(SPIDER_MOVE_VELOCITY)];
-        uint32_t index = arc4random_uniform(1);
-        self.vy = [velocitySet[index] floatValue];
+        [self caculatePosition];
+        [self addLine];
     }
     return self;
 }
 
+- (void)caculatePosition {
+    self.maxY = [UIScreen mainScreen].bounds.size.height - self.size.height;
+    self.minY = SPIDER_POSITION_MIN_Y + arc4random_uniform(100);
+    CGFloat positionY = self.minY + arc4random_uniform(self.maxY - self.minY);
+    self.position = CGPointMake(self.position.x, positionY);
+    NSArray *velocitySet = @[ @(-SPIDER_MOVE_VELOCITY) , @(SPIDER_MOVE_VELOCITY)];
+    uint32_t index = arc4random_uniform(1);
+    self.vy = [velocitySet[index] floatValue];
+}
+
+- (void)addLine {
+    NormalNode *line = [[NormalNode alloc] initWithColor:[UIColor whiteColor] size:CGSizeMake(1, self.maxY - self.position.y)];
+    line.position = CGPointMake(self.position.x, self.minY + self.size.height);
+    line.anchorPoint = CGPointMake(0.5, 0);
+    self.line = line;
+}
+
 - (void)moveWithSceneVelocity:(CGFloat)velocity{
     [super moveWithSceneVelocity:velocity];
+    
     CGFloat y = self.position.y;
     y += self.vy;
     if (y >= self.maxY ) {
@@ -41,6 +57,10 @@
         y = self.minY;
     }
     self.position = CGPointMake(self.position.x, y);
+    
+    [self.line moveWithSceneVelocity:velocity];
+    self.line.position = CGPointMake(self.position.x, self.position.y + self.size.height);
+    self.line.size = CGSizeMake(1, self.maxY - self.position.y);
 }
 
 @end

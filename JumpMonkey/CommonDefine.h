@@ -9,7 +9,7 @@
 #ifndef CommonDefine_h
 #define CommonDefine_h
 
-#define JUMP_COEFFCIENT 0.5 //跳跃系数
+#define JUMP_COEFFCIENT 0.3 //跳跃系数
 #define ENERGY_COEFFCIENT  0.1f  //能量系数
 #define PENDULUM_RATIO 0.6f
 #define G (9.8 * 0.7) //重力加速度
