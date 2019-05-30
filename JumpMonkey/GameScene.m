@@ -31,7 +31,7 @@
 
 }
 
-#define kDefaultTreeDistanceX  (self.view.bounds.size.width /2.5)
+
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
@@ -91,14 +91,14 @@
 }
 
 - (void)touchUpAtPoint:(CGPoint)pos {
-    if (!self.isGameOver){
+    if (!self.isGameOver && self.monkey.state == MonkeyStateSwing){
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.startTouchTime];
         CGFloat offsetX = pos.x - self.startTouchPoint.x;
         CGFloat offsetY = (pos.y - self.startTouchPoint.y);
         
         CGFloat vx = offsetX / interval;
         CGFloat vy = offsetY/ interval;
-        [self.monkey jumpWithVx:vx vy:vy/50];
+        [self.monkey jumpWithVx:vx vy:vy/MONKEY_UPSWIPE_RATE];
     }
 }
 

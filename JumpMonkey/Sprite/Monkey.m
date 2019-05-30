@@ -115,20 +115,23 @@
 
        
 //            NSLog(@"tree position X:%f Y:%f",self.hookNode.position.x, self.hookNode.position.y);
-            float value = (float) (2 * G * (self.mMaxHeight - self.armLength * (1 - cosf(self.currentAngle))));
+            CGFloat value = (float) (2 * G * (self.mMaxHeight - self.armLength * (1 - cosf(self.currentAngle))));
             if (value < 0) {
                 value = 0;
             }
-            float v = (float) sqrt(value);
+            CGFloat v = (float) sqrtf(value);
 //            NSLog(@"v = %f",v);
-            NSCAssert(self.armLength!=0, @"armLength = 0");
+            NSLog(@"armLength = %f",self.armLength);
             if (self.mOmega > 0) {
                 self.mOmega = v / (float)self.armLength;
             } else {
                 self.mOmega = -v / (float)self.armLength;
             }
             self.zRotation = self.currentAngle;
-            NSLog(@"mOmega = %f", self.mOmega);
+            if (self.armLength == 0) {
+                return;
+            }
+            NSLog(@"swing mOmega = %f ,v=%f", self.mOmega, v);
             NSCAssert(self.mOmega!=NAN, @"omega = nan");
 //            NSLog(@"angle = %f",self.currentAngle);
         }
@@ -167,14 +170,14 @@
         self.mVx = 0;
         self.mVy = jvy;
     }else{
-        self.mVx = (float)(self.mOmega * self.armLength * cosf(self.currentAngle));
-        self.mVy = (float)(self.mOmega * self.armLength * sinf(self.currentAngle)) + jvy;
+        self.mVx = (CGFloat)(self.mOmega * self.armLength * cosf(self.currentAngle));
+        self.mVy = (CGFloat)(self.mOmega * self.armLength * sinf(self.currentAngle)) + jvy;
     }
 
     self.mVtx = self.mVx * JUMP_COEFFCIENT;
     self.mVty = self.mVy * JUMP_COEFFCIENT;
     self.mX = self.mX + self.mVtx - self.sceneMoveVelocity;
-    self.mY = [self.hookNode getRealHook].y + self.mVty - G / 2;
+    self.mY = [self.hookNode getRealHook].y + self.mVty;
     self.position = CGPointMake(self.mX, self.mY);
     _offsetX = self.mX - self.initX;
     
@@ -186,9 +189,9 @@
 -(BOOL)checkCatchHook:(HookNode*)hookNode pendingState:(MonkeyState)pendingState {
 //    NSLog(@"hookPoint=(%f %f)",[hookNode getRealHook].x,[hookNode getRealHook].y);
     if (hookNode != NULL) {
-        if (self.mY < [hookNode getRealHook].y &&
+        if (self.position.y < [hookNode getRealHook].y &&
             // mX <= hookNode.mHook.x + mArmsLength / 4 &&
-             [PhysicsUtil isPoint:self.position inRadiusRegion:self.armLength withCenter:[hookNode getRealHook] velocity:CGPointMake(self.mVx, self.mVy)]) {
+             [PhysicsUtil isPoint:self.position inRadiusRegion:ARM_RADUIS withCenter:[hookNode getRealHook] velocity:CGPointMake(self.mVx, self.mVy)]) {
             [self switch2Swing:[hookNode getRealHook] pendingState:pendingState hookNode:hookNode];
             return true;
         }
@@ -202,20 +205,24 @@
     [self.mScore updateHooksScore:self.hookNode.number];
     [self.mScore updateHopsScore:self.mCurrentHops];
     
-    float dY = ABS(hookPoint.y - self.position.y);
+    CGFloat dY = ABS(hookPoint.y - self.position.y);
     self.mMaxHeight = self.mVx * self.mVx / (2 * G) + (self.armLength - dY); // 能量守恒定律计算,注意，这里略去了垂直方向的动能
     self.mMaxHeight = (self.mMaxHeight < self.armLength) ? self.mMaxHeight : self.armLength;
-    float value = (self.position.x - hookPoint.x) / self.armLength;
+    CGFloat value = (self.position.x - hookPoint.x) / self.armLength;
     value = (value > 1) ? 1 : value;
     value = (value < -1) ? -1 : value;
-    self.currentAngle = (float) asin(value);
+    self.currentAngle = (CGFloat) asinf(value);
     
-    float height = self.armLength - dY;
-    
-    float v = (float) sqrt(2 * G * (self.mMaxHeight - height));
-
+    CGFloat height = self.armLength - dY;
+    if (height > self.mMaxHeight) {
+        height = self.mMaxHeight;
+    }
+    CGFloat v = (CGFloat) sqrtf(2 * G * (self.mMaxHeight - height));
+    if (isnan(v)) {
+        return;
+    }
     self.mOmega = v / self.armLength;
-    NSCAssert(self.mOmega!=NAN, @"omega = nan");
+    NSLog(@"switch2Swing omega = %f, v=%f",self.mOmega,v);;
     if (self.mVx < 0) {
         self.mOmega = -self.mOmega;
     }
@@ -244,9 +251,9 @@
 - (CGFloat)sceneMoveVelocity {
     //    NSLog(@"self.mVtx = %f",self.mVtx);
     if (self.state == MonkeyStateSwing) {
-        return MIN(self.hookNode.position.x - MONKEY_MIN_X , 5);
+        return MIN(self.hookNode.position.x - MONKEY_MIN_X , SCENE_MOVE_VELOCITY_SWING);
     }else {
-        return MIN( self.position.x - (MONKEY_MIN_X + TREE_HOOKPOINT_X) , 20);
+        return MIN( self.position.x - (MONKEY_MIN_X + TREE_HOOKPOINT_X) , SCENE_MOVE_VELOCITY_JUMP);
     }
 }
 
