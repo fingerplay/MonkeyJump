@@ -36,12 +36,11 @@
         self.position = hookNode.hookPoint;
         _initX = hookNode.position.x + hookNode.hookPoint.x;
         self.anchorPoint = CGPointMake(0.5, 1);
-        self.color = [UIColor yellowColor];
-        self.size = CGSizeMake(ARM_LENGTH, ARM_LENGTH/50.f * 95.f);
+        self.size = CGSizeMake(MONKEY_SIZE_H/95.f * 50.f, MONKEY_SIZE_H);
 
         self.mX = [hookNode getRealHook].x;
         self.mY = [hookNode getRealHook].y;
-        self.armLength = ARM_LENGTH;
+        self.armLength = MONKEY_SIZE_H;
         self.currentAngle = -PI/2; //0表示圆最下方的点，顺时针<0，逆时针>0
         self.state = MonkeyStateSwing;
         self.mCurrentHops = 0;
@@ -58,8 +57,8 @@
 //    CGFloat mY = (float) (hookNode.position.y + self.armLength + sin(PI / 4));
 //    self.position = CGPointMake(mX, mY);
     self.mOmega = 0;
-    self.mMaxHeight = (float) (self.armLength - self.armLength * cos(PI / 4));
-    self.currentAngle = -(float) PI / 4;
+    self.mMaxHeight = (CGFloat) (self.armLength - self.armLength * cos(PI / 4));
+    self.currentAngle = -(CGFloat) PI / 4;
 
 }
 
@@ -131,18 +130,18 @@
             if (self.armLength == 0) {
                 return;
             }
-            NSLog(@"swing mOmega = %f ,v=%f", self.mOmega, v);
+//            NSLog(@"swing mOmega = %f ,v=%f", self.mOmega, v);
             NSCAssert(self.mOmega!=NAN, @"omega = nan");
 //            NSLog(@"angle = %f",self.currentAngle);
         }
             break;
         case MonkeyStateJump:
         {
-            NSLog(@"sceneMoveVelocity = %f ,mvtx =%f",self.sceneMoveVelocity, self.mVtx);
+//            NSLog(@"sceneMoveVelocity = %f ,mvtx =%f",self.sceneMoveVelocity, self.mVtx);
             self.mX = self.mX + ((self.mVtx - self.sceneMoveVelocity) >0 ?: 0) ;
             self.mY = self.mY + self.mVty - G / 2;
             self.position = CGPointMake(self.mX, self.mY);
-            NSLog(@"monkey position X:%f Y:%f",self.mX,self.mY);
+//            NSLog(@"monkey position X:%f Y:%f",self.mX,self.mY);
             NSCAssert(self.mX!=NAN, @"mx = nan");
             self.mVy -= G;
             self.mVty = self.mVy * JUMP_COEFFCIENT;
@@ -217,12 +216,12 @@
     if (height > self.mMaxHeight) {
         height = self.mMaxHeight;
     }
-    CGFloat v = (CGFloat) sqrtf(2 * G * (self.mMaxHeight - height));
-    if (isnan(v)) {
-        return;
-    }
+    CGFloat v = (CGFloat) sqrt(2 * G * (self.mMaxHeight - height));
+  
+    NSAssert(!isnan(v), @"v is nan");
+    
     self.mOmega = v / self.armLength;
-    NSLog(@"switch2Swing omega = %f, v=%f",self.mOmega,v);;
+//    NSLog(@"switch2Swing omega = %f, v=%f",self.mOmega,v);
     if (self.mVx < 0) {
         self.mOmega = -self.mOmega;
     }

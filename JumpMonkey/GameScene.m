@@ -15,12 +15,12 @@
 #import "Spider.h"
 
 @interface GameScene ()<MonkeyDelegate>
+@property (nonatomic, strong) NSMutableArray *foregroundNodes;
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
 @property (nonatomic, strong) NormalNode *backgroundNodeB;
 @property (nonatomic, strong) Monkey *monkey;
 @property (nonatomic, strong) TreesList *treesList;
-@property (nonatomic, strong) NormalNode *foregroundNodeA;
-@property (nonatomic, strong) NormalNode *foregroundNodeB;
+
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
@@ -40,9 +40,9 @@
 }
 
 - (void)addChildNodes {
+    [self createBackgroundNodes];
     [self addChild:self.backgroundNodeA];
     [self addChild:self.backgroundNodeB];
-    
     
     self.treesList = [[TreesList alloc] init];
  
@@ -58,13 +58,13 @@
         [self addChild:node];
     }
     
+    [self createForegroundNodes];
+    
+    
     self.monkey = [[Monkey alloc] initWithImageNamed:@"monkey_swing" hookNode:firstTree];
     self.monkey.delegate = self;
 
     [firstTree addChild:self.monkey];
-    
-    [self addChild:self.foregroundNodeA];
-    [self addChild:self.foregroundNodeB];
     
 }
 
@@ -74,8 +74,7 @@
     self.monkey = nil;
     self.backgroundNodeA = nil;
     self.backgroundNodeB = nil;
-    self.foregroundNodeA = nil;
-    self.foregroundNodeB = nil;
+    [self.foregroundNodes removeAllObjects];
     self.treesList = nil;
 }
 
@@ -133,8 +132,9 @@
         [node moveWithSceneVelocity:self.monkey.sceneMoveVelocity];
     }
     
-    [self.foregroundNodeA moveWithSceneVelocity:self.monkey.sceneMoveVelocity];
-    [self.foregroundNodeB moveWithSceneVelocity:self.monkey.sceneMoveVelocity];
+    for (NormalNode *fgNode in self.foregroundNodes) {
+        [fgNode moveWithSceneVelocity:self.monkey.sceneMoveVelocity];
+    }
     
     [self.backgroundNodeA moveWithSceneVelocity:self.monkey.sceneMoveVelocity/BACKGROUND_MOVE_RATE];
     [self. backgroundNodeB moveWithSceneVelocity:self.monkey.sceneMoveVelocity/BACKGROUND_MOVE_RATE];
@@ -163,7 +163,7 @@
     
     HookNodeType type = arc4random_uniform(HookNodeTypeCount);
     HookNode* newNode = [self.treesList generateSingleNodeWithType:type distance:kDefaultTreeDistanceX];
-    NSInteger fgIndex = [self.children indexOfObject:self.foregroundNodeA];
+    NSInteger fgIndex = [self.children indexOfObject:self.foregroundNodes.firstObject];
     [self insertChild:newNode atIndex:fgIndex-1];
     if ([newNode isKindOfClass:[Spider class]]) {
         NormalNode *line = ((Spider*)newNode).line;
@@ -208,22 +208,76 @@
 }
 
 - (void)switchForegroundPosition {
-    if (self.foregroundNodeA.position.x <= -(self.foregroundNodeA.size.width + self.foregroundNodeB.size.width - self.size.width)) {
-        NormalNode *temp = [self.foregroundNodeB copy];
-        temp.position = CGPointMake(temp.position.x+ temp.size.width, temp.position.y);
-        [self.foregroundNodeA removeFromParent];
-        self.foregroundNodeA = self.foregroundNodeB;
-        self.foregroundNodeB = temp;
-        [self addChild:self.foregroundNodeB];
+    NormalNode *firstNode = self.foregroundNodes.firstObject;
+    if (firstNode.position.x <=  -firstNode.size.width) {
+        NormalNode *newNode = [self createSingleForeGroundNode];
+        NSInteger index = [self.children indexOfObject:firstNode];
+        [firstNode removeFromParent];
+        [self.foregroundNodes removeObject:firstNode];
+        [self insertChild:newNode atIndex:index];
     }
+}
+
+- (void)createBackgroundNodes {
+    int imageIndex = arc4random() % 4;
+    NSArray *imageNames = @[@"ch1",@"ch2",@"ch3",@"ch4"];
+    UIImage *image = [UIImage imageNamed:imageNames[imageIndex]];
+    SKTexture *texture = [SKTexture textureWithImage:image];
+    
+    self.backgroundNodeA = [[NormalNode alloc] initWithTexture:texture];
+    self.backgroundNodeA.anchorPoint = CGPointMake(0, 0);
+    self.backgroundNodeA.position = CGPointMake(0, 0);
+    self.backgroundNodeA.size = CGSizeMake(self.size.width, self.size.height);
+    
+    self.backgroundNodeB = [[NormalNode alloc] initWithTexture:texture];
+    self.backgroundNodeB.anchorPoint = CGPointMake(0, 0);
+    self.backgroundNodeB.position = CGPointMake(self.size.width, 0);
+    self.backgroundNodeB.size = CGSizeMake(self.size.width, self.size.height);
+}
+
+- (void)createForegroundNodes {
+    NSArray *imageNames = @[@"fg1",@"fg2"];
+    
+    CGFloat lastX = 0;
+    while (lastX < self.size.width*2) {
+        int imageIndex = arc4random() % 2;
+        UIImage *image = [UIImage imageNamed:imageNames[imageIndex]];
+        SKTexture *texture = [SKTexture textureWithImage:image];
+        
+        NormalNode* newNode = [[NormalNode alloc] initWithTexture:texture];
+        newNode.anchorPoint = CGPointMake(0, 0);
+        newNode.position = CGPointMake(lastX, 0);
+        newNode.size = CGSizeMake(80 / image.size.height * image.size.width, 80);
+        lastX += newNode.size.width;
+        [self.foregroundNodes addObject:newNode];
+        [self addChild:newNode];
+    }
+    
+}
+
+- (NormalNode*)createSingleForeGroundNode{
+    NSArray *imageNames = @[@"fg1",@"fg2"];
+    NormalNode *lastNode =self.foregroundNodes.lastObject;
+    CGFloat lastX = lastNode.position.x + lastNode.size.width;
+
+    int imageIndex = arc4random() % 2;
+    UIImage *image = [UIImage imageNamed:imageNames[imageIndex]];
+    SKTexture *texture = [SKTexture textureWithImage:image];
+        
+    NormalNode* newNode = [[NormalNode alloc] initWithTexture:texture];
+    newNode.anchorPoint = CGPointMake(0, 0);
+    newNode.position = CGPointMake(lastX, 0);
+    newNode.size = CGSizeMake(80 / image.size.height * image.size.width, 80);
+    lastX += newNode.size.width;
+    [self.foregroundNodes addObject:newNode];
+    return newNode;
 }
 
 #pragma mark - Property
 
-
 - (NormalNode *)backgroundNodeA {
     if (!_backgroundNodeA) {
-        _backgroundNodeA = [[NormalNode alloc] initWithImageNamed:@"ch1"];
+        _backgroundNodeA = [[NormalNode alloc] initWithImageNamed:@"ch2"];
         _backgroundNodeA.anchorPoint = CGPointMake(0, 0);
         _backgroundNodeA.position = CGPointMake(0, 0);
         _backgroundNodeA.size = CGSizeMake(self.size.width, self.size.height);
@@ -234,7 +288,7 @@
 
 - (NormalNode *)backgroundNodeB {
     if (!_backgroundNodeB) {
-        _backgroundNodeB = [[NormalNode alloc] initWithImageNamed:@"ch1"];
+        _backgroundNodeB = [[NormalNode alloc] initWithImageNamed:@"ch2"];
         _backgroundNodeB.anchorPoint = CGPointMake(0, 0);
         _backgroundNodeB.position = CGPointMake(self.size.width, 0);
         _backgroundNodeB.size = CGSizeMake(self.size.width, self.size.height);
@@ -242,24 +296,12 @@
     return _backgroundNodeB;
 }
 
-- (NormalNode *)foregroundNodeA {
-    if (!_foregroundNodeA) {
-        _foregroundNodeA = [[NormalNode alloc] initWithImageNamed:@"fg1"];
-        _foregroundNodeA.anchorPoint = CGPointMake(0, 0);
-        _foregroundNodeA.position = CGPointMake(0, 0);
-        _foregroundNodeA.size = CGSizeMake(self.size.width, self.size.width/1114* 250);
+- (NSMutableArray *)foregroundNodes {
+    if (!_foregroundNodes) {
+        _foregroundNodes = [[NSMutableArray alloc] init];
     }
-    return _foregroundNodeA;
+    return _foregroundNodes;
 }
 
-- (NormalNode *)foregroundNodeB {
-    if (!_foregroundNodeB) {
-        _foregroundNodeB = [[NormalNode alloc] initWithImageNamed:@"fg1"];
-        _foregroundNodeB.anchorPoint = CGPointMake(0, 0);
-        _foregroundNodeB.position = CGPointMake(self.size.width, 0);
-        _foregroundNodeB.size = CGSizeMake(self.size.width, self.size.width/1114* 250);
-    }
-    return _foregroundNodeB;
-}
 
 @end

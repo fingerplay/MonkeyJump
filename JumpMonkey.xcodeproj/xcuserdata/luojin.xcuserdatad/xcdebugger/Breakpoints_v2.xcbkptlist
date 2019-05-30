@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JumpMonkey/Sprite/ChainList.m"
-            timestampString = "580907299.849623"
+            timestampString = "580914114.140221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -83,24 +83,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JumpMonkey/GameScene.m"
-            timestampString = "580908704.061326"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "-switchForegroundPosition"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "JumpMonkey/Sprite/ChainList.m"
-            timestampString = "580907299.849745"
+            timestampString = "580914114.140319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -112,32 +96,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JumpMonkey/Sprite/Monkey.m"
-            timestampString = "580908704.0614229"
+            filePath = "JumpMonkey/GameScene.m"
+            timestampString = "580914114.14038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-switch2Swing:pendingState:hookNode:"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "-switchForegroundPosition"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JumpMonkey/Sprite/Monkey.m"
-            timestampString = "580908704.061482"
+            filePath = "JumpMonkey/GameScene.m"
+            timestampString = "580914114.140776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-switch2JumpWithVx:vy:"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-switchForegroundPosition"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
