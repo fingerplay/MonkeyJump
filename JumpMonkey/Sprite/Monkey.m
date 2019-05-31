@@ -112,15 +112,13 @@
                 self.mX = self.mX - self.sceneMoveVelocity;
             }
 
-       
 //            NSLog(@"tree position X:%f Y:%f",self.hookNode.position.x, self.hookNode.position.y);
             CGFloat value = (float) (2 * G * (self.mMaxHeight - self.armLength * (1 - cosf(self.currentAngle))));
             if (value < 0) {
                 value = 0;
             }
             CGFloat v = (float) sqrtf(value);
-//            NSLog(@"v = %f",v);
-            NSLog(@"armLength = %f",self.armLength);
+//            NSLog(@"armLength = %f",self.armLength);
             if (self.mOmega > 0) {
                 self.mOmega = v / (float)self.armLength;
             } else {

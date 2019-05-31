@@ -8,6 +8,10 @@
 
 #import "Tree.h"
 
+@interface Tree ()
+@property (nonatomic, strong) SKSpriteNode *hookPointIcon;
+@end
+
 @implementation Tree
 
 - (instancetype)initWithImageNamed:(NSString *)imageName position:(CGPoint)position {
@@ -18,6 +22,7 @@
         int w = h / 950.f*774.f;
         self.size = CGSizeMake(w, h);
         self.hookPoint = CGPointMake(TREE_HOOKPOINT_X, self.size.height*0.59);
+        [self addChild:self.hookPointIcon];
     }
     return self;
 }
@@ -26,5 +31,13 @@
     return CGSizeMake(TREE_SIZE_W, TREE_SIZE_H);
 }
 
+- (SKSpriteNode *)hookPointIcon {
+    if (!_hookPointIcon) {
+        _hookPointIcon = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(10, 10)];
+        _hookPointIcon.position = self.hookPoint;
+        _hookPointIcon.anchorPoint = CGPointMake(0.5, 0.5);
+    }
+    return _hookPointIcon;
+}
 
 @end
