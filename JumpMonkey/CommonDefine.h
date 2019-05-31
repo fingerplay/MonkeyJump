@@ -44,6 +44,7 @@
 
 
 #define SPIDER_MOVE_VELOCITY 2.f
+#define MONKEY_SWING_MAX_DURATION 3.f
 
 #define FPS 35
 

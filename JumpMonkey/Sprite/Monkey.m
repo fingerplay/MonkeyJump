@@ -161,6 +161,7 @@
     if (self.state == MonkeyStateSwing) {
         [self.hookNode onUncatchHook];
     }
+    
     self.state = MonkeyStateJump;
     self.zRotation = 0;
     if (self.isInHighestPosition) {
@@ -199,6 +200,12 @@
 - (void)switch2Swing:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
     [self countHop];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MONKEY_SWING_MAX_DURATION * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.state == MonkeyStateSwing) {
+            [self jumpWithVx:0 vy:0];
+        }
+    });
+
     [self.mScore updateHooksScore:self.hookNode.number];
     [self.mScore updateHopsScore:self.mCurrentHops];
     
@@ -262,6 +269,5 @@
     self.mCurrentHops++;
     self.mMaxHops = self.mMaxHops > self.mCurrentHops ? self.mMaxHops : self.mCurrentHops;
 }
-
 
 @end
