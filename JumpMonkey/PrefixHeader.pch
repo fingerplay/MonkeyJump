@@ -12,6 +12,8 @@
 //#ifdef  __OJBC__
 
 #import "CommonDefine.h"
+#import "UIViewAdditions.h"
+#import "UIImage+Category.h"
 //#endif
 
 #endif /* PrefixHeader_pch */

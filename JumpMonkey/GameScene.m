@@ -149,8 +149,6 @@
     if (position.y< 0) {//跳出屏幕，游戏结束
         [self gameDidEnd];
     }
-    
- 
 }
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
@@ -172,6 +170,16 @@
     
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
         [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
+    }
+    
+    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
+        [self.gameDelegate monkeyDidJumpToHookNode:node];
+    }
+}
+
+- (void)monkeyDidJumpFromHookNode:(HookNode *)node {
+    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpFromHookNode:)]) {
+        [self.gameDelegate monkeyDidJumpFromHookNode:node];
     }
 }
 

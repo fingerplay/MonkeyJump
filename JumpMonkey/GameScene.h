@@ -7,8 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "HookNode.h"
 
 @protocol GameSceneDelegate <NSObject>
+
+- (void)monkeyDidJumpFromHookNode:(HookNode *)node;
+
+- (void)monkeyDidJumpToHookNode:(HookNode *)node;
 
 - (void)gameDidEnd;
 

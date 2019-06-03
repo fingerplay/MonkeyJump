@@ -25,6 +25,8 @@
 		AF6862B8228D89E100927901 /* Monkey.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B2228D89E100927901 /* Monkey.m */; };
 		AF6862B9228D89E100927901 /* Tree.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B6228D89E100927901 /* Tree.m */; };
 		AF6862BC228D8A5500927901 /* TreesList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862BB228D8A5500927901 /* TreesList.m */; };
+		AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
+		AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,10 @@
 		AF6862B6228D89E100927901 /* Tree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tree.m; sourceTree = "<group>"; };
 		AF6862BA228D8A5500927901 /* TreesList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreesList.h; sourceTree = "<group>"; };
 		AF6862BB228D8A5500927901 /* TreesList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreesList.m; sourceTree = "<group>"; };
+		AFF080DE22A1661700D180C4 /* ClockImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClockImageView.h; sourceTree = "<group>"; };
+		AFF080DF22A1661700D180C4 /* ClockImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockImageView.m; sourceTree = "<group>"; };
+		AFF080E122A1682B00D180C4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
+		AFF080E222A1682B00D180C4 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,8 @@
 			children = (
 				AF0E3ABD2291547F00C2CF7B /* PhysicsUtil.h */,
 				AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */,
+				AFF080E122A1682B00D180C4 /* UIImage+Category.h */,
+				AFF080E222A1682B00D180C4 /* UIImage+Category.m */,
 				AF106C9022956B9B003ABD22 /* UIViewAdditions.h */,
 				AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */,
 			);
@@ -106,6 +114,7 @@
 		AF23157A22850E2C008522D0 /* JumpMonkey */ = {
 			isa = PBXGroup;
 			children = (
+				AFF080DD22A165FE00D180C4 /* View */,
 				AF0E3ABC2291545600C2CF7B /* Util */,
 				AF6862B0228D89E100927901 /* Sprite */,
 				AF23157B22850E2C008522D0 /* AppDelegate.h */,
@@ -147,6 +156,15 @@
 				AF106C8D22955695003ABD22 /* ChainList.m */,
 			);
 			path = Sprite;
+			sourceTree = "<group>";
+		};
+		AFF080DD22A165FE00D180C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AFF080DE22A1661700D180C4 /* ClockImageView.h */,
+				AFF080DF22A1661700D180C4 /* ClockImageView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +245,7 @@
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
 				AF23158422850E2C008522D0 /* GameScene.m in Sources */,
+				AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */,
 				AF23158722850E2C008522D0 /* GameViewController.m in Sources */,
 				AF6862B7228D89E100927901 /* HookNode.m in Sources */,
 				AF1172DA229E1B0C001A1F17 /* Spider.m in Sources */,
@@ -234,6 +253,7 @@
 				AF106C8E22955695003ABD22 /* ChainList.m in Sources */,
 				AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */,
 				AF6862B9228D89E100927901 /* Tree.m in Sources */,
+				AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 672MJLD28K;
+				DEVELOPMENT_TEAM = 2AM5CZNFJ9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
 				INFOPLIST_FILE = JumpMonkey/Info.plist;
@@ -396,7 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 672MJLD28K;
+				DEVELOPMENT_TEAM = 2AM5CZNFJ9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
 				INFOPLIST_FILE = JumpMonkey/Info.plist;

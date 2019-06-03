@@ -9,13 +9,14 @@
 #import "GameViewController.h"
 #import "GameScene.h"
 #import "CommonDefine.h"
-#import "UIViewAdditions.h"
+#import "ClockImageView.h"
 
 @interface GameViewController ()<GameSceneDelegate>
 @property (nonatomic, strong) GameScene *scene;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *restartBtn;
 @property (nonatomic, strong) UILabel *scoreLabel;
+@property (nonatomic, strong) ClockImageView *countdownView;
 @end
 
 @implementation GameViewController
@@ -45,6 +46,7 @@
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.restartBtn];
     [self.view addSubview:self.scoreLabel];
+    [self.view addSubview:self.countdownView];
 }
 
 - (BOOL)shouldAutorotate {
@@ -64,6 +66,16 @@
 }
 
 #pragma mark - GameSceneDelegate
+
+- (void)monkeyDidJumpToHookNode:(HookNode *)node {
+    if (node.type == HookNodeTypeStable || node.type == HookNodeTypeClimb) {
+        [self.countdownView startClockingWithDuration:MONKEY_SWING_MAX_DURATION tag:node.number];
+    }
+}
+
+- (void)monkeyDidJumpFromHookNode:(HookNode *)node {
+    [self.countdownView stopClockingWithTag:node.number];
+}
 
 -(void)gameDidEnd {
     self.titleLabel.hidden = NO;
@@ -108,11 +120,22 @@
 
 - (UILabel *)scoreLabel {
     if (!_scoreLabel) {
-        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width - 60, 20, 40, 40)];
+        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width/2 - 20, 20, 40, 20)];
+        _scoreLabel.centerX = self.view.width/2;
         _scoreLabel.textColor = [UIColor whiteColor];
         _scoreLabel.font = [UIFont systemFontOfSize:18];
     }
     return _scoreLabel;
 }
 
+- (ClockImageView *)countdownView {
+    if (!_countdownView) {
+        UIImage *image = [UIImage imageNamed:@"spider"];
+        _countdownView = [[ClockImageView alloc] initWithFrame:CGRectMake(self.view.width - image.size.width-5, 5, image.size.width, image.size.height)];
+        _countdownView.image = image;
+        _countdownView.layer.cornerRadius = image.size.width/2;
+        _countdownView.layer.masksToBounds = YES;
+    }
+    return _countdownView;
+}
 @end

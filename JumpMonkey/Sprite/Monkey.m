@@ -85,6 +85,9 @@
 
 - (void)jumpWithVx:(CGFloat)jvx vy:(CGFloat)jvy {
     [self switch2JumpWithVx:jvx vy:jvy];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidJumpFromHookNode:)]) {
+        [self.delegate monkeyDidJumpFromHookNode:self.hookNode];
+    }
     self.hookNode.isHookTarget = NO;
     self.hookNode = self.hookNode.nextNode;
     self.hookNode.isHookTarget = YES;
@@ -200,8 +203,10 @@
 - (void)switch2Swing:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
     [self countHop];
+ 
+    NSNumber* nodeNumber = @(self.hookNode.number).copy;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MONKEY_SWING_MAX_DURATION * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.state == MonkeyStateSwing) {
+        if (self.state == MonkeyStateSwing && nodeNumber.integerValue == self.hookNode.number) {
             [self jumpWithVx:0 vy:0];
         }
     });
