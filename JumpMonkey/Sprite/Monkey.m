@@ -8,7 +8,7 @@
 
 #import "Monkey.h"
 #import "PhysicsUtil.h"
-
+#import "SoundManager.h"
 
 @interface Monkey ()
 @property (nonatomic, assign) CGPoint mPostion; //相对挂点的位置
@@ -111,7 +111,7 @@
             self.currentAngle += self.mOmega * PENDULUM_RATIO;
             
             if (self.sceneMoveVelocity>0) {
-                NSLog(@"sceneMoveVelocity = %f",self.sceneMoveVelocity);
+//                NSLog(@"sceneMoveVelocity = %f",self.sceneMoveVelocity);
                 self.mX = self.mX - self.sceneMoveVelocity;
             }
 
@@ -121,7 +121,6 @@
                 value = 0;
             }
             CGFloat v = (float) sqrtf(value);
-//            NSLog(@"armLength = %f",self.armLength);
             if (self.mOmega > 0) {
                 self.mOmega = v / (float)self.armLength;
             } else {
@@ -131,9 +130,7 @@
             if (self.armLength == 0) {
                 return;
             }
-//            NSLog(@"swing mOmega = %f ,v=%f", self.mOmega, v);
             NSCAssert(self.mOmega!=NAN, @"omega = nan");
-//            NSLog(@"angle = %f",self.currentAngle);
         }
             break;
         case MonkeyStateJump:
@@ -203,7 +200,8 @@
 - (void)switch2Swing:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
     [self countHop];
- 
+    [[SoundManager sharedManger] playCatchHookSound];
+    
     NSNumber* nodeNumber = @(self.hookNode.number).copy;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MONKEY_SWING_MAX_DURATION * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.state == MonkeyStateSwing && nodeNumber.integerValue == self.hookNode.number) {

@@ -13,6 +13,7 @@
 #import "NormalNode.h"
 #import "CommonDefine.h"
 #import "Spider.h"
+#import "SoundManager.h"
 
 @interface GameScene ()<MonkeyDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
@@ -36,7 +37,6 @@
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
     [self addChildNodes];
-    
 }
 
 - (void)addChildNodes {
@@ -66,6 +66,7 @@
 
     [firstTree addChild:self.monkey];
     
+    [self addChild:[SoundManager sharedManger]];
 }
 
 - (void)removeChildNodes {
@@ -121,7 +122,7 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     // Called before each frame is rendered
-    if (!self.view.isPaused) {
+    if (!self.isGameOver) {
         [self moveAllNodes];
     }
 }
@@ -185,12 +186,15 @@
 
 #pragma mark - Logic
 - (void)gameDidEnd {
-    [self.monkey removeFromParent];
-    self.paused = YES;
-    self.isGameOver = YES;
-    
-    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEnd)]) {
-        [self.gameDelegate gameDidEnd];
+    if (!self.isGameOver) {
+        [self.monkey removeFromParent];
+        [[SoundManager sharedManger] playGameOverSound];
+//        self.paused = YES;
+        self.isGameOver = YES;
+        
+        if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEnd)]) {
+            [self.gameDelegate gameDidEnd];
+        }
     }
 }
 
@@ -200,7 +204,7 @@
     
     //重新添加子节点
     [self addChildNodes];
-    self.paused = NO;
+//    self.paused = NO;
     self.isGameOver = NO;
 }
 

@@ -96,16 +96,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JumpMonkey/GameViewController.m"
-            timestampString = "581177945.712651"
+            filePath = "JumpMonkey/sound/SoundManager.m"
+            timestampString = "581222987.56778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-monkeyDidJumpToHookNode:"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-playTestSound"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

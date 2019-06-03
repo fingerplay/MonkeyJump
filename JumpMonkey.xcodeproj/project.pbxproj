@@ -21,6 +21,12 @@
 		AF23158C22850E2D008522D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF23158B22850E2D008522D0 /* Assets.xcassets */; };
 		AF23158F22850E2D008522D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF23158D22850E2D008522D0 /* LaunchScreen.storyboard */; };
 		AF23159222850E2D008522D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23159122850E2D008522D0 /* main.m */; };
+		AF58A2C422A4B68D005E6361 /* sound_catch_hook.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */; };
+		AF58A2C522A4B68D005E6361 /* sound_game_over.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C122A4B68D005E6361 /* sound_game_over.wav */; };
+		AF58A2C622A4B68D005E6361 /* sound_cock.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C222A4B68D005E6361 /* sound_cock.wav */; };
+		AF58A2C722A4B68D005E6361 /* sound_wolf.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C322A4B68D005E6361 /* sound_wolf.wav */; };
+		AF58A2CA22A4B777005E6361 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF58A2C922A4B777005E6361 /* AVFoundation.framework */; };
+		AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2CE22A4BD9D005E6361 /* SoundManager.m */; };
 		AF6862B7228D89E100927901 /* HookNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B1228D89E100927901 /* HookNode.m */; };
 		AF6862B8228D89E100927901 /* Monkey.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B2228D89E100927901 /* Monkey.m */; };
 		AF6862B9228D89E100927901 /* Tree.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B6228D89E100927901 /* Tree.m */; };
@@ -57,6 +63,13 @@
 		AF23158E22850E2D008522D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF23159022850E2D008522D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF23159122850E2D008522D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_catch_hook.wav; sourceTree = "<group>"; };
+		AF58A2C122A4B68D005E6361 /* sound_game_over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_game_over.wav; sourceTree = "<group>"; };
+		AF58A2C222A4B68D005E6361 /* sound_cock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_cock.wav; sourceTree = "<group>"; };
+		AF58A2C322A4B68D005E6361 /* sound_wolf.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_wolf.wav; sourceTree = "<group>"; };
+		AF58A2C922A4B777005E6361 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AF58A2CD22A4BD9D005E6361 /* SoundManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = JumpMonkey/sound/SoundManager.h; sourceTree = SOURCE_ROOT; };
+		AF58A2CE22A4BD9D005E6361 /* SoundManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SoundManager.m; path = JumpMonkey/sound/SoundManager.m; sourceTree = SOURCE_ROOT; };
 		AF6862B1228D89E100927901 /* HookNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookNode.m; sourceTree = "<group>"; };
 		AF6862B2228D89E100927901 /* Monkey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monkey.m; sourceTree = "<group>"; };
 		AF6862B3228D89E100927901 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
@@ -76,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF58A2CA22A4B777005E6361 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +114,7 @@
 			children = (
 				AF23157A22850E2C008522D0 /* JumpMonkey */,
 				AF23157922850E2C008522D0 /* Products */,
+				AF58A2C822A4B777005E6361 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +129,7 @@
 		AF23157A22850E2C008522D0 /* JumpMonkey */ = {
 			isa = PBXGroup;
 			children = (
+				AF58A2BF22A4B68D005E6361 /* sound */,
 				AFF080DD22A165FE00D180C4 /* View */,
 				AF0E3ABC2291545600C2CF7B /* Util */,
 				AF6862B0228D89E100927901 /* Sprite */,
@@ -135,6 +151,27 @@
 				AF23159122850E2D008522D0 /* main.m */,
 			);
 			path = JumpMonkey;
+			sourceTree = "<group>";
+		};
+		AF58A2BF22A4B68D005E6361 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */,
+				AF58A2C122A4B68D005E6361 /* sound_game_over.wav */,
+				AF58A2C222A4B68D005E6361 /* sound_cock.wav */,
+				AF58A2C322A4B68D005E6361 /* sound_wolf.wav */,
+				AF58A2CD22A4BD9D005E6361 /* SoundManager.h */,
+				AF58A2CE22A4BD9D005E6361 /* SoundManager.m */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
+		AF58A2C822A4B777005E6361 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF58A2C922A4B777005E6361 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		AF6862B0228D89E100927901 /* Sprite */ = {
@@ -224,9 +261,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF58A2C522A4B68D005E6361 /* sound_game_over.wav in Resources */,
 				AF23158A22850E2C008522D0 /* Main.storyboard in Resources */,
+				AF58A2C722A4B68D005E6361 /* sound_wolf.wav in Resources */,
 				AF23158C22850E2D008522D0 /* Assets.xcassets in Resources */,
 				AF23158F22850E2D008522D0 /* LaunchScreen.storyboard in Resources */,
+				AF58A2C422A4B68D005E6361 /* sound_catch_hook.wav in Resources */,
+				AF58A2C622A4B68D005E6361 /* sound_cock.wav in Resources */,
 				AF23158122850E2C008522D0 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +287,7 @@
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
 				AF23158422850E2C008522D0 /* GameScene.m in Sources */,
 				AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */,
+				AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */,
 				AF23158722850E2C008522D0 /* GameViewController.m in Sources */,
 				AF6862B7228D89E100927901 /* HookNode.m in Sources */,
 				AF1172DA229E1B0C001A1F17 /* Spider.m in Sources */,
@@ -396,7 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2AM5CZNFJ9;
+				DEVELOPMENT_TEAM = 672MJLD28K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
 				INFOPLIST_FILE = JumpMonkey/Info.plist;
@@ -416,7 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2AM5CZNFJ9;
+				DEVELOPMENT_TEAM = 672MJLD28K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
 				INFOPLIST_FILE = JumpMonkey/Info.plist;
