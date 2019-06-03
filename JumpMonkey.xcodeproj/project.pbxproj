@@ -27,6 +27,10 @@
 		AF58A2C722A4B68D005E6361 /* sound_wolf.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C322A4B68D005E6361 /* sound_wolf.wav */; };
 		AF58A2CA22A4B777005E6361 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF58A2C922A4B777005E6361 /* AVFoundation.framework */; };
 		AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2CE22A4BD9D005E6361 /* SoundManager.m */; };
+		AF58A2D222A50A3E005E6361 /* Hawk.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2D122A50A3E005E6361 /* Hawk.m */; };
+		AF58A2D522A50D92005E6361 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2D422A50D91005E6361 /* UIImage+Crop.m */; };
+		AF58A2DB22A51964005E6361 /* QMDeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2D922A51964005E6361 /* QMDeviceHelper.m */; };
+		AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */; };
 		AF6862B7228D89E100927901 /* HookNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B1228D89E100927901 /* HookNode.m */; };
 		AF6862B8228D89E100927901 /* Monkey.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B2228D89E100927901 /* Monkey.m */; };
 		AF6862B9228D89E100927901 /* Tree.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862B6228D89E100927901 /* Tree.m */; };
@@ -70,6 +74,15 @@
 		AF58A2C922A4B777005E6361 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AF58A2CD22A4BD9D005E6361 /* SoundManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = JumpMonkey/sound/SoundManager.h; sourceTree = SOURCE_ROOT; };
 		AF58A2CE22A4BD9D005E6361 /* SoundManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SoundManager.m; path = JumpMonkey/sound/SoundManager.m; sourceTree = SOURCE_ROOT; };
+		AF58A2D022A50A3E005E6361 /* Hawk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hawk.h; sourceTree = "<group>"; };
+		AF58A2D122A50A3E005E6361 /* Hawk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hawk.m; sourceTree = "<group>"; };
+		AF58A2D322A50D91005E6361 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		AF58A2D422A50D91005E6361 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		AF58A2D822A51732005E6361 /* SequenceFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceFrameImage.h; sourceTree = "<group>"; };
+		AF58A2D922A51964005E6361 /* QMDeviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMDeviceHelper.m; sourceTree = "<group>"; };
+		AF58A2DA22A51964005E6361 /* QMDeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMDeviceHelper.h; sourceTree = "<group>"; };
+		AF58A2DC22A51E42005E6361 /* UIBezierPath+AllPoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AllPoints.h"; sourceTree = "<group>"; };
+		AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AllPoints.m"; sourceTree = "<group>"; };
 		AF6862B1228D89E100927901 /* HookNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookNode.m; sourceTree = "<group>"; };
 		AF6862B2228D89E100927901 /* Monkey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monkey.m; sourceTree = "<group>"; };
 		AF6862B3228D89E100927901 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
@@ -103,8 +116,14 @@
 				AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */,
 				AFF080E122A1682B00D180C4 /* UIImage+Category.h */,
 				AFF080E222A1682B00D180C4 /* UIImage+Category.m */,
+				AF58A2D322A50D91005E6361 /* UIImage+Crop.h */,
+				AF58A2D422A50D91005E6361 /* UIImage+Crop.m */,
 				AF106C9022956B9B003ABD22 /* UIViewAdditions.h */,
 				AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */,
+				AF58A2DA22A51964005E6361 /* QMDeviceHelper.h */,
+				AF58A2D922A51964005E6361 /* QMDeviceHelper.m */,
+				AF58A2DC22A51E42005E6361 /* UIBezierPath+AllPoints.h */,
+				AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -129,6 +148,7 @@
 		AF23157A22850E2C008522D0 /* JumpMonkey */ = {
 			isa = PBXGroup;
 			children = (
+				AF58A2D722A51732005E6361 /* Protocol */,
 				AF58A2BF22A4B68D005E6361 /* sound */,
 				AFF080DD22A165FE00D180C4 /* View */,
 				AF0E3ABC2291545600C2CF7B /* Util */,
@@ -174,11 +194,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AF58A2D722A51732005E6361 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AF58A2D822A51732005E6361 /* SequenceFrameImage.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		AF6862B0228D89E100927901 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
 				AF6862B5228D89E100927901 /* Monkey.h */,
 				AF6862B2228D89E100927901 /* Monkey.m */,
+				AF58A2D022A50A3E005E6361 /* Hawk.h */,
+				AF58A2D122A50A3E005E6361 /* Hawk.m */,
 				AF1AC7D5229BB920008B3418 /* NormalNode.h */,
 				AF1AC7D6229BB920008B3418 /* NormalNode.m */,
 				AF6862B4228D89E100927901 /* HookNode.h */,
@@ -285,14 +315,18 @@
 				AF6862B8228D89E100927901 /* Monkey.m in Sources */,
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
+				AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */,
 				AF23158422850E2C008522D0 /* GameScene.m in Sources */,
 				AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */,
 				AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */,
+				AF58A2DB22A51964005E6361 /* QMDeviceHelper.m in Sources */,
 				AF23158722850E2C008522D0 /* GameViewController.m in Sources */,
 				AF6862B7228D89E100927901 /* HookNode.m in Sources */,
+				AF58A2D522A50D92005E6361 /* UIImage+Crop.m in Sources */,
 				AF1172DA229E1B0C001A1F17 /* Spider.m in Sources */,
 				AF23159222850E2D008522D0 /* main.m in Sources */,
 				AF106C8E22955695003ABD22 /* ChainList.m in Sources */,
+				AF58A2D222A50A3E005E6361 /* Hawk.m in Sources */,
 				AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */,
 				AF6862B9228D89E100927901 /* Tree.m in Sources */,
 				AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */,

@@ -20,7 +20,7 @@
         UIImage *image = [UIImage imageNamed:imageName];
         self.size = image.size;
         self.hookPoint = CGPointMake(0, self.size.height/2);
-        self.type = HookNodeTypeClimb;
+        self.type = HookNodeTypeMove;
         [self caculatePosition];
         [self addLine];
     }

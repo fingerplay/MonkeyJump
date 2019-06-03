@@ -68,7 +68,7 @@
 #pragma mark - GameSceneDelegate
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
-    if (node.type == HookNodeTypeStable || node.type == HookNodeTypeClimb) {
+    if (node.type == HookNodeTypeStable || node.type == HookNodeTypeMove) {
         [self.countdownView startClockingWithDuration:MONKEY_SWING_MAX_DURATION tag:node.number];
     }
 }

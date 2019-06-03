@@ -43,7 +43,7 @@
 
 - (HookNode*)generateSingleNodeWithType:(HookNodeType)type position:(CGPoint)position {
     HookNode *node;
-    if (type == HookNodeTypeClimb) {
+    if (type == HookNodeTypeMove) {
         node = [[Spider alloc] initWithImageNamed:@"spider" position:position];
     }else {
         node = [[Tree alloc] initWithImageNamed:@"tree" position:position];

@@ -12,7 +12,7 @@
 
 typedef NS_ENUM(NSUInteger){
     HookNodeTypeStable = 0,
-    HookNodeTypeClimb,
+    HookNodeTypeMove,
     HookNodeTypeCount,
 } HookNodeType;
 

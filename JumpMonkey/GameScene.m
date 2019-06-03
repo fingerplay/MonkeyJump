@@ -13,6 +13,7 @@
 #import "NormalNode.h"
 #import "CommonDefine.h"
 #import "Spider.h"
+#import "Hawk.h"
 #import "SoundManager.h"
 
 @interface GameScene ()<MonkeyDelegate>
@@ -21,7 +22,7 @@
 @property (nonatomic, strong) NormalNode *backgroundNodeB;
 @property (nonatomic, strong) Monkey *monkey;
 @property (nonatomic, strong) TreesList *treesList;
-
+@property (nonatomic, strong) Hawk *hawk;
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
@@ -66,7 +67,14 @@
 
     [firstTree addChild:self.monkey];
     
+    self.hawk = [[Hawk alloc] initWithImageNamed:@"hawk_list"];
+    [self addChild:self.hawk];
+    
     [self addChild:[SoundManager sharedManger]];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.hawk startMove];
+    });
 }
 
 - (void)removeChildNodes {
@@ -137,6 +145,8 @@
         [fgNode moveWithSceneVelocity:self.monkey.sceneMoveVelocity];
     }
     
+    [self.hawk moveWithSceneVelocity:self.monkey.sceneMoveVelocity];
+
     [self.backgroundNodeA moveWithSceneVelocity:self.monkey.sceneMoveVelocity/BACKGROUND_MOVE_RATE];
     [self. backgroundNodeB moveWithSceneVelocity:self.monkey.sceneMoveVelocity/BACKGROUND_MOVE_RATE];
    

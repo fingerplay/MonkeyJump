@@ -111,7 +111,7 @@
             self.currentAngle += self.mOmega * PENDULUM_RATIO;
             
             if (self.sceneMoveVelocity>0) {
-//                NSLog(@"sceneMoveVelocity = %f",self.sceneMoveVelocity);
+                NSLog(@"sceneMoveVelocity = %f",self.sceneMoveVelocity);
                 self.mX = self.mX - self.sceneMoveVelocity;
             }
 
@@ -130,7 +130,6 @@
             if (self.armLength == 0) {
                 return;
             }
-            NSCAssert(self.mOmega!=NAN, @"omega = nan");
         }
             break;
         case MonkeyStateJump:
@@ -140,7 +139,7 @@
             self.mY = self.mY + self.mVty - G / 2;
             self.position = CGPointMake(self.mX, self.mY);
 //            NSLog(@"monkey position X:%f Y:%f",self.mX,self.mY);
-            NSCAssert(self.mX!=NAN, @"mx = nan");
+
             self.mVy -= G;
             self.mVty = self.mVy * JUMP_COEFFCIENT;
             
