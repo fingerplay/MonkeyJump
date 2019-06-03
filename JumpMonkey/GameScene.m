@@ -169,6 +169,8 @@
         [self insertChild:line atIndex:fgIndex-1];
     }
     
+    [self showScoreLabel];
+    
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
         [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
     }
@@ -176,6 +178,8 @@
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
         [self.gameDelegate monkeyDidJumpToHookNode:node];
     }
+    
+
 }
 
 - (void)monkeyDidJumpFromHookNode:(HookNode *)node {
@@ -184,7 +188,24 @@
     }
 }
 
-#pragma mark - Logic
+#pragma mark - Private
+- (void)showScoreLabel {
+    if (self.monkey.mScore.lastAccScore>0) {
+        SKAction *moveAction = [SKAction moveTo:CGPointMake(self.size.width, self.size.height) duration:3];
+        SKAction *scaleAction = [SKAction scaleTo:0 duration:3];
+        SKAction *removeAction = [SKAction removeFromParent];
+        SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"+%ld",(long)self.monkey.mScore.lastAccScore]];
+        scoreLabel.fontSize = 30;
+        scoreLabel.fontColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:1];
+        scoreLabel.position = [self.monkey.hookNode getRealHook];
+        SKAction *actionGroup =[SKAction group:@[moveAction, scaleAction]];
+        [scoreLabel runAction:[SKAction sequence:@[actionGroup, removeAction]]];
+
+        [self addChild:scoreLabel];
+    }
+
+}
+
 - (void)gameDidEnd {
     if (!self.isGameOver) {
         [self.monkey removeFromParent];

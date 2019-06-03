@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScoreInfo : NSObject
 
 @property (nonatomic, assign, readonly) NSInteger score;
+@property (nonatomic, assign, readonly) NSInteger lastAccScore;
 
 - (void)updateHopsScore:(NSInteger)hopsNumber;
 

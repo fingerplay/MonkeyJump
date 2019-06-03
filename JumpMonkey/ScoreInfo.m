@@ -18,11 +18,14 @@
 - (void)updateHopsScore:(NSInteger)hopsNumber {
     if(hopsNumber <= 1){
         // do nothing;
+        _lastAccScore = 0;
     } else if (hopsNumber < 3){
-        self.mHopsScore += 1;
+        _lastAccScore = 1;
     } else {
-        self.mHopsScore += hopsNumber/3 * 2;
+        _lastAccScore = hopsNumber/3 * 2;
     }
+    
+    self.mHopsScore += self.lastAccScore;
 }
 
 - (void)updateHooksScore:(NSInteger)hooksNumber {
