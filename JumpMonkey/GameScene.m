@@ -70,13 +70,15 @@
     [firstTree addChild:self.monkey];
     
     self.hawk = [[Hawk alloc] initWithImageNamed:@"hawk_list"];
+    self.hawk.hidden = YES;
     [self addChild:self.hawk];
     
     [self addChild:self.totalScoreNode];
     [self addChild:[SoundManager sharedManger]];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.hawk startMove];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.hawk.hidden = NO;
+        [self.hawk startMoveWithLocation:CGPointMake(self.monkey.offsetX + SCREEN_W/3 - self.hawk.size.width/2, -self.hawk.size.height/2)];
     });
 }
 

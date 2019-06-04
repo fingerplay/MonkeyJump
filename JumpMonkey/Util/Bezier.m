@@ -18,7 +18,7 @@
 @property(nonatomic,assign) CGPoint p0;    // 起点
 @property(nonatomic,assign) CGPoint p1;   // 贝塞尔点
 @property(nonatomic,assign) CGPoint p2;  // 终点
-@property(nonatomic,assign) NSInteger step;  // 分割份数
+
 
 @property(nonatomic,assign) CGFloat A;
 @property(nonatomic,assign) CGFloat B;
@@ -60,35 +60,38 @@
 
 #pragma mark - Public
 //  返回所需总步数
--(CGFloat)initWithp0:(CGPoint)p0 p1:(CGPoint)p1 p2:(CGPoint)p2 speed:(CGFloat)speed {
-    self.p0 = p0;
-    self.p1 = p1;
-    self.p2 = p2;
-    //step = 30;
+-(instancetype)initWithp0:(CGPoint)p0 p1:(CGPoint)p1 p2:(CGPoint)p2 speed:(CGFloat)speed {
+    self = [super init];
+    if (self) {
+        self.p0 = p0;
+        self.p1 = p1;
+        self.p2 = p2;
+        //step = 30;
+        
+        CGFloat ax = self.p0.x - 2 * self.p1.x + self.p2.x;
+        CGFloat ay = self.p0.y - 2 * self.p1.y + self.p2.y;
+        CGFloat bx = 2 * self.p1.x - 2 * self.p0.x;
+        CGFloat by = 2 * self.p1.y - 2 * self.p0.y;
+        
+        self.A = 4 * (ax * ax + ay * ay);
+        self.B = 4 * (ax * bx + ay * by);
+        self.C = bx * bx + by * by;
+        
+        //  计算长度
+        self.total_length = [self L:1];
+        
+        //  计算步数
+        _step = floor(self.total_length / speed);
+        if (fmod(self.total_length, speed) > speed / 2) _step++;
+    }
+    return self;
     
-    CGFloat ax = self.p0.x - 2 * self.p1.x + self.p2.x;
-    CGFloat ay = self.p0.y - 2 * self.p1.y + self.p2.y;
-    CGFloat bx = 2 * self.p1.x - 2 * self.p0.x;
-    CGFloat by = 2 * self.p1.y - 2 * self.p0.y;
-    
-    self.A = 4 * (ax * ax + ay * ay);
-    self.B = 4 * (ax * bx + ay * by);
-    self.C = bx * bx + by * by;
-    
-    //  计算长度
-    self.total_length = [self L:1];
-    
-    //  计算步数
-    self.step = floor(self.total_length / speed);
-    if (fmod(self.total_length, speed) > speed / 2) self.step++;
-    
-    return self.step;
 }
 
 // 根据指定nIndex位置获取锚点：返回坐标和角度
 -(BezierPoint*)getAnchorPoint:(NSInteger)nIndex {
     if (nIndex >= 0 && nIndex <= self.step) {
-        CGFloat t = nIndex / self.step;
+        CGFloat t = (CGFloat)nIndex / self.step;
         //  如果按照线行增长，此时对应的曲线长度
         CGFloat l = t * self.total_length;
         //  根据self.L函数的反函数，求得l对应的t值

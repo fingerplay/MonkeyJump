@@ -18,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Bezier : NSObject
 
--(CGFloat)initWithp0:(CGPoint)p0 p1:(CGPoint)p1 p2:(CGPoint)p2 speed:(CGFloat)speed;
+@property(nonatomic,assign,readonly) NSInteger step;  // 分割份数
+
+-(instancetype)initWithp0:(CGPoint)p0 p1:(CGPoint)p1 p2:(CGPoint)p2 speed:(CGFloat)speed;
 
 -(BezierPoint*)getAnchorPoint:(NSInteger)nIndex;
 @end
