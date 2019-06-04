@@ -8,45 +8,28 @@
 
 #import "Hawk.h"
 #import "UIBezierPath+AllPoints.h"
-
+#import "ImageSequence.h"
 static NSInteger kFrameCount = 30;
 
 @interface Hawk ()
-@property (nonatomic, strong) NSArray* images;
-@property (nonatomic, assign) NSInteger frameIndex;
+@property (nonatomic, strong) ImageSequence *imageSequence;
 @end
 
 @implementation Hawk
+
 
 - (instancetype)initWithImageNamed:(NSString *)name {
     self = [super initWithImageNamed:name];
     if (self) {
         self.type = HookNodeTypeMove;
         self.position = CGPointMake(-50, -50); //初始不可见
-        self.frameIndex = 0;
-        [self loadAndClipImages];
-        
+        self.imageSequence = [[ImageSequence alloc] initWithOriginImage:[UIImage imageNamed:@"hawk_list"] frameCount:kFrameCount];
+        self.size = self.imageSequence.imageSize;
+        self.texture = [SKTexture textureWithImage:self.imageSequence.currentImage];
     }
     return self;
 }
 
-- (void)loadAndClipImages {
-    UIImage *image = [UIImage imageNamed:@"hawk_list"];
-    CGFloat widthPerFrame = image.size.width / kFrameCount;
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (NSInteger i=0; i<kFrameCount; i++) {
-        UIImage *frameImage = [image cropImageInRect:CGRectMake(i * widthPerFrame, 0, widthPerFrame, image.size.height)];
-        [temp addObject:frameImage];
-    }
-    self.images = [temp copy];
-    self.size = CGSizeMake(widthPerFrame, image.size.height);
-    self.texture = [SKTexture textureWithImage:self.images[self.frameIndex]];
-}
-
-- (void)changeImage {
-    self.texture = [SKTexture textureWithImage:self.images[self.frameIndex]];
-    self.frameIndex =  (self.frameIndex +1 ) % kFrameCount ;
-}
 
 #pragma mark - Public
 - (void)startMove {
@@ -61,7 +44,7 @@ static NSInteger kFrameCount = 30;
 }
 
 - (void)moveWithSceneVelocity:(CGFloat)velocity {
-    NSLog(@"hwak position = %@",NSStringFromCGPoint(self.position));
+//    NSLog(@"hwak position = %@",NSStringFromCGPoint(self.position));
     
     [super moveWithSceneVelocity:velocity];
 //    if (velocity > 0) {
@@ -69,6 +52,7 @@ static NSInteger kFrameCount = 30;
 //        [self runAction:move];
 //    }
  
-    [self changeImage];
+    [self.imageSequence changeImage];
+    self.texture = [SKTexture textureWithImage:self.imageSequence.currentImage];
 }
 @end

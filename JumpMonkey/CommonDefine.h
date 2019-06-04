@@ -11,7 +11,7 @@
 
 #define kDefaultTreeDistanceX  ([UIScreen mainScreen].bounds.size.width /3)
 
-#define JUMP_COEFFCIENT 0.5f //跳跃系数
+#define JUMP_COEFFCIENT 0.7f //跳跃系数
 #define ENERGY_COEFFCIENT  0.1f  //能量系数
 #define PENDULUM_RATIO 0.6f
 #define G (9.8 * 0.7) //重力加速度
@@ -38,13 +38,13 @@
 #define MONKEY_MIN_X 70
 #define TREE_POSITION_Y 20
 #define SPIDER_POSITION_MIN_Y 100
+#define SPIDER_MOVE_VELOCITY 2.f
 
 #define SCENE_MOVE_VELOCITY_SWING 5
-#define SCENE_MOVE_VELOCITY_JUMP 10
+#define SCENE_MOVE_VELOCITY_JUMP 12
 
 
-#define SPIDER_MOVE_VELOCITY 2.f
-#define MONKEY_SWING_MAX_DURATION 5.f
+#define MONKEY_SWING_MAX_DURATION 3.f
 
 #define FPS 35
 

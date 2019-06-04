@@ -14,6 +14,7 @@
 #import "CommonDefine.h"
 #import "Spider.h"
 #import "Hawk.h"
+#import "SKNumberNode.h"
 #import "SoundManager.h"
 
 @interface GameScene ()<MonkeyDelegate>
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) Monkey *monkey;
 @property (nonatomic, strong) TreesList *treesList;
 @property (nonatomic, strong) Hawk *hawk;
+@property (nonatomic, strong) SKNumberNode *totalScoreNode;
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
@@ -70,6 +72,7 @@
     self.hawk = [[Hawk alloc] initWithImageNamed:@"hawk_list"];
     [self addChild:self.hawk];
     
+    [self addChild:self.totalScoreNode];
     [self addChild:[SoundManager sharedManger]];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -180,6 +183,7 @@
     }
     
     [self showScoreLabel];
+    [self.totalScoreNode setNumber:self.monkey.mScore.score];
     
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
         [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
@@ -204,14 +208,17 @@
         SKAction *moveAction = [SKAction moveTo:CGPointMake(self.size.width, self.size.height) duration:3];
         SKAction *scaleAction = [SKAction scaleTo:0 duration:3];
         SKAction *removeAction = [SKAction removeFromParent];
-        SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"+%ld",(long)self.monkey.mScore.lastAccScore]];
-        scoreLabel.fontSize = 30;
-        scoreLabel.fontColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:1];
-        scoreLabel.position = [self.monkey.hookNode getRealHook];
+//        SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"+%ld",(long)self.monkey.mScore.lastAccScore]];
+//        scoreLabel.fontSize = 30;
+//        scoreLabel.fontColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:1];
+        SKNumberNode *scoreNode = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
+        scoreNode.showPlusSign = YES;
+        [scoreNode setNumber:self.monkey.mScore.lastAccScore];
+        scoreNode.position = [self.monkey.hookNode getRealHook];
         SKAction *actionGroup =[SKAction group:@[moveAction, scaleAction]];
-        [scoreLabel runAction:[SKAction sequence:@[actionGroup, removeAction]]];
+        [scoreNode runAction:[SKAction sequence:@[actionGroup, removeAction]]];
 
-        [self addChild:scoreLabel];
+        [self addChild:scoreNode];
     }
 
 }
@@ -219,6 +226,7 @@
 - (void)gameDidEnd {
     if (!self.isGameOver) {
         [self.monkey removeFromParent];
+        [self.monkey.mScore clearScore];
         [[SoundManager sharedManger] playGameOverSound];
 //        self.paused = YES;
         self.isGameOver = YES;
@@ -237,6 +245,9 @@
     [self addChildNodes];
 //    self.paused = NO;
     self.isGameOver = NO;
+    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidRestart)]) {
+        [self.gameDelegate gameDidRestart];
+    }
 }
 
 - (void)switchBackgroundPosition {
@@ -346,5 +357,14 @@
     return _foregroundNodes;
 }
 
+- (SKNumberNode *)totalScoreNode {
+    if (!_totalScoreNode) {
+        _totalScoreNode = [[SKNumberNode alloc] initWithImageNamed:@"number_1_frame_list" charSequence:@"0123456789"];
+        _totalScoreNode.position = CGPointMake(self.size.width/2 , self.size.height - 30);
+        _totalScoreNode.maxHeight = 30;
+        _totalScoreNode.anchorPoint = CGPointMake(0.5, 0.5);
+    }
+    return _totalScoreNode;
+}
 
 @end

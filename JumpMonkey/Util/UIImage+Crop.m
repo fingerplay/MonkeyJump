@@ -50,5 +50,28 @@
     return normalizedImage;
 }
 
+//假定图片是横向排列，高度相等的情况
++ (UIImage *)combileImagesHorizontal:(NSArray*)images {
+    CGFloat imageWidth = 0;
+    CGFloat imageHeight = 0;
+    for (UIImage *image in images) {
+        imageWidth += image.size.width;
+        imageHeight = image.size.height;
+    }
+    
+    CGFloat lastImageRight = 0;
+    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
+    for (NSInteger i=0; i<images.count; i++) {
+        UIImage *image = [images objectAtIndex:i];
+        [image drawInRect:CGRectMake(lastImageRight ,0 , image.size.width, image.size.height)];
+        lastImageRight += image.size.width;
+    }
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
+}
 
 @end

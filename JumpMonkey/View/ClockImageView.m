@@ -39,7 +39,7 @@
     [self.foregroundLayer setHidden:NO];
     self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:stepDuration repeats:YES block:^(NSTimer * _Nonnull timer) {
         wSelf.count ++ ;
-        NSLog(@"[%ld]count:%ld",tag,(long)wSelf.count);
+//        NSLog(@"[%ld]count:%ld",tag,(long)wSelf.count);
         CGFloat ratio = wSelf.count / totalCount;
         if (ratio >= 1) {
             [wSelf stopClockingWithTag:tag];
@@ -69,12 +69,9 @@
 
 - (CALayer *)foregroundLayer {
     if (!_foregroundLayer) {
-        
-        //创建一个蓝色的Layer
         _foregroundLayer  = [CALayer layer];
         _foregroundLayer.bounds  = self.bounds;
-        _foregroundLayer.backgroundColor = [UIColor whiteColor].CGColor;
-        
+        _foregroundLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
 
         //设置位置
         _foregroundLayer.position = CGPointMake(self.width/2, self.height/2);
@@ -104,12 +101,5 @@
     return _maskLayer;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

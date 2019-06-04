@@ -8,14 +8,13 @@
 
 #import "GameViewController.h"
 #import "GameScene.h"
-#import "CommonDefine.h"
+#import "ImageSequence.h"
 #import "ClockImageView.h"
 
 @interface GameViewController ()<GameSceneDelegate>
 @property (nonatomic, strong) GameScene *scene;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *restartBtn;
-@property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) ClockImageView *countdownView;
 @end
 
@@ -45,7 +44,6 @@
     
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.restartBtn];
-    [self.view addSubview:self.scoreLabel];
     [self.view addSubview:self.countdownView];
 }
 
@@ -82,10 +80,6 @@
     self.restartBtn.hidden = NO;
 }
 
--(void)scoreDidUpdate:(NSInteger)score {
-    self.scoreLabel.text = [NSString stringWithFormat:@"%ld",(long)score];
-}
-
 #pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {
     [self.scene gameRestart];
@@ -118,19 +112,10 @@
     return _restartBtn;
 }
 
-- (UILabel *)scoreLabel {
-    if (!_scoreLabel) {
-        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width/2 - 20, 20, 40, 20)];
-        _scoreLabel.centerX = self.view.width/2;
-        _scoreLabel.textColor = [UIColor whiteColor];
-        _scoreLabel.font = [UIFont systemFontOfSize:18];
-    }
-    return _scoreLabel;
-}
 
 - (ClockImageView *)countdownView {
     if (!_countdownView) {
-        UIImage *image = [UIImage imageNamed:@"spider"];
+        UIImage *image = [UIImage imageNamed:@"bubble_tree"];
         _countdownView = [[ClockImageView alloc] initWithFrame:CGRectMake(self.view.width - image.size.width-5, 5, image.size.width, image.size.height)];
         _countdownView.image = image;
         _countdownView.layer.cornerRadius = image.size.width/2;

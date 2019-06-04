@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(UIImage*)fixOrientaion;
 
++(UIImage *)combileImagesHorizontal:(NSArray*)images;
+
 @end
 
 NS_ASSUME_NONNULL_END

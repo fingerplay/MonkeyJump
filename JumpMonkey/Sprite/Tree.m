@@ -19,7 +19,9 @@
     if (self) {
         self.type = HookNodeTypeStable;
         int h = arc4random() % (int)TREE_SIZE_H/2 + TREE_SIZE_H /5 * 4;
-        int w = h / 950.f*774.f;
+        CGFloat imageWidth = CGImageGetWidth(self.texture.CGImage);
+        CGFloat imageHeight = CGImageGetHeight(self.texture.CGImage);
+        int w = h / imageHeight*imageWidth;
         self.size = CGSizeMake(w, h);
         self.hookPoint = CGPointMake(TREE_HOOKPOINT_X, self.size.height*0.59);
         [self addChild:self.hookPointIcon];
@@ -27,13 +29,10 @@
     return self;
 }
 
-+ (CGSize)size {
-    return CGSizeMake(TREE_SIZE_W, TREE_SIZE_H);
-}
-
 - (SKSpriteNode *)hookPointIcon {
     if (!_hookPointIcon) {
-        _hookPointIcon = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(10, 10)];
+        _hookPointIcon = [[SKSpriteNode alloc] initWithImageNamed:@"tree_hook_attach"];
+        _hookPointIcon.size = CGSizeMake(25, 28);
         _hookPointIcon.position = self.hookPoint;
         _hookPointIcon.anchorPoint = CGPointMake(0.5, 0.5);
     }

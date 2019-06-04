@@ -17,6 +17,8 @@
 
 - (void)gameDidEnd;
 
+- (void)gameDidRestart;
+
 - (void)scoreDidUpdate:(NSInteger)score;
 
 @end

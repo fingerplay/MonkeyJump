@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-
-@protocol SequenceFrameImage <NSObject>
+@protocol SequenceFrameImageProtocol <NSObject>
 
 - (void)loadAndClipImages;
 

@@ -32,6 +32,12 @@
     self.mHooksScore = BASE_HOOK_SCORE * hooksNumber;
 }
 
+- (void)clearScore {
+    _lastAccScore = 0;
+    self.mHopsScore = 0;
+    self.mHooksScore = 0;
+}
+
 - (NSInteger)score {
 //    return self.mHooksScore + self.mHopsScore;
     return self.mHopsScore;

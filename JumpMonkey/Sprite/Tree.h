@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Tree : HookNode
 
-+ (CGSize)size;
-
 
 @end
 

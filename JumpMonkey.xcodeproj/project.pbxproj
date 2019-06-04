@@ -21,6 +21,9 @@
 		AF23158C22850E2D008522D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF23158B22850E2D008522D0 /* Assets.xcassets */; };
 		AF23158F22850E2D008522D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF23158D22850E2D008522D0 /* LaunchScreen.storyboard */; };
 		AF23159222850E2D008522D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23159122850E2D008522D0 /* main.m */; };
+		AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E05D22A5F445008BBCCF /* Bezier.m */; };
+		AF36E06122A645BB008BBCCF /* SKNumberNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E06022A645BB008BBCCF /* SKNumberNode.m */; };
+		AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E06422A6487A008BBCCF /* ImageSequence.m */; };
 		AF58A2C422A4B68D005E6361 /* sound_catch_hook.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */; };
 		AF58A2C522A4B68D005E6361 /* sound_game_over.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C122A4B68D005E6361 /* sound_game_over.wav */; };
 		AF58A2C622A4B68D005E6361 /* sound_cock.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C222A4B68D005E6361 /* sound_cock.wav */; };
@@ -67,6 +70,12 @@
 		AF23158E22850E2D008522D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF23159022850E2D008522D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF23159122850E2D008522D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AF36E05C22A5F445008BBCCF /* Bezier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bezier.h; sourceTree = "<group>"; };
+		AF36E05D22A5F445008BBCCF /* Bezier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bezier.m; sourceTree = "<group>"; };
+		AF36E06022A645BB008BBCCF /* SKNumberNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKNumberNode.m; sourceTree = "<group>"; };
+		AF36E06222A6463B008BBCCF /* SKNumberNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKNumberNode.h; sourceTree = "<group>"; };
+		AF36E06322A6487A008BBCCF /* ImageSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSequence.h; sourceTree = "<group>"; };
+		AF36E06422A6487A008BBCCF /* ImageSequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSequence.m; sourceTree = "<group>"; };
 		AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_catch_hook.wav; sourceTree = "<group>"; };
 		AF58A2C122A4B68D005E6361 /* sound_game_over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_game_over.wav; sourceTree = "<group>"; };
 		AF58A2C222A4B68D005E6361 /* sound_cock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_cock.wav; sourceTree = "<group>"; };
@@ -124,6 +133,8 @@
 				AF58A2D922A51964005E6361 /* QMDeviceHelper.m */,
 				AF58A2DC22A51E42005E6361 /* UIBezierPath+AllPoints.h */,
 				AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */,
+				AF36E05C22A5F445008BBCCF /* Bezier.h */,
+				AF36E05D22A5F445008BBCCF /* Bezier.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -198,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				AF58A2D822A51732005E6361 /* SequenceFrameImage.h */,
+				AF36E06322A6487A008BBCCF /* ImageSequence.h */,
+				AF36E06422A6487A008BBCCF /* ImageSequence.m */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -221,6 +234,8 @@
 				AF6862BB228D8A5500927901 /* TreesList.m */,
 				AF106C8C22955695003ABD22 /* ChainList.h */,
 				AF106C8D22955695003ABD22 /* ChainList.m */,
+				AF36E06222A6463B008BBCCF /* SKNumberNode.h */,
+				AF36E06022A645BB008BBCCF /* SKNumberNode.m */,
 			);
 			path = Sprite;
 			sourceTree = "<group>";
@@ -315,6 +330,8 @@
 				AF6862B8228D89E100927901 /* Monkey.m in Sources */,
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
+				AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */,
+				AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */,
 				AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */,
 				AF23158422850E2C008522D0 /* GameScene.m in Sources */,
 				AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */,
@@ -325,6 +342,7 @@
 				AF58A2D522A50D92005E6361 /* UIImage+Crop.m in Sources */,
 				AF1172DA229E1B0C001A1F17 /* Spider.m in Sources */,
 				AF23159222850E2D008522D0 /* main.m in Sources */,
+				AF36E06122A645BB008BBCCF /* SKNumberNode.m in Sources */,
 				AF106C8E22955695003ABD22 /* ChainList.m in Sources */,
 				AF58A2D222A50A3E005E6361 /* Hawk.m in Sources */,
 				AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */,

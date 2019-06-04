@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Hawk : HookNode<SequenceFrameImage>
+@interface Hawk : HookNode
 
 - (void)startMove;
 
