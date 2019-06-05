@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "HookNode.h"
 #import "ScoreInfo.h"
-
+#import "Hawk.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger){
@@ -37,15 +37,19 @@ typedef NS_ENUM(NSInteger){
 @property (nonatomic, assign) CGFloat currentAngle; //当前摆动的角度
 @property (nonatomic, assign) MonkeyState state; //猴子当前的状态
 @property (nonatomic, strong) HookNode *hookNode;
+@property (nonatomic, weak) Hawk *hawk;
 @property (nonatomic, strong) HookNode *delayDropNode;
 @property (nonatomic, strong) ScoreInfo *mScore;
 @property (nonatomic, weak) id<MonkeyDelegate> delegate;
+
 
 - (instancetype)initWithImageNamed:(NSString *)name hookNode:(HookNode*)hookNode;
 
 - (void)jumpWithVx:(CGFloat)vx vy:(CGFloat)vy;
 
 - (void)move;
+
+- (HookNode*)getCurrentHookNode;
 
 @end
 

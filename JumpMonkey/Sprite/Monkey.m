@@ -84,13 +84,28 @@
 }
 
 - (void)jumpWithVx:(CGFloat)jvx vy:(CGFloat)jvy {
-    [self switch2JumpWithVx:jvx vy:jvy];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidJumpFromHookNode:)]) {
-        [self.delegate monkeyDidJumpFromHookNode:self.hookNode];
+    if (self.state == MonkeyStateSwing) {
+        [self switch2JumpWithVx:jvx vy:jvy];
+        self.hookNode = self.hookNode.nextNode;
+    }else if (self.state == MonkeyStateRide) {
+       
+        HookNode *node = self.hookNode;
+        while (node!=NULL) {
+            CGPoint hookPoint = [node getRealHook];
+            if ((hookPoint.x < self.mX && hookPoint.x + self.armLength > self.mX) || hookPoint.x > self.mX) {
+                self.hookNode = node;
+                self.mVx = self.hawk.speed;
+                break;
+            }
+            node = node.nextNode;
+        }
+        [self switch2JumpWithVx:jvx vy:jvy];
     }
-    self.hookNode.isHookTarget = NO;
-    self.hookNode = self.hookNode.nextNode;
-    self.hookNode.isHookTarget = YES;
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidJumpFromHookNode:)]) {
+        [self.delegate monkeyDidJumpFromHookNode:[self getCurrentHookNode]];
+    }
+
 }
 
 - (void)move {
@@ -132,6 +147,20 @@
             }
         }
             break;
+        case MonkeyStateRide:
+        {
+            self.mX = [self.hawk getRealHook].x;
+            self.mY = [self.hawk getRealHook].y;
+            self.zRotation = 0;
+            if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidMoveTo:)]) {
+                [self.delegate monkeyDidMoveTo:CGPointMake(self.mX, self.mY)];
+            }
+            
+            if ([self.hawk isHookBroken]) {
+                [self jumpWithVx:0 vy:0];
+            }
+        }
+            break;
         case MonkeyStateJump:
         {
 //            NSLog(@"sceneMoveVelocity = %f ,mvtx =%f",self.sceneMoveVelocity, self.mVtx);
@@ -147,7 +176,8 @@
                 [self.delegate monkeyDidMoveTo:CGPointMake(self.mX, self.mY)];
             }
             
-            [self checkCatchHook:self.hookNode pendingState:MonkeyStateSwing];
+//            [self checkCatchHook:self.hookNode pendingState:MonkeyStateSwing];
+            [self checkCatchNextHook];
         }
             break;
         default:
@@ -159,22 +189,29 @@
 - (void)switch2JumpWithVx:(CGFloat)jvx vy:(CGFloat)jvy {
     if (self.state == MonkeyStateSwing) {
         [self.hookNode onUncatchHook];
+        if (self.isInHighestPosition) {
+            self.mVx = 0;
+            self.mVy = jvy;
+        }else{
+            self.mVx = (CGFloat)(self.mOmega * self.armLength * cosf(self.currentAngle));
+            self.mVy = (CGFloat)(self.mOmega * self.armLength * sinf(self.currentAngle)) + jvy;
+        }
+        
+
+    }else if(self.state == MonkeyStateRide) {
+        [self.hawk onUncatchHook];
+        self.mVx = jvx;
+        self.mVy = jvy;
     }
     
-    self.state = MonkeyStateJump;
-    self.zRotation = 0;
-    if (self.isInHighestPosition) {
-        self.mVx = 0;
-        self.mVy = jvy;
-    }else{
-        self.mVx = (CGFloat)(self.mOmega * self.armLength * cosf(self.currentAngle));
-        self.mVy = (CGFloat)(self.mOmega * self.armLength * sinf(self.currentAngle)) + jvy;
-    }
-
     self.mVtx = self.mVx * JUMP_COEFFCIENT;
     self.mVty = self.mVy * JUMP_COEFFCIENT;
     self.mX = self.mX + self.mVtx - self.sceneMoveVelocity;
-    self.mY = [self.hookNode getRealHook].y + self.mVty;
+    self.mY = [[self getCurrentHookNode] getRealHook].y + self.mVty;
+    
+    self.state = MonkeyStateJump;
+    self.zRotation = 0;
+ 
     self.position = CGPointMake(self.mX, self.mY);
     _offsetX = self.mX - self.initX;
     
@@ -183,20 +220,27 @@
     [sceneNode addChild:self];
 }
 
+- (void)checkCatchNextHook {
+    BOOL catchHawk = [self.hawk canCatch] && [self checkCatchHook:self.hawk pendingState:MonkeyStateRide];
+    if (!catchHawk) {
+        [self checkCatchHook:self.hookNode pendingState:MonkeyStateSwing];
+    }
+}
+
 -(BOOL)checkCatchHook:(HookNode*)hookNode pendingState:(MonkeyState)pendingState {
 //    NSLog(@"hookPoint=(%f %f)",[hookNode getRealHook].x,[hookNode getRealHook].y);
     if (hookNode != NULL) {
         if (self.position.y < [hookNode getRealHook].y &&
             // mX <= hookNode.mHook.x + mArmsLength / 4 &&
              [PhysicsUtil isPoint:self.position inRadiusRegion:ARM_RADUIS withCenter:[hookNode getRealHook] velocity:CGPointMake(self.mVx, self.mVy)]) {
-            [self switch2Swing:[hookNode getRealHook] pendingState:pendingState hookNode:hookNode];
+            [self switch2SwingOrRide:[hookNode getRealHook] pendingState:pendingState hookNode:hookNode];
             return true;
         }
     }
     return false;
 }
 
-- (void)switch2Swing:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
+- (void)switch2SwingOrRide:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
     [self countHop];
     [[SoundManager sharedManger] playCatchHookSound];
@@ -214,10 +258,11 @@
     CGFloat dY = ABS(hookPoint.y - self.position.y);
     self.mMaxHeight = self.mVx * self.mVx / (2 * G) + (self.armLength - dY); // 能量守恒定律计算,注意，这里略去了垂直方向的动能
     self.mMaxHeight = (self.mMaxHeight < self.armLength) ? self.mMaxHeight : self.armLength;
-    CGFloat value = (self.position.x - hookPoint.x) / self.armLength;
+    CGFloat value = (self.position.x - hookPoint.x) / (self.armLength/2);
     value = (value > 1) ? 1 : value;
     value = (value < -1) ? -1 : value;
     self.currentAngle = (CGFloat) asinf(value);
+    self.zRotation = self.currentAngle;
     
     CGFloat height = self.armLength - dY;
     if (height > self.mMaxHeight) {
@@ -258,8 +303,12 @@
     //    NSLog(@"self.mVtx = %f",self.mVtx);
     if (self.state == MonkeyStateSwing) {
         return MIN(self.hookNode.position.x - MONKEY_MIN_X , SCENE_MOVE_VELOCITY_SWING);
-    }else {
+    }else if(self.state == MonkeyStateJump){
         return MIN( self.position.x - (MONKEY_MIN_X + TREE_HOOKPOINT_X) , SCENE_MOVE_VELOCITY_JUMP);
+    }else if(self.state == MonkeyStateRide) {
+        return self.hawk.speed;
+    }else{
+        return 0;
     }
 }
 
@@ -272,4 +321,8 @@
     self.mMaxHops = self.mMaxHops > self.mCurrentHops ? self.mMaxHops : self.mCurrentHops;
 }
 
+
+- (HookNode *)getCurrentHookNode {
+    return self.state == MonkeyStateRide ? self.hawk : self.hookNode;
+}
 @end

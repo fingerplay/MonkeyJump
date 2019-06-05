@@ -29,6 +29,7 @@
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
 @property (nonatomic, assign) BOOL isGameOver;
+@property (nonatomic, assign) BOOL isRemovingOldNode;
 @end
 
 @implementation GameScene {
@@ -49,7 +50,7 @@
     
     self.treesList = [[TreesList alloc] init];
  
-    Tree *firstTree = [self.treesList generateSingleTreeWithPosition:CGPointMake(MONKEY_MIN_X, TREE_POSITION_Y)];
+    HookNode *firstTree = [self.treesList generateSingleNodeWithType:HookNodeTypeStable position:CGPointMake(MONKEY_MIN_X, TREE_POSITION_Y)];
     [self addChild:firstTree];
     NSArray *nodes = [self.treesList generateNodesWithDistanceX:kDefaultTreeDistanceX count:5];
     for (NSUInteger i=0; i<nodes.count; i++) {
@@ -72,6 +73,7 @@
     self.hawk = [[Hawk alloc] initWithImageNamed:@"hawk_list"];
     self.hawk.hidden = YES;
     [self addChild:self.hawk];
+    self.monkey.hawk = self.hawk;
     
     [self addChild:self.totalScoreNode];
     [self addChild:[SoundManager sharedManger]];
@@ -104,7 +106,7 @@
 }
 
 - (void)touchUpAtPoint:(CGPoint)pos {
-    if (!self.isGameOver && self.monkey.state == MonkeyStateSwing){
+    if (!self.isGameOver && (self.monkey.state == MonkeyStateSwing || self.monkey.state == MonkeyStateRide) ){
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.startTouchTime];
         CGFloat offsetX = pos.x - self.startTouchPoint.x;
         CGFloat offsetY = (pos.y - self.startTouchPoint.y);
@@ -161,29 +163,42 @@
 
 #pragma mark - MonkeyDelegate
 - (void)monkeyDidMoveTo:(CGPoint)position {
-    
-    if (position.y< 0) {//跳出屏幕，游戏结束
+    if (self.monkey.state == MonkeyStateJump && position.y< 0) {//跳出屏幕，游戏结束
         [self gameDidEnd];
+        return;
     }
+    
+    if (self.isRemovingOldNode) {
+        return;
+    }
+    HookNode *oldNode = [self.treesList.nodes firstObject];
+    if (oldNode.position.x < - oldNode.size.width/2 ) {
+        NSLog(@"remove old node.. %@",oldNode.name);
+        self.isRemovingOldNode = YES;
+        [oldNode removeFromParent];
+        [self.treesList removeNode:oldNode];
+    }
+    
+    if (self.isRemovingOldNode) {
+      
+        NSCAssert(self.treesList.nodes.firstObject != oldNode, @"node remove failed");
+        HookNodeType type = arc4random_uniform(HookNodeTypeCount);
+        HookNode* newNode = [self.treesList generateSingleNodeWithType:type distance:kDefaultTreeDistanceX];
+        NSInteger fgIndex = [self.children indexOfObject:self.foregroundNodes.firstObject];
+        [self insertChild:newNode atIndex:fgIndex-1];
+        NSLog(@"add new node!! %@",newNode.name);
+        if ([newNode isKindOfClass:[Spider class]]) {
+            NormalNode *line = ((Spider*)newNode).line;
+            [self insertChild:line atIndex:fgIndex-1];
+        }
+    }
+ 
+    self.isRemovingOldNode = NO;
+    
 }
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
-    
-    HookNode *oldNode = [self.treesList.nodes firstObject];
-    if (oldNode.position.x < - oldNode.size.width ) {
-        [self.treesList removeNode:oldNode];
-        [oldNode removeFromParent];
-    }
-    
-    HookNodeType type = arc4random_uniform(HookNodeTypeCount);
-    HookNode* newNode = [self.treesList generateSingleNodeWithType:type distance:kDefaultTreeDistanceX];
-    NSInteger fgIndex = [self.children indexOfObject:self.foregroundNodes.firstObject];
-    [self insertChild:newNode atIndex:fgIndex-1];
-    if ([newNode isKindOfClass:[Spider class]]) {
-        NormalNode *line = ((Spider*)newNode).line;
-        [self insertChild:line atIndex:fgIndex-1];
-    }
-    
+
     [self showScoreLabel];
     [self.totalScoreNode setNumber:self.monkey.mScore.score];
     
@@ -194,8 +209,6 @@
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
         [self.gameDelegate monkeyDidJumpToHookNode:node];
     }
-    
-
 }
 
 - (void)monkeyDidJumpFromHookNode:(HookNode *)node {

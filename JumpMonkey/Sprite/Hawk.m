@@ -17,6 +17,7 @@ static NSInteger kFrameCount = 30;
 @property (nonatomic, assign) NSInteger step;
 @property (nonatomic, assign) NSInteger totalStep;
 @property (nonatomic, assign) CGFloat offsetX;
+@property (nonatomic, strong) NSDate *lastCatchTime;
 @end
 
 @implementation Hawk
@@ -28,6 +29,7 @@ static NSInteger kFrameCount = 30;
         self.type = HookNodeTypeMove;
         self.imageSequence = [[ImageSequence alloc] initWithOriginImage:[UIImage imageNamed:@"hawk_list"] frameCount:kFrameCount];
         self.size = self.imageSequence.imageSize;
+        self.hookPoint = CGPointMake(0, 10);
         self.anchorPoint = CGPointMake(0.5, 0.5);
         self.texture = [SKTexture textureWithImage:self.imageSequence.currentImage];
         self.position = CGPointMake(-self.size.width, -self.size.height); //初始不可见
@@ -50,8 +52,9 @@ static NSInteger kFrameCount = 30;
     CGPoint p0 = location;
     CGPoint p1 = CGPointMake(SCREEN_W + location.x, SCREEN_H);
     CGPoint p2 = CGPointMake(SCREEN_W*5 + location.x, SCREEN_H/2);
-    CGFloat duration = 30;
+    CGFloat duration = 20;
     CGFloat speed = (p2.x - p0.x)/ (duration * FPS);
+    self.speed = speed;
     self.bezierPath = [[Bezier alloc] initWithp0:p0 p1:p1 p2:p2 speed:speed];
     self.totalStep = self.bezierPath.step;
 }
@@ -68,7 +71,7 @@ static NSInteger kFrameCount = 30;
         self.step ++;
         CGPoint location = CGPointMake(currentPoint.xx - self.offsetX, currentPoint.yy);
         self.position = location;
-        NSLog(@"step:%ld hawk position = %@",(long)self.step,NSStringFromCGPoint(self.position));
+//        NSLog(@"step:%ld hawk position = %@",(long)self.step,NSStringFromCGPoint(self.position));
         //    if (velocity > 0) {
         //        SKAction *move = [SKAction moveByX:velocity y:0 duration:1/FPS];
         //        [self runAction:move];
@@ -77,7 +80,26 @@ static NSInteger kFrameCount = 30;
         
         [self.imageSequence changeImage];
         self.texture = [SKTexture textureWithImage:self.imageSequence.currentImage];
+    }else{
+        self.speed = 0;
     }
 
 }
+
+- (BOOL)canCatch {
+    if (!self.lastCatchTime || [[NSDate date] timeIntervalSinceDate:self.lastCatchTime] >= 5 * 1000) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isHookBroken {
+    return NO;
+}
+
+- (void)onCatchHook {
+    [super onCatchHook];
+    self.lastCatchTime = [NSDate date];
+}
+
 @end

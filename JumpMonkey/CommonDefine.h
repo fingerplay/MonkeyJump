@@ -11,7 +11,7 @@
 
 #define kDefaultTreeDistanceX  ([UIScreen mainScreen].bounds.size.width /3)
 
-#define JUMP_COEFFCIENT 0.7f //跳跃系数
+#define JUMP_COEFFCIENT 0.5f //跳跃系数
 #define ENERGY_COEFFCIENT  0.1f  //能量系数
 #define PENDULUM_RATIO 0.6f
 #define G (9.8 * 0.7) //重力加速度
@@ -31,7 +31,7 @@
 
 #define BACKGROUND_MOVE_RATE 5
 
-#define MONKEY_UPSWIPE_RATE 60
+#define MONKEY_UPSWIPE_RATE 100
 
 #define ARM_RADIUS_DIFF_TOLERENCE 10
 

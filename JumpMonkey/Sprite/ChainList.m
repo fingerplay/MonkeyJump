@@ -51,7 +51,9 @@
         NSString *treeName = treeNames[index];
         node = [[Tree alloc] initWithImageNamed:treeName position:position];
     }
-    node.number = self.nodes.count;
+    HookNode *lastNode = self.nodes.lastObject;
+    node.number = lastNode.number + 1;
+    node.name = [NSString stringWithFormat:@"%@_%ld", (type == HookNodeTypeMove) ? @"spider" : @"tree",(long)node.number];
     
     if (node) {
         [self addNodeToTail:node];
