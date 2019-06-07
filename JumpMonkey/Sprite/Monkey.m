@@ -92,7 +92,7 @@
         HookNode *node = self.hookNode;
         while (node!=NULL) {
             CGPoint hookPoint = [node getRealHook];
-            if ((hookPoint.x < self.mX && hookPoint.x + self.armLength > self.mX) || hookPoint.x > self.mX) {
+            if ((hookPoint.x < self.mX && hookPoint.x + self.armLength/2 > self.mX) || hookPoint.x > self.mX) {
                 self.hookNode = node;
                 self.mVx = self.hawk.speed;
                 break;
@@ -167,7 +167,7 @@
             self.mX = self.mX + ((self.mVtx - self.sceneMoveVelocity) >0 ?: 0) ;
             self.mY = self.mY + self.mVty - G / 2;
             self.position = CGPointMake(self.mX, self.mY);
-//            NSLog(@"monkey position X:%f Y:%f",self.mX,self.mY);
+            NSLog(@"monkey position X:%f Y:%f",self.mX,self.mY);
 
             self.mVy -= G;
             self.mVty = self.mVy * JUMP_COEFFCIENT;
@@ -228,7 +228,7 @@
 }
 
 -(BOOL)checkCatchHook:(HookNode*)hookNode pendingState:(MonkeyState)pendingState {
-//    NSLog(@"hookPoint=(%f %f)",[hookNode getRealHook].x,[hookNode getRealHook].y);
+    NSLog(@"hookPoint=(%f %f)",[hookNode getRealHook].x,[hookNode getRealHook].y);
     if (hookNode != NULL) {
         if (self.position.y < [hookNode getRealHook].y &&
             // mX <= hookNode.mHook.x + mArmsLength / 4 &&

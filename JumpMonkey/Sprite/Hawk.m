@@ -40,17 +40,9 @@ static NSInteger kFrameCount = 30;
 
 #pragma mark - Public
 - (void)startMoveWithLocation:(CGPoint)location {
-//    UIBezierPath *path = [[UIBezierPath alloc] init];
-//    [path moveToPoint:self.position];
-//    [path addQuadCurveToPoint:CGPointMake(SCREEN_W + 50, SCREEN_H/3*2) controlPoint:CGPointMake(SCREEN_W / 3, SCREEN_H /3)];
-//    SKAction *move = [SKAction followPath:path.CGPath duration:10];
-    
-//    SKAction *move = [SKAction moveTo:CGPointMake(SCREEN_W + 50, SCREEN_H/3*2) duration:10];
-//    SKAction *moveDone = [SKAction removeFromParent];
-//    [self runAction:[SKAction sequence:@[move,moveDone]]];
     
     CGPoint p0 = location;
-    CGPoint p1 = CGPointMake(SCREEN_W + location.x, SCREEN_H);
+    CGPoint p1 = CGPointMake(SCREEN_W/2 + location.x, SCREEN_H);
     CGPoint p2 = CGPointMake(SCREEN_W*5 + location.x, SCREEN_H/2);
     CGFloat duration = 20;
     CGFloat speed = (p2.x - p0.x)/ (duration * FPS);
@@ -72,10 +64,6 @@ static NSInteger kFrameCount = 30;
         CGPoint location = CGPointMake(currentPoint.xx - self.offsetX, currentPoint.yy);
         self.position = location;
 //        NSLog(@"step:%ld hawk position = %@",(long)self.step,NSStringFromCGPoint(self.position));
-        //    if (velocity > 0) {
-        //        SKAction *move = [SKAction moveByX:velocity y:0 duration:1/FPS];
-        //        [self runAction:move];
-        //    }
         
         
         [self.imageSequence changeImage];
