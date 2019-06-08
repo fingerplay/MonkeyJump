@@ -8,18 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
+@protocol ScoreInfoDelegate <NSObject>
+
+- (void)scoreDidUpdate:(NSInteger)score;
+
+@end
 
 @interface ScoreInfo : NSObject
 
 @property (nonatomic, assign, readonly) NSInteger score;
 @property (nonatomic, assign, readonly) NSInteger lastAccScore;
+@property (nonatomic, weak) id<ScoreInfoDelegate> delegate;
 
 - (void)updateHopsScore:(NSInteger)hopsNumber;
 
 - (void)updateHooksScore:(NSInteger)hooksNumber;
 
+- (void)updateHawkScore:(NSInteger)hawkNumber;
+
 - (void)clearScore;
 @end
-
-NS_ASSUME_NONNULL_END

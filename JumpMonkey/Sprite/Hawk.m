@@ -82,7 +82,6 @@ static NSInteger kFrameCount = 30;
             }
         
         }
-//        self.speed = 0;
     }
 
 }

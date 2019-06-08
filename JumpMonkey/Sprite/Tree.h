@@ -8,11 +8,8 @@
 
 #import "HookNode.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface Tree : HookNode
-
 
 @end
 
-NS_ASSUME_NONNULL_END
+

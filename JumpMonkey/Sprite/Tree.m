@@ -23,7 +23,12 @@
         CGFloat imageHeight = CGImageGetHeight(self.texture.CGImage);
         int w = h / imageHeight*imageWidth;
         self.size = CGSizeMake(w, h);
-        self.hookPoint = CGPointMake(TREE_HOOKPOINT_X, self.size.height*0.59);
+        
+        NSArray *compos = [imageName componentsSeparatedByString:@"_"];
+        NSString *hookPointYStr = [compos lastObject];
+        CGFloat hookPointY = (imageHeight - [hookPointYStr floatValue]) / imageHeight * h;
+        
+        self.hookPoint = CGPointMake(TREE_HOOKPOINT_X, hookPointY);
         [self addChild:self.hookPointIcon];
     }
     return self;

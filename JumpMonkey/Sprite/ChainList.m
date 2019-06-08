@@ -46,7 +46,7 @@
     if (type == HookNodeTypeMove) {
         node = [[Spider alloc] initWithImageNamed:@"spider" position:position];
     }else {
-        NSArray *treeNames = @[@"tree",@"tree2",@"tree3"];
+        NSArray *treeNames = @[@"tree_450",@"tree2_265",@"tree3_400"];
         uint32_t index = arc4random_uniform((uint32_t)treeNames.count);
         NSString *treeName = treeNames[index];
         node = [[Tree alloc] initWithImageNamed:treeName position:position];

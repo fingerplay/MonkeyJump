@@ -40,8 +40,8 @@ typedef NS_ENUM(NSInteger){
 @property (nonatomic, weak) Hawk *hawk;
 @property (nonatomic, strong) HookNode *delayDropNode;
 @property (nonatomic, strong) ScoreInfo *mScore;
-@property (nonatomic, weak) id<MonkeyDelegate> delegate;
-
+@property (nonatomic, weak) id<MonkeyDelegate,ScoreInfoDelegate> delegate;
+@property (nonatomic, assign) NSInteger mMaxHops; //历史最多连跳
 
 - (instancetype)initWithImageNamed:(NSString *)name hookNode:(HookNode*)hookNode;
 

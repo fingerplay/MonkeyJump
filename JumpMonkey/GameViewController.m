@@ -125,8 +125,8 @@
 - (ClockImageView *)countdownView {
     if (!_countdownView) {
         UIImage *image = [UIImage imageNamed:@"bubble_tree"];
-        _countdownView = [[ClockImageView alloc] initWithFrame:CGRectMake(self.view.width - image.size.width-5, 5, image.size.width, image.size.height)];
-        _countdownView.image = image;
+        _countdownView = [[ClockImageView alloc] initWithFrame:CGRectMake(self.view.width - image.size.width-5, 40, image.size.width, image.size.height)];
+//        _countdownView.image = image;
         _countdownView.layer.cornerRadius = image.size.width/2;
         _countdownView.layer.masksToBounds = YES;
     }

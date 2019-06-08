@@ -17,7 +17,7 @@
 #import "SKNumberNode.h"
 #import "SoundManager.h"
 
-@interface GameScene ()<MonkeyDelegate>
+@interface GameScene ()<MonkeyDelegate,ScoreInfoDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
 @property (nonatomic, strong) NormalNode *backgroundNodeB;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) TreesList *treesList;
 @property (nonatomic, strong) Hawk *hawk;
 @property (nonatomic, strong) SKNumberNode *totalScoreNode;
+@property (nonatomic, strong) SKNumberNode *hopNode;
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
@@ -72,10 +73,12 @@
     
     self.hawk = [[Hawk alloc] initWithImageNamed:@"hawk_list"];
     self.hawk.hidden = YES;
+    self.hawk.number = 1;
     [self addChild:self.hawk];
     self.monkey.hawk = self.hawk;
     
     [self addChild:self.totalScoreNode];
+    [self addChild:self.hopNode];
     [self addChild:[SoundManager sharedManger]];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -175,6 +178,10 @@
     if (oldNode.position.x < - oldNode.size.width/2 ) {
         NSLog(@"remove old node.. %@",oldNode.name);
         self.isRemovingOldNode = YES;
+        if ([oldNode isKindOfClass:[Spider class]]) {
+            NormalNode *line = ((Spider*)oldNode).line;
+            [line removeFromParent];
+        }
         [oldNode removeFromParent];
         [self.treesList removeNode:oldNode];
     }
@@ -200,21 +207,24 @@
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
 
     [self showScoreLabel];
-    [self.totalScoreNode setNumber:self.monkey.mScore.score];
-    
-    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
-        [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
-    }
-    
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
         [self.gameDelegate monkeyDidJumpToHookNode:node];
     }
+    [self.hopNode setNumber:self.monkey.mMaxHops];
 }
 
 - (void)monkeyDidJumpFromHookNode:(HookNode *)node {
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpFromHookNode:)]) {
         [self.gameDelegate monkeyDidJumpFromHookNode:node];
     }
+}
+
+- (void)scoreDidUpdate:(NSInteger)score {
+    [self.totalScoreNode setNumber:self.monkey.mScore.score];
+    if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
+        [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
+    }
+
 }
 
 #pragma mark - Private
@@ -228,6 +238,7 @@
 //        scoreLabel.fontColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:1];
         SKNumberNode *scoreNode = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
         scoreNode.showPlusSign = YES;
+        scoreNode.maxHeight = 30;
         [scoreNode setNumber:self.monkey.mScore.lastAccScore];
         scoreNode.position = [self.monkey.hookNode getRealHook];
         SKAction *actionGroup =[SKAction group:@[moveAction, scaleAction]];
@@ -261,6 +272,7 @@
 //    self.paused = NO;
     self.isGameOver = NO;
     self.totalScoreNode.number = 0;
+    self.hopNode.number = 0;
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidRestart)]) {
         [self.gameDelegate gameDidRestart];
     }
@@ -381,6 +393,19 @@
         _totalScoreNode.anchorPoint = CGPointMake(0.5, 0.5);
     }
     return _totalScoreNode;
+}
+
+- (SKNumberNode *)hopNode {
+    if (!_hopNode) {
+        _hopNode = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
+        _hopNode.showPlusSign = NO;
+        _hopNode.maxHeight = 30;
+        [_hopNode setNumber:0];
+        _hopNode.position = CGPointMake(self.size.width - _hopNode.size.width - 5, self.size.height - _hopNode.size.height - 5);
+        _hopNode.anchorPoint = CGPointZero;
+
+    }
+    return _hopNode;
 }
 
 @end

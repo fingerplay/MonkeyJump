@@ -50,6 +50,7 @@
 #define FPS 35
 
 
-#define BASE_HOOK_SCORE 10
+#define BASE_HOOK_SCORE 2
+#define BASE_HAWK_SCORE 6
 
 #endif /* CommonDefine_h */

@@ -22,7 +22,7 @@
 @property (nonatomic, assign) CGFloat mY; //y位置
 @property (nonatomic, assign) CGFloat mX; //y位置
 @property (nonatomic, assign) NSInteger mCurrentHops;//连跳次数
-@property (nonatomic, assign) NSInteger mMaxHops; //历史最多连跳
+
 
 @end
 
@@ -53,13 +53,14 @@
 #pragma mark - Public
 - (void)setHookNode:(HookNode *)hookNode {
     _hookNode = hookNode;
-//    CGFloat mX = hookNode.position.x;
-//    CGFloat mY = (float) (hookNode.position.y + self.armLength + sin(PI / 4));
-//    self.position = CGPointMake(mX, mY);
     self.mOmega = 0;
     self.mMaxHeight = (CGFloat) (self.armLength - self.armLength * cos(PI / 4));
     self.currentAngle = -(CGFloat) PI / 4;
+}
 
+- (void)setDelegate:(id<MonkeyDelegate,ScoreInfoDelegate>)delegate {
+    _delegate = delegate;
+    self.mScore.delegate = delegate;
 }
 
 - (void)setState:(MonkeyState)state {
@@ -88,7 +89,6 @@
         [self switch2JumpWithVx:jvx vy:jvy];
         self.hookNode = self.hookNode.nextNode;
     }else if (self.state == MonkeyStateRide) {
-       
         HookNode *node = self.hookNode;
         while (node!=NULL) {
             CGPoint hookPoint = [node getRealHook];
@@ -155,6 +155,11 @@
             self.zRotation = 0;
             if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidMoveTo:)]) {
                 [self.delegate monkeyDidMoveTo:CGPointMake(self.mX, self.mY)];
+            }
+            //越过当前的hookNode
+            if ([self.hookNode getRealHook].x < self.mX && [self.hookNode.nextNode getRealHook].x > self.mX) {
+                self.hookNode = self.hookNode.nextNode;
+                [self.mScore updateHooksScore:self.hookNode.number];
             }
             
             if ([self.hawk isHookBroken]) {
@@ -241,7 +246,7 @@
     return false;
 }
 
-- (void)jumpDelay:(CGFloat)delay WithState:(MonkeyState)state {
+- (void)jumpDelay:(CGFloat)delay withState:(MonkeyState)state {
     NSNumber* nodeNumber = @(self.hookNode.number).copy;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.state == state && nodeNumber.integerValue == self.hookNode.number) {
@@ -256,13 +261,15 @@
     [[SoundManager sharedManger] playCatchHookSound];
   
     if (self.state == MonkeyStateSwing) {
-        [self jumpDelay:MONKEY_SWING_MAX_DURATION WithState:MonkeyStateSwing];
+        [self jumpDelay:MONKEY_SWING_MAX_DURATION withState:MonkeyStateSwing];
+        [self.mScore updateHooksScore:self.hookNode.number];
     }else if (self.state == MonkeyStateRide){
-//        [self jumpDelay:MONKEY_RIDE_MAX_DURATION WithState:MonkeyStateRide];
+        [self jumpDelay:MONKEY_RIDE_MAX_DURATION withState:MonkeyStateRide];
+        [self.mScore updateHawkScore:self.hawk.number];
     }
    
 
-    [self.mScore updateHooksScore:self.hookNode.number];
+
     [self.mScore updateHopsScore:self.mCurrentHops];
     
     CGFloat dY = ABS(hookPoint.y - self.position.y);
@@ -289,6 +296,10 @@
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
         [self.delegate monkeyDidJumpToHookNode:[self getCurrentHookNode]];
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scoreDidUpdate:)]) {
+        [self.delegate scoreDidUpdate:self.mScore.score];
     }
 
     [self removeFromParent];
