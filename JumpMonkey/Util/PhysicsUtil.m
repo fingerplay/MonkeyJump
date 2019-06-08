@@ -15,7 +15,7 @@
     CGFloat vv = sqrtf(v.x * v.x + v.y * v.y);
     
     CGFloat distance = sqrtf(powf(point.x - center.x, 2) + powf(point.y - center.y, 2));
-    if ((radius/2 - distance >= -vv/2) && (radius/2 - distance <= vv/2)
+    if ((radius - distance >= -vv/2) && (radius - distance <= vv/2)
 //        //&& ABS(vRate - dRate) <= 1
         ){
         return YES;

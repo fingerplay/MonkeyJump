@@ -149,6 +149,7 @@
             break;
         case MonkeyStateRide:
         {
+            NSLog(@"sceneMoveVelocity = %f",self.sceneMoveVelocity);
             self.mX = [self.hawk getRealHook].x;
             self.mY = [self.hawk getRealHook].y;
             self.zRotation = 0;
@@ -200,7 +201,7 @@
 
     }else if(self.state == MonkeyStateRide) {
         [self.hawk onUncatchHook];
-        self.mVx = jvx;
+        self.mVx = self.hawk.speed;
         self.mVy = jvy;
     }
     
@@ -240,17 +241,26 @@
     return false;
 }
 
+- (void)jumpDelay:(CGFloat)delay WithState:(MonkeyState)state {
+    NSNumber* nodeNumber = @(self.hookNode.number).copy;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.state == state && nodeNumber.integerValue == self.hookNode.number) {
+            [self jumpWithVx:0 vy:0];
+        }
+    });
+}
+
 - (void)switch2SwingOrRide:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
     [self countHop];
     [[SoundManager sharedManger] playCatchHookSound];
-    
-    NSNumber* nodeNumber = @(self.hookNode.number).copy;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MONKEY_SWING_MAX_DURATION * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.state == MonkeyStateSwing && nodeNumber.integerValue == self.hookNode.number) {
-            [self jumpWithVx:0 vy:0];
-        }
-    });
+  
+    if (self.state == MonkeyStateSwing) {
+        [self jumpDelay:MONKEY_SWING_MAX_DURATION WithState:MonkeyStateSwing];
+    }else if (self.state == MonkeyStateRide){
+//        [self jumpDelay:MONKEY_RIDE_MAX_DURATION WithState:MonkeyStateRide];
+    }
+   
 
     [self.mScore updateHooksScore:self.hookNode.number];
     [self.mScore updateHopsScore:self.mCurrentHops];
@@ -278,7 +288,7 @@
         self.mOmega = -self.mOmega;
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
-        [self.delegate monkeyDidJumpToHookNode:self.hookNode];
+        [self.delegate monkeyDidJumpToHookNode:[self getCurrentHookNode]];
     }
 
     [self removeFromParent];
@@ -306,7 +316,12 @@
     }else if(self.state == MonkeyStateJump){
         return MIN( self.position.x - (MONKEY_MIN_X + TREE_HOOKPOINT_X) , SCENE_MOVE_VELOCITY_JUMP);
     }else if(self.state == MonkeyStateRide) {
-        return self.hawk.speed;
+        CGFloat relative_X = ( [self.hawk getRealHook].x - MONKEY_MIN_X);
+        if (relative_X > 0) {
+            return self.hawk.speed;
+        }else{
+            return self.hawk.speed  - SCENE_MOVE_VELOCITY_RIDE_RELATIVE ;
+        }
     }else{
         return 0;
     }

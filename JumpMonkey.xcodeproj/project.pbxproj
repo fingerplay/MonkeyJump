@@ -490,7 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 672MJLD28K;
+				DEVELOPMENT_TEAM = 2AM5CZNFJ9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
 				INFOPLIST_FILE = JumpMonkey/Info.plist;
@@ -510,7 +510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 672MJLD28K;
+				DEVELOPMENT_TEAM = 2AM5CZNFJ9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
 				INFOPLIST_FILE = JumpMonkey/Info.plist;

@@ -163,7 +163,7 @@
 
 #pragma mark - MonkeyDelegate
 - (void)monkeyDidMoveTo:(CGPoint)position {
-    if (self.monkey.state == MonkeyStateJump && position.y< 0) {//跳出屏幕，游戏结束
+    if (self.monkey.state == MonkeyStateJump && position.y< -self.monkey.size.height) {//跳出屏幕，游戏结束
         [self gameDidEnd];
         return;
     }
@@ -260,6 +260,7 @@
     [self addChildNodes];
 //    self.paused = NO;
     self.isGameOver = NO;
+    self.totalScoreNode.number = 0;
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidRestart)]) {
         [self.gameDelegate gameDidRestart];
     }

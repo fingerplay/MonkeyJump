@@ -10,7 +10,7 @@
 #import "HookNode.h"
 
 @protocol GameSceneDelegate <NSObject>
-
+@optional
 - (void)monkeyDidJumpFromHookNode:(HookNode *)node;
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node;

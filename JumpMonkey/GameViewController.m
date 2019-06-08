@@ -10,6 +10,9 @@
 #import "GameScene.h"
 #import "ImageSequence.h"
 #import "ClockImageView.h"
+#import "Hawk.h"
+#import "Tree.h"
+#import "Spider.h"
 
 @interface GameViewController ()<GameSceneDelegate>
 @property (nonatomic, strong) GameScene *scene;
@@ -66,19 +69,25 @@
 #pragma mark - GameSceneDelegate
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
-    if (node.type == HookNodeTypeStable || node.type == HookNodeTypeMove) {
+    if ([node isKindOfClass:[Hawk class]]) {
+        self.countdownView.image = [UIImage imageNamed:@"bubble_bird"];
+        [self.countdownView startClockingWithDuration:MONKEY_RIDE_MAX_DURATION tag:node.number];
+    } else {
+        self.countdownView.image = [UIImage imageNamed:@"bubble_tree"];
         [self.countdownView startClockingWithDuration:MONKEY_SWING_MAX_DURATION tag:node.number];
     }
 }
 
 - (void)monkeyDidJumpFromHookNode:(HookNode *)node {
     [self.countdownView stopClockingWithTag:node.number];
+    self.countdownView.image = nil;
 }
 
 -(void)gameDidEnd {
     self.titleLabel.hidden = NO;
     self.restartBtn.hidden = NO;
 }
+
 
 #pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {

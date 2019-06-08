@@ -35,11 +35,11 @@
     CGFloat totalCount = duration/stepDuration;
     __weak typeof(self) wSelf = self;
     self.count = 0;
-    NSLog(@"[%ld]totalCount:%f",tag,totalCount);
+//    NSLog(@"[%ld]totalCount:%f",tag,totalCount);
     [self.foregroundLayer setHidden:NO];
     self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:stepDuration repeats:YES block:^(NSTimer * _Nonnull timer) {
         wSelf.count ++ ;
-//        NSLog(@"[%ld]count:%ld",tag,(long)wSelf.count);
+        NSLog(@"[%ld]count:%ld",tag,(long)wSelf.count);
         CGFloat ratio = wSelf.count / totalCount;
         if (ratio >= 1) {
             [wSelf stopClockingWithTag:tag];
@@ -84,18 +84,8 @@
 - (CAShapeLayer *)maskLayer {
     if (!_maskLayer) {
         CAShapeLayer* maskLayer = [[CAShapeLayer alloc] init];
-//        //内部弧路径
-//        UIBezierPath * interP  = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.width/2 , self.height/2)
-//                                                                radius:sqrt(pow(self.width/2,2)+pow(self.height/2, 2))
-//                                                            startAngle:-0.5 * M_PI
-//                                                              endAngle:1.5 * M_PI
-//                                                             clockwise:YES];
-//        [interP addLineToPoint:CGPointMake(self.width/2, self.height/2)];
-//        [interP closePath];
-//        maskLayer.path = interP.CGPath;
         maskLayer.fillColor = [UIColor whiteColor].CGColor;
         maskLayer.fillRule = kCAFillRuleEvenOdd;
-       
         _maskLayer = maskLayer;
     }
     return _maskLayer;

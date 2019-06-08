@@ -40,36 +40,49 @@ static NSInteger kFrameCount = 30;
 
 #pragma mark - Public
 - (void)startMoveWithLocation:(CGPoint)location {
+    CGPoint p1 = CGPointMake(SCREEN_W*2 + location.x , SCREEN_H);
+    CGPoint p2 = CGPointMake(SCREEN_W*5  + location.x, SCREEN_H/3);
+    [self startMoveWithLocation:location p1:p1 p2:p2];
+}
+
+- (void)startMoveWithLocation:(CGPoint)location p1:(CGPoint)p1 p2:(CGPoint)p2{
     
     CGPoint p0 = location;
-    CGPoint p1 = CGPointMake(SCREEN_W/2 + location.x, SCREEN_H);
-    CGPoint p2 = CGPointMake(SCREEN_W*5 + location.x, SCREEN_H/2);
-    CGFloat duration = 20;
+    CGFloat duration = 10;
     CGFloat speed = (p2.x - p0.x)/ (duration * FPS);
     self.speed = speed;
     self.bezierPath = [[Bezier alloc] initWithp0:p0 p1:p1 p2:p2 speed:speed];
     self.totalStep = self.bezierPath.step;
+    self.offsetX = 0;
+    self.step = 0;
 }
 
 - (void)moveWithSceneVelocity:(CGFloat)velocity {
-
-//    [super moveWithSceneVelocity:velocity];
-    if (velocity>0) {
-         self.offsetX += velocity;
+    
+    if (velocity > 0) {
+        self.offsetX += velocity;
     }
-   
+    
+//    NSLog(@"step:%ld[%ld] hawk position = %@",(long)self.step, self.totalStep,NSStringFromCGPoint(self.position));
     if (self.step <= self.totalStep) {
         BezierPoint* currentPoint = [self.bezierPath getAnchorPoint:self.step];
         self.step ++;
         CGPoint location = CGPointMake(currentPoint.xx - self.offsetX, currentPoint.yy);
         self.position = location;
-//        NSLog(@"step:%ld hawk position = %@",(long)self.step,NSStringFromCGPoint(self.position));
-        
-        
+
         [self.imageSequence changeImage];
         self.texture = [SKTexture textureWithImage:self.imageSequence.currentImage];
     }else{
-        self.speed = 0;
+        //动画结束时还在屏幕内
+        if (self.position.x <= SCREEN_W && self.position.x >= 0) {
+            if (self.bezierPath.p2.y == SCREEN_H/3) {
+                [self startMoveWithLocation:self.position p1:CGPointMake(self.position.x + SCREEN_W * 2, SCREEN_H/3) p2:CGPointMake(SCREEN_W*5 + self.position.x , SCREEN_H)];
+            }else if (self.bezierPath.p2.y == SCREEN_H) {
+                [self startMoveWithLocation:self.position];
+            }
+        
+        }
+//        self.speed = 0;
     }
 
 }
