@@ -22,7 +22,7 @@
 
 
 
-//+ (UIImage *) captureScreen ;//截屏
++ (UIImage *) captureScreen ;//截屏
 
 /**
  *  压缩图片

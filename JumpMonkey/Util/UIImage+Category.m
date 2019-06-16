@@ -27,16 +27,22 @@
     return [normal stretchableImageWithLeftCapWidth:normal.size.width/2 topCapHeight:normal.size.height/2];
 }
 
-//+ (UIImage *) captureScreen {
-//    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-//    CGRect rect = [keyWindow bounds];
-//    UIGraphicsBeginImageContext(rect.size);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    [keyWindow.layer renderInContext:context];
-//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return img;
-//}
++ (UIImage *)captureScreen {
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    CGRect rect = [keyWindow bounds];
+    // 判断是否为retina屏, 即retina屏绘图时有放大因子
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+        UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+    } else {
+        UIGraphicsBeginImageContext(rect.size);
+    }
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [keyWindow.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 
 + (UIImage *)compressionWithImage:(UIImage *)image toSize:(CGSize )size
 {

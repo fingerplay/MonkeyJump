@@ -11,7 +11,6 @@
 		AF106C8E22955695003ABD22 /* ChainList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8D22955695003ABD22 /* ChainList.m */; };
 		AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */; };
 		AF1172DA229E1B0C001A1F17 /* Spider.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1172D9229E1B0C001A1F17 /* Spider.m */; };
-		AF1172DD229EA2A2001A1F17 /* ScoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1172DC229EA2A2001A1F17 /* ScoreInfo.m */; };
 		AF1AC7D7229BB920008B3418 /* NormalNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1AC7D6229BB920008B3418 /* NormalNode.m */; };
 		AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23157C22850E2C008522D0 /* AppDelegate.m */; };
 		AF23158122850E2C008522D0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF23158022850E2C008522D0 /* Actions.sks */; };
@@ -40,6 +39,9 @@
 		AF6862BC228D8A5500927901 /* TreesList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6862BB228D8A5500927901 /* TreesList.m */; };
 		AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
 		AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
+		AFFE87B222B537B5004D1DE2 /* ScoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFE87AE22B537B5004D1DE2 /* ScoreInfo.m */; };
+		AFFE87B322B537B5004D1DE2 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFE87B122B537B5004D1DE2 /* ScoreView.m */; };
+		AFFE87B622B53983004D1DE2 /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFE87B522B53983004D1DE2 /* ScoreTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +53,6 @@
 		AF106C9022956B9B003ABD22 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		AF1172D8229E1B0C001A1F17 /* Spider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spider.h; sourceTree = "<group>"; };
 		AF1172D9229E1B0C001A1F17 /* Spider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Spider.m; sourceTree = "<group>"; };
-		AF1172DB229EA2A2001A1F17 /* ScoreInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreInfo.h; sourceTree = "<group>"; };
-		AF1172DC229EA2A2001A1F17 /* ScoreInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreInfo.m; sourceTree = "<group>"; };
 		AF18AAC6228945BB00414469 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		AF1AC7D5229BB920008B3418 /* NormalNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalNode.h; sourceTree = "<group>"; };
 		AF1AC7D6229BB920008B3418 /* NormalNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalNode.m; sourceTree = "<group>"; };
@@ -104,6 +104,12 @@
 		AFF080DF22A1661700D180C4 /* ClockImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockImageView.m; sourceTree = "<group>"; };
 		AFF080E122A1682B00D180C4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		AFF080E222A1682B00D180C4 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		AFFE87AE22B537B5004D1DE2 /* ScoreInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreInfo.m; sourceTree = "<group>"; };
+		AFFE87AF22B537B5004D1DE2 /* ScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreView.h; sourceTree = "<group>"; };
+		AFFE87B022B537B5004D1DE2 /* ScoreInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreInfo.h; sourceTree = "<group>"; };
+		AFFE87B122B537B5004D1DE2 /* ScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreView.m; sourceTree = "<group>"; };
+		AFFE87B422B53983004D1DE2 /* ScoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
+		AFFE87B522B53983004D1DE2 /* ScoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 		AF23157A22850E2C008522D0 /* JumpMonkey */ = {
 			isa = PBXGroup;
 			children = (
+				AFFE87AD22B537B5004D1DE2 /* Score */,
 				AF58A2D722A51732005E6361 /* Protocol */,
 				AF58A2BF22A4B68D005E6361 /* sound */,
 				AFF080DD22A165FE00D180C4 /* View */,
@@ -169,8 +176,6 @@
 				AF23158022850E2C008522D0 /* Actions.sks */,
 				AF23158222850E2C008522D0 /* GameScene.h */,
 				AF23158322850E2C008522D0 /* GameScene.m */,
-				AF1172DB229EA2A2001A1F17 /* ScoreInfo.h */,
-				AF1172DC229EA2A2001A1F17 /* ScoreInfo.m */,
 				AF18AAC6228945BB00414469 /* CommonDefine.h */,
 				AF1AC7D8229BC10F008B3418 /* PrefixHeader.pch */,
 				AF23158522850E2C008522D0 /* GameViewController.h */,
@@ -249,6 +254,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AFFE87AD22B537B5004D1DE2 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				AFFE87B022B537B5004D1DE2 /* ScoreInfo.h */,
+				AFFE87AE22B537B5004D1DE2 /* ScoreInfo.m */,
+				AFFE87AF22B537B5004D1DE2 /* ScoreView.h */,
+				AFFE87B122B537B5004D1DE2 /* ScoreView.m */,
+				AFFE87B422B53983004D1DE2 /* ScoreTableViewCell.h */,
+				AFFE87B522B53983004D1DE2 /* ScoreTableViewCell.m */,
+			);
+			path = Score;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,18 +342,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF1172DD229EA2A2001A1F17 /* ScoreInfo.m in Sources */,
 				AF6862BC228D8A5500927901 /* TreesList.m in Sources */,
 				AF1AC7D7229BB920008B3418 /* NormalNode.m in Sources */,
 				AF6862B8228D89E100927901 /* Monkey.m in Sources */,
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
 				AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */,
+				AFFE87B622B53983004D1DE2 /* ScoreTableViewCell.m in Sources */,
 				AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */,
 				AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */,
 				AF23158422850E2C008522D0 /* GameScene.m in Sources */,
 				AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */,
 				AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */,
+				AFFE87B322B537B5004D1DE2 /* ScoreView.m in Sources */,
 				AF58A2DB22A51964005E6361 /* QMDeviceHelper.m in Sources */,
 				AF23158722850E2C008522D0 /* GameViewController.m in Sources */,
 				AF6862B7228D89E100927901 /* HookNode.m in Sources */,
@@ -347,6 +366,7 @@
 				AF58A2D222A50A3E005E6361 /* Hawk.m in Sources */,
 				AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */,
 				AF6862B9228D89E100927901 /* Tree.m in Sources */,
+				AFFE87B222B537B5004D1DE2 /* ScoreInfo.m in Sources */,
 				AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

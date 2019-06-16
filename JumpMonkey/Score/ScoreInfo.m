@@ -18,12 +18,24 @@
 
 @implementation ScoreInfo
 
-- (void)updateHopsScore:(NSInteger)hopsNumber {
-    if(hopsNumber <= 1){
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.mCurrentHops = 0;
+        self.mMaxHops = 0;
+    }
+    return self;
+}
+
+- (void)updateHopsScore {
+    self.mCurrentHops++;
+    self.mMaxHops = self.mMaxHops > self.mCurrentHops ? self.mMaxHops : self.mCurrentHops;
+    
+    if(self.mCurrentHops <= 1){
         // do nothing;
         _lastAccScore = 0;
     } else {
-        _lastAccScore = hopsNumber - 1;
+        _lastAccScore = self.mCurrentHops - 1;
     }
     
     self.mHopsScore += self.lastAccScore;
@@ -41,6 +53,7 @@
 }
 
 - (void)updateHawkScore:(NSInteger)hawkNumber {
+    self.catchHawkCount = hawkNumber;
     _lastAccScore = BASE_HAWK_SCORE;
     self.mHawkScore = BASE_HAWK_SCORE * hawkNumber;
 }
@@ -51,6 +64,12 @@
     self.mHooksScore = 0;
     self.mHawkScore = 0;
 }
+
+- (void)clearHops {
+    self.mCurrentHops = 0;
+}
+
+
 
 - (NSInteger)score {
     

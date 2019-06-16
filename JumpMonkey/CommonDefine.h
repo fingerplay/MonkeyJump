@@ -51,6 +51,6 @@
 
 
 #define BASE_HOOK_SCORE 2
-#define BASE_HAWK_SCORE 6
+#define BASE_HAWK_SCORE 5
 
 #endif /* CommonDefine_h */

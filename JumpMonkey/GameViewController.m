@@ -10,15 +10,21 @@
 #import "GameScene.h"
 #import "ImageSequence.h"
 #import "ClockImageView.h"
+#import "ScoreView.h"
 #import "Hawk.h"
 #import "Tree.h"
 #import "Spider.h"
 
 @interface GameViewController ()<GameSceneDelegate>
 @property (nonatomic, strong) GameScene *scene;
+@property (nonatomic, strong) UIImageView *snapshotView;
+@property (nonatomic, strong) ScoreView *scoreView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *restartBtn;
+@property (nonatomic, strong) UIButton *shareBtn;
+@property (nonatomic, strong) UIButton *exitBtn;
 @property (nonatomic, strong) ClockImageView *countdownView;
+@property (nonatomic, strong) SKSpriteNode *darkMask;
 @end
 
 @implementation GameViewController
@@ -44,10 +50,12 @@
     skView.showsNodeCount = YES;
     skView.preferredFramesPerSecond = FPS;
     
-    
-    [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.restartBtn];
     [self.view addSubview:self.countdownView];
+    [self.view addSubview:self.snapshotView];
+    [self.view addSubview:self.titleLabel];
+    [self.snapshotView addSubview:self.shareBtn];
+    [self.snapshotView addSubview:self.restartBtn];
+    [self.snapshotView addSubview:self.exitBtn];
 }
 
 - (BOOL)shouldAutorotate {
@@ -85,15 +93,35 @@
 
 -(void)gameDidEnd {
     self.titleLabel.hidden = NO;
-    self.restartBtn.hidden = NO;
+    SKTexture *texture = [self.scene.view textureFromNode:self.scene];
+    self.snapshotView.image = [UIImage imageWithCGImage:texture.CGImage];
+    self.scoreView.score = self.scene.mScore;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.snapshotView.hidden = NO;
+        self.titleLabel.hidden = YES;
+        [self.scene addChild:self.darkMask];
+    });
+
+}
+
+- (void)gameDidRestart {
+    self.snapshotView.hidden = YES;
+    [self.darkMask removeFromParent];
 }
 
 
 #pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {
     [self.scene gameRestart];
-    self.titleLabel.hidden = YES;
-    self.restartBtn.hidden = YES;
+}
+
+- (void)shareBtnClick:(UIButton*)button {
+    
+}
+
+- (void)exitBtnClick:(UIButton*)button {
+    
 }
 
 - (UILabel *)titleLabel {
@@ -109,16 +137,44 @@
     return _titleLabel;
 }
 
+
+- (UIButton *)shareBtn {
+    if (!_shareBtn) {
+        _shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.snapshotView.width - 300, self.snapshotView.height - 60, 80, 40)];
+        [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
+        _shareBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _shareBtn.layer.cornerRadius = 2;
+        _shareBtn.layer.masksToBounds = YES;
+        _shareBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
+        [_shareBtn addTarget:self action:@selector(shareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shareBtn;
+}
+
 - (UIButton *)restartBtn {
     if (!_restartBtn) {
-        _restartBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 200, 40)];
-        _restartBtn.centerX = self.view.width/2;
-        [_restartBtn setTitle:@"Restart" forState:UIControlStateNormal];
+        _restartBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.snapshotView.width - 210, self.snapshotView.height - 60, 80, 40)];
+        [_restartBtn setTitle:@"继续" forState:UIControlStateNormal];
         _restartBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _restartBtn.layer.cornerRadius = 2;
+        _restartBtn.layer.masksToBounds = YES;
+        _restartBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
         [_restartBtn addTarget:self action:@selector(restartBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        _restartBtn.hidden = YES;
     }
     return _restartBtn;
+}
+
+- (UIButton *)exitBtn {
+    if (!_exitBtn) {
+        _exitBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.snapshotView.width - 120, self.snapshotView.height - 60, 80, 40)];
+        [_exitBtn setTitle:@"退出" forState:UIControlStateNormal];
+        _exitBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+        _exitBtn.layer.cornerRadius = 2;
+        _exitBtn.layer.masksToBounds = YES;
+        _exitBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.4];
+        [_exitBtn addTarget:self action:@selector(exitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _exitBtn;
 }
 
 
@@ -131,5 +187,37 @@
         _countdownView.layer.masksToBounds = YES;
     }
     return _countdownView;
+}
+
+- (UIImageView *)snapshotView {
+    if (!_snapshotView) {
+        _snapshotView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, self.view.width - 60, self.view.height - 60)];
+        _snapshotView.backgroundColor = [UIColor whiteColor];
+        _snapshotView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _snapshotView.layer.borderWidth = 2;
+        _snapshotView.hidden = YES;
+        _snapshotView.opaque = YES;
+        _snapshotView.userInteractionEnabled = YES;
+        [_snapshotView addSubview:self.scoreView];
+
+    }
+    return _snapshotView;
+}
+
+- (ScoreView *)scoreView {
+    if (!_scoreView) {
+        _scoreView = [[ScoreView alloc] initWithFrame:CGRectMake(0, 0, self.snapshotView.width, 200)];
+    }
+    return _scoreView;
+   
+}
+
+- (SKSpriteNode *)darkMask {
+    if (!_darkMask) {
+        SKSpriteNode *darkMask = [[SKSpriteNode alloc] initWithColor:[UIColor colorWithWhite:0.2 alpha:0.8] size:self.scene.size];
+        darkMask.position = CGPointMake(self.scene.size.width/2, self.scene.size.height/2);
+        _darkMask = darkMask;
+    }
+    return _darkMask;
 }
 @end

@@ -16,16 +16,23 @@
 @end
 
 @interface ScoreInfo : NSObject
-
+@property (nonatomic, assign) NSInteger mCurrentHops;//连跳次数
+@property (nonatomic, assign) NSInteger mMaxHops; //历史最多连跳
+@property (nonatomic, assign) NSInteger catchHawkCount;
 @property (nonatomic, assign, readonly) NSInteger score;
+@property (nonatomic, assign) NSInteger distance;
+@property (nonatomic, assign) NSTimeInterval duration;
 @property (nonatomic, assign, readonly) NSInteger lastAccScore;
 @property (nonatomic, weak) id<ScoreInfoDelegate> delegate;
 
-- (void)updateHopsScore:(NSInteger)hopsNumber;
+- (void)updateHopsScore;
 
 - (void)updateHooksScore:(NSInteger)hooksNumber;
 
 - (void)updateHawkScore:(NSInteger)hawkNumber;
 
 - (void)clearScore;
+
+- (void)clearHops;
+
 @end

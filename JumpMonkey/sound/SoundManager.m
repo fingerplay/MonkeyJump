@@ -48,4 +48,9 @@ static SoundManager * _shareInstance = nil;
     [self.player play];
 }
 
+- (void)playWolfSound {
+    SKAction *playAction = [SKAction playSoundFileNamed:@"sound_wolf.wav" waitForCompletion:NO];
+    [self runAction:playAction];
+}
+
 @end

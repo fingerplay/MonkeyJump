@@ -41,6 +41,7 @@
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
+    self.mScore = [ScoreInfo new];
     [self addChildNodes];
 }
 
@@ -76,7 +77,7 @@
     self.hawk.number = 1;
     [self addChild:self.hawk];
     self.monkey.hawk = self.hawk;
-    
+    self.monkey.mScore = self.mScore;
     [self addChild:self.totalScoreNode];
     [self addChild:self.hopNode];
     [self addChild:[SoundManager sharedManger]];
@@ -85,6 +86,8 @@
         self.hawk.hidden = NO;
         [self.hawk startMoveWithLocation:CGPointMake(self.monkey.offsetX + SCREEN_W/5 - self.hawk.size.width/2, -self.hawk.size.height/2)];
     });
+    
+    [[SoundManager sharedManger] playWolfSound];
 }
 
 - (void)removeChildNodes {
@@ -210,7 +213,7 @@
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
         [self.gameDelegate monkeyDidJumpToHookNode:node];
     }
-    [self.hopNode setNumber:self.monkey.mMaxHops];
+    [self.hopNode setNumber:self.monkey.mScore.mMaxHops];
 }
 
 - (void)monkeyDidJumpFromHookNode:(HookNode *)node {

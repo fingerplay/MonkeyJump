@@ -21,7 +21,7 @@
 @property (nonatomic, assign) BOOL isInHighestPosition; //是否在最高点
 @property (nonatomic, assign) CGFloat mY; //y位置
 @property (nonatomic, assign) CGFloat mX; //y位置
-@property (nonatomic, assign) NSInteger mCurrentHops;//连跳次数
+
 
 
 @end
@@ -43,9 +43,7 @@
         self.armLength = MONKEY_SIZE_H;
         self.currentAngle = -PI/2; //0表示圆最下方的点，顺时针<0，逆时针>0
         self.state = MonkeyStateSwing;
-        self.mCurrentHops = 0;
-        self.mMaxHops = 0;
-        self.mScore = [ScoreInfo new];
+
     }
     return self;
 }
@@ -118,7 +116,7 @@
                 NSCAssert(self.armLength!=0, @"armLength = 0");
                 self.mOmega = -(float) (G * sinf(self.currentAngle) / self.armLength);
                 [self caculateHeightAndEnergy];
-                [self clearHops];
+                [self.mScore clearHops];
             }else{
                 self.isInHighestPosition = NO;
             }
@@ -257,7 +255,7 @@
 
 - (void)switch2SwingOrRide:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;
-    [self countHop];
+
     [[SoundManager sharedManger] playCatchHookSound];
   
     if (self.state == MonkeyStateSwing) {
@@ -268,9 +266,7 @@
         [self.mScore updateHawkScore:self.hawk.number];
     }
    
-
-
-    [self.mScore updateHopsScore:self.mCurrentHops];
+    [self.mScore updateHopsScore];
     
     CGFloat dY = ABS(hookPoint.y - self.position.y);
     self.mMaxHeight = self.mVx * self.mVx / (2 * G) + (self.armLength - dY); // 能量守恒定律计算,注意，这里略去了垂直方向的动能
@@ -338,14 +334,6 @@
     }
 }
 
-- (void)clearHops {
-    self.mCurrentHops = 0;
-}
-
-- (void)countHop{
-    self.mCurrentHops++;
-    self.mMaxHops = self.mMaxHops > self.mCurrentHops ? self.mMaxHops : self.mCurrentHops;
-}
 
 
 - (HookNode *)getCurrentHookNode {

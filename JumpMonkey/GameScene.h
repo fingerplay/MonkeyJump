@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "HookNode.h"
+#import "ScoreInfo.h"
 
 @protocol GameSceneDelegate <NSObject>
 @optional
@@ -24,7 +25,7 @@
 @end
 
 @interface GameScene : SKScene
-
+@property (nonatomic, strong) ScoreInfo *mScore;
 @property (nonatomic, weak) id<GameSceneDelegate>gameDelegate;
 
 - (void)gameRestart;
