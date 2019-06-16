@@ -26,6 +26,7 @@
 @property (nonatomic, strong) Hawk *hawk;
 @property (nonatomic, strong) SKNumberNode *totalScoreNode;
 @property (nonatomic, strong) SKNumberNode *hopNode;
+@property (nonatomic, strong) NSDate *gameStartTime;
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
@@ -46,6 +47,7 @@
 }
 
 - (void)addChildNodes {
+    self.gameStartTime = [NSDate date];
     [self createBackgroundNodes];
     [self addChild:self.backgroundNodeA];
     [self addChild:self.backgroundNodeB];
@@ -259,6 +261,8 @@
         [[SoundManager sharedManger] playGameOverSound];
 //        self.paused = YES;
         self.isGameOver = YES;
+        
+        self.monkey.mScore.duration = [[NSDate date] timeIntervalSinceDate:self.gameStartTime];
         
         if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEnd)]) {
             [self.gameDelegate gameDidEnd];

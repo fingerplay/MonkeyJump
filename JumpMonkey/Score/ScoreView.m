@@ -56,7 +56,14 @@ static NSString *const kScoreCell = @"score";
             
         case ScoreCellTypeDuration:{
             cell.titleLabel.text = @"用时";
-            cell.detailLabel.text = [NSString stringWithFormat:@"%f",self.score.duration];
+//            cell.detailLabel.text = [NSString stringWithFormat:@"%f",self.score.duration];
+            NSInteger durationS = self.score.duration;
+            NSInteger minutes = ceil(durationS / 60);
+            NSInteger seconds = durationS % 60;
+            NSString *strMinSupp = [NSString stringWithFormat:@"0%ld",minutes];
+            NSString *strSecSupp = [NSString stringWithFormat:@"0%ld",seconds];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@:%@",[strMinSupp substringFromIndex:strMinSupp.length - 2],[strSecSupp substringFromIndex:strSecSupp.length - 2]];
+            
         }break;
         case ScoreCellTypeMaxHops:{
             cell.titleLabel.text = @"最大连跳数";
