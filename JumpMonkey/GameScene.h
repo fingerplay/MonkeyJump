@@ -26,6 +26,7 @@
 
 @interface GameScene : SKScene
 @property (nonatomic, strong) ScoreInfo *mScore;
+
 @property (nonatomic, weak) id<GameSceneDelegate>gameDelegate;
 
 - (void)gameRestart;

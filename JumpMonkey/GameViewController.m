@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIButton *restartBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
 @property (nonatomic, strong) UIButton *exitBtn;
+@property (nonatomic, strong) UILabel *velocityLabel;
 @property (nonatomic, strong) ClockImageView *countdownView;
 @property (nonatomic, strong) SKSpriteNode *darkMask;
 @end
@@ -102,7 +103,6 @@
         self.titleLabel.hidden = YES;
         [self.scene addChild:self.darkMask];
     });
-
 }
 
 - (void)gameDidRestart {

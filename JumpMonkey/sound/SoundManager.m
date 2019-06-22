@@ -53,4 +53,8 @@ static SoundManager * _shareInstance = nil;
     [self runAction:playAction];
 }
 
+- (void)playCockSound {
+    SKAction *playAction = [SKAction playSoundFileNamed:@"sound_cock.wav" waitForCompletion:NO];
+    [self runAction:playAction];
+}
 @end

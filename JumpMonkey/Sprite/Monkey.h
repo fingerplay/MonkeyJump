@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger){
 @property (nonatomic, assign, readonly) CGFloat offsetX;
 @property (nonatomic, assign ,readonly) CGFloat initX;
 @property (nonatomic, assign, readonly) CGFloat sceneMoveVelocity;
+@property (nonatomic, assign, readonly) UIOffset monkeyVolecity;
 
 @property (nonatomic, assign) CGFloat armLength; //臂长
 @property (nonatomic, assign) CGFloat currentAngle; //当前摆动的角度

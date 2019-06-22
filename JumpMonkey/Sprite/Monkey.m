@@ -208,10 +208,13 @@
         self.mVy = jvy;
     }
     
+//    NSLog(@"mvy:%f",self.mVy);
+//    NSLog(@"hookNode:%@",[self getCurrentHookNode]);
     self.mVtx = self.mVx * JUMP_COEFFCIENT;
     self.mVty = self.mVy * JUMP_COEFFCIENT;
     self.mX = self.mX + self.mVtx - self.sceneMoveVelocity;
     self.mY = [[self getCurrentHookNode] getRealHook].y + self.mVty;
+//    NSLog(@"my:%f vty:%f",self.mY,self.mVty);
     
     self.state = MonkeyStateJump;
     self.zRotation = 0;
@@ -219,7 +222,8 @@
     self.position = CGPointMake(self.mX, self.mY);
     _offsetX = self.mX - self.initX;
     
-    SKNode* sceneNode = [self.hookNode parent];
+    SKNode* sceneNode = [[self getCurrentHookNode] parent];
+    NSLog(@"sceneNode:%@",sceneNode);
     [self removeFromParent];
     [sceneNode addChild:self];
 }
@@ -232,7 +236,7 @@
 }
 
 -(BOOL)checkCatchHook:(HookNode*)hookNode pendingState:(MonkeyState)pendingState {
-    NSLog(@"hookPoint=(%f %f)",[hookNode getRealHook].x,[hookNode getRealHook].y);
+//    NSLog(@"hookPoint=(%f %f)",[hookNode getRealHook].x,[hookNode getRealHook].y);
     if (hookNode != NULL) {
         if (self.position.y < [hookNode getRealHook].y &&
             // mX <= hookNode.mHook.x + mArmsLength / 4 &&
@@ -334,7 +338,9 @@
     }
 }
 
-
+- (UIOffset)monkeyVolecity{
+    return UIOffsetMake(self.mVtx, self.mVty);
+}
 
 - (HookNode *)getCurrentHookNode {
     return self.state == MonkeyStateRide ? self.hawk : self.hookNode;

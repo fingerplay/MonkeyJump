@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playTestSound;
 
 - (void)playWolfSound;
+
+- (void)playCockSound;
 @end
 
 NS_ASSUME_NONNULL_END
