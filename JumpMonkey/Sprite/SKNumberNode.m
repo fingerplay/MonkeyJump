@@ -50,11 +50,11 @@
 - (void)setNumber:(NSInteger)number {
     _number = number;
     NSMutableArray *numberImages = [[NSMutableArray alloc] init];
-    NSString *strNumber = [NSString stringWithFormat:@"%ld",number];
+    NSString *strNumber = [NSString stringWithFormat:@"%ld",(long)number];
     if (number < 0) {
-        strNumber = [NSString stringWithFormat:@"-%ld",number];
+        strNumber = [NSString stringWithFormat:@"-%ld",(long)number];
     }else if (number > 0 && self.showPlusSign){
-        strNumber = [NSString stringWithFormat:@"+%ld",number];
+        strNumber = [NSString stringWithFormat:@"+%ld",(long)number];
     }
 
     NSUInteger numLength = [strNumber length];

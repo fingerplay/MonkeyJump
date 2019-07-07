@@ -14,6 +14,8 @@
 #import "Hawk.h"
 #import "Tree.h"
 #import "Spider.h"
+#import <UShareUI/UShareUI.h>
+
 
 @interface GameViewController ()<GameSceneDelegate>
 @property (nonatomic, strong) GameScene *scene;
@@ -117,7 +119,11 @@
 }
 
 - (void)shareBtnClick:(UIButton*)button {
-    
+    //显示分享面板
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession)]];
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+    }];
 }
 
 - (void)exitBtnClick:(UIButton*)button {

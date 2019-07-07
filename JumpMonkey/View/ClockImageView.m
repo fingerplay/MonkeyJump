@@ -39,7 +39,7 @@
     [self.foregroundLayer setHidden:NO];
     self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:stepDuration repeats:YES block:^(NSTimer * _Nonnull timer) {
         wSelf.count ++ ;
-        NSLog(@"[%ld]count:%ld",tag,(long)wSelf.count);
+        NSLog(@"[%ld]count:%ld",(long)tag,(long)wSelf.count);
         CGFloat ratio = wSelf.count / totalCount;
         if (ratio >= 1) {
             [wSelf stopClockingWithTag:tag];
@@ -50,7 +50,7 @@
 }
 
 - (void)stopClockingWithTag:(NSInteger)tag {
-    NSLog(@"[%ld]stopClocking",tag);
+    NSLog(@"[%ld]stopClocking",(long)tag);
     [self.foregroundLayer setHidden:YES];
     [self.clockTimer invalidate];
 }

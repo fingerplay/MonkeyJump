@@ -47,11 +47,11 @@ static NSString *const kScoreCell = @"score";
     switch (indexPath.row) {
         case ScoreCellTypeTotalScore:{
             cell.titleLabel.text = @"得分";
-            cell.detailLabel.text = [NSString stringWithFormat:@"%ld",self.score.score];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%ld",(long)self.score.score];
         } break;
         case ScoreCellTypeDistance:{
             cell.titleLabel.text = @"距离";
-            cell.detailLabel.text = [NSString stringWithFormat:@"%ld",self.score.distance];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%ld",(long)self.score.distance];
         }break;
             
         case ScoreCellTypeDuration:{
@@ -60,8 +60,8 @@ static NSString *const kScoreCell = @"score";
             NSInteger durationS = self.score.duration;
             NSInteger minutes = ceil(durationS / 60);
             NSInteger seconds = durationS % 60;
-            NSString *strMinSupp = [NSString stringWithFormat:@"0%ld",minutes];
-            NSString *strSecSupp = [NSString stringWithFormat:@"0%ld",seconds];
+            NSString *strMinSupp = [NSString stringWithFormat:@"0%ld",(long)minutes];
+            NSString *strSecSupp = [NSString stringWithFormat:@"0%ld",(long)seconds];
             cell.detailLabel.text = [NSString stringWithFormat:@"%@:%@",[strMinSupp substringFromIndex:strMinSupp.length - 2],[strSecSupp substringFromIndex:strSecSupp.length - 2]];
             
         }break;
