@@ -10,11 +10,13 @@ target 'JumpMonkey' do
 
  pod 'AFNetworking', '~> 3.2'
  pod 'TMCache'
- pod 'Google-Mobile-Ads-SDK'
+ #pod 'Google-Mobile-Ads-SDK'
  #pod 'MJExtension'
  pod 'SDWebImage', '~> 3.8.3'
  pod 'CocoaLumberjack'
  pod 'ReactiveCocoa',            '~> 2.4.7'
+ pod 'QQ_MTA'
+ pod 'QQ_MTA/CrashReporter'
 end
 
 

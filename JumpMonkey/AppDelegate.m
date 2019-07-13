@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import <UMShare/UMShare.h>
-//#import "WXApi.h"
+#import <UMCommon/UMCommon.h>
+#import "SocialDefine.h"
+#import <MTA.h>
 @interface AppDelegate ()
 
 @end
@@ -18,8 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [WXApi registerApp:@"wx7939db732942a97a"];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx7939db732942a97a" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
+    [self registerThirdPartySDK];
+
     
     return YES;
 }
@@ -59,6 +61,14 @@
         // 其他如支付等SDK的回调
     }
     return result;
+}
+
+- (void)registerThirdPartySDK {
+    [UMConfigure setLogEnabled:YES];//设置打开日志
+    [UMConfigure initWithAppkey:@"5d2201484ca357f954000029" channel:@"App Store"];
+//    [[UMSocialManager defaultManager] setUmSocialAppkey:@"5d2201484ca357f954000029"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx7939db732942a97a" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
+    [MTA startWithAppkey:@"3204083092"];
 }
 
 @end

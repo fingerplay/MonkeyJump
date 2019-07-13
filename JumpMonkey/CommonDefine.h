@@ -53,4 +53,9 @@
 #define BASE_HOOK_SCORE 2
 #define BASE_HAWK_SCORE 5
 
+
+/*  网络请求   */
+
+#define BaseDomain @"http://106.12.138.77:8080/JumpingMK/"
+#define DomainURL(path) [BaseDomain stringByAppendingString:path]
 #endif /* CommonDefine_h */
