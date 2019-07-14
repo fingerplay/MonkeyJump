@@ -115,7 +115,7 @@
     if (self.useNetUnavailableCache && ![REQUEST_MANAGER.requestConfig.canPingJuanpi boolValue]) {
         id responseObject = [REQ_CACHE_MANAGER cachedHTTPResponseForCommand:command.identifier];
         if (responseObject) {
-            status.code = kCodeSuccess;
+            status.code = ERROR_CODE_SUCCESS;
             
             //解析data，得到业务数据
             id output = [self reformDataWithResponseObject:responseObject command:command status:status];
@@ -179,7 +179,7 @@
 
 #pragma mark - Cache
 - (void)cacheResponse:(NSDictionary *)responseObject forCommand:(QMCommand *)command status:(QMStatus *)status {
-    if (status.code == kCodeSuccess || command.dataType == QMDataTypeProtocolBuffer) {
+    if (status.code == ERROR_CODE_SUCCESS || command.dataType == QMDataTypeProtocolBuffer) {
 #ifndef TODAY_EXTENSION
         //请求成功后根据需要缓存数据
         if (self.useNetUnavailableCache) {

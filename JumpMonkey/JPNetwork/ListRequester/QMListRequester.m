@@ -82,7 +82,7 @@
     }
     
     if (listInput.page == 1) {//第一页
-        if (status.code == kCodeSuccess) {
+        if (status.code == ERROR_CODE_SUCCESS) {
             if (self.isPageArrEmpty) {
                 //没有商品
                 if ([self.delegate respondsToSelector:@selector(requester:loadEmptyWithStatus:input:output:)]) {
@@ -105,16 +105,6 @@
                 }
             }
         }
-        else if (status.code == kCodeEmpty_1 ||
-                 status.code == kCodeEmpty ||
-                 status.code == kCodeEmpty_3 ||
-                 status.code == kCodeSoldOut ||
-                 status.code == kCodeEmpty_FromFilter) {
-            //没有商品
-            if ([self.delegate respondsToSelector:@selector(requester:loadEmptyWithStatus:input:output:)]) {
-                [self.delegate requester:self loadEmptyWithStatus:status input:input output:output];
-            }
-        }
         else {
             if ([self.delegate respondsToSelector:@selector(requester:failedWithStatus:input:error:)]) {
                 [self.delegate requester:self failedWithStatus:status input:input error:nil];
@@ -123,7 +113,7 @@
     }
     else {//更多页
         
-        if (status.code == kCodeSuccess) {
+        if (status.code == ERROR_CODE_SUCCESS) {
             if (self.isPageArrEmpty) {
                 //没有更多
                 if ([self.delegate respondsToSelector:@selector(requester:loadMoreEndWithStatus:input:output:)]) {
@@ -146,14 +136,6 @@
                         [self.delegate requester:self loadMoreEndWithStatus:status input:input output:output];
                     }
                 }
-            }
-        }
-        else if (status.code == kCodeEmpty_1 ||
-                 status.code == kCodeEmpty ||
-                 status.code == kCodeEmpty_3) {
-            //没有商品
-            if ([self.delegate respondsToSelector:@selector(requester:loadMoreEndWithStatus:input:output:)]) {
-                [self.delegate requester:self loadMoreEndWithStatus:status input:input output:output];
             }
         }
         else {

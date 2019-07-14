@@ -10,9 +10,10 @@
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 #import "SocialDefine.h"
+#import "EntranceViewController.h"
 #import <MTA.h>
 @interface AppDelegate ()
-
+@property (nonatomic, strong) UINavigationController *rootNavController;
 @end
 
 @implementation AppDelegate
@@ -21,7 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self registerThirdPartySDK];
-
+    //self.window.rootViewController = self.rootNavController;
+    //[self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -53,10 +55,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
     //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
-    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url options:options];
     if (!result) {
         // 其他如支付等SDK的回调
     }
@@ -71,4 +73,12 @@
     [MTA startWithAppkey:@"3204083092"];
 }
 
+- (UINavigationController *)rootNavController {
+    if (!_rootNavController) {
+        EntranceViewController *entrance = [[EntranceViewController alloc] init];
+        _rootNavController = [[UINavigationController alloc] initWithRootViewController:entrance];
+        _rootNavController.navigationBarHidden = true;
+    }
+    return _rootNavController;
+}
 @end

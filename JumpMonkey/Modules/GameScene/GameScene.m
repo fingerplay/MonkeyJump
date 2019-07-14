@@ -42,7 +42,10 @@
 
 }
 
-
+- (void)dealloc {
+     NSLog(@"%@ dealloc",[self class]);
+    [self removeChildNodes];
+}
 
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
@@ -385,7 +388,7 @@
     newNode.anchorPoint = CGPointMake(0, 0);
     newNode.position = CGPointMake(lastX, 0);
     newNode.size = CGSizeMake(80 / image.size.height * image.size.width, 80);
-    lastX += newNode.size.width;
+//    lastX += newNode.size.width;
     [self.foregroundNodes addObject:newNode];
     return newNode;
 }

@@ -38,16 +38,14 @@
 
 - (void)parseDataDict:(NSDictionary *)dataDict {
     
-    NSString *code= [dataDict safeStringForKey:@"code"];
+    NSString *code= [dataDict safeStringForKey:@"errorCode"];
     
     if (code.length) {
         self.code = [code integerValue];
     }else{
         self.code = QMNetErrorTypeService;
     }
-    self.info = [dataDict safeStringForKey:@"info"];
-    self.qimiURI = [dataDict safeStringForKey:@"qimi_uri"];
-    self.imageUrl = [dataDict safeStringForKey:@"imgicon"];
+    self.info = [dataDict safeStringForKey:@"errorMsg"];
 }
 
 - (QMNetErrorType)errorTypeFromResponse:(NSHTTPURLResponse *)response {
@@ -61,9 +59,6 @@
             return QMNetErrorTypeTimeout;
         }
         else if (response.statusCode == 200){
-            if (self.code == kCodeServerUnable) {
-                return QMNetErrorTypeServiceUnable;
-            }
             return QMNetErrorTypeNoData;
         }
     }

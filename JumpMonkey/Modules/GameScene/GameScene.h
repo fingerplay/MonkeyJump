@@ -31,4 +31,6 @@
 
 - (void)gameRestart;
 
+- (void)removeChildNodes;
+
 @end

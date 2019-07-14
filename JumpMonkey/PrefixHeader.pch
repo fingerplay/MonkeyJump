@@ -19,6 +19,7 @@
 #import "QMExtension.h"
 #import "JPComponent/ThirdParty/MJExtension/MJExtension.h"
 #import <SDWebImageManager.h>
+#import <Masonry.h>
 #import "QMLoadView.h"
 #import "BBCommonTools.h"
 //#endif

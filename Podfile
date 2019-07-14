@@ -10,6 +10,7 @@ target 'JumpMonkey' do
 
  pod 'AFNetworking', '~> 3.2'
  pod 'TMCache'
+ pod 'Masonry'  
  #pod 'Google-Mobile-Ads-SDK'
  #pod 'MJExtension'
  pod 'SDWebImage', '~> 3.8.3'

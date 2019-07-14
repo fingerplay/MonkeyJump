@@ -11,6 +11,10 @@
 @implementation SoundManager
 static SoundManager * _shareInstance = nil;
 
+- (void)dealloc {
+    NSLog(@"sound manager dealloc!");
+}
+
 + (instancetype)sharedManger {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

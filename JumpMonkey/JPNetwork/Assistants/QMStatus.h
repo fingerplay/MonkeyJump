@@ -34,15 +34,8 @@ typedef NS_ENUM(NSInteger, QMNetErrorType) {
 /** 错误信息,少数情况下也可能不是错误信息，而是一些提示信息，统一在此处理 */
 @property (nonatomic, copy) NSString *info;
 
-@property (nonatomic, copy) NSString *imageUrl;
-
 @property (nonatomic, strong) NSDictionary *responseHeader;
 /** 请求耗时*/
 @property (nonatomic, assign) NSTimeInterval timeDuring;
-
-/**
- *  response中包含的qimi协议，根据其内容进行跳转
- */
-@property (nonatomic, copy) NSString *qimiURI;
 
 @end

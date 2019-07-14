@@ -17,6 +17,7 @@ PODS:
   - CocoaLumberjack (3.5.3):
     - CocoaLumberjack/Core (= 3.5.3)
   - CocoaLumberjack/Core (3.5.3)
+  - Masonry (1.1.0)
   - QQ_MTA (2.5.3):
     - QQ_MTA/BasicAnalysis (= 2.5.3)
   - QQ_MTA/BasicAnalysis (2.5.3)
@@ -37,6 +38,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.2)
   - CocoaLumberjack
+  - Masonry
   - QQ_MTA
   - QQ_MTA/CrashReporter
   - ReactiveCocoa (~> 2.4.7)
@@ -47,6 +49,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - CocoaLumberjack
+    - Masonry
     - QQ_MTA
     - ReactiveCocoa
     - SDWebImage
@@ -55,11 +58,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   QQ_MTA: 14e3e25f272c11c64435676815330b5851f6e24a
   ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
   SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
 
-PODFILE CHECKSUM: e7817a678a6c18be9df6a099b48fd46659be99bc
+PODFILE CHECKSUM: 87a6f0a75d5e5eb3caa26e31a528d2bbbb137835
 
 COCOAPODS: 1.7.1

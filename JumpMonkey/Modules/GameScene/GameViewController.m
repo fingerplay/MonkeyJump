@@ -17,7 +17,7 @@
 #import <UShareUI/UShareUI.h>
 
 
-@interface GameViewController ()<GameSceneDelegate>
+@interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate>
 @property (nonatomic, strong) GameScene *scene;
 @property (nonatomic, strong) UIImageView *snapshotView;
 @property (nonatomic, strong) ScoreView *scoreView;
@@ -31,6 +31,10 @@
 @end
 
 @implementation GameViewController
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc",[self class]);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -142,7 +146,9 @@
 }
 
 - (void)exitBtnClick:(UIButton*)button {
-    exit(0);
+    [self.scene removeChildNodes];
+    [self.countdownView stopClockingWithTag:0];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UILabel *)titleLabel {

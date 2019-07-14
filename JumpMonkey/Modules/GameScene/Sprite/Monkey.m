@@ -22,12 +22,13 @@
 @property (nonatomic, assign) CGFloat mY; //y位置
 @property (nonatomic, assign) CGFloat mX; //y位置
 
-
-
 @end
 
 @implementation Monkey
 
+-(void)dealloc {
+     NSLog(@"%@ dealloc",[self class]);
+}
 
 - (instancetype)initWithImageNamed:(NSString *)name hookNode:(HookNode*)hookNode{
     self = [super initWithImageNamed:@"monkey_swing"];

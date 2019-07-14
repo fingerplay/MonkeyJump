@@ -16,6 +16,10 @@
 		AF1AD7A122D2399E00550D35 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD7A022D2399E00550D35 /* SystemConfiguration.framework */; };
 		AF1AD7A322D239A300550D35 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD7A222D239A300550D35 /* CoreTelephony.framework */; };
 		AF1AD7A522D239D800550D35 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD7A422D239D700550D35 /* libz.tbd */; };
+		AF1E3A6322DA1CAB000F764D /* NSString+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1E3A5922DA1CAB000F764D /* NSString+Encryption.m */; };
+		AF1E3A6422DA1CAB000F764D /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1E3A5C22DA1CAB000F764D /* NSString+Base64.m */; };
+		AF1E3A6522DA1CAB000F764D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1E3A5F22DA1CAB000F764D /* NSData+Base64.m */; };
+		AF1E3A6622DA1CAB000F764D /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1E3A6222DA1CAB000F764D /* NSData+AES.m */; };
 		AF23157D22850E2C008522D0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23157C22850E2C008522D0 /* AppDelegate.m */; };
 		AF23158122850E2C008522D0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF23158022850E2C008522D0 /* Actions.sks */; };
 		AF23158A22850E2C008522D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF23158822850E2C008522D0 /* Main.storyboard */; };
@@ -157,8 +161,25 @@
 		AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2CE22A4BD9D005E6361 /* SoundManager.m */; };
 		AF58A2D522A50D92005E6361 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2D422A50D91005E6361 /* UIImage+Crop.m */; };
 		AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */; };
+		AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99522DB40E900E666A6 /* AccountViewController.m */; };
+		AF65A99A22DB413800E666A6 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99922DB413800E666A6 /* RegisterViewController.m */; };
+		AF65A9AE22DB434200E666A6 /* QMSegmentDoubleTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99C22DB434200E666A6 /* QMSegmentDoubleTitleItem.m */; };
+		AF65A9AF22DB434200E666A6 /* QMSegmentScrollview.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99D22DB434200E666A6 /* QMSegmentScrollview.m */; };
+		AF65A9B022DB434200E666A6 /* QMSegmentMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A322DB434200E666A6 /* QMSegmentMenuModel.m */; };
+		AF65A9B122DB434200E666A6 /* QMSegmentTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A422DB434200E666A6 /* QMSegmentTopBar.m */; };
+		AF65A9B222DB434200E666A6 /* QMSegmentGradualItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A522DB434200E666A6 /* QMSegmentGradualItemView.m */; };
+		AF65A9B322DB434200E666A6 /* QMSegmentIconTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A622DB434200E666A6 /* QMSegmentIconTitleItem.m */; };
+		AF65A9B422DB434200E666A6 /* QMSegmentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9AB22DB434200E666A6 /* QMSegmentContainer.m */; };
+		AF65A9B522DB434200E666A6 /* QMSegmentDefaultItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9AC22DB434200E666A6 /* QMSegmentDefaultItemView.m */; };
+		AF65A9BD22DB49C000E666A6 /* EntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9BC22DB49C000E666A6 /* EntranceViewController.m */; };
+		AF65A9C122DB49F900E666A6 /* EntranceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9C022DB49F900E666A6 /* EntranceTableViewCell.m */; };
+		AF65A9C422DB799600E666A6 /* ViewUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9C322DB799600E666A6 /* ViewUtility.m */; };
 		AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
 		AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
+		AFFF039522DB3DCB002AEC8A /* JVSRSAHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFF034122DB3DCB002AEC8A /* JVSRSAHandler.m */; };
+		AFFF039622DB3DCB002AEC8A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AFFF034422DB3DCB002AEC8A /* LICENSE */; };
+		AFFF039722DB3DCB002AEC8A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF039222DB3DCB002AEC8A /* libcrypto.a */; };
+		AFFF039822DB3DCB002AEC8A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF039322DB3DCB002AEC8A /* libssl.a */; };
 		EE5690BE30E67D42D5DBB568 /* Pods_JumpMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D044EB4B00B7A1C568D94AA /* Pods_JumpMonkey.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +200,14 @@
 		AF1AD7A022D2399E00550D35 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AF1AD7A222D239A300550D35 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AF1AD7A422D239D700550D35 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AF1E3A5922DA1CAB000F764D /* NSString+Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encryption.m"; sourceTree = "<group>"; };
+		AF1E3A5A22DA1CAB000F764D /* NSString+Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encryption.h"; sourceTree = "<group>"; };
+		AF1E3A5C22DA1CAB000F764D /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		AF1E3A5D22DA1CAB000F764D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		AF1E3A5E22DA1CAB000F764D /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		AF1E3A5F22DA1CAB000F764D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		AF1E3A6122DA1CAB000F764D /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		AF1E3A6222DA1CAB000F764D /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
 		AF23157822850E2C008522D0 /* JumpMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF23157B22850E2C008522D0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AF23157C22850E2C008522D0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -460,10 +489,118 @@
 		AF58A2D822A51732005E6361 /* SequenceFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceFrameImage.h; sourceTree = "<group>"; };
 		AF58A2DC22A51E42005E6361 /* UIBezierPath+AllPoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AllPoints.h"; sourceTree = "<group>"; };
 		AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AllPoints.m"; sourceTree = "<group>"; };
+		AF65A99422DB40E900E666A6 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		AF65A99522DB40E900E666A6 /* AccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		AF65A99822DB413800E666A6 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		AF65A99922DB413800E666A6 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		AF65A99C22DB434200E666A6 /* QMSegmentDoubleTitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentDoubleTitleItem.m; sourceTree = "<group>"; };
+		AF65A99D22DB434200E666A6 /* QMSegmentScrollview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentScrollview.m; sourceTree = "<group>"; };
+		AF65A99E22DB434200E666A6 /* QMSegmentIconTitleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentIconTitleItem.h; sourceTree = "<group>"; };
+		AF65A99F22DB434200E666A6 /* QMSegmentContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentContainer.h; sourceTree = "<group>"; };
+		AF65A9A022DB434200E666A6 /* QMSegmentDefaultItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentDefaultItemView.h; sourceTree = "<group>"; };
+		AF65A9A122DB434200E666A6 /* QMSegmentTopBarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentTopBarProtocol.h; sourceTree = "<group>"; };
+		AF65A9A222DB434200E666A6 /* QMSegmentTopBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentTopBarDelegate.h; sourceTree = "<group>"; };
+		AF65A9A322DB434200E666A6 /* QMSegmentMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentMenuModel.m; sourceTree = "<group>"; };
+		AF65A9A422DB434200E666A6 /* QMSegmentTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentTopBar.m; sourceTree = "<group>"; };
+		AF65A9A522DB434200E666A6 /* QMSegmentGradualItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentGradualItemView.m; sourceTree = "<group>"; };
+		AF65A9A622DB434200E666A6 /* QMSegmentIconTitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentIconTitleItem.m; sourceTree = "<group>"; };
+		AF65A9A722DB434200E666A6 /* QMSegmentScrollview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentScrollview.h; sourceTree = "<group>"; };
+		AF65A9A822DB434200E666A6 /* QMSegmentDoubleTitleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentDoubleTitleItem.h; sourceTree = "<group>"; };
+		AF65A9A922DB434200E666A6 /* QMSegmentTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentTopBar.h; sourceTree = "<group>"; };
+		AF65A9AA22DB434200E666A6 /* QMSegmentMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentMenuModel.h; sourceTree = "<group>"; };
+		AF65A9AB22DB434200E666A6 /* QMSegmentContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentContainer.m; sourceTree = "<group>"; };
+		AF65A9AC22DB434200E666A6 /* QMSegmentDefaultItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentDefaultItemView.m; sourceTree = "<group>"; };
+		AF65A9AD22DB434200E666A6 /* QMSegmentGradualItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSegmentGradualItemView.h; sourceTree = "<group>"; };
+		AF65A9BB22DB49C000E666A6 /* EntranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntranceViewController.h; sourceTree = "<group>"; };
+		AF65A9BC22DB49C000E666A6 /* EntranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntranceViewController.m; sourceTree = "<group>"; };
+		AF65A9BF22DB49F900E666A6 /* EntranceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntranceTableViewCell.h; sourceTree = "<group>"; };
+		AF65A9C022DB49F900E666A6 /* EntranceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntranceTableViewCell.m; sourceTree = "<group>"; };
+		AF65A9C222DB799600E666A6 /* ViewUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUtility.h; sourceTree = "<group>"; };
+		AF65A9C322DB799600E666A6 /* ViewUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtility.m; sourceTree = "<group>"; };
 		AFF080DE22A1661700D180C4 /* ClockImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClockImageView.h; sourceTree = "<group>"; };
 		AFF080DF22A1661700D180C4 /* ClockImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockImageView.m; sourceTree = "<group>"; };
 		AFF080E122A1682B00D180C4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		AFF080E222A1682B00D180C4 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		AFFF034122DB3DCB002AEC8A /* JVSRSAHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVSRSAHandler.m; sourceTree = "<group>"; };
+		AFFF034422DB3DCB002AEC8A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AFFF034622DB3DCB002AEC8A /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
+		AFFF034722DB3DCB002AEC8A /* pem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
+		AFFF034822DB3DCB002AEC8A /* ssl3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl3.h; sourceTree = "<group>"; };
+		AFFF034922DB3DCB002AEC8A /* ossl_typ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ossl_typ.h; sourceTree = "<group>"; };
+		AFFF034A22DB3DCB002AEC8A /* dtls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtls1.h; sourceTree = "<group>"; };
+		AFFF034B22DB3DCB002AEC8A /* err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
+		AFFF034C22DB3DCB002AEC8A /* bn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bn.h; sourceTree = "<group>"; };
+		AFFF034D22DB3DCB002AEC8A /* blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
+		AFFF034E22DB3DCB002AEC8A /* cms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cms.h; sourceTree = "<group>"; };
+		AFFF034F22DB3DCB002AEC8A /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
+		AFFF035022DB3DCB002AEC8A /* conf_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf_api.h; sourceTree = "<group>"; };
+		AFFF035122DB3DCB002AEC8A /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
+		AFFF035222DB3DCB002AEC8A /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
+		AFFF035322DB3DCB002AEC8A /* ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
+		AFFF035422DB3DCB002AEC8A /* kssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kssl.h; sourceTree = "<group>"; };
+		AFFF035522DB3DCB002AEC8A /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
+		AFFF035622DB3DCB002AEC8A /* symhacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symhacks.h; sourceTree = "<group>"; };
+		AFFF035722DB3DCB002AEC8A /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
+		AFFF035822DB3DCB002AEC8A /* opensslconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslconf.h; sourceTree = "<group>"; };
+		AFFF035922DB3DCB002AEC8A /* bio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bio.h; sourceTree = "<group>"; };
+		AFFF035A22DB3DCB002AEC8A /* rc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc2.h; sourceTree = "<group>"; };
+		AFFF035B22DB3DCB002AEC8A /* dh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dh.h; sourceTree = "<group>"; };
+		AFFF035C22DB3DCB002AEC8A /* ui_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui_compat.h; sourceTree = "<group>"; };
+		AFFF035D22DB3DCB002AEC8A /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		AFFF035E22DB3DCB002AEC8A /* ssl23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl23.h; sourceTree = "<group>"; };
+		AFFF035F22DB3DCB002AEC8A /* conf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
+		AFFF036022DB3DCB002AEC8A /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		AFFF036122DB3DCB002AEC8A /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
+		AFFF036222DB3DCB002AEC8A /* txt_db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = txt_db.h; sourceTree = "<group>"; };
+		AFFF036322DB3DCB002AEC8A /* safestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safestack.h; sourceTree = "<group>"; };
+		AFFF036422DB3DCB002AEC8A /* ecdsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdsa.h; sourceTree = "<group>"; };
+		AFFF036522DB3DCB002AEC8A /* objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
+		AFFF036622DB3DCB002AEC8A /* pkcs12.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs12.h; sourceTree = "<group>"; };
+		AFFF036722DB3DCB002AEC8A /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
+		AFFF036822DB3DCB002AEC8A /* opensslv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslv.h; sourceTree = "<group>"; };
+		AFFF036922DB3DCB002AEC8A /* pkcs7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs7.h; sourceTree = "<group>"; };
+		AFFF036A22DB3DCB002AEC8A /* obj_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_mac.h; sourceTree = "<group>"; };
+		AFFF036B22DB3DCB002AEC8A /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		AFFF036C22DB3DCB002AEC8A /* ssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl.h; sourceTree = "<group>"; };
+		AFFF036D22DB3DCB002AEC8A /* srp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
+		AFFF036E22DB3DCB002AEC8A /* camellia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camellia.h; sourceTree = "<group>"; };
+		AFFF036F22DB3DCB002AEC8A /* evp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evp.h; sourceTree = "<group>"; };
+		AFFF037022DB3DCB002AEC8A /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
+		AFFF037122DB3DCB002AEC8A /* md4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
+		AFFF037222DB3DCB002AEC8A /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		AFFF037322DB3DCB002AEC8A /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		AFFF037422DB3DCB002AEC8A /* comp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comp.h; sourceTree = "<group>"; };
+		AFFF037522DB3DCB002AEC8A /* cast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cast.h; sourceTree = "<group>"; };
+		AFFF037622DB3DCB002AEC8A /* rc4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc4.h; sourceTree = "<group>"; };
+		AFFF037722DB3DCB002AEC8A /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		AFFF037822DB3DCB002AEC8A /* des.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des.h; sourceTree = "<group>"; };
+		AFFF037922DB3DCB002AEC8A /* ocsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ocsp.h; sourceTree = "<group>"; };
+		AFFF037A22DB3DCB002AEC8A /* ec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec.h; sourceTree = "<group>"; };
+		AFFF037B22DB3DCB002AEC8A /* ecdh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdh.h; sourceTree = "<group>"; };
+		AFFF037C22DB3DCB002AEC8A /* rand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
+		AFFF037D22DB3DCB002AEC8A /* ts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
+		AFFF037E22DB3DCB002AEC8A /* pqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pqueue.h; sourceTree = "<group>"; };
+		AFFF037F22DB3DCB002AEC8A /* dso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dso.h; sourceTree = "<group>"; };
+		AFFF038022DB3DCB002AEC8A /* seed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seed.h; sourceTree = "<group>"; };
+		AFFF038122DB3DCB002AEC8A /* modes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modes.h; sourceTree = "<group>"; };
+		AFFF038222DB3DCB002AEC8A /* ssl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl2.h; sourceTree = "<group>"; };
+		AFFF038322DB3DCB002AEC8A /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
+		AFFF038422DB3DCB002AEC8A /* krb5_asn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = krb5_asn.h; sourceTree = "<group>"; };
+		AFFF038522DB3DCB002AEC8A /* des_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des_old.h; sourceTree = "<group>"; };
+		AFFF038622DB3DCB002AEC8A /* ripemd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ripemd.h; sourceTree = "<group>"; };
+		AFFF038722DB3DCB002AEC8A /* whrlpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = whrlpool.h; sourceTree = "<group>"; };
+		AFFF038822DB3DCB002AEC8A /* tls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls1.h; sourceTree = "<group>"; };
+		AFFF038922DB3DCB002AEC8A /* mdc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdc2.h; sourceTree = "<group>"; };
+		AFFF038A22DB3DCB002AEC8A /* dsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
+		AFFF038B22DB3DCB002AEC8A /* srtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srtp.h; sourceTree = "<group>"; };
+		AFFF038C22DB3DCB002AEC8A /* asn1t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1t.h; sourceTree = "<group>"; };
+		AFFF038D22DB3DCB002AEC8A /* cmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmac.h; sourceTree = "<group>"; };
+		AFFF038E22DB3DCB002AEC8A /* ebcdic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ebcdic.h; sourceTree = "<group>"; };
+		AFFF038F22DB3DCB002AEC8A /* idea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idea.h; sourceTree = "<group>"; };
+		AFFF039022DB3DCB002AEC8A /* lhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
+		AFFF039222DB3DCB002AEC8A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		AFFF039322DB3DCB002AEC8A /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		AFFF039422DB3DCB002AEC8A /* JVSRSAHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVSRSAHandler.h; sourceTree = "<group>"; };
 		CF5FA2778345FFD09EC4A99F /* Pods-JumpMonkey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey.debug.xcconfig"; path = "Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BAD9152BBDDF0E614841C0 /* Pods-JumpMonkey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey.release.xcconfig"; path = "Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -475,8 +612,10 @@
 			files = (
 				AF2C44E922D97EBA003045B8 /* libSocialQQ.a in Frameworks */,
 				AF1AD7A522D239D800550D35 /* libz.tbd in Frameworks */,
+				AFFF039822DB3DCB002AEC8A /* libssl.a in Frameworks */,
 				AF2C44E222D97EBA003045B8 /* SecurityEnvSDK.framework in Frameworks */,
 				AF2C44E822D97EBA003045B8 /* libSocialSina.a in Frameworks */,
+				AFFF039722DB3DCB002AEC8A /* libcrypto.a in Frameworks */,
 				AF1AD7A322D239A300550D35 /* CoreTelephony.framework in Frameworks */,
 				AF1AD7A122D2399E00550D35 /* SystemConfiguration.framework in Frameworks */,
 				AF2C44E622D97EBA003045B8 /* UMShare.framework in Frameworks */,
@@ -498,6 +637,7 @@
 		AF0E3ABC2291545600C2CF7B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				AF1E3A5722DA1CAB000F764D /* Encrypt */,
 				AF0E3ABD2291547F00C2CF7B /* PhysicsUtil.h */,
 				AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */,
 				AF2E021722D0F6410076AD7F /* QMAppUtils.h */,
@@ -518,8 +658,50 @@
 				AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */,
 				AF36E05C22A5F445008BBCCF /* Bezier.h */,
 				AF36E05D22A5F445008BBCCF /* Bezier.m */,
+				AF65A9C222DB799600E666A6 /* ViewUtility.h */,
+				AF65A9C322DB799600E666A6 /* ViewUtility.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		AF1E3A5722DA1CAB000F764D /* Encrypt */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF034022DB3DCB002AEC8A /* JVSRSAHandler */,
+				AF1E3A5822DA1CAB000F764D /* MD5 */,
+				AF1E3A5B22DA1CAB000F764D /* Base64 */,
+				AF1E3A6022DA1CAB000F764D /* AES256 */,
+			);
+			path = Encrypt;
+			sourceTree = "<group>";
+		};
+		AF1E3A5822DA1CAB000F764D /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				AF1E3A5A22DA1CAB000F764D /* NSString+Encryption.h */,
+				AF1E3A5922DA1CAB000F764D /* NSString+Encryption.m */,
+			);
+			path = MD5;
+			sourceTree = "<group>";
+		};
+		AF1E3A5B22DA1CAB000F764D /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				AF1E3A5E22DA1CAB000F764D /* NSString+Base64.h */,
+				AF1E3A5C22DA1CAB000F764D /* NSString+Base64.m */,
+				AF1E3A5D22DA1CAB000F764D /* NSData+Base64.h */,
+				AF1E3A5F22DA1CAB000F764D /* NSData+Base64.m */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
+		AF1E3A6022DA1CAB000F764D /* AES256 */ = {
+			isa = PBXGroup;
+			children = (
+				AF1E3A6122DA1CAB000F764D /* NSData+AES.h */,
+				AF1E3A6222DA1CAB000F764D /* NSData+AES.m */,
+			);
+			path = AES256;
 			sourceTree = "<group>";
 		};
 		AF23156F22850E2C008522D0 = {
@@ -569,6 +751,7 @@
 		AF2C448F22D97EB9003045B8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AF65A9BA22DB49C000E666A6 /* Entrance */,
 				AF2C449022D97EB9003045B8 /* GameScene */,
 				AF2C44A922D97EBA003045B8 /* UserAccount */,
 				AF2C44AA22D97EBA003045B8 /* Score */,
@@ -618,8 +801,11 @@
 		AF2C44A922D97EBA003045B8 /* UserAccount */ = {
 			isa = PBXGroup;
 			children = (
+				AF65A99422DB40E900E666A6 /* AccountViewController.h */,
+				AF65A99522DB40E900E666A6 /* AccountViewController.m */,
 				AF2C450922D99EED003045B8 /* UserAccountManager.h */,
 				AF2C450A22D99EED003045B8 /* UserAccountManager.m */,
+				AF65A99722DB412400E666A6 /* Register */,
 				AF2C44ED22D97F83003045B8 /* Login */,
 			);
 			path = UserAccount;
@@ -1252,9 +1438,63 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		AF65A99722DB412400E666A6 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				AF65A99822DB413800E666A6 /* RegisterViewController.h */,
+				AF65A99922DB413800E666A6 /* RegisterViewController.m */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		AF65A99B22DB434200E666A6 /* QMSegmentContainer */ = {
+			isa = PBXGroup;
+			children = (
+				AF65A99C22DB434200E666A6 /* QMSegmentDoubleTitleItem.m */,
+				AF65A99D22DB434200E666A6 /* QMSegmentScrollview.m */,
+				AF65A99E22DB434200E666A6 /* QMSegmentIconTitleItem.h */,
+				AF65A99F22DB434200E666A6 /* QMSegmentContainer.h */,
+				AF65A9A022DB434200E666A6 /* QMSegmentDefaultItemView.h */,
+				AF65A9A122DB434200E666A6 /* QMSegmentTopBarProtocol.h */,
+				AF65A9A222DB434200E666A6 /* QMSegmentTopBarDelegate.h */,
+				AF65A9A322DB434200E666A6 /* QMSegmentMenuModel.m */,
+				AF65A9A422DB434200E666A6 /* QMSegmentTopBar.m */,
+				AF65A9A522DB434200E666A6 /* QMSegmentGradualItemView.m */,
+				AF65A9A622DB434200E666A6 /* QMSegmentIconTitleItem.m */,
+				AF65A9A722DB434200E666A6 /* QMSegmentScrollview.h */,
+				AF65A9A822DB434200E666A6 /* QMSegmentDoubleTitleItem.h */,
+				AF65A9A922DB434200E666A6 /* QMSegmentTopBar.h */,
+				AF65A9AA22DB434200E666A6 /* QMSegmentMenuModel.h */,
+				AF65A9AB22DB434200E666A6 /* QMSegmentContainer.m */,
+				AF65A9AC22DB434200E666A6 /* QMSegmentDefaultItemView.m */,
+				AF65A9AD22DB434200E666A6 /* QMSegmentGradualItemView.h */,
+			);
+			path = QMSegmentContainer;
+			sourceTree = "<group>";
+		};
+		AF65A9BA22DB49C000E666A6 /* Entrance */ = {
+			isa = PBXGroup;
+			children = (
+				AF65A9BE22DB49DC00E666A6 /* View */,
+				AF65A9BB22DB49C000E666A6 /* EntranceViewController.h */,
+				AF65A9BC22DB49C000E666A6 /* EntranceViewController.m */,
+			);
+			path = Entrance;
+			sourceTree = "<group>";
+		};
+		AF65A9BE22DB49DC00E666A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF65A9BF22DB49F900E666A6 /* EntranceTableViewCell.h */,
+				AF65A9C022DB49F900E666A6 /* EntranceTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AFF080DD22A165FE00D180C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF65A99B22DB434200E666A6 /* QMSegmentContainer */,
 				AF2E020C22D0EE410076AD7F /* QMLoadView.h */,
 				AF2E020B22D0EE410076AD7F /* QMLoadView.m */,
 				AF2E021A22D0F6C30076AD7F /* QMAttributedLabel.h */,
@@ -1265,6 +1505,125 @@
 				AFF080DF22A1661700D180C4 /* ClockImageView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		AFFF034022DB3DCB002AEC8A /* JVSRSAHandler */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF039422DB3DCB002AEC8A /* JVSRSAHandler.h */,
+				AFFF034122DB3DCB002AEC8A /* JVSRSAHandler.m */,
+				AFFF034222DB3DCB002AEC8A /* openssl */,
+			);
+			path = JVSRSAHandler;
+			sourceTree = "<group>";
+		};
+		AFFF034222DB3DCB002AEC8A /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF034322DB3DCB002AEC8A /* include */,
+				AFFF039122DB3DCB002AEC8A /* lib */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
+		AFFF034322DB3DCB002AEC8A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF034422DB3DCB002AEC8A /* LICENSE */,
+				AFFF034522DB3DCB002AEC8A /* openssl */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		AFFF034522DB3DCB002AEC8A /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF034622DB3DCB002AEC8A /* pem2.h */,
+				AFFF034722DB3DCB002AEC8A /* pem.h */,
+				AFFF034822DB3DCB002AEC8A /* ssl3.h */,
+				AFFF034922DB3DCB002AEC8A /* ossl_typ.h */,
+				AFFF034A22DB3DCB002AEC8A /* dtls1.h */,
+				AFFF034B22DB3DCB002AEC8A /* err.h */,
+				AFFF034C22DB3DCB002AEC8A /* bn.h */,
+				AFFF034D22DB3DCB002AEC8A /* blowfish.h */,
+				AFFF034E22DB3DCB002AEC8A /* cms.h */,
+				AFFF034F22DB3DCB002AEC8A /* engine.h */,
+				AFFF035022DB3DCB002AEC8A /* conf_api.h */,
+				AFFF035122DB3DCB002AEC8A /* x509.h */,
+				AFFF035222DB3DCB002AEC8A /* asn1_mac.h */,
+				AFFF035322DB3DCB002AEC8A /* ui.h */,
+				AFFF035422DB3DCB002AEC8A /* kssl.h */,
+				AFFF035522DB3DCB002AEC8A /* sha.h */,
+				AFFF035622DB3DCB002AEC8A /* symhacks.h */,
+				AFFF035722DB3DCB002AEC8A /* asn1.h */,
+				AFFF035822DB3DCB002AEC8A /* opensslconf.h */,
+				AFFF035922DB3DCB002AEC8A /* bio.h */,
+				AFFF035A22DB3DCB002AEC8A /* rc2.h */,
+				AFFF035B22DB3DCB002AEC8A /* dh.h */,
+				AFFF035C22DB3DCB002AEC8A /* ui_compat.h */,
+				AFFF035D22DB3DCB002AEC8A /* x509v3.h */,
+				AFFF035E22DB3DCB002AEC8A /* ssl23.h */,
+				AFFF035F22DB3DCB002AEC8A /* conf.h */,
+				AFFF036022DB3DCB002AEC8A /* md5.h */,
+				AFFF036122DB3DCB002AEC8A /* x509_vfy.h */,
+				AFFF036222DB3DCB002AEC8A /* txt_db.h */,
+				AFFF036322DB3DCB002AEC8A /* safestack.h */,
+				AFFF036422DB3DCB002AEC8A /* ecdsa.h */,
+				AFFF036522DB3DCB002AEC8A /* objects.h */,
+				AFFF036622DB3DCB002AEC8A /* pkcs12.h */,
+				AFFF036722DB3DCB002AEC8A /* crypto.h */,
+				AFFF036822DB3DCB002AEC8A /* opensslv.h */,
+				AFFF036922DB3DCB002AEC8A /* pkcs7.h */,
+				AFFF036A22DB3DCB002AEC8A /* obj_mac.h */,
+				AFFF036B22DB3DCB002AEC8A /* buffer.h */,
+				AFFF036C22DB3DCB002AEC8A /* ssl.h */,
+				AFFF036D22DB3DCB002AEC8A /* srp.h */,
+				AFFF036E22DB3DCB002AEC8A /* camellia.h */,
+				AFFF036F22DB3DCB002AEC8A /* evp.h */,
+				AFFF037022DB3DCB002AEC8A /* e_os2.h */,
+				AFFF037122DB3DCB002AEC8A /* md4.h */,
+				AFFF037222DB3DCB002AEC8A /* hmac.h */,
+				AFFF037322DB3DCB002AEC8A /* aes.h */,
+				AFFF037422DB3DCB002AEC8A /* comp.h */,
+				AFFF037522DB3DCB002AEC8A /* cast.h */,
+				AFFF037622DB3DCB002AEC8A /* rc4.h */,
+				AFFF037722DB3DCB002AEC8A /* stack.h */,
+				AFFF037822DB3DCB002AEC8A /* des.h */,
+				AFFF037922DB3DCB002AEC8A /* ocsp.h */,
+				AFFF037A22DB3DCB002AEC8A /* ec.h */,
+				AFFF037B22DB3DCB002AEC8A /* ecdh.h */,
+				AFFF037C22DB3DCB002AEC8A /* rand.h */,
+				AFFF037D22DB3DCB002AEC8A /* ts.h */,
+				AFFF037E22DB3DCB002AEC8A /* pqueue.h */,
+				AFFF037F22DB3DCB002AEC8A /* dso.h */,
+				AFFF038022DB3DCB002AEC8A /* seed.h */,
+				AFFF038122DB3DCB002AEC8A /* modes.h */,
+				AFFF038222DB3DCB002AEC8A /* ssl2.h */,
+				AFFF038322DB3DCB002AEC8A /* rsa.h */,
+				AFFF038422DB3DCB002AEC8A /* krb5_asn.h */,
+				AFFF038522DB3DCB002AEC8A /* des_old.h */,
+				AFFF038622DB3DCB002AEC8A /* ripemd.h */,
+				AFFF038722DB3DCB002AEC8A /* whrlpool.h */,
+				AFFF038822DB3DCB002AEC8A /* tls1.h */,
+				AFFF038922DB3DCB002AEC8A /* mdc2.h */,
+				AFFF038A22DB3DCB002AEC8A /* dsa.h */,
+				AFFF038B22DB3DCB002AEC8A /* srtp.h */,
+				AFFF038C22DB3DCB002AEC8A /* asn1t.h */,
+				AFFF038D22DB3DCB002AEC8A /* cmac.h */,
+				AFFF038E22DB3DCB002AEC8A /* ebcdic.h */,
+				AFFF038F22DB3DCB002AEC8A /* idea.h */,
+				AFFF039022DB3DCB002AEC8A /* lhash.h */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
+		AFFF039122DB3DCB002AEC8A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF039222DB3DCB002AEC8A /* libcrypto.a */,
+				AFFF039322DB3DCB002AEC8A /* libssl.a */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		B783CC1186C34BC08E774D52 /* Pods */ = {
@@ -1341,6 +1700,7 @@
 				AF23158C22850E2D008522D0 /* Assets.xcassets in Resources */,
 				AF23158F22850E2D008522D0 /* LaunchScreen.storyboard in Resources */,
 				AF58A2C422A4B68D005E6361 /* sound_catch_hook.wav in Resources */,
+				AFFF039622DB3DCB002AEC8A /* LICENSE in Resources */,
 				AF2C44E422D97EBA003045B8 /* UMSocialSDKResources.bundle in Resources */,
 				AF58A2C622A4B68D005E6361 /* sound_cock.wav in Resources */,
 				AF2C44DB22D97EBA003045B8 /* GameScene.sks in Resources */,
@@ -1398,6 +1758,8 @@
 			files = (
 				AF4CB59922CE2C0D0090BFB4 /* MMDrawerVisualState.m in Sources */,
 				AF4CB45B22CE27C50090BFB4 /* QMReqCacheManager.m in Sources */,
+				AF65A9B522DB434200E666A6 /* QMSegmentDefaultItemView.m in Sources */,
+				AF65A9AF22DB434200E666A6 /* QMSegmentScrollview.m in Sources */,
 				AF2C44FE22D97FED003045B8 /* ScoreTableViewCell.m in Sources */,
 				AF4CB57F22CE2C0D0090BFB4 /* MJExtensionConst.m in Sources */,
 				AF4CB57122CE2C0D0090BFB4 /* UITextField+QMSecure.m in Sources */,
@@ -1417,14 +1779,17 @@
 				AF4CB58122CE2C0D0090BFB4 /* NSObject+MJClass.m in Sources */,
 				AF4CB59722CE2C0D0090BFB4 /* UIViewController+MMDrawerController.m in Sources */,
 				AF4CB58F22CE2C0D0090BFB4 /* NSNumber+safe.m in Sources */,
+				AF65A9C422DB799600E666A6 /* ViewUtility.m in Sources */,
 				AF4CB57522CE2C0D0090BFB4 /* QMLogFileManager.m in Sources */,
 				AF4CB57222CE2C0D0090BFB4 /* UILabel+htmlText.m in Sources */,
+				AF1E3A6522DA1CAB000F764D /* NSData+Base64.m in Sources */,
 				AF4CB45722CE27C50090BFB4 /* UIImage+Category.m in Sources */,
 				AF2E021922D0F6410076AD7F /* QMAppUtils.m in Sources */,
 				AF2C44D122D97EBA003045B8 /* GameScene.m in Sources */,
 				AF4CB58B22CE2C0D0090BFB4 /* NSMutableDictionary+safe.m in Sources */,
 				AF2C44D322D97EBA003045B8 /* Hawk.m in Sources */,
 				AF4CB55522CE2C0D0090BFB4 /* NSObject+MultiParam.m in Sources */,
+				AF65A9B322DB434200E666A6 /* QMSegmentIconTitleItem.m in Sources */,
 				AF2C44D422D97EBA003045B8 /* HookNode.m in Sources */,
 				AF2C44D222D97EBA003045B8 /* ChainList.m in Sources */,
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
@@ -1435,16 +1800,19 @@
 				AF4CB41C22CE24050090BFB4 /* UIColor+CustomColor.m in Sources */,
 				AF4CB55922CE2C0D0090BFB4 /* UIView+Common.m in Sources */,
 				AF2C44D622D97EBA003045B8 /* Monkey.m in Sources */,
+				AF65A9AE22DB434200E666A6 /* QMSegmentDoubleTitleItem.m in Sources */,
 				AF4CB59122CE2C0D0090BFB4 /* NSIndexPath+safe.m in Sources */,
 				AF4CB59022CE2C0D0090BFB4 /* NSArray+safe.m in Sources */,
 				AF4CB57622CE2C0D0090BFB4 /* QMCustomLog.m in Sources */,
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
 				AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */,
 				AF2C450222D98947003045B8 /* UserAPI.m in Sources */,
+				AF65A99A22DB413800E666A6 /* RegisterViewController.m in Sources */,
 				AF4CB58C22CE2C0D0090BFB4 /* NSMutableSet+safe.m in Sources */,
 				AF4CB58A22CE2C0D0090BFB4 /* NSString+safe.m in Sources */,
 				AF2C44F322D97F99003045B8 /* LoginViewController.m in Sources */,
 				AF4CB58822CE2C0D0090BFB4 /* QMFoundationDataForwardTarget.m in Sources */,
+				AF1E3A6622DA1CAB000F764D /* NSData+AES.m in Sources */,
 				AF2C44FD22D97FED003045B8 /* ScoreInfo.m in Sources */,
 				AF4CB45522CE27C50090BFB4 /* QMRequestConfig.m in Sources */,
 				AF2E021322D0F0E00076AD7F /* QMJSONManager.m in Sources */,
@@ -1458,9 +1826,11 @@
 				AF2C44D922D97EBA003045B8 /* NormalNode.m in Sources */,
 				AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */,
 				AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */,
+				AF1E3A6322DA1CAB000F764D /* NSString+Encryption.m in Sources */,
 				AF2C450B22D99EED003045B8 /* UserAccountManager.m in Sources */,
 				AF4CB56D22CE2C0D0090BFB4 /* UILabel+Additions.m in Sources */,
 				AF4CB46122CE27C50090BFB4 /* QMNormalRequestFactory.m in Sources */,
+				AF65A9C122DB49F900E666A6 /* EntranceTableViewCell.m in Sources */,
 				AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */,
 				AF4CB46322CE27C50090BFB4 /* QMUploadDataFactory.m in Sources */,
 				AF2C44D722D97EBA003045B8 /* Spider.m in Sources */,
@@ -1475,11 +1845,14 @@
 				AF4CB55C22CE2C0D0090BFB4 /* NSObject+QMExtand.m in Sources */,
 				AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */,
 				AF2C44DA22D97EBA003045B8 /* Tree.m in Sources */,
+				AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */,
 				AF4CB56222CE2C0D0090BFB4 /* UIImage+QMColor.m in Sources */,
 				AF4CB58722CE2C0D0090BFB4 /* NSMutableArray+safe.m in Sources */,
 				AF4CB46222CE27C50090BFB4 /* QMSimpleRequestFactory.m in Sources */,
 				AF2C44D822D97EBA003045B8 /* TreesList.m in Sources */,
+				AF1E3A6422DA1CAB000F764D /* NSString+Base64.m in Sources */,
 				AF4CB45422CE27C50090BFB4 /* QMInput.m in Sources */,
+				AFFF039522DB3DCB002AEC8A /* JVSRSAHandler.m in Sources */,
 				AF4CB59422CE2C0D0090BFB4 /* QMSaveKeyChain.m in Sources */,
 				AF4CB55F22CE2C0D0090BFB4 /* UIButton+Category.m in Sources */,
 				AF4CB45322CE27C50090BFB4 /* QMRequester.m in Sources */,
@@ -1489,6 +1862,7 @@
 				AF2C450822D99D89003045B8 /* APIManager.m in Sources */,
 				AF4CB55822CE2C0D0090BFB4 /* UIColor+CustomColor.m in Sources */,
 				AF4CB55D22CE2C0D0090BFB4 /* NSDate+QMExtand.m in Sources */,
+				AF65A9B222DB434200E666A6 /* QMSegmentGradualItemView.m in Sources */,
 				AF4CB46522CE27C50090BFB4 /* QMListRequester.m in Sources */,
 				AF58A2D522A50D92005E6361 /* UIImage+Crop.m in Sources */,
 				AF4CB56022CE2C0D0090BFB4 /* NSDate+Utilities.m in Sources */,
@@ -1500,6 +1874,7 @@
 				AF4CB45E22CE27C50090BFB4 /* QMStatisticsRequestFactory.m in Sources */,
 				AF4CB56722CE2C0D0090BFB4 /* UIImageView+QMAnimation.m in Sources */,
 				AF4CB45822CE27C50090BFB4 /* NSString+QMRequest.m in Sources */,
+				AF65A9B422DB434200E666A6 /* QMSegmentContainer.m in Sources */,
 				AF4CB58522CE2C0D0090BFB4 /* NSObject+Safe.m in Sources */,
 				AF2C44D522D97EBA003045B8 /* SKNumberNode.m in Sources */,
 				AF4CB46422CE27C50090BFB4 /* QMDownloadRequester.m in Sources */,
@@ -1509,6 +1884,7 @@
 				AF1AD76D22D1F72300550D35 /* QMGlobalAppearance.m in Sources */,
 				AF4CB56622CE2C0D0090BFB4 /* NSDateFormatter+QMHelper.m in Sources */,
 				AF4CB58D22CE2C0D0090BFB4 /* UITableView+safe.m in Sources */,
+				AF65A9BD22DB49C000E666A6 /* EntranceViewController.m in Sources */,
 				AF4CB56522CE2C0D0090BFB4 /* UIView+Copy.m in Sources */,
 				AF4CB59322CE2C0D0090BFB4 /* NSData+imagetype.m in Sources */,
 				AF4CB57E22CE2C0D0090BFB4 /* NSObject+MJCoding.m in Sources */,
@@ -1521,7 +1897,9 @@
 				AF4CB57322CE2C0D0090BFB4 /* NSObject+QMInput.m in Sources */,
 				AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */,
 				AF4CB57C22CE2C0D0090BFB4 /* NSObject+MJKeyValue.m in Sources */,
+				AF65A9B022DB434200E666A6 /* QMSegmentMenuModel.m in Sources */,
 				AF4CB56122CE2C0D0090BFB4 /* UIButton+CustomColor.m in Sources */,
+				AF65A9B122DB434200E666A6 /* QMSegmentTopBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1666,6 +2044,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T4SAW3YARN;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JumpMonkey/Share/third-party-SDK/TencentOpenAPI",
@@ -1686,6 +2065,17 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa/ReactiveCocoa.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TMCache/TMCache.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/QQ_MTA\"",
+					"\"$(SRCROOT)/JumpMonkey/Util/Encrypt/JVSRSAHandler/openssl/include\"",
+				);
 				INFOPLIST_FILE = JumpMonkey/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1709,6 +2099,7 @@
 					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/Util/Encrypt/JVSRSAHandler/openssl/lib",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1751,6 +2142,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T4SAW3YARN;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JumpMonkey/Share/third-party-SDK/TencentOpenAPI",
@@ -1771,6 +2163,17 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa/ReactiveCocoa.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TMCache/TMCache.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/QQ_MTA\"",
+					"\"$(SRCROOT)/JumpMonkey/Util/Encrypt/JVSRSAHandler/openssl/include\"",
+				);
 				INFOPLIST_FILE = JumpMonkey/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1794,6 +2197,7 @@
 					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/WeChat",
 					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/Util/Encrypt/JVSRSAHandler/openssl/lib",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
