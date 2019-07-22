@@ -20,7 +20,9 @@
 #import "JPComponent/ThirdParty/MJExtension/MJExtension.h"
 #import <SDWebImageManager.h>
 #import <Masonry.h>
-#import "QMLoadView.h"
+#import "SHLoadingView.h"
+#import "SHToastView.h"
+#import "SHUIModuleDefine.h"
 #import "BBCommonTools.h"
 //#endif
 

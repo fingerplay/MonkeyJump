@@ -9,11 +9,15 @@
 #import "EntranceViewController.h"
 #import "EntranceTableViewCell.h"
 #import "GameViewController.h"
+#import "AccountViewController.h"
 #import "ViewUtility.h"
 
 @interface EntranceViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIButton *settingBtn;
+@property (nonatomic, strong) UIButton *accountBtn;
+//@property (nonatomic, strong) UIButton *soundMuteBtn;
 @end
 
 typedef NS_ENUM (NSInteger){
@@ -44,6 +48,9 @@ static NSString *const kCellIdentifier = @"cell";
 - (void)setupView {
     [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.accountBtn];
+    [self.view addSubview:self.settingBtn];
+//    [self.view addSubview:self.soundMuteBtn];
 }
 
 - (void)setupLayout {
@@ -57,6 +64,18 @@ static NSString *const kCellIdentifier = @"cell";
         make.width.equalTo(@(200));
         make.centerX.equalTo(self.view);
         make.centerY.equalTo(self.view);
+    }];
+    
+    [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.equalTo(@(32));
+        make.right.equalTo(self.view).offset(-10);
+        make.top.equalTo(self.view).offset(10);
+    }];
+    
+    [self.accountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.equalTo(@(32));
+        make.left.equalTo(self.view).offset(10);
+        make.top.equalTo(self.view).offset(10);
     }];
 }
 
@@ -77,6 +96,30 @@ static NSString *const kCellIdentifier = @"cell";
         _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ch1"]];
     }
     return _backgroundImageView;
+}
+
+-(UIButton *)accountBtn {
+    if (!_accountBtn) {
+        _accountBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"bubble_bird"] highlightedBackgroundImage:nil disabledBackgroundImage:nil target:self action:@selector(accountBtnTapped:)];
+        
+    }
+    return _accountBtn;
+}
+
+- (UIButton *)settingBtn {
+    if (!_settingBtn) {
+        _settingBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"bubble_tree"] highlightedBackgroundImage:nil disabledBackgroundImage:nil target:self action:@selector(settingBtnTapped:)];
+    }
+    return _settingBtn;
+}
+
+- (void)accountBtnTapped:(UIButton*)sender {
+    AccountViewController *vc = [[AccountViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)settingBtnTapped:(UIButton*)sender {
+    
 }
 
 #pragma mark - UITableView Datasource & Delegate

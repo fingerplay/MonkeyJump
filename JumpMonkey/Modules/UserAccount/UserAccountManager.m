@@ -30,38 +30,74 @@ static UserAccountManager *_sharedInstance = nil;
 }
 
 #pragma mark - Public
-- (void)autoLogin {
+- (void)autoLoginWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock {
     LoginAPI *api = [[LoginAPI alloc] initWithAccountModel:self.currentAccount];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        NSLog(@"登录成功,output=%@",output);
+        if (status.code == ERROR_CODE_SUCCESS) {
+            NSLog(@"登录成功,output=%@",output);
+            if (succBlock) {
+                succBlock(output);
+            }
+        }else {
+            NSLog(@"登录失败:%@",status.info);
+            if (failBlock) {
+                failBlock(status.code, status.info);
+            }
+        }
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"登录失败:%@",error);
     }];
 }
 
-- (void)loginWithAccount:(NSString *)account password:(NSString *)password {
+- (void)loginWithAccount:(NSString *)account password:(NSString *)password succCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock {
     UserAccount *user = [[UserAccount alloc] init];
     user.account = account;
     user.password = password;
     LoginAPI *api = [[LoginAPI alloc] initWithAccountModel:user];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        NSLog(@"登录成功,output=%@",output);
+        if (status.code == ERROR_CODE_SUCCESS) {
+            NSLog(@"登录成功,output=%@",output);
+            if (succBlock) {
+                succBlock(output);
+            }
+        }else {
+            NSLog(@"登录失败:%@",status.info);
+            if (failBlock) {
+                failBlock(status.code, status.info);
+            }
+        }
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"登录失败:%@",error);
+        if (failBlock) {
+            failBlock(status.code, status.info);
+        }
     }];
     
 }
 
-- (void)registerWithAccount:(NSString *)account name:(NSString *)name password:(NSString *)password {
+- (void)registerWithAccount:(NSString *)account name:(NSString *)name password:(NSString *)password succCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock{
     UserAccount *user = [[UserAccount alloc] init];
     user.account = account;
     user.name = name;
     user.password = password;
     RegisterAPI *api = [[RegisterAPI alloc] initWithAccountModel:user];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        NSLog(@"注册成功,output=%@",output);
+        if (status.code == ERROR_CODE_SUCCESS) {
+            NSLog(@"注册成功,output=%@",output);
+            if (succBlock) {
+                succBlock(output);
+            }
+        }else {
+            NSLog(@"注册失败:%@",status.info);
+            if (failBlock) {
+                failBlock(status.code, status.info);
+            }
+        }
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"注册失败:%@",error);
+        if (failBlock) {
+            failBlock(status.code, status.info);
+        }
     }];
     
 }
@@ -70,10 +106,21 @@ static UserAccountManager *_sharedInstance = nil;
     
 }
 
-- (void)getUserInfo {
+- (void)getUserInfoWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock {
     UserInfoAPI *api = [[UserInfoAPI alloc] init];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        NSLog(@"获取用户信息成功,output=%@",output);
+        if (status.code == ERROR_CODE_SUCCESS) {
+            NSLog(@"获取用户信息成功,output=%@",output);
+            if (succBlock) {
+                succBlock(output);
+            }
+        }else {
+            NSLog(@"获取用户信息失败,output=%@",output);
+            if (failBlock) {
+                failBlock(status.code, status.info);
+            }
+        }
+
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"获取用户信息失败:%@",error);
     }];

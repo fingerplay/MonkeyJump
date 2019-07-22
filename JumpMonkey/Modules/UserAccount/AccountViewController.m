@@ -7,17 +7,107 @@
 //
 
 #import "AccountViewController.h"
-
-@interface AccountViewController ()
-
+#import "QMSegmentContainer.h"
+#import "RegisterView.h"
+#import "LoginView.h"
+#import "UIView+SHGradient.h"
+@interface AccountViewController ()<QMSegmentContainerDelegate,QMSegmentTopBarDelegate>
+@property (nonatomic, strong) QMSegmentContainer *segmentView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @end
+
+typedef enum NSInteger {
+    AccountItemLogin,
+    AccountItemRegister,
+    AccountItemCount
+} AccountItem;
 
 @implementation AccountViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupView];
+    [self setupLayout];
+
+}
+
+- (void)setupView {
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.backgroundImageView];
+    [self.view addSubview:self.segmentView];
+}
+
+- (void)setupLayout {
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.top.left.equalTo(self.view);
+    }];
+    
+    [self.segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(400));
+        make.height.equalTo(@(280));
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(@(50));
+    }];
+}
+
+#pragma mark - Property
+- (UIImageView *)backgroundImageView {
+    if (!_backgroundImageView) {
+        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ch1"]];
+    }
+    return _backgroundImageView;
+}
+
+- (QMSegmentContainer *)segmentView {
+    if (!_segmentView) {
+        _segmentView = [[QMSegmentContainer alloc] initWithFrame:CGRectMake(0, 50, 400, 280)];
+        _segmentView.delegate = self;
+        _segmentView.segmentTopBar.indicatorHeight = 0;
+        _segmentView.segmentTopBar.titleNormalColor = [UIColor grayColor];
+        _segmentView.segmentTopBar.titleSelectedColor = [UIColor whiteColor];
+        _segmentView.segmentTopBar.bgColor = [UIColor clearColor];
+        _segmentView.segmentTopBar.titleFont = font(18);
+        _segmentView.segmentTopBar.titleSelectedFont = font(18);
+        _segmentView.layer.cornerRadius = 4;
+        _segmentView.layer.masksToBounds = YES;
+        _segmentView.backgroundColor = RGBAlpha(0x06, 0x70, 0xbc, 0.8);
+    }
+    return _segmentView;
 }
 
 
+#pragma mark - SegmentContainer Delegate
+- (NSInteger)numberOfItemsInTopBar:(UIView<QMSegmentTopBarProtocol> *)topBar {
+    return AccountItemCount;
+}
+
+- (NSString *)topBar:(UIView<QMSegmentTopBarProtocol> *)segmentTopBar titleForItemAtIndex:(NSInteger)index {
+    if (index == AccountItemLogin) {
+        return @"登录";
+    }else{
+        return @"注册";
+    }
+}
+
+- (id)segmentContainer:(QMSegmentContainer *)segmentContainer contentForIndex:(NSInteger)index {
+    if (index == AccountItemLogin) {
+        LoginView *view = [[LoginView alloc] initWithFrame:segmentContainer.containerView.bounds];
+        view.loginSuccCallback = ^{
+            [self handleLoginDone];
+        };
+        return view;
+    }else {
+        RegisterView *view = [[RegisterView alloc] initWithFrame:segmentContainer.containerView.bounds];
+        return view;
+    }
+}
+
+#pragma mark - Helper
+- (void)handleLoginDone {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)handleRegisterDone {
+    [self.segmentView setSelectedIndex:0 withAnimated:YES];
+}
 @end

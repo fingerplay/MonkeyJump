@@ -141,7 +141,7 @@
 
 - (id _Nullable )subViewOfClassName:(NSString*_Nonnull)className;
 
-
+- (void)addGradientBackgroundColorFrom:(UIColor *)startColor to:(UIColor *)endColor;
 
 
 @end

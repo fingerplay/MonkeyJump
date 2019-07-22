@@ -308,5 +308,13 @@
     return nil;
 }
 
-
+- (void)addGradientBackgroundColorFrom:(UIColor *)startColor to:(UIColor *)endColor {
+    CAGradientLayer *gradientLayer =  [CAGradientLayer layer];
+    gradientLayer.frame = CGRectMake(0, 0, self.width, self.height);
+    gradientLayer.startPoint = CGPointMake(0, 0.5);
+    gradientLayer.endPoint = CGPointMake(1, 0.5);
+    gradientLayer.locations = @[@(0),@(1.0)];//渐变点
+    [gradientLayer setColors:@[(id)[startColor CGColor],(id)[endColor CGColor]]];//渐变数组
+    [self.layer addSublayer:gradientLayer];
+}
 @end

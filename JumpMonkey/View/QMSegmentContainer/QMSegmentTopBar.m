@@ -830,7 +830,7 @@
 - (UIScrollView *)topBar
 {
     if (!_topBar) {
-        _topBar = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, self.height)];
+        _topBar = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         _topBar.showsHorizontalScrollIndicator = NO;
         _topBar.showsVerticalScrollIndicator = NO;
         _topBar.backgroundColor = [UIColor clearColor];
@@ -854,7 +854,7 @@
 - (UIView *)lineView
 {
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bottom - self.bottomLineHeight, SCREEN_W, self.bottomLineHeight)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bottom - self.bottomLineHeight, self.width, self.bottomLineHeight)];
         _lineView.backgroundColor = UIColorFromHexValue(0xff464e);
     }
     return _lineView;

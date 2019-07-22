@@ -9,21 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "UserAccount.h"
 
+typedef void(^UserAccountSuccCallback)(id userInfo);
+
+typedef void(^UserAccountFailCallback)(NSInteger code, NSString *errorInfo);
+
 @interface UserAccountManager : NSObject
 
 @property (nonatomic, strong) UserAccount *currentAccount;
 
 + (instancetype)sharedManager;
 
-- (void)autoLogin;
+- (void)autoLoginWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock;
 
-- (void)loginWithAccount:(NSString*)account password:(NSString*)password;
+- (void)loginWithAccount:(NSString*)account password:(NSString*)password succCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock;
 
-- (void)registerWithAccount:(NSString*)account name:(NSString*)name password:(NSString*)password;
+- (void)registerWithAccount:(NSString*)account name:(NSString*)name password:(NSString*)password succCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock;
 
 - (void)logout;
 
 //从服务端获取账号最新信息，如积分、昵称等
-- (void)getUserInfo;
+- (void)getUserInfoWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock;
 
 @end
