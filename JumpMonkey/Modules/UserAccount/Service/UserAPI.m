@@ -8,6 +8,7 @@
 
 #import "UserAPI.h"
 #import "SecKeyManager.h"
+#import "SCDevice.h"
 
 #pragma mark - Login
 @implementation LoginInput
@@ -28,6 +29,7 @@
     input.account = self.model.account;
     input.password = self.model.password;
     input.key = [[SecKeyManager sharedInstance] generateEncryptedAESKey];
+    input.uuid = [SCDevice deviceUUID];
     return input;
 }
 
@@ -72,7 +74,7 @@
 - (QMInput *)buildInput {
     RegisterInput *input = [[RegisterInput alloc] init];
     input.account = self.model.account;
-    input.password = self.model.password;
+    input.password = [[SecKeyManager sharedInstance] encryptWithRSAFromString:self.model.password];
     input.name = self.model.name;
     return input;
 }

@@ -71,7 +71,7 @@
             self.anchorPoint = CGPointMake(0.5, 1);
         }   break;
         case MonkeyStateJump:{
-            self.texture = [SKTexture textureWithImageNamed:@"monkey_jump"];
+            self.texture = [SKTexture textureWithImageNamed:@"monkey_jump1"];
             self.size = CGSizeMake(220/4, 225/4);
             self.anchorPoint = CGPointMake(0.5, 0.5);
         }   break;

@@ -40,8 +40,8 @@ static APIManager *_sharedInstance = nil;
 #pragma mark - QMRequestManager DataSource
 //获取动态参数替换列表
 - (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType {
-    return @{@"userId":[UserAccountManager sharedManager].currentAccount.userId,
-             @"os": @"1"
+    return @{@"userId": @([UserAccountManager sharedManager].currentAccount.userId) ?: @(0),
+             @"os": @(1)
              };
 }
 @end

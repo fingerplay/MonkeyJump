@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<string>数据更新失败</string>
+	<key>2</key>
+	<string>请求数据格式错误</string>
+	<key>3</key>
+	<string>数据库中查不到数据</string>
+	<key>4</key>
+	<string>无需更新数据</string>
+	<key>5</key>
+	<string>未知错误</string>
+	<key>6</key>
+	<string>请求数据值错误</string>
+	<key>7</key>
+	<string>尚未登录</string>
+	<key>8</key>
+	<string>非法访问</string>
+	<key>9</key>
+	<string>编解码错误</string>
+	<key>10</key>
+	<string>该姓名已被使用</string>
+	<key>11</key>
+	<string>密码错误</string>
+</dict>
+</plist>

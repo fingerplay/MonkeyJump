@@ -157,16 +157,16 @@
 
 - (id)reformDataWithResponseObject:(id)responseObject command:(QMCommand *)command status:(QMStatus *)status {
     if (command.dataType == QMDataTypeJson) {
-        if (self.businessType == QMBusinessTypeStaOne ||
-            self.businessType == QMBusinessTypeStaMulti ||
-            self.businessType == QMBusinessTypeSimple) {
+//        if (self.businessType == QMBusinessTypeStaOne ||
+//            self.businessType == QMBusinessTypeStaMulti ||
+//            self.businessType == QMBusinessTypeSimple) {
             
             return [self reformJsonData:responseObject withStatus:status];
-        } else {
-            if ([responseObject respondsToSelector:@selector(objectForKey:)]) {
-                return [self reformJsonData:[responseObject objectForKey:@"data"] withStatus:status];
-            }
-        }
+//        } else {
+//            if ([responseObject respondsToSelector:@selector(objectForKey:)]) {
+//                return [self reformJsonData:[responseObject objectForKey:@"data"] withStatus:status];
+//            }
+//        }
     }
     else if (command.dataType == QMDataTypeProtocolBuffer) {
         return [self reformProtoBufferData:responseObject status:status];

@@ -56,6 +56,8 @@
         _accountTextField.layer.borderWidth = 1;
         _accountTextField.layer.cornerRadius = 4;
         _accountTextField.layer.masksToBounds = YES;
+        _accountTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _accountTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _accountTextField.backgroundColor = [UIColor clearColor];
         _accountTextField.textColor = [UIColor whiteColor];
         _accountTextField.font = font(18);
@@ -81,6 +83,8 @@
         _passwordTextField.layer.borderWidth = 1;
         _passwordTextField.layer.cornerRadius = 4;
         _passwordTextField.layer.masksToBounds = YES;
+        _passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _passwordTextField.backgroundColor = [UIColor clearColor];
         _passwordTextField.textColor = [UIColor whiteColor];
         _passwordTextField.font = font(18);
@@ -126,15 +130,24 @@
     NSString *account = self.accountTextField.text;
     NSString *password = self.passwordTextField.text;
     NSString *nickName = self.nickNameTextField.text;
+    @weakify(self)
     [[SHLoadingView sharedInstance] showLoadingOnView:self];
     [[UserAccountManager sharedManager] registerWithAccount:account name:nickName password:password succCallback:^(id userInfo) {
+        @strongify(self)
         [[SHLoadingView sharedInstance] dismissOnView:self];
-        if (self.registerSuccCallback) {
-            self.registerSuccCallback();
-        }
+        NSString *msg = @"注册成功";
+        [[SHToastView sharedInstance] showOnView:self withMessage:msg];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.registerSuccCallback) {
+                self.registerSuccCallback();
+            }
+        });
+        
     } failCallback:^(NSInteger code, NSString *errorInfo) {
+         @strongify(self)
         [[SHLoadingView sharedInstance] dismissOnView:self];
-        [[SHToastView sharedInstance] showErrorOnView:self withMessage:@"注册失败"];
+        NSString *msg = [NSString stringWithFormat:@"注册失败,%@",errorInfo];
+        [[SHToastView sharedInstance] showErrorOnView:self withMessage:msg];
     }];
 }
 

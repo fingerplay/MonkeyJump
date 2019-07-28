@@ -45,9 +45,16 @@ static NSString * const kProtoBufName = @"protobuf";//http header中的pb字段�
                                                                                error:&serializationError];
     } else {//没有数据上传时
         request = [sessionManager.requestSerializer requestWithMethod:[self stringForRequestMethod:command.method]
-                                                              URLString:requestUrl
-                                                             parameters:QMRequestMethodGet == command.method ? nil : parameters
-                                                                  error:&serializationError];
+                                                                URLString:requestUrl
+                                                               parameters:QMRequestMethodGet == command.method ? nil : parameters
+                                                                    error:&serializationError];
+         if (command.isRequestParamUsingJson) {
+             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&serializationError];
+             if (!serializationError) {
+                 [request setHTTPBody:jsonData];
+             }
+         }
     }
     if (serializationError) {
         if (failure) {

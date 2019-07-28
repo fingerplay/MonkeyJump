@@ -35,6 +35,10 @@ static UserAccountManager *_sharedInstance = nil;
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
         if (status.code == ERROR_CODE_SUCCESS) {
             NSLog(@"登录成功,output=%@",output);
+            if ([output isKindOfClass:[UserAccount class]]) {
+                self.currentAccount = output;
+            }
+            
             if (succBlock) {
                 succBlock(output);
             }
@@ -46,6 +50,9 @@ static UserAccountManager *_sharedInstance = nil;
         }
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"登录失败:%@",error);
+        if (failBlock) {
+            failBlock(status.code, status.info ?: @"请求超时");
+        }
     }];
 }
 
@@ -57,6 +64,9 @@ static UserAccountManager *_sharedInstance = nil;
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
         if (status.code == ERROR_CODE_SUCCESS) {
             NSLog(@"登录成功,output=%@",output);
+            if ([output isKindOfClass:[UserAccount class]]) {
+                self.currentAccount = output;
+            }
             if (succBlock) {
                 succBlock(output);
             }

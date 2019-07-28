@@ -14,6 +14,7 @@
 @interface AccountViewController ()<QMSegmentContainerDelegate,QMSegmentTopBarDelegate>
 @property (nonatomic, strong) QMSegmentContainer *segmentView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIButton *backButton;
 @end
 
 typedef enum NSInteger {
@@ -35,6 +36,7 @@ typedef enum NSInteger {
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.segmentView];
+    [self.view addSubview:self.backButton];
 }
 
 - (void)setupLayout {
@@ -48,12 +50,21 @@ typedef enum NSInteger {
         make.centerX.equalTo(self.view);
         make.top.equalTo(@(50));
     }];
+    
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(30);
+        make.left.top.mas_equalTo(10);
+    }];
+}
+
+-(void)backButtonTap:(UIButton*)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Property
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
-        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ch1"]];
+        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_bg"]];
     }
     return _backgroundImageView;
 }
@@ -75,6 +86,14 @@ typedef enum NSInteger {
     return _segmentView;
 }
 
+- (UIButton *)backButton {
+    if (!_backButton) {
+        _backButton = [[UIButton alloc] init];
+        [_backButton setBackgroundImage:[UIImage imageNamed:@"back_arrow_gray"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(backButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
+}
 
 #pragma mark - SegmentContainer Delegate
 - (NSInteger)numberOfItemsInTopBar:(UIView<QMSegmentTopBarProtocol> *)topBar {
@@ -93,17 +112,20 @@ typedef enum NSInteger {
     if (index == AccountItemLogin) {
         LoginView *view = [[LoginView alloc] initWithFrame:segmentContainer.containerView.bounds];
         view.loginSuccCallback = ^{
-            [self handleLoginDone];
+            [self popBack];
         };
         return view;
     }else {
         RegisterView *view = [[RegisterView alloc] initWithFrame:segmentContainer.containerView.bounds];
+        view.registerSuccCallback = ^{
+            [self popBack];
+        };
         return view;
     }
 }
 
 #pragma mark - Helper
-- (void)handleLoginDone {
+- (void)popBack {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

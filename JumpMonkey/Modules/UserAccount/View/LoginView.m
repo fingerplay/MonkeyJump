@@ -55,6 +55,8 @@
         _accountTextField.layer.borderWidth = 1;
         _accountTextField.layer.cornerRadius = 4;
         _accountTextField.layer.masksToBounds = YES;
+        _accountTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _accountTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _accountTextField.backgroundColor = [UIColor clearColor];
         _accountTextField.textColor = [UIColor whiteColor];
         _accountTextField.font = font(18);
@@ -80,6 +82,8 @@
         _passwordTextField.layer.borderWidth = 1;
         _passwordTextField.layer.cornerRadius = 4;
         _passwordTextField.layer.masksToBounds = YES;
+        _passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _passwordTextField.backgroundColor = [UIColor clearColor];
         _passwordTextField.textColor = [UIColor whiteColor];
         _passwordTextField.font = font(18);
@@ -101,14 +105,21 @@
     NSString *account = self.accountTextField.text;
     NSString *password = self.passwordTextField.text;
     [[SHLoadingView sharedInstance] showLoadingOnView:self];
+    
     [[UserAccountManager sharedManager] loginWithAccount:account password:password succCallback:^(id userInfo) {
+        
         [[SHLoadingView sharedInstance] dismissOnView:self];
-        if (self.loginSuccCallback) {
-            self.loginSuccCallback();
-        }
+        [[SHToastView sharedInstance] showOnView:self withMessage:@"登录成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.loginSuccCallback) {
+                self.loginSuccCallback();
+            }
+        });
+       
     } failCallback:^(NSInteger code, NSString *errorInfo) {
         [[SHLoadingView sharedInstance] dismissOnView:self];
-        [[SHToastView sharedInstance] showErrorOnView:self withMessage:@"登录失败"];
+        NSString *msg = [NSString stringWithFormat:@"登录失败,%@",errorInfo];
+        [[SHToastView sharedInstance] showErrorOnView:self withMessage:msg];
     }];
 }
 

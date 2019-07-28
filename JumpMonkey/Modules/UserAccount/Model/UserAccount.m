@@ -9,14 +9,15 @@
 #import "UserAccount.h"
 
 @implementation UserAccount
-+ (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"userId":@"id"};
-}
+
+//+ (NSDictionary *)mj_replacedKeyFromPropertyName {
+//    return @{@"userId":@"id"};
+//}
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        self.userId = [aDecoder decodeObjectForKey:@"userId"];
+        self.userId = [aDecoder decodeIntegerForKey:@"userId"];
         self.account = [aDecoder decodeObjectForKey:@"account"];
         self.password = [aDecoder decodeObjectForKey:@"password"];
         self.name = [aDecoder decodeObjectForKey:@"name"];
@@ -26,7 +27,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.userId forKey:@"userId"];
+    [aCoder encodeInteger:self.userId forKey:@"userId"];
     [aCoder encodeObject:self.account forKey:@"account"];
     [aCoder encodeObject:self.password forKey:@"password"];
     [aCoder encodeObject:self.name forKey:@"name"];

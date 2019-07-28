@@ -27,6 +27,7 @@
     command.priority = NSOperationQueuePriorityNormal;
     command.method = QMRequestMethodPost;
     command.dataType = QMDataTypeJson;
+    command.isRequestParamUsingJson = YES;
     command.timeoutInterval = 15;//默认超时时间
     command.mode = QMRequestModeDefault;
     command.shouldResume = YES;

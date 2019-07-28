@@ -24,6 +24,7 @@
 #import "SHToastView.h"
 #import "SHUIModuleDefine.h"
 #import "BBCommonTools.h"
+#import "RACEXTScope.h"
 //#endif
 
 #endif /* PrefixHeader_pch */

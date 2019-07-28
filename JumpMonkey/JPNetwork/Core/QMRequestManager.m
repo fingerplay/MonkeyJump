@@ -290,7 +290,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.session.configuration.HTTPMaximumConnectionsPerHost = self.requestConfig.normalMaxConcurrentOperationCount;//同一时间最多允许10个请求并发
     manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-    
+
     AFJSONResponseSerializer *responseSerializer = (AFJSONResponseSerializer *)manager.responseSerializer;
     responseSerializer.removesKeysWithNullValues = YES;//移除返回数据中的NSNull对象
     

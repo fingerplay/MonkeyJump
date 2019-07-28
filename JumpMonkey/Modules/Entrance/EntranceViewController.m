@@ -11,6 +11,7 @@
 #import "GameViewController.h"
 #import "AccountViewController.h"
 #import "ViewUtility.h"
+#import "UserAccountManager.h"
 
 @interface EntranceViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -43,6 +44,19 @@ static NSString *const kCellIdentifier = @"cell";
     [super viewDidLoad];
     [self setupView];
     [self setupLayout];
+    [self autoLogin];
+}
+
+- (void)autoLogin {
+    [[SHLoadingView sharedInstance] showLoadingOnView:self.view];
+    [[UserAccountManager sharedManager] autoLoginWithSuccCallback:^(id userInfo) {
+        [[SHLoadingView sharedInstance] dismissOnView:self.view];
+        NSLog(@"登录成功，userInfo:%@",userInfo);
+    } failCallback:^(NSInteger code, NSString *errorInfo) {
+        [[SHLoadingView sharedInstance] dismissOnView:self.view];
+        NSString *msg = [NSString stringWithFormat:@"登录失败,%@",errorInfo];
+        [[SHToastView sharedInstance] showErrorOnView:self.view withMessage:msg];
+    }];
 }
 
 - (void)setupView {
@@ -93,14 +107,14 @@ static NSString *const kCellIdentifier = @"cell";
 
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
-        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ch1"]];
+        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_bg"]];
     }
     return _backgroundImageView;
 }
 
 -(UIButton *)accountBtn {
     if (!_accountBtn) {
-        _accountBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"bubble_bird"] highlightedBackgroundImage:nil disabledBackgroundImage:nil target:self action:@selector(accountBtnTapped:)];
+        _accountBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"icn_login_normal"] highlightedBackgroundImage:[UIImage imageNamed:@"icn_login_press"] disabledBackgroundImage:nil target:self action:@selector(accountBtnTapped:)];
         
     }
     return _accountBtn;
@@ -108,7 +122,7 @@ static NSString *const kCellIdentifier = @"cell";
 
 - (UIButton *)settingBtn {
     if (!_settingBtn) {
-        _settingBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"bubble_tree"] highlightedBackgroundImage:nil disabledBackgroundImage:nil target:self action:@selector(settingBtnTapped:)];
+        _settingBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"icn_settings_normal"] highlightedBackgroundImage:[UIImage imageNamed:@"icn_settings_press"] disabledBackgroundImage:nil target:self action:@selector(settingBtnTapped:)];
     }
     return _settingBtn;
 }

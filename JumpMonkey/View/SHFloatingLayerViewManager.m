@@ -70,7 +70,7 @@ const int KViewInfosKey;
         if (index == -1) {
             view.hidden = NO;
             [viewInfos addObject:info];
-            NSLog(@"=-=-add view:%@ type:%d", view, (int)info.viewType);
+//            NSLog(@"=-=-add view:%@ type:%d", view, (int)info.viewType);
         } else {
             if (index == 0) {
                 SHFloatingLayerViewInfo *viewInfo = viewInfos[index];

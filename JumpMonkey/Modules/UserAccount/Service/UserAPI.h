@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *account; //用户账号，登录使用
 @property (nonatomic, copy) NSString *password; //登录密码
 @property (nonatomic, copy) NSString *key; //本地生成的AES Key
-
+@property (nonatomic, copy) NSString *uuid; 
 @end
 
 

@@ -69,6 +69,9 @@ typedef NS_ENUM(NSInteger, QMHTTPType) {
 /** 输入参数为QMInput或其子类，即使用pb数据类型也应该传该参数，以便在回调中获取请求时的相关信息。 */
 @property (nonatomic, readonly, strong) QMInput *input;
 
+//请求参数采用json格式传递
+@property (nonatomic, assign) BOOL isRequestParamUsingJson;
+
 //添加自定义的公参GET请求
 @property (nonatomic, strong) NSMutableDictionary *customParamsDict;
 

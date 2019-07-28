@@ -18,6 +18,9 @@ target 'JumpMonkey' do
  pod 'ReactiveCocoa',            '~> 2.4.7'
  pod 'QQ_MTA'
  pod 'QQ_MTA/CrashReporter'
+ pod 'LKDBHelper'
+ pod 'FMDB/SQLCipher'
+ pod 'LKDBHelper'
 end
 
 

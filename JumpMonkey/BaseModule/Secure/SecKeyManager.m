@@ -8,7 +8,7 @@
 
 #import "SecKeyManager.h"
 #import "NSData+AES.h"
-
+#import "RSAHandler.h"
 #import "SXRSAEncryptor.h"
 #import "NSData+Base64.h"
 #import "NSString+Base64.h"
@@ -21,7 +21,7 @@
 
 static SecKeyManager* _sharedInstance = nil;
 static NSString* const kAESSalt = @"aodkfie8323409ad";
-static NSString* const kRSAPublicKey = @"MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALKE+B17zLNeOF8JzoZIcDeI4aM/d0iojcEpptBRxr8R1F1nvnYKX8ODa15xhj+omgS3Ltou6q3FSvCmR1impRcCAwEAAQ==";
+static NSString* const kRSAPublicKey = @"-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALKE+B17zLNeOF8JzoZIcDeI4aM/d0io\njcEpptBRxr8R1F1nvnYKX8ODa15xhj+omgS3Ltou6q3FSvCmR1impRcCAwEAAQ==\n-----END PUBLIC KEY-----\n";
 
 static NSUInteger const kAESKeyLength = 16;
 
@@ -34,9 +34,10 @@ static NSUInteger const kAESKeyLength = 16;
 }
 
 - (NSString*)encryptWithRSAFromString:(NSString*)str{
-//    NSString *saltedStr = [str stringByAppendingString:kAESSalt];
     NSString *encryptedStr = [SXRSAEncryptor encryptString:str publicKey:kRSAPublicKey];
-    return [encryptedStr base64EncodedString];
+//    NSData *plainData = [str dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *encryptedStr = [RSAHandler encryptWithRSAWithPlainData:plainData publicKey:kRSAPublicKey];
+    return encryptedStr;
 }
 
 - (NSString *)encryptWithAESFromString:(NSString *)str {
@@ -53,6 +54,7 @@ static NSUInteger const kAESKeyLength = 16;
 - (NSString*)generateEncryptedAESKey {
     NSString *randomStr = [self generateRandomLetterAndNumberWithCount:kAESKeyLength];
     self.AESPublicKey = randomStr;
+    NSLog(@"AES public key=%@",self.AESPublicKey);
     return [self encryptWithRSAFromString:randomStr];
 }
 
