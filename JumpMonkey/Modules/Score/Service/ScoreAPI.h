@@ -7,9 +7,11 @@
 //
 
 #import "QMRequester.h"
-#import "ScoreInfo.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**********************     经验（历史积分累积）    ****************************/
 @interface UpdateScoreInput : QMInput
 @property (nonatomic,assign) NSInteger score; //单局得分
 @property (nonatomic,strong) NSString *sign; //签名
@@ -22,16 +24,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-@interface AddRecordInput : QMInput
-@property (nonatomic,strong) NSString *record; //游戏记录
-@property (nonatomic,strong) NSString *sign; //签名
-@end
-
-@interface AddRecordAPI : QMRequester
-
-@property (nonatomic,strong) ScoreInfo* score;
+@interface GetScoreInput : QMInput
 
 @end
+
+@interface GetScoreAPI : QMRequester
+
+@end
+
+
+
 
 NS_ASSUME_NONNULL_END

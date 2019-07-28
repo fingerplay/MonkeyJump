@@ -15,6 +15,7 @@
 #import "Tree.h"
 #import "Spider.h"
 #import <UShareUI/UShareUI.h>
+#import "ScoreAPI.h"
 
 
 @interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate>
@@ -39,6 +40,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [UMSocialUIManager setShareMenuViewDelegate:self];
+    [self setupView];
+    [self loadScoreFromServer];
+}
+
+- (void)setupView {
     // Load the SKScene from 'GameScene.sks'
     GameScene *scene = [GameScene sceneWithSize:CGSizeMake(self.view.width, self.view.height)];
     
@@ -103,6 +109,7 @@
     SKTexture *texture = [self.scene.view textureFromNode:self.scene];
     self.snapshotView.image = [UIImage imageWithCGImage:texture.CGImage];
     self.scoreView.score = self.scene.mScore;
+    [self syncScoreToServer];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.snapshotView.hidden = NO;
@@ -114,6 +121,25 @@
 - (void)gameDidRestart {
     self.snapshotView.hidden = YES;
     [self.darkMask removeFromParent];
+}
+
+- (void)syncScoreToServer {
+    UpdateScoreAPI *api = [[UpdateScoreAPI alloc] init];
+    api.score = self.scene.mScore.score;
+    [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
+        NSLog(@"同步成功");
+    } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
+        NSLog(@"同步失败");
+    }];
+}
+
+- (void)loadScoreFromServer {
+    GetScoreAPI *api = [[GetScoreAPI alloc] init];
+    [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
+        NSLog(@"获取积分成功, output=%@",output);
+    } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
+        NSLog(@"获取积分失败");
+    }];
 }
 
 #pragma mark - Action

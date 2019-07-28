@@ -105,9 +105,9 @@
     NSString *account = self.accountTextField.text;
     NSString *password = self.passwordTextField.text;
     [[SHLoadingView sharedInstance] showLoadingOnView:self];
-    
+    @weakify(self)
     [[UserAccountManager sharedManager] loginWithAccount:account password:password succCallback:^(id userInfo) {
-        
+        @strongify(self)
         [[SHLoadingView sharedInstance] dismissOnView:self];
         [[SHToastView sharedInstance] showOnView:self withMessage:@"登录成功"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -117,6 +117,7 @@
         });
        
     } failCallback:^(NSInteger code, NSString *errorInfo) {
+        @strongify(self)
         [[SHLoadingView sharedInstance] dismissOnView:self];
         NSString *msg = [NSString stringWithFormat:@"登录失败,%@",errorInfo];
         [[SHToastView sharedInstance] showErrorOnView:self withMessage:msg];

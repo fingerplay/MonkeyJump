@@ -40,34 +40,18 @@
 @end
 
 
-
-@implementation AddRecordInput
+@implementation GetScoreInput
 
 @end
 
-@implementation AddRecordAPI
+@implementation GetScoreAPI
 
-- (instancetype)initWithScore:(ScoreInfo*)score {
-    if (self = [super init]) {
-        self.score = score;
-    }
-    return self;
-}
-
-- (QMInput *)buildInput {
-    AddRecordInput *input = [[AddRecordInput alloc] init];
-    NSDictionary *keyvalues = [self.score mj_keyValues];
-    input.record = [keyvalues mj_JSONString];
-    NSString *scoreStr = [NSString stringWithFormat:@"%ld",(long)self.score];
-    input.sign = [[SecKeyManager sharedInstance] encryptWithAESFromString:scoreStr];
-    return input;
-}
 
 - (void)configCommand:(QMCommand *)command
 {
-    command.url = DomainURL(@"records/add");
+    command.url = DomainURL(@"user/getScores");
     command.method = QMRequestMethodPost;
 }
 
-
 @end
+

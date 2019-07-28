@@ -289,6 +289,7 @@ static CGFloat const kCornerRadius = 8.0f;
                 make.bottom.equalTo(self.toastMessageLabel).offset(- labelHeight - kMargin);
                 make.height.width.mas_equalTo(30.0);
                 make.centerX.mas_equalTo(self);
+                make.centerY.mas_equalTo(self);
             }];
             topOffset -= CGRectGetHeight(imageView.frame) +  kMargin;
         }

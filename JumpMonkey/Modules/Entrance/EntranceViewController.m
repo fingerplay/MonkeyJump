@@ -49,10 +49,13 @@ static NSString *const kCellIdentifier = @"cell";
 
 - (void)autoLogin {
     [[SHLoadingView sharedInstance] showLoadingOnView:self.view];
+    @weakify(self)
     [[UserAccountManager sharedManager] autoLoginWithSuccCallback:^(id userInfo) {
+        @strongify(self)
         [[SHLoadingView sharedInstance] dismissOnView:self.view];
         NSLog(@"登录成功，userInfo:%@",userInfo);
     } failCallback:^(NSInteger code, NSString *errorInfo) {
+        @strongify(self)
         [[SHLoadingView sharedInstance] dismissOnView:self.view];
         NSString *msg = [NSString stringWithFormat:@"登录失败,%@",errorInfo];
         [[SHToastView sharedInstance] showErrorOnView:self.view withMessage:msg];

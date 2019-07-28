@@ -62,19 +62,12 @@ static UserAccountManager *_sharedInstance = nil;
     user.password = password;
     LoginAPI *api = [[LoginAPI alloc] initWithAccountModel:user];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        if (status.code == ERROR_CODE_SUCCESS) {
-            NSLog(@"登录成功,output=%@",output);
-            if ([output isKindOfClass:[UserAccount class]]) {
-                self.currentAccount = output;
-            }
-            if (succBlock) {
-                succBlock(output);
-            }
-        }else {
-            NSLog(@"登录失败:%@",status.info);
-            if (failBlock) {
-                failBlock(status.code, status.info);
-            }
+        NSLog(@"登录成功,output=%@",output);
+        if ([output isKindOfClass:[UserAccount class]]) {
+            self.currentAccount = output;
+        }
+        if (succBlock) {
+            succBlock(output);
         }
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"登录失败:%@",error);
@@ -92,16 +85,9 @@ static UserAccountManager *_sharedInstance = nil;
     user.password = password;
     RegisterAPI *api = [[RegisterAPI alloc] initWithAccountModel:user];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        if (status.code == ERROR_CODE_SUCCESS) {
-            NSLog(@"注册成功,output=%@",output);
-            if (succBlock) {
-                succBlock(output);
-            }
-        }else {
-            NSLog(@"注册失败:%@",status.info);
-            if (failBlock) {
-                failBlock(status.code, status.info);
-            }
+        NSLog(@"注册成功,output=%@",output);
+        if (succBlock) {
+            succBlock(output);
         }
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"注册失败:%@",error);
@@ -119,18 +105,10 @@ static UserAccountManager *_sharedInstance = nil;
 - (void)getUserInfoWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock {
     UserInfoAPI *api = [[UserInfoAPI alloc] init];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        if (status.code == ERROR_CODE_SUCCESS) {
-            NSLog(@"获取用户信息成功,output=%@",output);
-            if (succBlock) {
-                succBlock(output);
-            }
-        }else {
-            NSLog(@"获取用户信息失败,output=%@",output);
-            if (failBlock) {
-                failBlock(status.code, status.info);
-            }
+        NSLog(@"获取用户信息成功,output=%@",output);
+        if (succBlock) {
+            succBlock(output);
         }
-
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"获取用户信息失败:%@",error);
     }];

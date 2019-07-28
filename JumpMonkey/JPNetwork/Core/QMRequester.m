@@ -88,23 +88,43 @@
     
     [self cacheResponse:dataObject forCommand:command status:status];//处理缓存
     id output = [self reformDataWithResponseObject:dataObject command:command status:status];
-    
-    if (self.succCallback) {
-        self.succCallback(status,command.input,output);
-    } else {
-        [self requestSuccess:status output:output input:command.input];
-    }
-    
-    if (self.rnRequestCallBack) {
-        NSInteger httpCode  = [(NSHTTPURLResponse *)task.response statusCode];
-        if ([dataObject isKindOfClass:[NSDictionary class]]) {
-            NSMutableDictionary *mulDic = [NSMutableDictionary dictionaryWithDictionary:dataObject];
-            [mulDic setObject:@(httpCode) forKey:@"httpCode"];
-            dataObject = mulDic;
+    if (status.code == ERROR_CODE_SUCCESS) {
+        if (self.succCallback) {
+            self.succCallback(status,command.input,output);
+        } else {
+            [self requestSuccess:status output:output input:command.input];
         }
-        self.rnRequestCallBack(((NSObject *)dataObject).mj_JSONString);
+        
+        if (self.rnRequestCallBack) {
+            NSInteger httpCode  = [(NSHTTPURLResponse *)task.response statusCode];
+            if ([dataObject isKindOfClass:[NSDictionary class]]) {
+                NSMutableDictionary *mulDic = [NSMutableDictionary dictionaryWithDictionary:dataObject];
+                [mulDic setObject:@(httpCode) forKey:@"httpCode"];
+                dataObject = mulDic;
+            }
+            self.rnRequestCallBack(((NSObject *)dataObject).mj_JSONString);
+        }
+        [REQUEST_MANAGER requester:self handleSuccessAOPWithStatus:status dataTask:task];
+    }else {
+        if (self.failCallback) {
+            self.failCallback(status,command.input,nil);
+        } else {
+            [self requestFailed:status input:command.input error:nil];
+        }
+        
+        if (self.rnRequestCallBack) {
+            BOOL hasNetwork = [AFNetworkReachabilityManager sharedManager].reachable;
+            NSInteger httpCode  = [(NSHTTPURLResponse *)task.response statusCode];
+            NSMutableDictionary *mulDic = [NSMutableDictionary dictionary];
+            [mulDic setObject:@(httpCode) forKey:@"httpCode"];
+            [mulDic setObject:@(hasNetwork) forKey:@"hasNetwork"];
+            self.rnRequestCallBack(mulDic.mj_JSONString);
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_EndRefreshWhenNoNetwork object:nil];
+        [REQUEST_MANAGER requester:self handleFailedAOPWithStatus:status dataTask:task];
     }
-    [REQUEST_MANAGER requester:self handleSuccessAOPWithStatus:status dataTask:task];
+   
 }
 
 - (void)handleFailWithDataTask:(NSURLSessionDataTask*)task error:(NSError *)error command:(QMCommand *)command{
@@ -160,7 +180,7 @@
 //        if (self.businessType == QMBusinessTypeStaOne ||
 //            self.businessType == QMBusinessTypeStaMulti ||
 //            self.businessType == QMBusinessTypeSimple) {
-            
+        
             return [self reformJsonData:responseObject withStatus:status];
 //        } else {
 //            if ([responseObject respondsToSelector:@selector(objectForKey:)]) {

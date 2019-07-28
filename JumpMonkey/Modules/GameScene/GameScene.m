@@ -285,8 +285,6 @@
 - (void)gameDidEnd {
     if (!self.isGameOver) {
         [self.monkey removeFromParent];
-        [self.monkey.mScore clearScore];
-
         [[SoundManager sharedManger] playGameOverSound];
 //        self.paused = YES;
         self.isGameOver = YES;
@@ -297,6 +295,8 @@
         if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEnd)]) {
             [self.gameDelegate gameDidEnd];
         }
+        
+        [self.monkey.mScore clearScore];
     }
 }
 

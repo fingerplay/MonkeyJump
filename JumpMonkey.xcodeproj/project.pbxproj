@@ -191,6 +191,8 @@
 		AF7127EE22ED9EAE0051C5E0 /* RSAHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7127ED22ED9EAE0051C5E0 /* RSAHandler.m */; };
 		AF75DC7722EDCE8000B600CB /* server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7522EDCE8000B600CB /* server_public.pem */; };
 		AF75DC7822EDCE8000B600CB /* iot_server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7622EDCE8000B600CB /* iot_server_public.pem */; };
+		AF75DC7B22EDEB1F00B600CB /* RecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */; };
+		AF75DC7E22EDEFEB00B600CB /* GameRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7D22EDEFEB00B600CB /* GameRecord.m */; };
 		AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
 		AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
 		EE5690BE30E67D42D5DBB568 /* Pods_JumpMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D044EB4B00B7A1C568D94AA /* Pods_JumpMonkey.framework */; };
@@ -634,6 +636,10 @@
 		AF7127ED22ED9EAE0051C5E0 /* RSAHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAHandler.m; sourceTree = "<group>"; };
 		AF75DC7522EDCE8000B600CB /* server_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server_public.pem; sourceTree = "<group>"; };
 		AF75DC7622EDCE8000B600CB /* iot_server_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iot_server_public.pem; sourceTree = "<group>"; };
+		AF75DC7922EDEB1F00B600CB /* RecordAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordAPI.h; sourceTree = "<group>"; };
+		AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordAPI.m; sourceTree = "<group>"; };
+		AF75DC7C22EDEFEB00B600CB /* GameRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameRecord.h; sourceTree = "<group>"; };
+		AF75DC7D22EDEFEB00B600CB /* GameRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameRecord.m; sourceTree = "<group>"; };
 		AFF080DE22A1661700D180C4 /* ClockImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClockImageView.h; sourceTree = "<group>"; };
 		AFF080DF22A1661700D180C4 /* ClockImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockImageView.m; sourceTree = "<group>"; };
 		AFF080E122A1682B00D180C4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
@@ -1009,6 +1015,8 @@
 			children = (
 				AF2C44F622D97FED003045B8 /* ScoreInfo.h */,
 				AF2C44F522D97FED003045B8 /* ScoreInfo.m */,
+				AF75DC7C22EDEFEB00B600CB /* GameRecord.h */,
+				AF75DC7D22EDEFEB00B600CB /* GameRecord.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1018,6 +1026,8 @@
 			children = (
 				AF71278822ED40000051C5E0 /* ScoreAPI.h */,
 				AF71278922ED40000051C5E0 /* ScoreAPI.m */,
+				AF75DC7922EDEB1F00B600CB /* RecordAPI.h */,
+				AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1869,6 +1879,7 @@
 				AF4CB55422CE2C0D0090BFB4 /* QMDeviceHelper.m in Sources */,
 				AF4CB58122CE2C0D0090BFB4 /* NSObject+MJClass.m in Sources */,
 				AF4CB59722CE2C0D0090BFB4 /* UIViewController+MMDrawerController.m in Sources */,
+				AF75DC7B22EDEB1F00B600CB /* RecordAPI.m in Sources */,
 				AF4CB58F22CE2C0D0090BFB4 /* NSNumber+safe.m in Sources */,
 				AF65A9C422DB799600E666A6 /* ViewUtility.m in Sources */,
 				AF4CB57522CE2C0D0090BFB4 /* QMLogFileManager.m in Sources */,
@@ -1967,6 +1978,7 @@
 				AF4CB57422CE2C0D0090BFB4 /* QMLogFormatter.m in Sources */,
 				AF4CB55A22CE2C0D0090BFB4 /* NSString+QMHelper.m in Sources */,
 				AF4CB55E22CE2C0D0090BFB4 /* UILabel+QMTitle.m in Sources */,
+				AF75DC7E22EDEFEB00B600CB /* GameRecord.m in Sources */,
 				AF4CB45E22CE27C50090BFB4 /* QMStatisticsRequestFactory.m in Sources */,
 				AF4CB56722CE2C0D0090BFB4 /* UIImageView+QMAnimation.m in Sources */,
 				AF4CB45822CE27C50090BFB4 /* NSString+QMRequest.m in Sources */,
