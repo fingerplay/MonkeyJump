@@ -12,8 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface RecordBaseInput : QMInput
-@property (nonatomic,assign) NSInteger gameMode; //1-自由模式 2-定时模式
+@property (nonatomic,assign) GameMode gameMode; //1-自由模式 2-定时模式
 @end
 
 
@@ -26,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AddRecordAPI : QMRequester
 
 @property (nonatomic,strong) GameRecord* record;
-
+@property (nonatomic,assign) GameMode gameMode;
 @end
 
 
@@ -35,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface GetMyRecordAPI : QMRequester
-
+@property (nonatomic,assign) GameMode gameMode;
 @end
 
 NS_ASSUME_NONNULL_END

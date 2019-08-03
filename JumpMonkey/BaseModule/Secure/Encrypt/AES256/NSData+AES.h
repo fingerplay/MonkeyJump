@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSData (AESAdditions)
-- (NSData*)AES128EncryptWithKey:(NSString*)key;
+- (NSData*)AES128NoPaddingCBCEncryptWithKey:(NSString*)key;
+- (NSData*)AES128PKCS7PaddingECBEncryptWithKey:(NSString*)key;
+
 - (NSData*)AES256EncryptWithKey:(NSString*)key;
 - (NSData*)AES256DecryptWithKey:(NSString*)key;
 

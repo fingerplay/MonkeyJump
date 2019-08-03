@@ -47,7 +47,7 @@ static NSUInteger const kAESKeyLength = 16;
     }
     NSString *salted = [str stringByAppendingString:kAESSalt];
     NSData *data = [salted dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *encryptedData = [data AES128EncryptWithKey:self.AESPublicKey];
+    NSData *encryptedData = [data AES128PKCS7PaddingECBEncryptWithKey:self.AESPublicKey];
     return [encryptedData base64EncodedString];
 }
 

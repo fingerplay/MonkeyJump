@@ -16,7 +16,7 @@
 #import "Spider.h"
 #import <UShareUI/UShareUI.h>
 #import "ScoreAPI.h"
-
+#import "RecordAPI.h"
 
 @interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate>
 @property (nonatomic, strong) GameScene *scene;
@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UILabel *velocityLabel;
 @property (nonatomic, strong) ClockImageView *countdownView;
 @property (nonatomic, strong) SKSpriteNode *darkMask;
+@property (nonatomic, assign) GameMode gameMode;
 @end
 
 @implementation GameViewController
@@ -69,6 +70,10 @@
     [self.snapshotView addSubview:self.shareBtn];
     [self.snapshotView addSubview:self.restartBtn];
     [self.snapshotView addSubview:self.exitBtn];
+}
+
+- (GameMode)gameMode {
+    return GameModeFree;
 }
 
 - (BOOL)shouldAutorotate {
@@ -124,12 +129,21 @@
 }
 
 - (void)syncScoreToServer {
-    UpdateScoreAPI *api = [[UpdateScoreAPI alloc] init];
-    api.score = self.scene.mScore.score;
-    [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
-        NSLog(@"同步成功");
+    UpdateScoreAPI *scoreAPI = [[UpdateScoreAPI alloc] init];
+    scoreAPI.score = self.scene.mScore.score;
+    [scoreAPI startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
+        NSLog(@"积分同步成功");
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
-        NSLog(@"同步失败");
+        NSLog(@"积分同步失败");
+    }];
+    
+    AddRecordAPI *recordAPI = [[AddRecordAPI alloc] init];
+    recordAPI.record = [[GameRecord alloc] initWithScore:self.scene.mScore];
+    recordAPI.gameMode = self.gameMode;
+    [recordAPI startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
+         NSLog(@"游戏记录同步成功");
+    } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
+         NSLog(@"游戏记录同步失败");
     }];
 }
 

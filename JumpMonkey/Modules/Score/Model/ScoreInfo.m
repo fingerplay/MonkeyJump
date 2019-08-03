@@ -9,8 +9,7 @@
 #import "ScoreInfo.h"
 
 @interface ScoreInfo ()
-
-@property (nonatomic, assign) NSInteger mHopsScore;
+@property (nonatomic, assign, readwrite) NSInteger mHopsScore;
 @property (nonatomic, assign) NSInteger mHooksScore;
 @property (nonatomic, assign) NSInteger mHawkScore;
 
@@ -46,6 +45,7 @@
 }
 
 - (void)updateHooksScore:(NSInteger)hooksNumber {
+    self.catchTreesCount = hooksNumber;
     self.mHooksScore = BASE_HOOK_SCORE * hooksNumber;
     if (self.delegate && [self.delegate respondsToSelector:@selector(scoreDidUpdate:)]) {
         [self.delegate scoreDidUpdate:self.score];

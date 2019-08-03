@@ -1035,9 +1035,9 @@
 		AF2C44F822D97FED003045B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF2C44FB22D97FED003045B8 /* ScoreTableViewCell.h */,
 				AF2C44F922D97FED003045B8 /* ScoreTableViewCell.m */,
 				AF2C44FA22D97FED003045B8 /* ScoreView.h */,
-				AF2C44FB22D97FED003045B8 /* ScoreTableViewCell.h */,
 				AF2C44FC22D97FED003045B8 /* ScoreView.m */,
 			);
 			path = View;

@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ScoreInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef enum {
+    GameModeFree = 1,
+    GameModeTimeLimit = 2
+} GameMode;
 
 @interface GameRecord : NSObject
 @property (nonatomic, assign) NSInteger userId; //用户id
@@ -19,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger trees;  // 跳过的树的数量 
 @property (nonatomic, assign) NSTimeInterval time;  // 游戏用时 
 @property (nonatomic, assign) NSTimeInterval timestamp;  // 记录上传的时间戳
-@end
 
+- (instancetype)initWithScore:(ScoreInfo*)score;
+
+@end
 NS_ASSUME_NONNULL_END

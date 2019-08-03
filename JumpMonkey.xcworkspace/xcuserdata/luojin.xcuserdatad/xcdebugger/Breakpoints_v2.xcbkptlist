@@ -275,28 +275,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JumpMonkey/Modules/Score/Model/ScoreInfo.m"
-            timestampString = "586015099.547684"
+            timestampString = "586518181.949077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "ScoreInfo"
-            landmarkType = "3">
+            landmarkName = "-score"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JumpMonkey/BaseModule/Secure/Encrypt/AES256/NSData+AES.m"
-            timestampString = "586017258.7458889"
+            timestampString = "586518181.949356"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-AES128EncryptWithKey:"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-AES128NoPaddingCBCEncryptWithKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -307,11 +307,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JumpMonkey/BaseModule/Secure/SecKeyManager.m"
-            timestampString = "586017258.74628"
+            timestampString = "586518181.949424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-encryptWithAESFromString:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JumpMonkey/BaseModule/Secure/Encrypt/AES256/NSData+AES.m"
+            timestampString = "586518181.949471"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-AES128NoPaddingCBCEncryptWithKey:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JumpMonkey/Modules/Score/Service/RecordAPI.m"
+            timestampString = "586518189.773285"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-buildInput"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JumpMonkey/BaseModule/Secure/SecKeyManager.m"
+            timestampString = "586518446.003073"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-encryptWithAESFromString:"
             landmarkType = "7">
          </BreakpointContent>
