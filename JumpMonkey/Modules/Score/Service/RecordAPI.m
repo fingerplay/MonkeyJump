@@ -13,6 +13,10 @@
 
 @end
 
+@implementation RecordBaseAPI
+
+
+@end
 
 /**********************     游戏记录    ****************************/
 @implementation AddRecordInput
@@ -24,8 +28,7 @@
 - (QMInput *)buildInput {
     AddRecordInput *input = [[AddRecordInput alloc] init];
     input.gameMode = self.gameMode;
-    NSDictionary *keyvalues = [self.record mj_keyValues];
-    input.record = [keyvalues mj_JSONString];
+    input.record = [self.record mj_keyValues];
     NSString *scoreStr = [NSString stringWithFormat:@"%ld%ld%ld%ld%ld",(long)self.record.userId,self.record.hopScore,self.record.score,self.record.trees,self.record.hops];
     input.sign = [[SecKeyManager sharedInstance] encryptWithAESFromString:scoreStr];
     return input;
@@ -69,4 +72,34 @@
 //    
 //    return nil;
 //}
+@end
+
+
+@implementation GetTopRecordsInput
+
+@end
+
+@implementation GetTopRecordsAPI
+- (instancetype)initWithPage:(NSInteger)page count:(NSInteger)count {
+    self = [super init];
+    if (self) {
+        self.page = page;
+        self.count = count;
+    }
+    return self;
+}
+
+- (QMInput *)buildInput {
+    GetTopRecordsInput *input = [[GetTopRecordsInput alloc] init];
+    input.page = self.page;
+    input.count = self.count;
+    return input;
+}
+
+- (void)configCommand:(QMCommand *)command
+{
+    command.url = DomainURL(@"records/top");
+    command.method = QMRequestMethodPost;
+}
+
 @end

@@ -62,6 +62,8 @@
 		AF2E021322D0F0E00076AD7F /* QMJSONManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2E021122D0F0DF0076AD7F /* QMJSONManager.m */; };
 		AF2E021922D0F6410076AD7F /* QMAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2E021822D0F6410076AD7F /* QMAppUtils.m */; };
 		AF2E021C22D0F6C40076AD7F /* QMAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2E021B22D0F6C40076AD7F /* QMAttributedLabel.m */; };
+		AF32FB8722F5AC8D00E1C71C /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32FB8622F5AC8D00E1C71C /* RecordListViewController.m */; };
+		AF32FB8A22F5B51D00E1C71C /* RecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */; };
 		AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E05D22A5F445008BBCCF /* Bezier.m */; };
 		AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E06422A6487A008BBCCF /* ImageSequence.m */; };
 		AF4836C622E4BF320017D733 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C222E4BF320017D733 /* APIManager.m */; };
@@ -298,6 +300,10 @@
 		AF2E021822D0F6410076AD7F /* QMAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAppUtils.m; sourceTree = "<group>"; };
 		AF2E021A22D0F6C30076AD7F /* QMAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMAttributedLabel.h; sourceTree = "<group>"; };
 		AF2E021B22D0F6C40076AD7F /* QMAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAttributedLabel.m; sourceTree = "<group>"; };
+		AF32FB8322F5ABE300E1C71C /* RecordListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordListViewController.h; sourceTree = "<group>"; };
+		AF32FB8622F5AC8D00E1C71C /* RecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListViewController.m; sourceTree = "<group>"; };
+		AF32FB8822F5B51D00E1C71C /* RecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordTableViewCell.h; sourceTree = "<group>"; };
+		AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordTableViewCell.m; sourceTree = "<group>"; };
 		AF36E05C22A5F445008BBCCF /* Bezier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bezier.h; sourceTree = "<group>"; };
 		AF36E05D22A5F445008BBCCF /* Bezier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bezier.m; sourceTree = "<group>"; };
 		AF36E06322A6487A008BBCCF /* ImageSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSequence.h; sourceTree = "<group>"; };
@@ -1039,6 +1045,10 @@
 				AF2C44F922D97FED003045B8 /* ScoreTableViewCell.m */,
 				AF2C44FA22D97FED003045B8 /* ScoreView.h */,
 				AF2C44FC22D97FED003045B8 /* ScoreView.m */,
+				AF32FB8322F5ABE300E1C71C /* RecordListViewController.h */,
+				AF32FB8622F5AC8D00E1C71C /* RecordListViewController.m */,
+				AF32FB8822F5B51D00E1C71C /* RecordTableViewCell.h */,
+				AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1914,6 +1924,7 @@
 				AF2C44FD22D97FED003045B8 /* ScoreInfo.m in Sources */,
 				AF4CB45522CE27C50090BFB4 /* QMRequestConfig.m in Sources */,
 				AF2E021322D0F0E00076AD7F /* QMJSONManager.m in Sources */,
+				AF32FB8A22F5B51D00E1C71C /* RecordTableViewCell.m in Sources */,
 				AF4CB58322CE2C0D0090BFB4 /* MJPropertyKey.m in Sources */,
 				AF1B6D3B22E41F1E005C1CB5 /* SHLoadingView.m in Sources */,
 				AF2E021C22D0F6C40076AD7F /* QMAttributedLabel.m in Sources */,
@@ -1928,6 +1939,7 @@
 				AF4836C722E4BF320017D733 /* SecKeyManager.m in Sources */,
 				AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */,
 				AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */,
+				AF32FB8722F5AC8D00E1C71C /* RecordListViewController.m in Sources */,
 				AF2C450B22D99EED003045B8 /* UserAccountManager.m in Sources */,
 				AF4CB56D22CE2C0D0090BFB4 /* UILabel+Additions.m in Sources */,
 				AF4CB46122CE27C50090BFB4 /* QMNormalRequestFactory.m in Sources */,

@@ -23,8 +23,9 @@ typedef enum {
 @property (nonatomic, assign) NSInteger hops; //单局最大连跳数
 @property (nonatomic, assign) NSInteger hopScore;  // 单局连跳得分 
 @property (nonatomic, assign) NSInteger trees;  // 跳过的树的数量 
-@property (nonatomic, assign) NSTimeInterval time;  // 游戏用时 
-@property (nonatomic, assign) NSTimeInterval timestamp;  // 记录上传的时间戳
+@property (nonatomic, assign) long time;  // 游戏用时 
+@property (nonatomic, assign) long timestamp;  // 记录上传的时间戳
+@property (nonatomic, assign) NSInteger rank; //排名，该字段不是从接口获得
 
 - (instancetype)initWithScore:(ScoreInfo*)score;
 

@@ -10,6 +10,7 @@
 #import "EntranceTableViewCell.h"
 #import "GameViewController.h"
 #import "AccountViewController.h"
+#import "RecordListViewController.h"
 #import "ViewUtility.h"
 #import "UserAccountManager.h"
 
@@ -24,7 +25,7 @@
 typedef NS_ENUM (NSInteger){
     MenuTypeChallenge,
     MenuTypeTimeLimit,
-    MenuTypeShare,
+    MenuTypeRank,
     MenuTypeAboutUs,
     MenuTypeCount
 }MenuType;
@@ -161,8 +162,8 @@ static NSString *const kCellIdentifier = @"cell";
             title = @"限时模式";
             break;
             
-        case MenuTypeShare:
-            title = @"分享";
+        case MenuTypeRank:
+            title = @"全球排名";
             break;
             
         case MenuTypeAboutUs:
@@ -196,9 +197,10 @@ static NSString *const kCellIdentifier = @"cell";
 
             break;
             
-        case MenuTypeShare:
-
-            break;
+        case MenuTypeRank: {
+            RecordListViewController *vc = [[RecordListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
+        }break;
             
         case MenuTypeAboutUs:
 
