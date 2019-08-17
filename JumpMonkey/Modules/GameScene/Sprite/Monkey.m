@@ -65,19 +65,19 @@
 - (void)setState:(MonkeyState)state {
     _state = state;
     switch (state) {
-        case MonkeyStateSwing:{
-            self.texture = [SKTexture textureWithImageNamed:@"monkey_swing"];
-            self.size = CGSizeMake(50,95);
-            self.anchorPoint = CGPointMake(0.5, 1);
-        }   break;
+//        case MonkeyStateSwing:{
+//            self.texture = [SKTexture textureWithImageNamed:@"monkey_swing"];
+//            self.size = CGSizeMake(75,125);
+//            self.anchorPoint = CGPointMake(0.5, 1);
+//        }   break;
         case MonkeyStateJump:{
             self.texture = [SKTexture textureWithImageNamed:@"monkey_jump1"];
-            self.size = CGSizeMake(220/4, 225/4);
+            self.size = CGSizeMake(62, 67);
             self.anchorPoint = CGPointMake(0.5, 0.5);
         }   break;
         default:{
             self.texture = [SKTexture textureWithImageNamed:@"monkey_swing"];
-            self.size = CGSizeMake(50,95);
+            self.size = CGSizeMake(50,83);
             self.anchorPoint = CGPointMake(0.5, 1);
         }   break;
     }
