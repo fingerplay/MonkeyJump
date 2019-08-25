@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name; //用户昵称，显示在游戏中
 @property (nonatomic, strong) NSString *password; //登录密码
 @property (nonatomic, assign) NSInteger scores; //用户得分
+@property (nonatomic, assign) NSInteger level; //等级 ,由scores计算得来
+@property (nonatomic, assign) CGFloat upgradeProgress; //升到下一级的经验百分比
 @end
 
 NS_ASSUME_NONNULL_END

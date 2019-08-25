@@ -71,9 +71,9 @@ static NSString * const kProtoBufName = @"protobuf";//http header中的pb字段�
     
     if (QMRequestMethodGet == command.method) {//get请求header里加公参
         
-        NSMutableDictionary *publicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams].mutableCopy;
+        NSMutableDictionary *publicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams command:command].mutableCopy;
         
-        NSDictionary *runtimePublicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestPublicParamsOnRuntime];
+        NSDictionary *runtimePublicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestPublicParamsOnRuntime command:command];
         if (runtimePublicParams) {
             //插入新的key-value,如果原来的字典有同样的key，则替换为新的value
             [publicParams addEntriesFromDictionary:runtimePublicParams];
@@ -139,14 +139,14 @@ static NSString * const kProtoBufName = @"protobuf";//http header中的pb字段�
         params = [self dynamicParamsWithCommand:command params:params];
     }
     else if (QMRequestMethodPost ==  command.method) {//添加公参
-        NSDictionary *publicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams];
+        NSDictionary *publicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams command:command];
         for (NSString *key in publicParams.allKeys) {
             [params setObject:publicParams[key] forKey:key];
         }
     }
 
     BOOL extMatch = false;
-    NSDictionary *extParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestQimiextParams];
+    NSDictionary *extParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestQimiextParams command:command];
     if (extParams.allKeys.count > 0) {
         NSArray *urls = [extParams safeObjectForKey:@"url"];
         for (NSString *extUrl in urls) {
@@ -224,8 +224,8 @@ static NSString * const kProtoBufName = @"protobuf";//http header中的pb字段�
     if (queryString.length > 0) {
         
         /** 3.4.6 配置自定义的公参列表 */
-        NSMutableDictionary *publicParams = [NSMutableDictionary safeDictionaryWithDictionary:[REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestCustomPublicParam]];
-        [publicParams safeAddEntriesFromDictionary:[REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams]];
+        NSMutableDictionary *publicParams = [NSMutableDictionary safeDictionaryWithDictionary:[REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestCustomPublicParam command:command]];
+        [publicParams safeAddEntriesFromDictionary:[REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams command:command]];
         NSMutableDictionary *paramsPool = [NSMutableDictionary dictionaryWithDictionary:params];
         for (NSString *key in publicParams) {
             [paramsPool setObject:publicParams[key] forKey:key];

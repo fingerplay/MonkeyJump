@@ -28,8 +28,10 @@
 - (QMInput *)buildInput {
     AddRecordInput *input = [[AddRecordInput alloc] init];
     input.gameMode = self.gameMode;
-    input.record = [self.record mj_keyValues];
-    NSString *scoreStr = [NSString stringWithFormat:@"%ld%ld%ld%ld%ld",(long)self.record.userId,self.record.hopScore,self.record.score,self.record.trees,self.record.hops];
+    NSMutableDictionary* dict = [self.record mj_keyValues];
+    [dict removeObjectForKey:@"rank"];
+    input.record = dict;
+    NSString *scoreStr = [NSString stringWithFormat:@"%ld%ld%ld%ld%ld",(long)self.record.userId,(long)self.record.hopScore,(long)self.record.score,(long)self.record.trees,(long)self.record.hops];
     input.sign = [[SecKeyManager sharedInstance] encryptWithAESFromString:scoreStr];
     return input;
 }

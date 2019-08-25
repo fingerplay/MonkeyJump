@@ -21,6 +21,7 @@ target 'JumpMonkey' do
  pod 'LKDBHelper'
  pod 'FMDB/SQLCipher'
  pod 'LKDBHelper'
+ pod 'IQKeyboardManager'
 end
 
 

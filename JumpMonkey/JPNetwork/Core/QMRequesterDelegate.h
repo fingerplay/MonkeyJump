@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, QMRequestParamType) {
 #endif
 
 //获取动态参数替换列表
-- (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType;
+- (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType command:(QMCommand*)command;
 //
 - (NSString *)requesterUidAbtestStr;
 //添加自定义UA

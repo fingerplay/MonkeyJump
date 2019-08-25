@@ -11,6 +11,7 @@
 #import "GameViewController.h"
 #import "AccountViewController.h"
 #import "RecordListViewController.h"
+#import "MyProfileViewController.h"
 #import "ViewUtility.h"
 #import "UserAccountManager.h"
 
@@ -132,8 +133,13 @@ static NSString *const kCellIdentifier = @"cell";
 }
 
 - (void)accountBtnTapped:(UIButton*)sender {
-    AccountViewController *vc = [[AccountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:true];
+    if ([UserAccountManager sharedManager].currentAccount.userId == 0) {
+        AccountViewController *vc = [[AccountViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
+    }else {
+        MyProfileViewController *vc = [[MyProfileViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
+    }
 }
 
 - (void)settingBtnTapped:(UIButton*)sender {

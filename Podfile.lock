@@ -22,6 +22,7 @@ PODS:
   - FMDB/SQLCipher (2.7.5):
     - SQLCipher
   - FMDB/standard (2.7.5)
+  - IQKeyboardManager (6.4.0)
   - LKDBHelper (2.5.1):
     - LKDBHelper/standard (= 2.5.1)
   - LKDBHelper/standard (2.5.1):
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.2)
   - CocoaLumberjack
   - FMDB/SQLCipher
+  - IQKeyboardManager
   - LKDBHelper
   - Masonry
   - QQ_MTA
@@ -66,6 +68,7 @@ SPEC REPOS:
     - AFNetworking
     - CocoaLumberjack
     - FMDB
+    - IQKeyboardManager
     - LKDBHelper
     - Masonry
     - QQ_MTA
@@ -78,6 +81,7 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
   LKDBHelper: 9a276ba51f2e16263d46a9517e16cc9b03472664
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   QQ_MTA: 14e3e25f272c11c64435676815330b5851f6e24a
@@ -86,6 +90,6 @@ SPEC CHECKSUMS:
   SQLCipher: 0187a2180ac288ea686b670b7141da62cd013b16
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
 
-PODFILE CHECKSUM: caa035cf797e980e10b17ff55dc932bc92119a58
+PODFILE CHECKSUM: 8767c2a44915ada2a9b0c2b93b49b22c04f8f0d9
 
 COCOAPODS: 1.7.1

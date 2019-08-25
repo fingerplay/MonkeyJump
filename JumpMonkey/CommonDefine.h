@@ -56,7 +56,8 @@
 
 /*  网络请求   */
 
-#define BaseDomain @"http://106.12.138.77:8080/JumpingMK/"
+//#define BaseDomain @"http://192.168.0.105:8080/JumpingMK/"
+#define BaseDomain @"http://106.12.138.77:8080/JumpingMK/" 
 #define DomainURL(path) [BaseDomain stringByAppendingString:path]
 
 

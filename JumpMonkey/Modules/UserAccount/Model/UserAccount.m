@@ -33,4 +33,23 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeInteger:self.scores forKey:@"scores"];
 }
+
+- (void)setScores:(NSInteger)scores {
+    _scores = scores;
+    NSInteger level = 1;
+    NSInteger nextLevelScore = 200;
+    while (scores > nextLevelScore) {
+        level ++;
+        nextLevelScore = [self scoreNeedForLevel:level+1];
+    }
+    self.level = level;
+    self.upgradeProgress =(nextLevelScore - scores) /(nextLevelScore - [self scoreNeedForLevel:level]);
+}
+
+- (NSInteger)scoreNeedForLevel:(NSInteger)level {
+    if (level < 2) {
+        return 0;
+    }
+    return (2+level) * (level-1)/2 * 100;
+}
 @end

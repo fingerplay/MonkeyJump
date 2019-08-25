@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RecordCellView : UIView
 @property (nonatomic, strong) GameRecord *record;
 @property (nonatomic, assign) BOOL  isTitle;
+@property (nonatomic, strong) UIColor *textColor;
 
 + (CGFloat)viewHeight;
 

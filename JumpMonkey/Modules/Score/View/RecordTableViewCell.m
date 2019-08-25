@@ -7,10 +7,10 @@
 //
 
 #import "RecordTableViewCell.h"
-#import "RecordCellView.h"
+
 
 @interface RecordTableViewCell ()
-@property (nonatomic, strong) RecordCellView *cellView;
+
 @end
 
 @implementation RecordTableViewCell

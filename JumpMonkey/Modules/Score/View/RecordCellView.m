@@ -95,20 +95,13 @@
         self.nameLabel.text = @"昵称";
         self.rankLabel.text = @"排名";
         self.scoreLabel.text = @"得分";
-        self.hopScoreLabel.text = @"连跳得分";
-        self.hopsLabel.text = @"连跳次数";
-        self.treesLabel.text = @"跳树次数";
-        self.durationLabel.text = @"游戏时长";
-        self.timeLabel.text = @"上传时间";
+        self.hopScoreLabel.text = @"连跳分";
+        self.hopsLabel.text = @"连跳";
+        self.treesLabel.text = @"树";
+        self.durationLabel.text = @"时长";
+        self.timeLabel.text = @"时间";
         
-        self.nameLabel.textColor = [UIColor yellowColor];
-        self.rankLabel.textColor = [UIColor yellowColor];
-        self.scoreLabel.textColor = [UIColor yellowColor];
-        self.hopScoreLabel.textColor = [UIColor yellowColor];
-        self.hopsLabel.textColor = [UIColor yellowColor];
-        self.treesLabel.textColor = [UIColor yellowColor];
-        self.durationLabel.textColor = [UIColor yellowColor];
-        self.timeLabel.textColor = [UIColor yellowColor];
+
     }else {
         self.nameLabel.text = self.record.name.length ? self.record.name : @"无名";
         self.rankLabel.text = [NSString stringWithFormat:@"%ld",self.record.rank];
@@ -120,6 +113,15 @@
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.record.timestamp/1000];
         self.timeLabel.text = [NSString stringWithFormat:@"%@",[date shortDateString]];
     }
+    
+    self.nameLabel.textColor = self.textColor;
+    self.rankLabel.textColor = self.textColor;
+    self.scoreLabel.textColor = self.textColor;
+    self.hopScoreLabel.textColor = self.textColor;
+    self.hopsLabel.textColor = self.textColor;
+    self.treesLabel.textColor = self.textColor;
+    self.durationLabel.textColor = self.textColor;
+    self.timeLabel.textColor = self.textColor;
 }
 
 

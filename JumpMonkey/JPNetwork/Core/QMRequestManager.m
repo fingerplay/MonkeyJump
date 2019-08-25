@@ -306,9 +306,9 @@
 
 
 //获取动态参数列表
-- (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType{
-    if (self.datasource && [self.datasource respondsToSelector:@selector(requesterPublicParamsWithParamType:)]) {
-        return [self.datasource requesterPublicParamsWithParamType:paramType];
+- (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType command:(QMCommand*)command{
+    if (self.datasource && [self.datasource respondsToSelector:@selector(requesterPublicParamsWithParamType:command:)]) {
+        return [self.datasource requesterPublicParamsWithParamType:paramType command:command];
     }
     return [NSDictionary dictionary];
 }

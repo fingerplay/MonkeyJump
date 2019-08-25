@@ -195,8 +195,12 @@
 		AF75DC7822EDCE8000B600CB /* iot_server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7622EDCE8000B600CB /* iot_server_public.pem */; };
 		AF75DC7B22EDEB1F00B600CB /* RecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */; };
 		AF75DC7E22EDEFEB00B600CB /* GameRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7D22EDEFEB00B600CB /* GameRecord.m */; };
+		AFCA5A6B23128F39000A6EA0 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */; };
+		AFCA5A6F231292B0000A6EA0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */; };
+		AFCA5A722312B793000A6EA0 /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */; };
 		AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
 		AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
+		AFF4678622FFF5B200CD5992 /* RecordCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF4678522FFF5B200CD5992 /* RecordCellView.m */; };
 		EE5690BE30E67D42D5DBB568 /* Pods_JumpMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D044EB4B00B7A1C568D94AA /* Pods_JumpMonkey.framework */; };
 /* End PBXBuildFile section */
 
@@ -646,10 +650,18 @@
 		AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordAPI.m; sourceTree = "<group>"; };
 		AF75DC7C22EDEFEB00B600CB /* GameRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameRecord.h; sourceTree = "<group>"; };
 		AF75DC7D22EDEFEB00B600CB /* GameRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameRecord.m; sourceTree = "<group>"; };
+		AFCA5A6923128F39000A6EA0 /* MyProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
+		AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		AFCA5A6D231292B0000A6EA0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		AFCA5A702312B793000A6EA0 /* ProfileTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
+		AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
 		AFF080DE22A1661700D180C4 /* ClockImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClockImageView.h; sourceTree = "<group>"; };
 		AFF080DF22A1661700D180C4 /* ClockImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockImageView.m; sourceTree = "<group>"; };
 		AFF080E122A1682B00D180C4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		AFF080E222A1682B00D180C4 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		AFF4678422FFF5B200CD5992 /* RecordCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordCellView.h; sourceTree = "<group>"; };
+		AFF4678522FFF5B200CD5992 /* RecordCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordCellView.m; sourceTree = "<group>"; };
 		CF5FA2778345FFD09EC4A99F /* Pods-JumpMonkey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey.debug.xcconfig"; path = "Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BAD9152BBDDF0E614841C0 /* Pods-JumpMonkey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey.release.xcconfig"; path = "Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -723,6 +735,8 @@
 				AF1B6D2722E3FF6C005C1CB5 /* LoginView.m */,
 				AF1B6D3122E3FF82005C1CB5 /* RegisterView.h */,
 				AF1B6D3222E3FF82005C1CB5 /* RegisterView.m */,
+				AFCA5A702312B793000A6EA0 /* ProfileTableViewCell.h */,
+				AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -853,6 +867,8 @@
 		AF2C44A922D97EBA003045B8 /* UserAccount */ = {
 			isa = PBXGroup;
 			children = (
+				AFCA5A6923128F39000A6EA0 /* MyProfileViewController.h */,
+				AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */,
 				AF65A99422DB40E900E666A6 /* AccountViewController.h */,
 				AF65A99522DB40E900E666A6 /* AccountViewController.m */,
 				AF2C450922D99EED003045B8 /* UserAccountManager.h */,
@@ -1049,6 +1065,8 @@
 				AF32FB8622F5AC8D00E1C71C /* RecordListViewController.m */,
 				AF32FB8822F5B51D00E1C71C /* RecordTableViewCell.h */,
 				AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */,
+				AFF4678422FFF5B200CD5992 /* RecordCellView.h */,
+				AFF4678522FFF5B200CD5992 /* RecordCellView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1056,6 +1074,7 @@
 		AF4836BF22E4BF320017D733 /* BaseModule */ = {
 			isa = PBXGroup;
 			children = (
+				AFCA5A6C2312929A000A6EA0 /* UI */,
 				AF4836C022E4BF320017D733 /* Network */,
 				AF4836C322E4BF320017D733 /* Secure */,
 			);
@@ -1708,6 +1727,15 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		AFCA5A6C2312929A000A6EA0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA5A6D231292B0000A6EA0 /* BaseViewController.h */,
+				AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		AFF080DD22A165FE00D180C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1906,6 +1934,7 @@
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
 				AF1AD79F22D20A7400550D35 /* QMRingView.m in Sources */,
 				AF4CB59822CE2C0D0090BFB4 /* MMDrawerController.m in Sources */,
+				AFCA5A6B23128F39000A6EA0 /* MyProfileViewController.m in Sources */,
 				AF4CB56C22CE2C0D0090BFB4 /* UINavigationItem+margin.m in Sources */,
 				AF4CB55922CE2C0D0090BFB4 /* UIView+Common.m in Sources */,
 				AF71278722ED3D1C0051C5E0 /* SHKeyChainWapper.m in Sources */,
@@ -1931,6 +1960,7 @@
 				AF71278A22ED40000051C5E0 /* ScoreAPI.m in Sources */,
 				AF4CB45F22CE27C50090BFB4 /* QMBaseRequestFactory.m in Sources */,
 				AF4CB45622CE27C50090BFB4 /* ASIDataCompressor.m in Sources */,
+				AFCA5A6F231292B0000A6EA0 /* BaseViewController.m in Sources */,
 				AF4CB56422CE2C0D0090BFB4 /* NSString+UI.m in Sources */,
 				AF2C44FF22D97FED003045B8 /* ScoreView.m in Sources */,
 				AF4CB56E22CE2C0D0090BFB4 /* CALayer+QMExtention.m in Sources */,
@@ -1948,6 +1978,7 @@
 				AF4CB46322CE27C50090BFB4 /* QMUploadDataFactory.m in Sources */,
 				AF71278222ED3D100051C5E0 /* NSData+Base64.m in Sources */,
 				AF1B6D2F22E3FF6C005C1CB5 /* UserAPI.m in Sources */,
+				AFF4678622FFF5B200CD5992 /* RecordCellView.m in Sources */,
 				AF2C44D722D97EBA003045B8 /* Spider.m in Sources */,
 				AF4CB58222CE2C0D0090BFB4 /* NSString+MJExtension.m in Sources */,
 				AF4CB55622CE2C0D0090BFB4 /* NSMutableString+QMExtand.m in Sources */,
@@ -1966,6 +1997,7 @@
 				AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */,
 				AF4CB56222CE2C0D0090BFB4 /* UIImage+QMColor.m in Sources */,
 				AF4CB58722CE2C0D0090BFB4 /* NSMutableArray+safe.m in Sources */,
+				AFCA5A722312B793000A6EA0 /* ProfileTableViewCell.m in Sources */,
 				AF71278322ED3D100051C5E0 /* NSData+AES.m in Sources */,
 				AF1B6D3D22E41F1E005C1CB5 /* SHToastView.m in Sources */,
 				AF1B6D2E22E3FF6C005C1CB5 /* LoginView.m in Sources */,

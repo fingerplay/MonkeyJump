@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GameRecord.h"
+#import "RecordCellView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecordTableViewCell : UITableViewCell
 @property (nonatomic, strong) GameRecord *record;
-
+@property (nonatomic, strong) RecordCellView *cellView;
 @end
 
 NS_ASSUME_NONNULL_END

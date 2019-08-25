@@ -134,7 +134,7 @@
     [scoreAPI startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
         NSLog(@"积分同步成功");
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
-        NSLog(@"积分同步失败");
+        NSLog(@"积分同步失败,status:%ld",(long)status.code);
     }];
     
     AddRecordAPI *recordAPI = [[AddRecordAPI alloc] init];
@@ -143,7 +143,7 @@
     [recordAPI startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
          NSLog(@"游戏记录同步成功");
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
-         NSLog(@"游戏记录同步失败");
+        NSLog(@"游戏记录同步失败,status:%ld",(long)status.code);
     }];
 }
 

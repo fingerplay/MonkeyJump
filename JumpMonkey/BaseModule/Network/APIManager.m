@@ -9,7 +9,7 @@
 #import "APIManager.h"
 #import "QMRequestManager.h"
 #import "UserAccountManager.h"
-
+#import "RecordAPI.h"
 @interface APIManager ()<QMRequesterDatasource>
 
 @end
@@ -39,7 +39,10 @@ static APIManager *_sharedInstance = nil;
 
 #pragma mark - QMRequestManager DataSource
 //获取动态参数替换列表
-- (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType {
+- (NSDictionary *)requesterPublicParamsWithParamType:(QMRequestParamType)paramType command:(QMCommand *)command {
+//    if ([command.input isKindOfClass:[RecordBaseInput class]]) {
+//        return @{};
+//    }
     return @{@"userId": @([UserAccountManager sharedManager].currentAccount.userId) ?: @(0),
              @"os": @(1)
              };

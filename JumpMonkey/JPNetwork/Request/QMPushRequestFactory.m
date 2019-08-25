@@ -67,7 +67,7 @@ static NSString *const kApiSignkey = @"apiSign";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:commnad.input.mj_JSONObject];
     
-    NSDictionary *publicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams];
+    NSDictionary *publicParams = [REQUEST_MANAGER requesterPublicParamsWithParamType:QMRequestAPPPublicParams command:commnad];
     for (NSString *key in publicParams) {
         [params safeSetObject:publicParams[key] forKey:key];
     }

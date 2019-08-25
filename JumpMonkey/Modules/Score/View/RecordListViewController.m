@@ -18,8 +18,6 @@
 @property (nonatomic,strong) RecordCellView *myRecordView;
 @property (nonatomic,strong) NSArray *records;
 @property (nonatomic,strong) GameRecord *myRecord;
-@property (nonatomic,strong) UIImageView *backgroundImageView;
-@property (nonatomic,strong) UIButton *backButton;
 @property (nonatomic,strong) QMSegmentContainer *segmentView;
 @end
 
@@ -30,49 +28,18 @@ static NSString *const kRecordCell = @"record";
 -(void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
-    [self setupLayout];
     [self loadRecordList];
 }
 
 - (void)setupView {
     self.view.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:self.backgroundImageView];
-//    [self.view addSubview:self.segmentView];
-    [self.view addSubview:self.backButton];
     [self.view addSubview:self.titleView];
     [self.view addSubview:self.myRecordView];
     [self.view addSubview:self.tableView];
 }
 
-- (void)setupLayout {
-    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.top.left.equalTo(self.view);
-    }];
-    
-//    [self.segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.equalTo(@(400));
-//        make.height.equalTo(@(280));
-//        make.centerX.equalTo(self.view);
-//        make.top.equalTo(@(50));
-//    }];
-    
-    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(30);
-        make.left.top.mas_equalTo(10);
-    }];
-}
-
--(void)backButtonTap:(UIButton*)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - Property
-- (UIImageView *)backgroundImageView {
-    if (!_backgroundImageView) {
-        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"main_bg"]];
-    }
-    return _backgroundImageView;
-}
 
 //- (QMSegmentContainer *)segmentView {
 //    if (!_segmentView) {
@@ -91,19 +58,12 @@ static NSString *const kRecordCell = @"record";
 //    return _segmentView;
 //}
 
-- (UIButton *)backButton {
-    if (!_backButton) {
-        _backButton = [[UIButton alloc] init];
-        [_backButton setBackgroundImage:[UIImage imageNamed:@"back_arrow_gray"] forState:UIControlStateNormal];
-        [_backButton addTarget:self action:@selector(backButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _backButton;
-}
 
 - (RecordCellView *)titleView {
     if (!_titleView) {
         _titleView = [[RecordCellView alloc] initWithFrame:CGRectMake(0, 40, self.view.width, [RecordCellView viewHeight])];
         _titleView.isTitle = true;
+        _titleView.textColor = [UIColor whiteColor];
     }
     return _titleView;
 }
@@ -113,6 +73,7 @@ static NSString *const kRecordCell = @"record";
         _myRecordView = [[RecordCellView alloc] initWithFrame:CGRectMake(0, self.titleView.bottom, self.view.width, [RecordCellView viewHeight])];
         _myRecordView.record = self.myRecord;
         _myRecordView.isTitle = false;
+        _myRecordView.textColor = [UIColor redColor];
     }
     return _myRecordView;
 }
@@ -180,7 +141,7 @@ static NSString *const kRecordCell = @"record";
     GameRecord *record = [self.records objectAtIndex:indexPath.row];
     record.rank = indexPath.row + 1;
     cell.record = record;
-
+    cell.cellView.textColor = (indexPath.row %2 == 0) ? [UIColor yellowColor] : [UIColor whiteColor];
     return cell;
 }
 
