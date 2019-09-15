@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) GameRecord *record;
 @property (nonatomic, assign) BOOL  isTitle;
 @property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, assign) BOOL isLocal; //是否是本地记录，如果是，则不显示排名和昵称
 
 + (CGFloat)viewHeight;
 

@@ -17,6 +17,7 @@
 #import <UShareUI/UShareUI.h>
 #import "ScoreAPI.h"
 #import "RecordAPI.h"
+#import "DBHelper.h"
 
 @interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate>
 @property (nonatomic, strong) GameScene *scene;
@@ -114,7 +115,7 @@
     SKTexture *texture = [self.scene.view textureFromNode:self.scene];
     self.snapshotView.image = [UIImage imageWithCGImage:texture.CGImage];
     self.scoreView.score = self.scene.mScore;
-    [self syncScoreToServer];
+    [self saveScoreAndRecord];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.snapshotView.hidden = NO;
@@ -128,7 +129,7 @@
     [self.darkMask removeFromParent];
 }
 
-- (void)syncScoreToServer {
+- (void)saveScoreAndRecord {
     UpdateScoreAPI *scoreAPI = [[UpdateScoreAPI alloc] init];
     scoreAPI.score = self.scene.mScore.score;
     [scoreAPI startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
@@ -138,13 +139,21 @@
     }];
     
     AddRecordAPI *recordAPI = [[AddRecordAPI alloc] init];
-    recordAPI.record = [[GameRecord alloc] initWithScore:self.scene.mScore];
+    GameRecord *record = [[GameRecord alloc] initWithScore:self.scene.mScore];
+    recordAPI.record = record;
     recordAPI.gameMode = self.gameMode;
     [recordAPI startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
          NSLog(@"游戏记录同步成功");
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"游戏记录同步失败,status:%ld",(long)status.code);
     }];
+    
+    //保存本地游戏记录
+    NSError *err = nil;
+    [[DBHelper sharedInstance] insertRecord:@[record] gameMode:GameModeFree withError:&err];
+    if (err) {
+        NSLog(@"游戏记录保存失败！");
+    }
 }
 
 - (void)loadScoreFromServer {

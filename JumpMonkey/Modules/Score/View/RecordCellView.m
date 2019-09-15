@@ -22,8 +22,9 @@
 
 @implementation RecordCellView
 #define labelGapX  20
-#define labelWidth  (SCREEN_W/8 - labelGapX)
-
+#define labelWidth  (self.isLocal? self.width/6 : self.width/8 - labelGapX)
+#define labelShortWidth 40
+#define labelLongWidth 90
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -35,16 +36,19 @@
 
 - (void)setupView {
     self.backgroundColor = [UIColor clearColor];
+
     self.nameLabel = [self createNormalLabel];
     self.rankLabel = [self createNormalLabel];
+    [self addSubview:self.nameLabel];
+    [self addSubview:self.rankLabel];
+    
     self.scoreLabel = [self createNormalLabel];
     self.hopScoreLabel = [self createNormalLabel];
     self.hopsLabel = [self createShortLabel];
     self.treesLabel = [self createShortLabel];
     self.durationLabel = [self createNormalLabel];
     self.timeLabel = [self createLongLabel];
-    [self addSubview:self.nameLabel];
-    [self addSubview:self.rankLabel];
+
     [self addSubview:self.scoreLabel];
     [self addSubview:self.hopScoreLabel];
     [self addSubview:self.hopsLabel];
@@ -56,15 +60,30 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.backgroundColor = [UIColor clearColor];
-    self.nameLabel.left = 10;
-    self.rankLabel.left = self.nameLabel.right + labelGapX;
-    self.scoreLabel.left = self.rankLabel.right + labelGapX;
+    if (!self.isLocal) {
+        self.nameLabel.left = 10;
+        self.nameLabel.width = labelWidth;
+        self.rankLabel.left = self.nameLabel.right + labelGapX;
+        self.rankLabel.width = labelWidth;
+        self.scoreLabel.left = self.rankLabel.right + labelGapX;
+    }else {
+        self.nameLabel.width = 0;
+        self.rankLabel.width = 0;
+        self.scoreLabel.left = 10;
+    }
+
+    self.scoreLabel.width = labelWidth;
     self.hopScoreLabel.left = self.scoreLabel.right + labelGapX;
+    self.hopScoreLabel.width = labelWidth;
     self.hopsLabel.left = self.hopScoreLabel.right + labelGapX;
+
+    self.hopsLabel.width = labelShortWidth;
     self.treesLabel.left = self.hopsLabel.right + labelGapX;
+    self.treesLabel.width = labelShortWidth;
     self.durationLabel.left = self.treesLabel.right + labelGapX;
+    self.durationLabel.width = labelWidth;
     self.timeLabel.left = self.durationLabel.right + labelGapX;
-    
+    self.timeLabel.width = labelLongWidth;
     [self updateInfo];
     
 }
@@ -77,14 +96,14 @@
 }
 
 - (UILabel*)createShortLabel {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 40, 20)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, labelShortWidth, 20)];
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:18];
     return label;
 }
 
 - (UILabel*)createLongLabel {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 90, 20)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, labelLongWidth, 20)];
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:18];
     return label;
@@ -103,7 +122,7 @@
         
 
     }else {
-        self.nameLabel.text = self.record.name.length ? self.record.name : @"无名";
+        self.nameLabel.text = self.record.name.length ? self.record.name : @"游客";
         self.rankLabel.text = [NSString stringWithFormat:@"%ld",self.record.rank];
         self.scoreLabel.text = [NSString stringWithFormat:@"%ld",self.record.score];
         self.hopScoreLabel.text = [NSString stringWithFormat:@"%ld",self.record.hopScore];

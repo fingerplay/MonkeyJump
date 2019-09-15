@@ -77,3 +77,53 @@
 #endif /* CommonDefine_h */
 
 
+
+// Set this switch to enable or disable ALL logging.
+#define LOGGING_ENABLED 1
+
+// Set any or all of these switches to enable or disable logging at specific levels.
+#define LOGGING_LEVEL_DEBUG 1
+#define LOGGING_LEVEL_INFO 1
+#define LOGGING_LEVEL_ERROR 1
+
+// Set this switch to set whether or not to include class, method and line information in the log entries.
+#define LOGGING_INCLUDE_CODE_LOCATION 1
+
+// ***************** END OF USER SETTINGS ***************
+
+#if !(defined(LOGGING_ENABLED) && LOGGING_ENABLED)
+#undef LOGGING_LEVEL_DEBUG
+#undef LOGGING_LEVEL_INFO
+#undef LOGGING_LEVEL_ERROR
+#endif
+
+// Logging format
+#define LOG_FORMAT_NO_LOCATION(fmt, lvl, ...) NSLog((@"[%@] " fmt), lvl, ##__VA_ARGS__)
+#define LOG_FORMAT_WITH_LOCATION(fmt, lvl, ...) NSLog((@"%s [Line %d] [%@] " fmt), __PRETTY_FUNCTION__, __LINE__, lvl, ##__VA_ARGS__)
+
+#if defined(LOGGING_INCLUDE_CODE_LOCATION) && LOGGING_INCLUDE_CODE_LOCATION
+#define LOG_FORMAT(fmt, lvl, ...) LOG_FORMAT_WITH_LOCATION(fmt, lvl, ##__VA_ARGS__)
+#else
+#define LOG_FORMAT(fmt, lvl, ...) LOG_FORMAT_NO_LOCATION(fmt, lvl, ##__VA_ARGS__)
+#endif
+
+// Debug level logging
+#if defined(LOGGING_LEVEL_DEBUG) && LOGGING_LEVEL_DEBUG
+#define LogDebug(fmt, ...) LOG_FORMAT(fmt, @"debug", ##__VA_ARGS__)
+#else
+#define LogDebug(...)
+#endif
+
+// Info level logging
+#if defined(LOGGING_LEVEL_INFO) && LOGGING_LEVEL_INFO
+#define LogInfo(fmt, ...) LOG_FORMAT(fmt, @"info", ##__VA_ARGS__)
+#else
+#define LogInfo(...)
+#endif
+
+// Error level logging
+#if defined(LOGGING_LEVEL_ERROR) && LOGGING_LEVEL_ERROR
+#define LogError(fmt, ...) LOG_FORMAT(fmt, @"***ERROR***", ##__VA_ARGS__)
+#else
+#define LogError(...)
+#endif

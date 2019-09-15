@@ -141,6 +141,7 @@ static NSString *const kRecordCell = @"record";
     GameRecord *record = [self.records objectAtIndex:indexPath.row];
     record.rank = indexPath.row + 1;
     cell.record = record;
+    cell.cellView.isLocal = false;
     cell.cellView.textColor = (indexPath.row %2 == 0) ? [UIColor yellowColor] : [UIColor whiteColor];
     return cell;
 }
