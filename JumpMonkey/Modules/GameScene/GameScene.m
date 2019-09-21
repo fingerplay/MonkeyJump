@@ -27,11 +27,12 @@
 @property (nonatomic, strong) Hawk *hawk;
 @property (nonatomic, strong) SKNumberNode *totalScoreNode;
 @property (nonatomic, strong) SKNumberNode *hopNode;
-@property (nonatomic, strong) NSDate *gameStartTime;
+
+@property (nonatomic, strong) GameModel *gameModel;
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
-@property (nonatomic, assign) BOOL isGameOver;
+
 @property (nonatomic, assign) BOOL isRemovingOldNode;
 @property (nonatomic, strong) dispatch_source_t velocityTimer;
 @property (nonatomic, assign) CGFloat sceneTotalOffset;
@@ -40,6 +41,16 @@
 
 @implementation GameScene {
 
+}
+
+- (instancetype)initWithMode:(GameMode)gameMode{
+    self = [super init];
+    if (self) {
+        GameModel *gameModel = [[GameModel alloc] init];
+        gameModel.mode = gameMode;
+        self.gameModel = gameModel;
+    }
+    return self;
 }
 
 - (void)dealloc {
@@ -63,7 +74,7 @@
 }
 
 - (void)addChildNodes {
-    self.gameStartTime = [NSDate date];
+    self.gameModel.gameStartTime = [NSDate date];
     self.sceneTotalOffset = 0;
     
     self.velocityLabel.text = @"0M/s";
@@ -113,6 +124,21 @@
     [[SoundManager sharedManger] playCockSound];
 }
 
+- (void)resetNodes {
+ 
+    HookNode *currentHook = self.monkey.hookNode.preNode;
+    currentHook.position = CGPointMake(MONKEY_MIN_X, TREE_POSITION_Y);
+    HookNode *lastHook = currentHook;
+    while (lastHook.nextNode) {
+        HookNode *node = lastHook.nextNode;
+        node.position = CGPointMake([lastHook getRealHook].x + kDefaultTreeDistanceX, TREE_POSITION_Y);
+        lastHook = node;
+    }
+    
+    [self.monkey resetPositionWithNode:currentHook];
+    [currentHook addChild:self.monkey];
+}
+
 - (void)removeChildNodes {
     dispatch_suspend(self.velocityTimer);
     [self removeAllChildren];
@@ -137,7 +163,7 @@
 }
 
 - (void)touchUpAtPoint:(CGPoint)pos {
-    if (!self.isGameOver && (self.monkey.state == MonkeyStateSwing || self.monkey.state == MonkeyStateRide) ){
+    if (!self.gameModel.isGameOver && (self.monkey.state == MonkeyStateSwing || self.monkey.state == MonkeyStateRide) ){
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.startTouchTime];
         CGFloat offsetX = pos.x - self.startTouchPoint.x;
         CGFloat offsetY = (pos.y - self.startTouchPoint.y);
@@ -168,7 +194,7 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     // Called before each frame is rendered
-    if (!self.isGameOver) {
+    if (!self.gameModel.isGameOver) {
         [self moveAllNodes];
     }
 }
@@ -205,7 +231,7 @@
         return;
     }
     HookNode *oldNode = [self.treesList.nodes firstObject];
-    if (oldNode.position.x < - oldNode.size.width/2 ) {
+    if (oldNode.position.x < - (oldNode.size.width/2 + kDefaultTreeDistanceX) ) {
         NSLog(@"remove old node.. %@",oldNode.name);
         self.isRemovingOldNode = YES;
         if ([oldNode isKindOfClass:[Spider class]]) {
@@ -217,7 +243,6 @@
     }
     
     if (self.isRemovingOldNode) {
-      
         NSCAssert(self.treesList.nodes.firstObject != oldNode, @"node remove failed");
         HookNodeType type = arc4random_uniform(HookNodeTypeCount);
         HookNode* newNode = [self.treesList generateSingleNodeWithType:type distance:kDefaultTreeDistanceX];
@@ -266,14 +291,12 @@
         SKAction *moveAction = [SKAction moveTo:CGPointMake(self.size.width, self.size.height) duration:3];
         SKAction *scaleAction = [SKAction scaleTo:0 duration:3];
         SKAction *removeAction = [SKAction removeFromParent];
-//        SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"+%ld",(long)self.monkey.mScore.lastAccScore]];
-//        scoreLabel.fontSize = 30;
-//        scoreLabel.fontColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:1];
         SKNumberNode *scoreNode = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
         scoreNode.showPlusSign = YES;
         scoreNode.maxHeight = 30;
         [scoreNode setNumber:self.monkey.mScore.lastAccScore];
-        scoreNode.position = [self.monkey.hookNode getRealHook];
+//        scoreNode.position = [self.monkey.hookNode getRealHook];
+        scoreNode.position = self.totalScoreNode.position;
         SKAction *actionGroup =[SKAction group:@[moveAction, scaleAction]];
         [scoreNode runAction:[SKAction sequence:@[actionGroup, removeAction]]];
 
@@ -283,33 +306,40 @@
 }
 
 - (void)gameDidEnd {
-    if (!self.isGameOver) {
+    if (!self.gameModel.isGameOver) {
+        [self.monkey removeDelayJump];
         [self.monkey removeFromParent];
         [[SoundManager sharedManger] playGameOverSound];
 //        self.paused = YES;
-        self.isGameOver = YES;
+        self.gameModel.isGameOver = YES;
         
-        self.mScore.duration = [[NSDate date] timeIntervalSinceDate:self.gameStartTime];
+        self.mScore.duration = [[NSDate date] timeIntervalSinceDate:self.gameModel.gameStartTime];
         self.mScore.distance = MAX(ceil(self.sceneTotalOffset /SCREEN_W * 18.f),0);
         
         if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEnd)]) {
             [self.gameDelegate gameDidEnd];
         }
-        
-        [self.monkey.mScore clearScore];
     }
 }
 
 - (void)gameRestart {
-    //删除子节点
-    [self removeChildNodes];
-    
-    //重新添加子节点
-    [self addChildNodes];
+    if (self.gameModel.mode == GameModeFree) {
+        //删除子节点
+        [self removeChildNodes];
+        
+        //重新添加子节点
+        [self addChildNodes];
+        
+        [self.monkey.mScore clearScore];
+        self.totalScoreNode.number = 0;
+        self.hopNode.number = 0;
+    }else{
+        [self resetNodes];
+    }
+
 //    self.paused = NO;
-    self.isGameOver = NO;
-    self.totalScoreNode.number = 0;
-    self.hopNode.number = 0;
+    self.gameModel.isGameOver = NO;
+
  
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidRestart)]) {
         [self.gameDelegate gameDidRestart];

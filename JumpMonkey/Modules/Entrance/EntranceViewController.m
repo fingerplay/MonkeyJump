@@ -196,11 +196,15 @@ static NSString *const kCellIdentifier = @"cell";
     switch (indexPath.row) {
         case MenuTypeChallenge:{
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
+            vc.gameMode = GameModeFree;
             [self.navigationController pushViewController:vc animated:true];
         }break;
             
-        case MenuTypeTimeLimit:
-
+        case MenuTypeTimeLimit:{
+            GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
+            vc.gameMode = GameModeTimeLimit;
+            [self.navigationController pushViewController:vc animated:true];
+        }
             break;
             
         case MenuTypeRank: {

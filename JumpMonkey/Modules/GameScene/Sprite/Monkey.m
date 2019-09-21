@@ -21,7 +21,7 @@
 @property (nonatomic, assign) BOOL isInHighestPosition; //是否在最高点
 @property (nonatomic, assign) CGFloat mY; //y位置
 @property (nonatomic, assign) CGFloat mX; //y位置
-
+@property (nonatomic, strong) dispatch_source_t delayJumpSource;
 @end
 
 @implementation Monkey
@@ -50,6 +50,16 @@
 }
 
 #pragma mark - Public
+- (void)resetPositionWithNode:(HookNode*)hookNode {
+    self.hookNode = hookNode;
+    self.position = hookNode.hookPoint;
+    self.mX = [hookNode getRealHook].x;
+    self.mY = [hookNode getRealHook].y;
+    self.armLength = MONKEY_SIZE_H;
+    self.currentAngle = -PI/2; //0表示圆最下方的点，顺时针<0，逆时针>0
+    self.state = MonkeyStateSwing;
+}
+
 - (void)setHookNode:(HookNode *)hookNode {
     _hookNode = hookNode;
     self.mOmega = 0;
@@ -251,11 +261,32 @@
 
 - (void)jumpDelay:(CGFloat)delay withState:(MonkeyState)state {
     NSNumber* nodeNumber = @(self.hookNode.number).copy;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.state == state && nodeNumber.integerValue == self.hookNode.number) {
-            [self jumpWithVx:0 vy:0];
-        }
+    //先撤销之前的定时器
+    [self removeDelayJump];
+     //设置定时器,delay秒之后自动跳出去
+    self.delayJumpSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, NULL);
+    dispatch_source_set_timer(self.delayJumpSource, dispatch_walltime(NULL, delay * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    dispatch_source_set_event_handler(self.delayJumpSource, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.state == state) {
+                if (state == MonkeyStateSwing && nodeNumber.integerValue == self.hookNode.number) {
+                    [self jumpWithVx:0 vy:0];
+                }else if (state == MonkeyStateRide) {
+                    [self jumpWithVx:0 vy:0];
+                }
+            }
+            //这里移除掉，保证只执行一次
+            [self removeDelayJump];
+        });
     });
+    dispatch_resume(self.delayJumpSource);
+}
+
+- (void)removeDelayJump {
+    if (self.delayJumpSource) {
+        dispatch_cancel(self.delayJumpSource);
+        self.delayJumpSource = nil;
+    }
 }
 
 - (void)switch2SwingOrRide:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{

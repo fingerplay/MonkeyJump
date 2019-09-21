@@ -11,6 +11,11 @@
 
 #define kDefaultTreeDistanceX  ([UIScreen mainScreen].bounds.size.width /3)
 
+typedef enum {
+    GameModeFree = 1,
+    GameModeTimeLimit = 2
+} GameMode;
+
 #define JUMP_COEFFCIENT 0.7f //跳跃系数
 #define ENERGY_COEFFCIENT  0.1f  //能量系数
 #define PENDULUM_RATIO 0.6f

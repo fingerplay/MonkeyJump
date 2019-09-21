@@ -12,4 +12,6 @@
 
 @interface GameViewController : UIViewController<UIGestureRecognizerDelegate>
 
+@property (nonatomic, assign) GameMode gameMode;
+
 @end

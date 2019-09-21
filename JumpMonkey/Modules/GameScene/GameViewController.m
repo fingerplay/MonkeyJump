@@ -30,7 +30,7 @@
 @property (nonatomic, strong) UILabel *velocityLabel;
 @property (nonatomic, strong) ClockImageView *countdownView;
 @property (nonatomic, strong) SKSpriteNode *darkMask;
-@property (nonatomic, assign) GameMode gameMode;
+
 @end
 
 @implementation GameViewController
@@ -48,8 +48,10 @@
 
 - (void)setupView {
     // Load the SKScene from 'GameScene.sks'
-    GameScene *scene = [GameScene sceneWithSize:CGSizeMake(self.view.width, self.view.height)];
-    
+//    GameScene *scene = [GameScene sceneWithSize:CGSizeMake(self.view.width, self.view.height)];
+    GameScene *scene = [[GameScene alloc] initWithMode:self.gameMode];
+    scene.size = self.view.size;
+
     // Set the scale mode to scale to fit the window
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.gameDelegate = self;
@@ -71,10 +73,6 @@
     [self.snapshotView addSubview:self.shareBtn];
     [self.snapshotView addSubview:self.restartBtn];
     [self.snapshotView addSubview:self.exitBtn];
-}
-
-- (GameMode)gameMode {
-    return GameModeFree;
 }
 
 - (BOOL)shouldAutorotate {

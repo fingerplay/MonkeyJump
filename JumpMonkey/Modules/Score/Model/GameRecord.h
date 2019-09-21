@@ -11,10 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum {
-    GameModeFree = 1,
-    GameModeTimeLimit = 2
-} GameMode;
 
 @interface GameRecord : NSObject
 @property (nonatomic, assign) NSInteger userId; //用户id

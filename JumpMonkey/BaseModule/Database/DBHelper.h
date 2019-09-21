@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameRecord.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DBHelper : NSObject

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Hawk : HookNode
 
-@property (nonatomic, assign) CGFloat speed;
+@property (nonatomic, assign) CGFloat moveSpeed;
 
 - (void)startMoveWithLocation:(CGPoint)location;
 

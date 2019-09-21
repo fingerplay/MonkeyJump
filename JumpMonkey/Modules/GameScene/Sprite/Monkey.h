@@ -46,11 +46,15 @@ typedef NS_ENUM(NSInteger){
 
 - (instancetype)initWithImageNamed:(NSString *)name hookNode:(HookNode*)hookNode;
 
+- (void)resetPositionWithNode:(HookNode*)hookNode;
+
 - (void)jumpWithVx:(CGFloat)vx vy:(CGFloat)vy;
 
 - (void)move;
 
 - (HookNode*)getCurrentHookNode;
+
+- (void)removeDelayJump;
 
 @end
 

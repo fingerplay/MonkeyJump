@@ -66,6 +66,7 @@
 		AF32FB8A22F5B51D00E1C71C /* RecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */; };
 		AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E05D22A5F445008BBCCF /* Bezier.m */; };
 		AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E06422A6487A008BBCCF /* ImageSequence.m */; };
+		AF3DE2AA232D226A006A3169 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE2A9232D226A006A3169 /* DBHelper.m */; };
 		AF4836C622E4BF320017D733 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C222E4BF320017D733 /* APIManager.m */; };
 		AF4836C722E4BF320017D733 /* SecKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C522E4BF320017D733 /* SecKeyManager.m */; };
 		AF4CB45222CE27C50090BFB4 /* QMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42122CE27C50090BFB4 /* QMRequestManager.m */; };
@@ -157,6 +158,7 @@
 		AF4CB59722CE2C0D0090BFB4 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54122CE2C0C0090BFB4 /* UIViewController+MMDrawerController.m */; };
 		AF4CB59822CE2C0D0090BFB4 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54222CE2C0C0090BFB4 /* MMDrawerController.m */; };
 		AF4CB59922CE2C0D0090BFB4 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54722CE2C0C0090BFB4 /* MMDrawerVisualState.m */; };
+		AF565B6F2336116C0061A058 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF565B6E2336116C0061A058 /* GameModel.m */; };
 		AF58A2C422A4B68D005E6361 /* sound_catch_hook.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */; };
 		AF58A2C522A4B68D005E6361 /* sound_game_over.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C122A4B68D005E6361 /* sound_game_over.wav */; };
 		AF58A2C622A4B68D005E6361 /* sound_cock.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C222A4B68D005E6361 /* sound_cock.wav */; };
@@ -312,6 +314,8 @@
 		AF36E05D22A5F445008BBCCF /* Bezier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bezier.m; sourceTree = "<group>"; };
 		AF36E06322A6487A008BBCCF /* ImageSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSequence.h; sourceTree = "<group>"; };
 		AF36E06422A6487A008BBCCF /* ImageSequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSequence.m; sourceTree = "<group>"; };
+		AF3DE2A8232D226A006A3169 /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
+		AF3DE2A9232D226A006A3169 /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		AF4836C122E4BF320017D733 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		AF4836C222E4BF320017D733 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		AF4836C422E4BF320017D733 /* SecKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecKeyManager.h; sourceTree = "<group>"; };
@@ -508,6 +512,8 @@
 		AF4CB54622CE2C0C0090BFB4 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		AF4CB54722CE2C0C0090BFB4 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
 		AF4CB54822CE2C0C0090BFB4 /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
+		AF565B6D2336116C0061A058 /* GameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		AF565B6E2336116C0061A058 /* GameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_catch_hook.wav; sourceTree = "<group>"; };
 		AF58A2C122A4B68D005E6361 /* sound_game_over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_game_over.wav; sourceTree = "<group>"; };
 		AF58A2C222A4B68D005E6361 /* sound_cock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_cock.wav; sourceTree = "<group>"; };
@@ -829,6 +835,8 @@
 		AF2C449022D97EB9003045B8 /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
+				AF565B6D2336116C0061A058 /* GameModel.h */,
+				AF565B6E2336116C0061A058 /* GameModel.m */,
 				AF2C449122D97EB9003045B8 /* GameScene.h */,
 				AF2C449322D97EBA003045B8 /* GameScene.m */,
 				AF2C44A722D97EBA003045B8 /* GameScene.sks */,
@@ -1071,9 +1079,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AF3DE2A5232D21DC006A3169 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				AF3DE2A8232D226A006A3169 /* DBHelper.h */,
+				AF3DE2A9232D226A006A3169 /* DBHelper.m */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		AF4836BF22E4BF320017D733 /* BaseModule */ = {
 			isa = PBXGroup;
 			children = (
+				AF3DE2A5232D21DC006A3169 /* Database */,
 				AFCA5A6C2312929A000A6EA0 /* UI */,
 				AF4836C022E4BF320017D733 /* Network */,
 				AF4836C322E4BF320017D733 /* Secure */,
@@ -1913,6 +1931,7 @@
 				AF4CB45222CE27C50090BFB4 /* QMRequestManager.m in Sources */,
 				AF4CB58422CE2C0D0090BFB4 /* MJFoundation.m in Sources */,
 				AF71278122ED3D100051C5E0 /* NSString+Base64.m in Sources */,
+				AF3DE2AA232D226A006A3169 /* DBHelper.m in Sources */,
 				AF4CB57A22CE2C0D0090BFB4 /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				AF4CB55422CE2C0D0090BFB4 /* QMDeviceHelper.m in Sources */,
 				AF4CB58122CE2C0D0090BFB4 /* NSObject+MJClass.m in Sources */,
@@ -2048,6 +2067,7 @@
 				AF4CB59622CE2C0D0090BFB4 /* MMDrawerBarButtonItem.m in Sources */,
 				AF4CB56F22CE2C0D0090BFB4 /* NSObject+QMSetConfigToUserDefaults.m in Sources */,
 				AF4CB57322CE2C0D0090BFB4 /* NSObject+QMInput.m in Sources */,
+				AF565B6F2336116C0061A058 /* GameModel.m in Sources */,
 				AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */,
 				AF7127EE22ED9EAE0051C5E0 /* RSAHandler.m in Sources */,
 				AF4CB57C22CE2C0D0090BFB4 /* NSObject+MJKeyValue.m in Sources */,

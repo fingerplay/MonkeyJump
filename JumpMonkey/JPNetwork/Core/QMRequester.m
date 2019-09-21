@@ -88,7 +88,7 @@
     
     [self cacheResponse:dataObject forCommand:command status:status];//处理缓存
     id output = [self reformDataWithResponseObject:dataObject command:command status:status];
-    if (status.code == ERROR_CODE_SUCCESS) {
+    if (status.code == ERROR_CODE_SUCCESS || status.code == ERROR_CODE_NO_NEED_UPDATE) {
         if (self.succCallback) {
             self.succCallback(status,command.input,output);
         } else {
@@ -199,7 +199,7 @@
 
 #pragma mark - Cache
 - (void)cacheResponse:(NSDictionary *)responseObject forCommand:(QMCommand *)command status:(QMStatus *)status {
-    if (status.code == ERROR_CODE_SUCCESS || command.dataType == QMDataTypeProtocolBuffer) {
+    if (status.code == ERROR_CODE_SUCCESS || status.code == ERROR_CODE_NO_NEED_UPDATE) {
 #ifndef TODAY_EXTENSION
         //请求成功后根据需要缓存数据
         if (self.useNetUnavailableCache) {

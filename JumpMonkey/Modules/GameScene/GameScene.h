@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "HookNode.h"
 #import "ScoreInfo.h"
+#import "GameModel.h"
 
 @protocol GameSceneDelegate <NSObject>
 @optional
@@ -28,6 +29,8 @@
 @property (nonatomic, strong) ScoreInfo *mScore;
 
 @property (nonatomic, weak) id<GameSceneDelegate>gameDelegate;
+
+- (instancetype)initWithMode:(GameMode)gameMode;
 
 - (void)gameRestart;
 
