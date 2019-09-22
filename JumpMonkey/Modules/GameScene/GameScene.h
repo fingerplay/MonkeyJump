@@ -17,7 +17,7 @@
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node;
 
-- (void)gameDidEnd;
+- (void)gameDidEndWithTimeout:(BOOL)isTimeout;
 
 - (void)gameDidRestart;
 

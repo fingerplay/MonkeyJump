@@ -12,7 +12,8 @@
 
 @interface GameModel : NSObject
 @property (nonatomic, assign) GameMode mode;
-@property (nonatomic, strong) NSDate *gameStartTime;
+@property (nonatomic, strong) NSDate *gameStartTime;//游戏开始时初始化，后面不再改变
+@property (nonatomic, assign) NSTimeInterval remainTime; //剩余时间（限时模式下使用）
 @property (nonatomic, assign) BOOL isGameOver;
 @end
 

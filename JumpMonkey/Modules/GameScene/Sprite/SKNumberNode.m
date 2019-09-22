@@ -52,7 +52,7 @@
     NSMutableArray *numberImages = [[NSMutableArray alloc] init];
     NSString *strNumber = [NSString stringWithFormat:@"%ld",(long)number];
     if (number < 0) {
-        strNumber = [NSString stringWithFormat:@"-%ld",(long)number];
+        strNumber = [NSString stringWithFormat:@"%ld",(long)number];
     }else if (number > 0 && self.showPlusSign){
         strNumber = [NSString stringWithFormat:@"+%ld",(long)number];
     }

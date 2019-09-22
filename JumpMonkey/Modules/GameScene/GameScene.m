@@ -20,6 +20,7 @@
 @interface GameScene ()<MonkeyDelegate,ScoreInfoDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
 @property (nonatomic, strong) SKLabelNode *velocityLabel;
+@property (nonatomic, strong) SKNumberNode *countDownLabel;
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
 @property (nonatomic, strong) NormalNode *backgroundNodeB;
 @property (nonatomic, strong) Monkey *monkey;
@@ -35,6 +36,7 @@
 
 @property (nonatomic, assign) BOOL isRemovingOldNode;
 @property (nonatomic, strong) dispatch_source_t velocityTimer;
+@property (nonatomic, strong) dispatch_source_t countDownTimer;
 @property (nonatomic, assign) CGFloat sceneTotalOffset;
 @property (nonatomic, assign) CGFloat sceneCurrentOffset;
 @end
@@ -61,23 +63,28 @@
 - (void)didMoveToView:(SKView *)view {
     // Setup your scene here
     self.mScore = [ScoreInfo new];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    self.velocityTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(self.velocityTimer, dispatch_walltime(NULL, 0), 1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(self.velocityTimer, ^{
-        
-        self.velocityLabel.text = [NSString stringWithFormat:@"%1.1fM/s",self.sceneCurrentOffset/SCREEN_W * 18.f];
-        self.sceneCurrentOffset = 0;
-    });
-    
+    [self setupVelocityTimer];
     [self addChildNodes];
+    dispatch_resume(self.velocityTimer);
+    if (self.gameModel.mode == GameModeTimeLimit) {
+        [self setupCountDownTimer];
+        dispatch_resume(self.countDownTimer);
+    }
 }
 
 - (void)addChildNodes {
     self.gameModel.gameStartTime = [NSDate date];
+    if (self.gameModel.mode == GameModeTimeLimit) {
+        self.gameModel.remainTime = MAX_TIME_LIMIT;
+    }
+
     self.sceneTotalOffset = 0;
+    if(self.gameModel.mode == GameModeTimeLimit) {
+        self.countDownLabel.number = self.gameModel.remainTime;
+    }
     
     self.velocityLabel.text = @"0M/s";
+
     [self createBackgroundNodes];
     [self addChild:self.backgroundNodeA];
     [self addChild:self.backgroundNodeB];
@@ -110,6 +117,9 @@
     [self addChild:self.hawk];
     self.monkey.hawk = self.hawk;
     self.monkey.mScore = self.mScore;
+    if (self.gameModel.mode == GameModeTimeLimit) {
+        [self addChild:self.countDownLabel];
+    }
     [self addChild:self.totalScoreNode];
     [self addChild:self.velocityLabel];
     [self addChild:self.hopNode];
@@ -119,13 +129,12 @@
         self.hawk.hidden = NO;
         [self.hawk startMoveWithLocation:CGPointMake(self.monkey.offsetX + SCREEN_W/5 - self.hawk.size.width/2, -self.hawk.size.height/2)];
     });
-       dispatch_resume(self.velocityTimer);
 
     [[SoundManager sharedManger] playCockSound];
 }
 
 - (void)resetNodes {
- 
+//    self.paused = YES;
     HookNode *currentHook = self.monkey.hookNode.preNode;
     currentHook.position = CGPointMake(MONKEY_MIN_X, TREE_POSITION_Y);
     HookNode *lastHook = currentHook;
@@ -134,13 +143,15 @@
         node.position = CGPointMake([lastHook getRealHook].x + kDefaultTreeDistanceX, TREE_POSITION_Y);
         lastHook = node;
     }
-    
+    [self.monkey removeDelayJump];
     [self.monkey resetPositionWithNode:currentHook];
+//    self.paused = NO;
+    [self.monkey removeFromParent];
     [currentHook addChild:self.monkey];
 }
 
 - (void)removeChildNodes {
-    dispatch_suspend(self.velocityTimer);
+    
     [self removeAllChildren];
     [self.treesList.nodes removeAllObjects];
     self.monkey = nil;
@@ -223,7 +234,13 @@
 #pragma mark - MonkeyDelegate
 - (void)monkeyDidMoveTo:(CGPoint)position {
     if (self.monkey.state == MonkeyStateJump && position.y< -self.monkey.size.height) {//跳出屏幕，游戏结束
-        [self gameDidEnd];
+        if (self.gameModel.mode == GameModeTimeLimit) {
+            self.gameModel.remainTime -= DROP_TIME_SUBTRACT;
+            [self resetNodes];
+            [self showSubtractScoreLabel];
+        }else{
+            [self gameDidEnd];
+        }
         return;
     }
     
@@ -264,7 +281,7 @@
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
 
-    [self showScoreLabel];
+    [self showAddScoreLabel];
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(monkeyDidJumpToHookNode:)]) {
         [self.gameDelegate monkeyDidJumpToHookNode:node];
     }
@@ -286,7 +303,41 @@
 }
 
 #pragma mark - Private
-- (void)showScoreLabel {
+- (void)setupVelocityTimer {
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self.velocityTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(self.velocityTimer, dispatch_walltime(NULL,0), 1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(self.velocityTimer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.velocityLabel.text = [NSString stringWithFormat:@"%1.1fM/s",self.sceneCurrentOffset/SCREEN_W * 18.f];
+            self.sceneCurrentOffset = 0;
+        });
+    });
+}
+
+- (void)setupCountDownTimer {
+    if (self.countDownTimer) {
+        return;
+    }
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self.countDownTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(self.countDownTimer, dispatch_walltime(NULL,1.0*NSEC_PER_SEC), 1.0*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(self.countDownTimer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.gameModel.mode == GameModeTimeLimit) {
+                self.gameModel.remainTime -= 1;
+                self.countDownLabel.number = self.gameModel.remainTime;
+                if (self.gameModel.remainTime <= 0) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self gameDidEnd];
+                    });
+                }
+            }
+        });
+    });
+}
+
+- (void)showAddScoreLabel {
     if (self.monkey.mScore.lastAccScore>0) {
         SKAction *moveAction = [SKAction moveTo:CGPointMake(self.size.width, self.size.height) duration:3];
         SKAction *scaleAction = [SKAction scaleTo:0 duration:3];
@@ -305,10 +356,30 @@
 
 }
 
+- (void)showSubtractScoreLabel {
+    SKAction *moveAction = [SKAction moveTo:CGPointMake(self.size.width, self.size.height) duration:3];
+    SKAction *scaleAction = [SKAction scaleTo:0 duration:3];
+    SKAction *removeAction = [SKAction removeFromParent];
+    SKNumberNode *scoreNode = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
+    scoreNode.showPlusSign = NO;
+    scoreNode.maxHeight = 30;
+    [scoreNode setNumber: - DROP_TIME_SUBTRACT];
+
+    scoreNode.position = self.countDownLabel.position;
+    SKAction *actionGroup =[SKAction group:@[moveAction, scaleAction]];
+    [scoreNode runAction:[SKAction sequence:@[actionGroup, removeAction]]];
+    
+    [self addChild:scoreNode];
+}
+
 - (void)gameDidEnd {
     if (!self.gameModel.isGameOver) {
         [self.monkey removeDelayJump];
         [self.monkey removeFromParent];
+        dispatch_suspend(self.velocityTimer);
+        if (self.gameModel.mode == GameModeTimeLimit) {
+            dispatch_suspend(self.countDownTimer);
+        }
         [[SoundManager sharedManger] playGameOverSound];
 //        self.paused = YES;
         self.gameModel.isGameOver = YES;
@@ -316,30 +387,29 @@
         self.mScore.duration = [[NSDate date] timeIntervalSinceDate:self.gameModel.gameStartTime];
         self.mScore.distance = MAX(ceil(self.sceneTotalOffset /SCREEN_W * 18.f),0);
         
-        if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEnd)]) {
-            [self.gameDelegate gameDidEnd];
+        if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidEndWithTimeout:)]) {
+            [self.gameDelegate gameDidEndWithTimeout:(self.gameModel.remainTime<=0)];
         }
     }
 }
 
 - (void)gameRestart {
-    if (self.gameModel.mode == GameModeFree) {
-        //删除子节点
-        [self removeChildNodes];
-        
-        //重新添加子节点
-        [self addChildNodes];
-        
-        [self.monkey.mScore clearScore];
-        self.totalScoreNode.number = 0;
-        self.hopNode.number = 0;
-    }else{
-        [self resetNodes];
+    //删除子节点
+    [self removeChildNodes];
+    //重新添加子节点
+    [self addChildNodes];
+    [self.monkey.mScore clearScore];
+    self.totalScoreNode.number = 0;
+    self.hopNode.number = 0;
+  
+    dispatch_resume(self.velocityTimer);
+    if (self.gameModel.mode == GameModeTimeLimit) {
+        [self setupCountDownTimer];
+        dispatch_resume(self.countDownTimer);
     }
-
+    
 //    self.paused = NO;
     self.gameModel.isGameOver = NO;
-
  
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(gameDidRestart)]) {
         [self.gameDelegate gameDidRestart];
@@ -479,11 +549,21 @@
 - (SKLabelNode *)velocityLabel {
     if (!_velocityLabel) {
         _velocityLabel = [[SKLabelNode alloc] init];
-        _velocityLabel.position = CGPointMake(40, self.size.height - 30);
+        _velocityLabel.position = CGPointMake(self.size.width - 60, self.size.height - 30);
         _velocityLabel.fontColor = [UIColor whiteColor];
         _velocityLabel.fontSize = 18;
     }
     return _velocityLabel;
+}
+
+- (SKNumberNode *)countDownLabel {
+    if (!_countDownLabel) {
+        _countDownLabel = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
+        _countDownLabel.position = CGPointMake(40, self.size.height - 30);
+        _countDownLabel.maxHeight = 18;
+        _countDownLabel.anchorPoint = CGPointMake(0.5, 0.5);
+    }
+    return _countDownLabel;
 }
 
 @end

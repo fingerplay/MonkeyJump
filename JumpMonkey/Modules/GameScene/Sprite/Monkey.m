@@ -22,6 +22,7 @@
 @property (nonatomic, assign) CGFloat mY; //y位置
 @property (nonatomic, assign) CGFloat mX; //y位置
 @property (nonatomic, strong) dispatch_source_t delayJumpSource;
+@property (nonatomic, assign) BOOL isDelayJumpEnabled;
 @end
 
 @implementation Monkey
@@ -44,7 +45,7 @@
         self.armLength = MONKEY_SIZE_H;
         self.currentAngle = -PI/2; //0表示圆最下方的点，顺时针<0，逆时针>0
         self.state = MonkeyStateSwing;
-
+        self.isDelayJumpEnabled = NO;
     }
     return self;
 }
@@ -58,6 +59,7 @@
     self.armLength = MONKEY_SIZE_H;
     self.currentAngle = -PI/2; //0表示圆最下方的点，顺时针<0，逆时针>0
     self.state = MonkeyStateSwing;
+    self.isDelayJumpEnabled = NO;
 }
 
 - (void)setHookNode:(HookNode *)hookNode {
@@ -94,6 +96,7 @@
 }
 
 - (void)jumpWithVx:(CGFloat)jvx vy:(CGFloat)jvy {
+    self.isDelayJumpEnabled = YES;
     if (self.state == MonkeyStateSwing) {
         [self switch2JumpWithVx:jvx vy:jvy];
         self.hookNode = self.hookNode.nextNode;
@@ -118,6 +121,7 @@
 }
 
 - (void)move {
+    NSLog(@"moneky State:%ld",(long)self.state);
     switch (self.state) {
         case MonkeyStateSwing:
         {
@@ -192,11 +196,21 @@
             }
             
 //            [self checkCatchHook:self.hookNode pendingState:MonkeyStateSwing];
-            [self checkCatchNextHook];
+            if (self.isDelayJumpEnabled) {
+                 [self checkCatchNextHook];
+            }
+           
         }
             break;
         default:
             break;
+    }
+}
+
+- (void)removeDelayJump {
+    if (self.delayJumpSource) {
+        dispatch_cancel(self.delayJumpSource);
+        self.delayJumpSource = nil;
     }
 }
 
@@ -260,6 +274,9 @@
 }
 
 - (void)jumpDelay:(CGFloat)delay withState:(MonkeyState)state {
+    if (!self.isDelayJumpEnabled) {
+        return;
+    }
     NSNumber* nodeNumber = @(self.hookNode.number).copy;
     //先撤销之前的定时器
     [self removeDelayJump];
@@ -282,12 +299,6 @@
     dispatch_resume(self.delayJumpSource);
 }
 
-- (void)removeDelayJump {
-    if (self.delayJumpSource) {
-        dispatch_cancel(self.delayJumpSource);
-        self.delayJumpSource = nil;
-    }
-}
 
 - (void)switch2SwingOrRide:(CGPoint)hookPoint pendingState:(MonkeyState)pendingState hookNode:(HookNode*)hookNode{
     self.state = pendingState;

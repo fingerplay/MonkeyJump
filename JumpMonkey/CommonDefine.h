@@ -49,7 +49,7 @@ typedef enum {
 #define SCENE_MOVE_VELOCITY_JUMP 12
 #define SCENE_MOVE_VELOCITY_RIDE_RELATIVE 0.5
 
-#define MONKEY_SWING_MAX_DURATION 3.f
+#define MONKEY_SWING_MAX_DURATION 4.f
 #define MONKEY_RIDE_MAX_DURATION 10.f
 
 #define FPS 35
@@ -58,6 +58,8 @@ typedef enum {
 #define BASE_HOOK_SCORE 2
 #define BASE_HAWK_SCORE 5
 
+#define MAX_TIME_LIMIT  300 //总时长5分钟
+#define DROP_TIME_SUBTRACT  10 //掉落一次扣10秒
 
 /*  网络请求   */
 

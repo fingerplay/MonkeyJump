@@ -108,7 +108,7 @@
     self.countdownView.image = nil;
 }
 
--(void)gameDidEnd {
+-(void)gameDidEndWithTimeout:(BOOL)isTimeout {
     self.titleLabel.hidden = NO;
     SKTexture *texture = [self.scene.view textureFromNode:self.scene];
     self.snapshotView.image = [UIImage imageWithCGImage:texture.CGImage];
