@@ -264,11 +264,19 @@
         HookNodeType type = arc4random_uniform(HookNodeTypeCount);
         HookNode* newNode = [self.treesList generateSingleNodeWithType:type distance:kDefaultTreeDistanceX];
         NSInteger fgIndex = [self.children indexOfObject:self.foregroundNodes.firstObject];
-        [self insertChild:newNode atIndex:fgIndex-1];
-        NSLog(@"add new node!! %@",newNode.name);
+        NSInteger insertIndex;
+        if (fgIndex > 2) {
+            insertIndex = fgIndex - 1;
+        }else if (self.children.count > 2){
+            insertIndex = 2;
+        }else {
+            insertIndex = self.children.count;
+        }
+        [self insertChild:newNode atIndex:insertIndex];
+        NSLog(@"add new node [%@] at index %ld",newNode.name,insertIndex);
         if ([newNode isKindOfClass:[Spider class]]) {
             NormalNode *line = ((Spider*)newNode).line;
-            [self insertChild:line atIndex:fgIndex-1];
+            [self insertChild:line atIndex:insertIndex];
         }
     }
  
@@ -465,6 +473,7 @@
         SKTexture *texture = [SKTexture textureWithImage:image];
         
         NormalNode* newNode = [[NormalNode alloc] initWithTexture:texture];
+        newNode.name = [NSString stringWithFormat:@"fg_%f",lastX];
         newNode.anchorPoint = CGPointMake(0, 0);
         newNode.position = CGPointMake(lastX, 0);
         newNode.size = CGSizeMake(80 / image.size.height * image.size.width, 80);
@@ -498,6 +507,7 @@
 - (NormalNode *)backgroundNodeA {
     if (!_backgroundNodeA) {
         _backgroundNodeA = [[NormalNode alloc] initWithImageNamed:@"ch2"];
+        _backgroundNodeA.name = @"bgA";
         _backgroundNodeA.anchorPoint = CGPointMake(0, 0);
         _backgroundNodeA.position = CGPointMake(0, 0);
         _backgroundNodeA.size = CGSizeMake(self.size.width, self.size.height);
@@ -509,6 +519,7 @@
 - (NormalNode *)backgroundNodeB {
     if (!_backgroundNodeB) {
         _backgroundNodeB = [[NormalNode alloc] initWithImageNamed:@"ch2"];
+        _backgroundNodeB.name = @"bgB";
         _backgroundNodeB.anchorPoint = CGPointMake(0, 0);
         _backgroundNodeB.position = CGPointMake(self.size.width, 0);
         _backgroundNodeB.size = CGSizeMake(self.size.width, self.size.height);

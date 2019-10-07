@@ -8,10 +8,11 @@
 
 #import "MyProfileViewController.h"
 #import "ProfileTableViewCell.h"
-#import "RecordTableViewCell.h"
+//#import "RecordTableViewCell.h"
+#import "RecordListView.h"
+#import "QMSegmentContainer.h"
 #import "UserAccountManager.h"
 #import "ScoreAPI.h"
-#import "DBHelper.h"
 
 typedef NS_ENUM(NSInteger){
     ProfileCellRowAccount,
@@ -20,15 +21,19 @@ typedef NS_ENUM(NSInteger){
     ProfileCellRowScore,
     ProfileCellRowCount
 } ProfileCellRow;
-static NSString *const kProfileCellIdentifer = @"profile";
-static NSString *const kRecordCellIdentifer = @"record";
 
-@interface MyProfileViewController ()<UITableViewDataSource, UITableViewDelegate>
+typedef NS_ENUM(NSInteger) {
+    RecordTypeNormalMode =0,
+    RecordTypeTimeLimitMode,
+    RecordTypeCount
+}RecordType;
+
+static NSString *const kProfileCellIdentifer = @"profile";
+
+@interface MyProfileViewController ()<UITableViewDataSource, UITableViewDelegate, QMSegmentContainerDelegate>
 @property (nonatomic, strong) UITableView *profileTableView;
-@property (nonatomic, strong) UITableView *recordTableView;
-@property (nonatomic, strong) RecordCellView *recordTitleView;
+@property (nonatomic, strong) QMSegmentContainer *segmentView;
 @property (nonatomic, strong) UserAccount *user;
-@property (nonatomic, strong) NSArray *localRecord;
 @end
 
 
@@ -38,11 +43,8 @@ static NSString *const kRecordCellIdentifer = @"record";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadScore];
-    [self loadLocalRecords];
     [self.view addSubview:self.profileTableView];
-    [self.view addSubview:self.recordTitleView];
-    [self.view addSubview:self.recordTableView];
-
+    [self.view addSubview:self.segmentView];
 }
 
 - (void)loadScore {
@@ -62,20 +64,24 @@ static NSString *const kRecordCellIdentifer = @"record";
     }];
 }
 
-- (void)loadLocalRecords {
-    //讀取本地遊戲紀錄
-    NSError *err = nil;
-    self.localRecord = [[DBHelper sharedInstance] getRecordsWithGameMode:GameModeFree count:0 error:&err];
-    if (self.localRecord.count) {
-        [self.recordTableView reloadData];
-    }else {
-        NSLog(@"游戏记录读取失败，错误:%@",err);
+- (QMSegmentContainer *)segmentView {
+    if (!_segmentView) {
+        _segmentView = [[QMSegmentContainer alloc] initWithFrame:CGRectMake(140, 0, self.view.width-140, self.view.height)];
+        _segmentView.delegate = self;
+        _segmentView.segmentTopBar.indicatorHeight = 0;
+        _segmentView.segmentTopBar.titleNormalColor = [UIColor grayColor];
+        _segmentView.segmentTopBar.titleSelectedColor = [UIColor whiteColor];
+        _segmentView.segmentTopBar.bgColor = [UIColor clearColor];
+        _segmentView.segmentTopBar.titleFont = font(18);
+        _segmentView.segmentTopBar.titleSelectedFont = font(18);
+        _segmentView.backgroundColor = [UIColor clearColor];
     }
+    return _segmentView;
 }
 
 -(UITableView *)profileTableView {
     if (!_profileTableView) {
-        _profileTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 100, self.view.height - 40) style:UITableViewStylePlain];
+        _profileTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, 130, self.view.height - 40) style:UITableViewStylePlain];
         _profileTableView.dataSource = self;
         _profileTableView.delegate = self;
         _profileTableView.backgroundColor = [UIColor clearColor];
@@ -85,26 +91,30 @@ static NSString *const kRecordCellIdentifer = @"record";
     return _profileTableView;
 }
 
--(UITableView *)recordTableView {
-    if (!_recordTableView) {
-        _recordTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.recordTitleView.left, self.recordTitleView.bottom, self.recordTitleView.width, self.view.height - self.recordTitleView.bottom) style:UITableViewStylePlain];
-        _recordTableView.dataSource = self;
-        _recordTableView.delegate = self;
-        _recordTableView.backgroundColor = [UIColor clearColor];
-        _recordTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_recordTableView registerClass:[RecordTableViewCell class] forCellReuseIdentifier:kRecordCellIdentifer];
-    }
-    return _recordTableView;
+#pragma mark - SegmentContainer Delegate
+- (NSInteger)numberOfItemsInTopBar:(UIView<QMSegmentTopBarProtocol> *)topBar {
+    return RecordTypeCount;
 }
 
-- (RecordCellView *)recordTitleView {
-    if (!_recordTitleView) {
-        _recordTitleView = [[RecordCellView alloc] initWithFrame:CGRectMake(120, 40, self.view.width-120, [RecordCellView viewHeight])];
-        _recordTitleView.isTitle = true;
-        _recordTitleView.isLocal = true;
-        _recordTitleView.textColor = [UIColor whiteColor];
+- (NSString *)topBar:(UIView<QMSegmentTopBarProtocol> *)segmentTopBar titleForItemAtIndex:(NSInteger)index {
+    if (index == RecordTypeNormalMode) {
+        return @"挑战模式";
+    }else{
+        return @"限时模式";
     }
-    return _recordTitleView;
+}
+
+- (id)segmentContainer:(QMSegmentContainer *)segmentContainer contentForIndex:(NSInteger)index {
+    RecordListView *view = [[RecordListView alloc] initWithFrame:segmentContainer.containerView.bounds];
+    RecordViewModel *vm = [[RecordViewModel alloc] init];
+    if (index == RecordTypeNormalMode) {
+        vm.gameMode = GameModeFree;
+    }else {
+        vm.gameMode = GameModeTimeLimit;
+    }
+    vm.isLocalRecord = YES;
+    view.viewModel = vm;
+    return view;
 }
 
 #pragma mark - UITableView Datasource & Delegate
@@ -113,60 +123,44 @@ static NSString *const kRecordCellIdentifer = @"record";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == _recordTableView) {
-        return self.localRecord.count;
-    }else{
-        return ProfileCellRowCount;
-    }
+    return ProfileCellRowCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == _recordTableView) {
-        RecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecordCellIdentifer];
-        cell.record = [self.localRecord objectAtIndex:indexPath.row];
-        cell.cellView.isLocal = true;
-        cell.cellView.textColor = (indexPath.row %2 == 0) ? [UIColor yellowColor] : [UIColor whiteColor];
-        return cell;
-    }else {
-        ProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kProfileCellIdentifer];
-        
-        switch (indexPath.row) {
-            case ProfileCellRowAccount:{
-                cell.titleLabel.text = @"账号";
-                cell.detailLabel.text = self.user.account;
-            }
-                break;
-            case ProfileCellRowName:{
-                cell.titleLabel.text = @"昵称";
-                cell.detailLabel.text = self.user.name;
-            }
-                break;
-            case ProfileCellRowScore:{
-                cell.titleLabel.text = @"积分";
-                cell.detailLabel.text = [NSString stringWithFormat:@"%ld",(long)self.user.scores];
-            }
-                break;
-            case ProfileCellRowLevel:{
-                cell.titleLabel.text = @"等级";
-                cell.detailLabel.text =  [NSString stringWithFormat:@"%ld",(long)self.user.level];
-            }
-                break;
-            default:
-                NSLog(@"known cell");
+    
+    ProfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kProfileCellIdentifer];
+    
+    switch (indexPath.row) {
+        case ProfileCellRowAccount:{
+            cell.titleLabel.text = @"账号";
+            cell.detailLabel.text = self.user.account;
         }
-        
-        return cell;
+            break;
+        case ProfileCellRowName:{
+            cell.titleLabel.text = @"昵称";
+            cell.detailLabel.text = self.user.name;
+        }
+            break;
+        case ProfileCellRowScore:{
+            cell.titleLabel.text = @"积分";
+            cell.detailLabel.text = [NSString stringWithFormat:@"%ld",(long)self.user.scores];
+        }
+            break;
+        case ProfileCellRowLevel:{
+            cell.titleLabel.text = @"等级";
+            cell.detailLabel.text =  [NSString stringWithFormat:@"%ld",(long)self.user.level];
+        }
+            break;
+        default:
+            NSLog(@"unknown cell");
     }
-   
+    
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == _recordTableView) {
-        return [RecordCellView viewHeight];
-    }else{
-        return [ProfileTableViewCell cellHeight];
-    }
-
+    
+    return [ProfileTableViewCell cellHeight];
 }
 
 @end

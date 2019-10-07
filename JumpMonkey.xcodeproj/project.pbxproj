@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */; };
 		AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */; };
+		AF151AE7234B385700D9400F /* RecordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF151AE6234B385700D9400F /* RecordViewModel.m */; };
 		AF1AD76D22D1F72300550D35 /* QMGlobalAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1AD76C22D1F72300550D35 /* QMGlobalAppearance.m */; };
 		AF1AD79A22D2016A00550D35 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD79922D2016A00550D35 /* libsqlite3.tbd */; };
 		AF1AD79C22D2017300550D35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD79B22D2017200550D35 /* CoreGraphics.framework */; };
@@ -197,6 +198,7 @@
 		AF75DC7822EDCE8000B600CB /* iot_server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7622EDCE8000B600CB /* iot_server_public.pem */; };
 		AF75DC7B22EDEB1F00B600CB /* RecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */; };
 		AF75DC7E22EDEFEB00B600CB /* GameRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7D22EDEFEB00B600CB /* GameRecord.m */; };
+		AFC3FED7234A3FC400A6E1FF /* RecordListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC3FED6234A3FC400A6E1FF /* RecordListView.m */; };
 		AFCA5A6B23128F39000A6EA0 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */; };
 		AFCA5A6F231292B0000A6EA0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */; };
 		AFCA5A722312B793000A6EA0 /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */; };
@@ -212,6 +214,8 @@
 		AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhysicsUtil.m; sourceTree = "<group>"; };
 		AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		AF106C9022956B9B003ABD22 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		AF151AE5234B385700D9400F /* RecordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordViewModel.h; sourceTree = "<group>"; };
+		AF151AE6234B385700D9400F /* RecordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordViewModel.m; sourceTree = "<group>"; };
 		AF18AAC6228945BB00414469 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		AF1AC7D8229BC10F008B3418 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AF1AD76B22D1F72300550D35 /* QMGlobalAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMGlobalAppearance.h; sourceTree = "<group>"; };
@@ -656,6 +660,8 @@
 		AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordAPI.m; sourceTree = "<group>"; };
 		AF75DC7C22EDEFEB00B600CB /* GameRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameRecord.h; sourceTree = "<group>"; };
 		AF75DC7D22EDEFEB00B600CB /* GameRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameRecord.m; sourceTree = "<group>"; };
+		AFC3FED5234A3FC400A6E1FF /* RecordListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordListView.h; sourceTree = "<group>"; };
+		AFC3FED6234A3FC400A6E1FF /* RecordListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordListView.m; sourceTree = "<group>"; };
 		AFCA5A6923128F39000A6EA0 /* MyProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		AFCA5A6D231292B0000A6EA0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -732,6 +738,15 @@
 				AF65A9C322DB799600E666A6 /* ViewUtility.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		AF151AE4234B384200D9400F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AF151AE5234B385700D9400F /* RecordViewModel.h */,
+				AF151AE6234B385700D9400F /* RecordViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AF1B6D2522E3FF6C005C1CB5 /* View */ = {
@@ -891,6 +906,7 @@
 		AF2C44AA22D97EBA003045B8 /* Score */ = {
 			isa = PBXGroup;
 			children = (
+				AF151AE4234B384200D9400F /* ViewModel */,
 				AF2C44F422D97FED003045B8 /* Model */,
 				AF2C44F722D97FED003045B8 /* Service */,
 				AF2C44F822D97FED003045B8 /* View */,
@@ -1071,6 +1087,8 @@
 				AF2C44FC22D97FED003045B8 /* ScoreView.m */,
 				AF32FB8322F5ABE300E1C71C /* RecordListViewController.h */,
 				AF32FB8622F5AC8D00E1C71C /* RecordListViewController.m */,
+				AFC3FED5234A3FC400A6E1FF /* RecordListView.h */,
+				AFC3FED6234A3FC400A6E1FF /* RecordListView.m */,
 				AF32FB8822F5B51D00E1C71C /* RecordTableViewCell.h */,
 				AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */,
 				AFF4678422FFF5B200CD5992 /* RecordCellView.h */,
@@ -1977,6 +1995,7 @@
 				AF1B6D3B22E41F1E005C1CB5 /* SHLoadingView.m in Sources */,
 				AF2E021C22D0F6C40076AD7F /* QMAttributedLabel.m in Sources */,
 				AF71278A22ED40000051C5E0 /* ScoreAPI.m in Sources */,
+				AF151AE7234B385700D9400F /* RecordViewModel.m in Sources */,
 				AF4CB45F22CE27C50090BFB4 /* QMBaseRequestFactory.m in Sources */,
 				AF4CB45622CE27C50090BFB4 /* ASIDataCompressor.m in Sources */,
 				AFCA5A6F231292B0000A6EA0 /* BaseViewController.m in Sources */,
@@ -2047,6 +2066,7 @@
 				AF4CB45822CE27C50090BFB4 /* NSString+QMRequest.m in Sources */,
 				AF65A9B422DB434200E666A6 /* QMSegmentContainer.m in Sources */,
 				AF4CB58522CE2C0D0090BFB4 /* NSObject+Safe.m in Sources */,
+				AFC3FED7234A3FC400A6E1FF /* RecordListView.m in Sources */,
 				AF2C44D522D97EBA003045B8 /* SKNumberNode.m in Sources */,
 				AF4CB46422CE27C50090BFB4 /* QMDownloadRequester.m in Sources */,
 				AF4CB57B22CE2C0D0090BFB4 /* MJPropertyType.m in Sources */,

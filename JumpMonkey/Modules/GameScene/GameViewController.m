@@ -148,7 +148,7 @@
     
     //保存本地游戏记录
     NSError *err = nil;
-    [[DBHelper sharedInstance] insertRecord:@[record] gameMode:GameModeFree withError:&err];
+    [[DBHelper sharedInstance] insertRecord:@[record] gameMode:self.gameMode withError:&err];
     if (err) {
         NSLog(@"游戏记录保存失败！");
     }

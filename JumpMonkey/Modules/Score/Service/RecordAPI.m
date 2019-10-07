@@ -95,6 +95,7 @@
     GetTopRecordsInput *input = [[GetTopRecordsInput alloc] init];
     input.page = self.page;
     input.count = self.count;
+    input.gameMode = self.gameMode;
     return input;
 }
 

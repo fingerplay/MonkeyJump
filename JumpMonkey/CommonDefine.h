@@ -9,11 +9,11 @@
 #ifndef CommonDefine_h
 #define CommonDefine_h
 
-#define kDefaultTreeDistanceX  ([UIScreen mainScreen].bounds.size.width /3)
+#define kDefaultTreeDistanceX  667.f/3  //([UIScreen mainScreen].bounds.size.width /3)
 
 typedef enum {
-    GameModeFree = 1,
-    GameModeTimeLimit = 2
+    GameModeFree = 0,
+    GameModeTimeLimit = 1
 } GameMode;
 
 #define JUMP_COEFFCIENT 0.7f //跳跃系数
@@ -58,7 +58,7 @@ typedef enum {
 #define BASE_HOOK_SCORE 2
 #define BASE_HAWK_SCORE 5
 
-#define MAX_TIME_LIMIT  300 //总时长5分钟
+#define MAX_TIME_LIMIT  30 //总时长5分钟
 #define DROP_TIME_SUBTRACT  10 //掉落一次扣10秒
 
 /*  网络请求   */

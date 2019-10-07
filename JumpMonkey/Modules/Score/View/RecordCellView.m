@@ -46,7 +46,7 @@
     self.hopScoreLabel = [self createNormalLabel];
     self.hopsLabel = [self createShortLabel];
     self.treesLabel = [self createShortLabel];
-    self.durationLabel = [self createNormalLabel];
+    self.durationLabel = [self createShortLabel];
     self.timeLabel = [self createLongLabel];
 
     [self addSubview:self.scoreLabel];
@@ -77,13 +77,13 @@
     self.hopScoreLabel.width = labelWidth;
     self.hopsLabel.left = self.hopScoreLabel.right + labelGapX;
 
-    self.hopsLabel.width = labelShortWidth;
+//    self.hopsLabel.width = labelShortWidth;
     self.treesLabel.left = self.hopsLabel.right + labelGapX;
-    self.treesLabel.width = labelShortWidth;
+//    self.treesLabel.width = labelShortWidth;
     self.durationLabel.left = self.treesLabel.right + labelGapX;
-    self.durationLabel.width = labelWidth;
+//    self.durationLabel.width = labelShortWidth;
     self.timeLabel.left = self.durationLabel.right + labelGapX;
-    self.timeLabel.width = labelLongWidth;
+//    self.timeLabel.width = labelLongWidth;
     [self updateInfo];
     
 }
@@ -91,6 +91,7 @@
 - (UILabel*)createNormalLabel {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, labelWidth, 20)];
     label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
     return label;
 }
@@ -98,6 +99,7 @@
 - (UILabel*)createShortLabel {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, labelShortWidth, 20)];
     label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
     return label;
 }
@@ -105,6 +107,7 @@
 - (UILabel*)createLongLabel {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, labelLongWidth, 20)];
     label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
     return label;
 }

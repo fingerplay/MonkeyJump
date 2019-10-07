@@ -102,7 +102,7 @@ static DBHelper *_helper = nil;
         while (i < [recordArray count]) {
             // 插入新的记录
             GameRecord *record = [recordArray objectAtIndex:i];
-            NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ values(%ld,%@,%ld,%ld,%ld,%ld,%ld,%ld);",tableName,
+            NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ values(%ld,'%@',%ld,%ld,%ld,%ld,%ld,%ld);",tableName,
                              (long)record.userId, record.name,(long)record.score, (long)record.hops, (long)record.hopScore, (long)record.trees, record.time, record.timestamp];
             [db executeUpdate:sql];
             
