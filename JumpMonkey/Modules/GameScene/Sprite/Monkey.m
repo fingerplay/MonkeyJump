@@ -173,6 +173,9 @@
             if ([self.hookNode getRealHook].x < self.mX && [self.hookNode.nextNode getRealHook].x > self.mX) {
                 self.hookNode = self.hookNode.nextNode;
                 [self.mScore updateHooksScore:self.hookNode.number];
+                if (self.delegate && [self.delegate respondsToSelector:@selector(scoreDidUpdate:)]) {
+                    [self.delegate scoreDidUpdate:self.mScore.score];
+                }
             }
             
             if ([self.hawk isHookBroken]) {
