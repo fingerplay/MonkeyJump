@@ -18,6 +18,7 @@
 #import "ScoreAPI.h"
 #import "RecordAPI.h"
 #import "DBHelper.h"
+#import "UserAccountManager.h"
 
 @interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate>
 @property (nonatomic, strong) GameScene *scene;
@@ -127,6 +128,8 @@
     [self.darkMask removeFromParent];
 }
 
+
+
 - (void)saveScoreAndRecord {
     UpdateScoreAPI *scoreAPI = [[UpdateScoreAPI alloc] init];
     scoreAPI.score = self.scene.mScore.score;
@@ -158,6 +161,12 @@
     GetScoreAPI *api = [[GetScoreAPI alloc] init];
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
         NSLog(@"获取积分成功, output=%@",output);
+        id scoreObj = [(NSDictionary*)output objectForKey:@"scores"];
+        if ([scoreObj isKindOfClass:[NSNumber class]]) {
+            NSInteger scores = [scoreObj integerValue];
+            [UserAccountManager sharedManager].currentAccount.scores = scores;
+        }
+        
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
         NSLog(@"获取积分失败");
     }];

@@ -14,6 +14,14 @@
 //    return @{@"userId":@"id"};
 //}
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _levelInfo = [[LevelInfo alloc] init];
+    }
+    return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
@@ -36,20 +44,11 @@
 
 - (void)setScores:(NSInteger)scores {
     _scores = scores;
-    NSInteger level = 1;
-    NSInteger nextLevelScore = 200;
-    while (scores > nextLevelScore) {
-        level ++;
-        nextLevelScore = [self scoreNeedForLevel:level+1];
+    if (!self.levelInfo) {
+        self.levelInfo = [[LevelInfo alloc] init];
     }
-    self.level = level;
-    self.upgradeProgress =(nextLevelScore - scores) /(nextLevelScore - [self scoreNeedForLevel:level]);
+    [self.levelInfo updateWithScore:scores];
 }
 
-- (NSInteger)scoreNeedForLevel:(NSInteger)level {
-    if (level < 2) {
-        return 0;
-    }
-    return (2+level) * (level-1)/2 * 100;
-}
+
 @end

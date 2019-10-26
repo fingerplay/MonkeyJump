@@ -27,6 +27,7 @@
 @property (nonatomic, assign, readonly) NSInteger lastAccScore;
 @property (nonatomic, weak) id<ScoreInfoDelegate> delegate;
 
+
 - (void)updateHopsScore;
 
 - (void)updateHooksScore:(NSInteger)hooksNumber;

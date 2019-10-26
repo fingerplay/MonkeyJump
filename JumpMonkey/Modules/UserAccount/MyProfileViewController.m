@@ -148,7 +148,7 @@ static NSString *const kProfileCellIdentifer = @"profile";
             break;
         case ProfileCellRowLevel:{
             cell.titleLabel.text = @"等级";
-            cell.detailLabel.text =  [NSString stringWithFormat:@"%ld",(long)self.user.level];
+            cell.detailLabel.text =  [NSString stringWithFormat:@"%ld",(long)self.user.levelInfo.level];
         }
             break;
         default:

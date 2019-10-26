@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDate *gameStartTime;//游戏开始时初始化，后面不再改变
 @property (nonatomic, assign) NSTimeInterval remainTime; //剩余时间（限时模式下使用）
 @property (nonatomic, assign) BOOL isGameOver;
+@property (nonatomic, assign) NSInteger initialScore; //游戏开始时的积分(下一局重新计算)
 @end
 
 

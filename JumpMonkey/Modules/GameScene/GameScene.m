@@ -16,6 +16,8 @@
 #import "Hawk.h"
 #import "SKNumberNode.h"
 #import "SoundManager.h"
+#import "SKProgressNode.h"
+#import "UserAccountManager.h"
 
 @interface GameScene ()<MonkeyDelegate,ScoreInfoDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
@@ -28,8 +30,10 @@
 @property (nonatomic, strong) Hawk *hawk;
 @property (nonatomic, strong) SKNumberNode *totalScoreNode;
 @property (nonatomic, strong) SKNumberNode *hopNode;
-
+@property (nonatomic, strong) SKProgressNode *levelProgressNode;
+@property (nonatomic, strong) SKLabelNode *levelTitleNode;
 @property (nonatomic, strong) GameModel *gameModel;
+//@property (nonatomic, strong) UserAccount *userAccount;
 
 @property (nonatomic, assign) CGPoint startTouchPoint;
 @property (nonatomic, strong) NSDate* startTouchTime;
@@ -39,6 +43,7 @@
 @property (nonatomic, strong) dispatch_source_t countDownTimer;
 @property (nonatomic, assign) CGFloat sceneTotalOffset;
 @property (nonatomic, assign) CGFloat sceneCurrentOffset;
+
 @end
 
 @implementation GameScene {
@@ -51,13 +56,16 @@
         GameModel *gameModel = [[GameModel alloc] init];
         gameModel.mode = gameMode;
         self.gameModel = gameModel;
+        [[UserAccountManager sharedManager].currentAccount.levelInfo addObserver:self forKeyPath:@"upgradeProgress" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
 
+
 - (void)dealloc {
      NSLog(@"%@ dealloc",[self class]);
     [self removeChildNodes];
+    [[UserAccountManager sharedManager].currentAccount.levelInfo removeObserver:self forKeyPath:@"upgradeProgress"];
 }
 
 - (void)didMoveToView:(SKView *)view {
@@ -65,11 +73,18 @@
     self.mScore = [ScoreInfo new];
     [self setupVelocityTimer];
     [self addChildNodes];
+    [self reLayoutLevelNodes];
     dispatch_resume(self.velocityTimer);
     if (self.gameModel.mode == GameModeTimeLimit) {
         [self setupCountDownTimer];
         dispatch_resume(self.countDownTimer);
     }
+}
+
+- (void)reLayoutLevelNodes {
+    self.levelTitleNode.position = CGPointMake(20, self.size.height - 20);
+//    self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)self.self.userAccount.levelInfo.level];
+    self.levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y);
 }
 
 - (void)addChildNodes {
@@ -105,7 +120,6 @@
     
     [self createForegroundNodes];
     
-    
     self.monkey = [[Monkey alloc] initWithImageNamed:@"monkey_swing" hookNode:firstTree];
     self.monkey.delegate = self;
 
@@ -120,6 +134,9 @@
     if (self.gameModel.mode == GameModeTimeLimit) {
         [self addChild:self.countDownLabel];
     }
+    [self addChild:self.levelTitleNode];
+    [self addChild:self.levelProgressNode];
+    [self.levelProgressNode updateWithProgress:[UserAccountManager sharedManager].currentAccount.levelInfo.upgradeProgress];
     [self addChild:self.totalScoreNode];
     [self addChild:self.velocityLabel];
     [self addChild:self.hopNode];
@@ -160,6 +177,14 @@
     [self.foregroundNodes removeAllObjects];
     self.treesList = nil;
     
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"upgradeProgress"]) {
+        UserAccount *userAccount = [UserAccountManager sharedManager].currentAccount;
+        self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)userAccount.levelInfo.level];
+        [self.levelProgressNode updateWithProgress:userAccount.levelInfo.upgradeProgress];
+    }
 }
 
 #pragma mark - Action
@@ -304,6 +329,10 @@
 
 - (void)scoreDidUpdate:(NSInteger)score {
     [self.totalScoreNode setNumber:self.monkey.mScore.score];
+    NSInteger currentScore = self.gameModel.initialScore + score;
+
+    [UserAccountManager sharedManager].currentAccount.scores = currentScore;
+
     if (self.gameDelegate && [self.gameDelegate respondsToSelector:@selector(scoreDidUpdate:)]) {
         [self.gameDelegate scoreDidUpdate:self.monkey.mScore.score];
     }
@@ -402,6 +431,8 @@
 }
 
 - (void)gameRestart {
+    
+    self.gameModel.initialScore = [UserAccountManager sharedManager].currentAccount.scores;
     //删除子节点
     [self removeChildNodes];
     //重新添加子节点
@@ -575,6 +606,26 @@
         _countDownLabel.anchorPoint = CGPointMake(0.5, 0.5);
     }
     return _countDownLabel;
+}
+
+- (SKLabelNode *)levelTitleNode {
+    if (!_levelTitleNode) {
+        NSString *levelStr = [NSString stringWithFormat:@"LV%ld",(long)[UserAccountManager sharedManager]. currentAccount.levelInfo.level];
+        _levelTitleNode = [SKLabelNode labelNodeWithText:levelStr];
+        _levelTitleNode.position = CGPointMake(20, self.size.height - 20);
+        _levelTitleNode.fontSize = 14;
+    }
+    return _levelTitleNode;
+}
+
+- (SKProgressNode *)levelProgressNode {
+    if (!_levelProgressNode) {
+        _levelProgressNode = [SKProgressNode shapeNodeWithRect:CGRectMake(0, 0, 100, 10) cornerRadius:5];
+//        _levelProgressNode.fillColor = [UIColor purpleColor];
+        _levelProgressNode.strokeColor = [UIColor whiteColor];
+        
+    }
+    return _levelProgressNode;
 }
 
 @end

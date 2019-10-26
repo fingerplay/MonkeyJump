@@ -168,6 +168,8 @@
 		AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2CE22A4BD9D005E6361 /* SoundManager.m */; };
 		AF58A2D522A50D92005E6361 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2D422A50D91005E6361 /* UIImage+Crop.m */; };
 		AF58A2DE22A51E42005E6361 /* UIBezierPath+AllPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */; };
+		AF5DCCFF235AD90400B63F32 /* LevelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5DCCFE235AD90400B63F32 /* LevelInfo.m */; };
+		AF5DCD02235AE78800B63F32 /* SKProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5DCD01235AE78800B63F32 /* SKProgressNode.m */; };
 		AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99522DB40E900E666A6 /* AccountViewController.m */; };
 		AF65A9AE22DB434200E666A6 /* QMSegmentDoubleTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99C22DB434200E666A6 /* QMSegmentDoubleTitleItem.m */; };
 		AF65A9AF22DB434200E666A6 /* QMSegmentScrollview.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99D22DB434200E666A6 /* QMSegmentScrollview.m */; };
@@ -530,6 +532,10 @@
 		AF58A2D822A51732005E6361 /* SequenceFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceFrameImage.h; sourceTree = "<group>"; };
 		AF58A2DC22A51E42005E6361 /* UIBezierPath+AllPoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AllPoints.h"; sourceTree = "<group>"; };
 		AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AllPoints.m"; sourceTree = "<group>"; };
+		AF5DCCFD235AD90400B63F32 /* LevelInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelInfo.h; sourceTree = "<group>"; };
+		AF5DCCFE235AD90400B63F32 /* LevelInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelInfo.m; sourceTree = "<group>"; };
+		AF5DCD00235AE78800B63F32 /* SKProgressNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKProgressNode.h; sourceTree = "<group>"; };
+		AF5DCD01235AE78800B63F32 /* SKProgressNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKProgressNode.m; sourceTree = "<group>"; };
 		AF65A99422DB40E900E666A6 /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		AF65A99522DB40E900E666A6 /* AccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		AF65A99C22DB434200E666A6 /* QMSegmentDoubleTitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSegmentDoubleTitleItem.m; sourceTree = "<group>"; };
@@ -875,6 +881,8 @@
 				AF2C449822D97EBA003045B8 /* HookNode.m */,
 				AF2C44A322D97EBA003045B8 /* SKNumberNode.h */,
 				AF2C449922D97EBA003045B8 /* SKNumberNode.m */,
+				AF5DCD00235AE78800B63F32 /* SKProgressNode.h */,
+				AF5DCD01235AE78800B63F32 /* SKProgressNode.m */,
 				AF2C44A222D97EBA003045B8 /* Monkey.h */,
 				AF2C449A22D97EBA003045B8 /* Monkey.m */,
 				AF2C449B22D97EBA003045B8 /* Tree.h */,
@@ -1061,6 +1069,8 @@
 			children = (
 				AF2C44F622D97FED003045B8 /* ScoreInfo.h */,
 				AF2C44F522D97FED003045B8 /* ScoreInfo.m */,
+				AF5DCCFD235AD90400B63F32 /* LevelInfo.h */,
+				AF5DCCFE235AD90400B63F32 /* LevelInfo.m */,
 				AF75DC7C22EDEFEB00B600CB /* GameRecord.h */,
 				AF75DC7D22EDEFEB00B600CB /* GameRecord.m */,
 			);
@@ -1980,6 +1990,7 @@
 				AF4CB59122CE2C0D0090BFB4 /* NSIndexPath+safe.m in Sources */,
 				AF4CB59022CE2C0D0090BFB4 /* NSArray+safe.m in Sources */,
 				AF4CB57622CE2C0D0090BFB4 /* QMCustomLog.m in Sources */,
+				AF5DCD02235AE78800B63F32 /* SKProgressNode.m in Sources */,
 				AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */,
 				AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */,
 				AF4CB58C22CE2C0D0090BFB4 /* NSMutableSet+safe.m in Sources */,
@@ -2044,6 +2055,7 @@
 				AF2C44D822D97EBA003045B8 /* TreesList.m in Sources */,
 				AF4CB45422CE27C50090BFB4 /* QMInput.m in Sources */,
 				AF4CB59422CE2C0D0090BFB4 /* QMSaveKeyChain.m in Sources */,
+				AF5DCCFF235AD90400B63F32 /* LevelInfo.m in Sources */,
 				AF4CB55F22CE2C0D0090BFB4 /* UIButton+Category.m in Sources */,
 				AF4CB45322CE27C50090BFB4 /* QMRequester.m in Sources */,
 				AF4CB57922CE2C0D0090BFB4 /* NJKWebViewProgressView.m in Sources */,
