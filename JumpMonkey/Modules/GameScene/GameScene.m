@@ -18,11 +18,12 @@
 #import "SoundManager.h"
 #import "SKProgressNode.h"
 #import "UserAccountManager.h"
+#import "TimeUtil.h"
 
 @interface GameScene ()<MonkeyDelegate,ScoreInfoDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
 @property (nonatomic, strong) SKLabelNode *velocityLabel;
-@property (nonatomic, strong) SKNumberNode *countDownLabel;
+@property (nonatomic, strong) SKLabelNode *countDownLabel;
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
 @property (nonatomic, strong) NormalNode *backgroundNodeB;
 @property (nonatomic, strong) Monkey *monkey;
@@ -84,7 +85,7 @@
 - (void)reLayoutLevelNodes {
     self.levelTitleNode.position = CGPointMake(20, self.size.height - 20);
 //    self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)self.self.userAccount.levelInfo.level];
-    self.levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y);
+    self.levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y+3);
 }
 
 - (void)addChildNodes {
@@ -95,7 +96,7 @@
 
     self.sceneTotalOffset = 0;
     if(self.gameModel.mode == GameModeTimeLimit) {
-        self.countDownLabel.number = self.gameModel.remainTime;
+        self.countDownLabel.text = [TimeUtil getMinAndSecWithDuration:self.gameModel.remainTime];
     }
     
     self.velocityLabel.text = @"0M/s";
@@ -187,6 +188,10 @@
     }
 }
 
+- (void)updateInitialScore:(NSInteger)score {
+    self.gameModel.initialScore = score;
+}
+
 #pragma mark - Action
 
 - (void)touchDownAtPoint:(CGPoint)pos {
@@ -261,8 +266,14 @@
     if (self.monkey.state == MonkeyStateJump && position.y< -self.monkey.size.height) {//跳出屏幕，游戏结束
         if (self.gameModel.mode == GameModeTimeLimit) {
             self.gameModel.remainTime -= DROP_TIME_SUBTRACT;
-            [self resetNodes];
-            [self showSubtractScoreLabel];
+            self.monkey.mScore.dropCount += 1;
+            if (self.gameModel.remainTime <= 0) {
+                [self gameDidEnd];
+            }else{
+                [self resetNodes];
+                [self showSubtractScoreLabel];
+            }
+
         }else{
             [self gameDidEnd];
         }
@@ -274,7 +285,7 @@
     }
     HookNode *oldNode = [self.treesList.nodes firstObject];
     if (oldNode.position.x < - (oldNode.size.width/2 + kDefaultTreeDistanceX) ) {
-        NSLog(@"remove old node.. %@",oldNode.name);
+       // NSLog(@"remove old node.. %@",oldNode.name);
         self.isRemovingOldNode = YES;
         if ([oldNode isKindOfClass:[Spider class]]) {
             NormalNode *line = ((Spider*)oldNode).line;
@@ -298,7 +309,7 @@
             insertIndex = self.children.count;
         }
         [self insertChild:newNode atIndex:insertIndex];
-        NSLog(@"add new node [%@] at index %ld",newNode.name,insertIndex);
+      //  NSLog(@"add new node [%@] at index %ld",newNode.name,insertIndex);
         if ([newNode isKindOfClass:[Spider class]]) {
             NormalNode *line = ((Spider*)newNode).line;
             [self insertChild:line atIndex:insertIndex];
@@ -306,10 +317,6 @@
     }
  
     self.isRemovingOldNode = NO;
-
-//    self.velocityLabel.text = [NSString stringWithFormat:@"%1.1fM/s",self.monkey.monkeyVolecity.horizontal/SCREEN_W * 18.f * FPS];
-//    self.velocityLabel.text = [NSString stringWithFormat:@"%1.1fM/s",self.mScore.distance/self.mScore.duration];
-//      self.velocityLabel.text = [NSString stringWithFormat:@"%1.1fM/s",self.monkey.sceneMoveVelocity];
 }
 
 - (void)monkeyDidJumpToHookNode:(HookNode *)node {
@@ -363,7 +370,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.gameModel.mode == GameModeTimeLimit) {
                 self.gameModel.remainTime -= 1;
-                self.countDownLabel.number = self.gameModel.remainTime;
+                self.countDownLabel.text = [TimeUtil getMinAndSecWithDuration:self.gameModel.remainTime];
                 if (self.gameModel.remainTime <= 0) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [self gameDidEnd];
@@ -417,6 +424,7 @@
         if (self.gameModel.mode == GameModeTimeLimit) {
             dispatch_suspend(self.countDownTimer);
         }
+        [self.countDownLabel removeFromParent];
         [[SoundManager sharedManger] playGameOverSound];
 //        self.paused = YES;
         self.gameModel.isGameOver = YES;
@@ -593,17 +601,19 @@
         _velocityLabel = [[SKLabelNode alloc] init];
         _velocityLabel.position = CGPointMake(self.size.width - 60, self.size.height - 30);
         _velocityLabel.fontColor = [UIColor whiteColor];
-        _velocityLabel.fontSize = 18;
+        _velocityLabel.fontSize = 16;
+        _velocityLabel.fontName = @"Helvetica";
     }
     return _velocityLabel;
 }
 
-- (SKNumberNode *)countDownLabel {
+- (SKLabelNode *)countDownLabel {
     if (!_countDownLabel) {
-        _countDownLabel = [[SKNumberNode alloc] initWithImageNamed:@"number_2_frame_list" charSequence:@"0123456789+-"];
-        _countDownLabel.position = CGPointMake(40, self.size.height - 30);
-        _countDownLabel.maxHeight = 18;
-        _countDownLabel.anchorPoint = CGPointMake(0.5, 0.5);
+        _countDownLabel = [[SKLabelNode alloc] init];
+        _countDownLabel.position = CGPointMake(30, self.size.height - 90);
+        _countDownLabel.fontColor = [UIColor whiteColor];
+        _countDownLabel.fontSize = 18;
+        _countDownLabel.fontName = @"Helvetica";
     }
     return _countDownLabel;
 }
@@ -612,8 +622,9 @@
     if (!_levelTitleNode) {
         NSString *levelStr = [NSString stringWithFormat:@"LV%ld",(long)[UserAccountManager sharedManager]. currentAccount.levelInfo.level];
         _levelTitleNode = [SKLabelNode labelNodeWithText:levelStr];
-        _levelTitleNode.position = CGPointMake(20, self.size.height - 20);
-        _levelTitleNode.fontSize = 14;
+//        _levelTitleNode.position = CGPointMake(20, self.size.height - 20);
+        _levelTitleNode.fontSize = 16;
+        _levelTitleNode.fontName = @"Helvetica";
     }
     return _levelTitleNode;
 }
@@ -621,8 +632,9 @@
 - (SKProgressNode *)levelProgressNode {
     if (!_levelProgressNode) {
         _levelProgressNode = [SKProgressNode shapeNodeWithRect:CGRectMake(0, 0, 100, 10) cornerRadius:5];
-//        _levelProgressNode.fillColor = [UIColor purpleColor];
-        _levelProgressNode.strokeColor = [UIColor whiteColor];
+        _levelProgressNode.fillColor = [UIColor blackColor];
+//        _levelProgressNode.strokeColor = [UIColor whiteColor];
+//        _levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y+3);
         
     }
     return _levelProgressNode;

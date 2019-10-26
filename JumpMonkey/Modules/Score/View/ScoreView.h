@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScoreView : UIView
 
 @property (nonatomic, strong) ScoreInfo *score;
+@property (nonatomic, assign) GameMode mode;
 
 @end
 

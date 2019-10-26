@@ -22,6 +22,7 @@
 @property (nonatomic, assign) NSInteger catchHawkCount;
 @property (nonatomic, assign) NSInteger catchTreesCount;
 @property (nonatomic, assign, readonly) NSInteger score;
+@property (nonatomic, assign) NSInteger dropCount; //定时模式下掉落次数
 @property (nonatomic, assign) NSInteger distance;
 @property (nonatomic, assign) NSTimeInterval duration;
 @property (nonatomic, assign, readonly) NSInteger lastAccScore;

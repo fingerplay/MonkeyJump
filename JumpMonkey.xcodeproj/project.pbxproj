@@ -68,6 +68,7 @@
 		AF36E05E22A5F445008BBCCF /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E05D22A5F445008BBCCF /* Bezier.m */; };
 		AF36E06522A6487A008BBCCF /* ImageSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E06422A6487A008BBCCF /* ImageSequence.m */; };
 		AF3DE2AA232D226A006A3169 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE2A9232D226A006A3169 /* DBHelper.m */; };
+		AF40965A23647E55005C432B /* TimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AF40965923647E55005C432B /* TimeUtil.m */; };
 		AF4836C622E4BF320017D733 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C222E4BF320017D733 /* APIManager.m */; };
 		AF4836C722E4BF320017D733 /* SecKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C522E4BF320017D733 /* SecKeyManager.m */; };
 		AF4CB45222CE27C50090BFB4 /* QMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42122CE27C50090BFB4 /* QMRequestManager.m */; };
@@ -322,6 +323,8 @@
 		AF36E06422A6487A008BBCCF /* ImageSequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSequence.m; sourceTree = "<group>"; };
 		AF3DE2A8232D226A006A3169 /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		AF3DE2A9232D226A006A3169 /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		AF40965823647E55005C432B /* TimeUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtil.h; sourceTree = "<group>"; };
+		AF40965923647E55005C432B /* TimeUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtil.m; sourceTree = "<group>"; };
 		AF4836C122E4BF320017D733 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		AF4836C222E4BF320017D733 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		AF4836C422E4BF320017D733 /* SecKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecKeyManager.h; sourceTree = "<group>"; };
@@ -742,6 +745,8 @@
 				AF36E05D22A5F445008BBCCF /* Bezier.m */,
 				AF65A9C222DB799600E666A6 /* ViewUtility.h */,
 				AF65A9C322DB799600E666A6 /* ViewUtility.m */,
+				AF40965823647E55005C432B /* TimeUtil.h */,
+				AF40965923647E55005C432B /* TimeUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -2041,6 +2046,7 @@
 				AF4CB57822CE2C0D0090BFB4 /* NJKWebViewProgress.m in Sources */,
 				AF4CB45D22CE27C50090BFB4 /* QMStatus.m in Sources */,
 				AF4CB55C22CE2C0D0090BFB4 /* NSObject+QMExtand.m in Sources */,
+				AF40965A23647E55005C432B /* TimeUtil.m in Sources */,
 				AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */,
 				AF2C44DA22D97EBA003045B8 /* Tree.m in Sources */,
 				AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */,

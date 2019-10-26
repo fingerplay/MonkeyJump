@@ -25,11 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface GetScoreInput : QMInput
-
+//@property (nonatomic,assign) NSInteger gameMode;
 @end
 
 @interface GetScoreAPI : QMRequester
-
+//@property (nonatomic,assign) NSInteger gameMode;
 @end
 
 

@@ -46,6 +46,11 @@
 
 @implementation GetScoreAPI
 
+- (GetScoreInput *)buildInput {
+    GetScoreInput *input = [[GetScoreInput alloc] init];
+//    input.gameMode = self.gameMode;
+    return input;
+}
 
 - (void)configCommand:(QMCommand *)command
 {

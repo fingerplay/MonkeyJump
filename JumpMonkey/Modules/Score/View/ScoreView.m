@@ -8,13 +8,16 @@
 
 #import "ScoreView.h"
 #import "ScoreTableViewCell.h"
+#import "TimeUtil.h"
 
 typedef NS_ENUM(NSInteger){
+    ScoreCellTypeGameMode,
     ScoreCellTypeTotalScore,
     ScoreCellTypeDistance,
     ScoreCellTypeDuration,
     ScoreCellTypeMaxHops,
     ScoreCellTypeCatchHawks,
+    ScoreCellTypeDropCount,//定时模式下掉落次数，自由模式不显示
     ScoreCellTypeCount
 } ScoreCellType;
 
@@ -39,7 +42,7 @@ static NSString *const kScoreCell = @"score";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ScoreCellTypeCount;
+    return (self.mode == GameModeTimeLimit) ? ScoreCellTypeCount : ScoreCellTypeCount - 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -51,19 +54,11 @@ static NSString *const kScoreCell = @"score";
         } break;
         case ScoreCellTypeDistance:{
             cell.titleLabel.text = @"距离";
-            cell.detailLabel.text = [NSString stringWithFormat:@"%ld",(long)self.score.distance];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%ldM",(long)self.score.distance];
         }break;
-            
         case ScoreCellTypeDuration:{
             cell.titleLabel.text = @"用时";
-//            cell.detailLabel.text = [NSString stringWithFormat:@"%f",self.score.duration];
-            NSInteger durationS = self.score.duration;
-            NSInteger minutes = ceil(durationS / 60);
-            NSInteger seconds = durationS % 60;
-            NSString *strMinSupp = [NSString stringWithFormat:@"0%ld",(long)minutes];
-            NSString *strSecSupp = [NSString stringWithFormat:@"0%ld",(long)seconds];
-            cell.detailLabel.text = [NSString stringWithFormat:@"%@:%@",[strMinSupp substringFromIndex:strMinSupp.length - 2],[strSecSupp substringFromIndex:strSecSupp.length - 2]];
-            
+            cell.detailLabel.text = [TimeUtil getMinAndSecWithDuration:self.score.duration];
         }break;
         case ScoreCellTypeMaxHops:{
             cell.titleLabel.text = @"最大连跳数";
@@ -72,6 +67,14 @@ static NSString *const kScoreCell = @"score";
         case ScoreCellTypeCatchHawks:{
             cell.titleLabel.text = @"抓住鹰数";
             cell.detailLabel.text = [NSString stringWithFormat:@"%ld",self.score.catchHawkCount];
+        }break;
+        case ScoreCellTypeGameMode:{
+            cell.titleLabel.text = @"模式";
+            cell.detailLabel.text = self.mode == GameModeFree ? @"挑战模式" : @"定时模式";
+        }break;
+        case ScoreCellTypeDropCount:{
+            cell.titleLabel.text = @"掉落次数";
+            cell.detailLabel.text =  [NSString stringWithFormat:@"%ld",(long)self.score.dropCount];
         }break;
         default:
             break;

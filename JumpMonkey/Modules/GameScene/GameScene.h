@@ -36,4 +36,6 @@
 
 - (void)removeChildNodes;
 
+- (void)updateInitialScore:(NSInteger)score;
+
 @end

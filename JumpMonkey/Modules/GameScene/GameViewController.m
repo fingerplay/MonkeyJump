@@ -114,6 +114,7 @@
     SKTexture *texture = [self.scene.view textureFromNode:self.scene];
     self.snapshotView.image = [UIImage imageWithCGImage:texture.CGImage];
     self.scoreView.score = self.scene.mScore;
+    self.scoreView.mode = self.gameMode;
     [self saveScoreAndRecord];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -159,12 +160,14 @@
 
 - (void)loadScoreFromServer {
     GetScoreAPI *api = [[GetScoreAPI alloc] init];
+//    api.gameMode = self.gameMode;
     [api startRequestWithSuccCallback:^(QMStatus *status, QMInput *input, id output) {
         NSLog(@"获取积分成功, output=%@",output);
         id scoreObj = [(NSDictionary*)output objectForKey:@"scores"];
         if ([scoreObj isKindOfClass:[NSNumber class]]) {
             NSInteger scores = [scoreObj integerValue];
             [UserAccountManager sharedManager].currentAccount.scores = scores;
+            [self.scene updateInitialScore:scores];
         }
         
     } failCallback:^(QMStatus *status, QMInput *input, NSError *error) {
@@ -264,7 +267,7 @@
 - (ClockImageView *)countdownView {
     if (!_countdownView) {
         UIImage *image = [UIImage imageNamed:@"bubble_tree"];
-        _countdownView = [[ClockImageView alloc] initWithFrame:CGRectMake(self.view.width - image.size.width-5, 40, image.size.width, image.size.height)];
+        _countdownView = [[ClockImageView alloc] initWithFrame:CGRectMake(5, 30, image.size.width, image.size.height)];
 //        _countdownView.image = image;
         _countdownView.layer.cornerRadius = image.size.width/2;
         _countdownView.layer.masksToBounds = YES;
@@ -289,7 +292,8 @@
 
 - (ScoreView *)scoreView {
     if (!_scoreView) {
-        _scoreView = [[ScoreView alloc] initWithFrame:CGRectMake(0, 0, self.snapshotView.width, 200)];
+        _scoreView = [[ScoreView alloc] initWithFrame:CGRectMake(0, 10, self.snapshotView.width, 300)];
+        _scoreView.mode = self.gameMode;
     }
     return _scoreView;
    
