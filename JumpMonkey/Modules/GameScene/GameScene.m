@@ -23,6 +23,7 @@
 @interface GameScene ()<MonkeyDelegate,ScoreInfoDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
 @property (nonatomic, strong) SKLabelNode *velocityLabel;
+@property (nonatomic, strong) SKLabelNode *lifeCountLabel;
 @property (nonatomic, strong) SKLabelNode *countDownLabel;
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
 @property (nonatomic, strong) NormalNode *backgroundNodeB;
@@ -58,6 +59,7 @@
         gameModel.mode = gameMode;
         self.gameModel = gameModel;
         [[UserAccountManager sharedManager].currentAccount.levelInfo addObserver:self forKeyPath:@"upgradeProgress" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        [[UserAccountManager sharedManager].currentAccount.lifeInfo addObserver:self forKeyPath:@"lifeCount" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
@@ -67,6 +69,7 @@
      NSLog(@"%@ dealloc",[self class]);
     [self removeChildNodes];
     [[UserAccountManager sharedManager].currentAccount.levelInfo removeObserver:self forKeyPath:@"upgradeProgress"];
+    [[UserAccountManager sharedManager].currentAccount.lifeInfo removeObserver:self forKeyPath:@"lifeCount"];
 }
 
 - (void)didMoveToView:(SKView *)view {
@@ -74,7 +77,7 @@
     self.mScore = [ScoreInfo new];
     [self setupVelocityTimer];
     [self addChildNodes];
-    [self reLayoutLevelNodes];
+    [self reLayoutObservableNodes];
     dispatch_resume(self.velocityTimer);
     if (self.gameModel.mode == GameModeTimeLimit) {
         [self setupCountDownTimer];
@@ -82,10 +85,12 @@
     }
 }
 
-- (void)reLayoutLevelNodes {
+//因为有些node的内容是监听全局变量的，会在gameScene frame设置之前被调用，所以在gameScene frame设置之后还要重新给他布局
+- (void)reLayoutObservableNodes {
     self.levelTitleNode.position = CGPointMake(20, self.size.height - 20);
 //    self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)self.self.userAccount.levelInfo.level];
     self.levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y+3);
+    self.lifeCountLabel.position = CGPointMake(self.frame.size.width - 20, self.frame.size.height - 25);
 }
 
 - (void)addChildNodes {
@@ -139,6 +144,7 @@
     [self addChild:self.levelProgressNode];
     [self.levelProgressNode updateWithProgress:[UserAccountManager sharedManager].currentAccount.levelInfo.upgradeProgress];
     [self addChild:self.totalScoreNode];
+    [self addChild:self.lifeCountLabel];
     [self addChild:self.velocityLabel];
     [self addChild:self.hopNode];
     [self addChild:[SoundManager sharedManger]];
@@ -153,6 +159,7 @@
 
 - (void)resetNodes {
 //    self.paused = YES;
+    [[UserAccountManager sharedManager].currentAccount.lifeInfo subtractLifeByDrop];
     HookNode *currentHook = self.monkey.hookNode.preNode;
     currentHook.position = CGPointMake(MONKEY_MIN_X, TREE_POSITION_Y);
     HookNode *lastHook = currentHook;
@@ -185,6 +192,9 @@
         UserAccount *userAccount = [UserAccountManager sharedManager].currentAccount;
         self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)userAccount.levelInfo.level];
         [self.levelProgressNode updateWithProgress:userAccount.levelInfo.upgradeProgress];
+    }else if ([keyPath isEqualToString:@"lifeCount"]) {
+        NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].currentAccount.lifeInfo.lifeCount];
+        self.lifeCountLabel.text = str;
     }
 }
 
@@ -418,6 +428,7 @@
 
 - (void)gameDidEnd {
     if (!self.gameModel.isGameOver) {
+        [[UserAccountManager sharedManager].currentAccount.lifeInfo subtractLifeByDrop];
         [self.monkey removeDelayJump];
         [self.monkey removeFromParent];
         dispatch_suspend(self.velocityTimer);
@@ -589,7 +600,7 @@
         _hopNode.showPlusSign = NO;
         _hopNode.maxHeight = 30;
         [_hopNode setNumber:0];
-        _hopNode.position = CGPointMake(self.size.width - _hopNode.size.width - 5, self.size.height - _hopNode.size.height - 5);
+        _hopNode.position = CGPointMake(self.size.width - _hopNode.size.width - 40, self.size.height - _hopNode.size.height - 5);
         _hopNode.anchorPoint = CGPointZero;
 
     }
@@ -599,7 +610,7 @@
 - (SKLabelNode *)velocityLabel {
     if (!_velocityLabel) {
         _velocityLabel = [[SKLabelNode alloc] init];
-        _velocityLabel.position = CGPointMake(self.size.width - 60, self.size.height - 30);
+        _velocityLabel.position = CGPointMake(self.size.width - 40, self.size.height - 50);
         _velocityLabel.fontColor = [UIColor whiteColor];
         _velocityLabel.fontSize = 16;
         _velocityLabel.fontName = @"Helvetica";
@@ -640,4 +651,13 @@
     return _levelProgressNode;
 }
 
+- (SKLabelNode *)lifeCountLabel {
+    if (!_lifeCountLabel) {
+        NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].currentAccount.lifeInfo.lifeCount];
+        _lifeCountLabel = [SKLabelNode labelNodeWithText:str];
+        _lifeCountLabel.fontSize = 16;
+        _lifeCountLabel.fontName = @"Helvetica";
+    }
+    return _lifeCountLabel;
+}
 @end

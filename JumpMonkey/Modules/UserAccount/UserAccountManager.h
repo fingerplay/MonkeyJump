@@ -30,4 +30,6 @@ typedef void(^UserAccountFailCallback)(NSInteger code, NSString *errorInfo);
 //从服务端获取账号最新信息，如积分、昵称等
 - (void)getUserInfoWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock;
 
+- (void)saveAccountToFileAsync;
+
 @end

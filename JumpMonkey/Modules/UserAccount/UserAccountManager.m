@@ -114,6 +114,11 @@ static UserAccountManager *_sharedInstance = nil;
     }];
 }
 
+- (void)saveAccountToFileAsync {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self saveAccountToFile];
+    });
+}
 
 #pragma mark - Private
 
@@ -144,8 +149,6 @@ static UserAccountManager *_sharedInstance = nil;
 
 - (void)setCurrentAccount:(UserAccount *)currentAccount {
     _currentAccount = currentAccount;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self saveAccountToFile];
-    });
+    [self saveAccountToFileAsync];
 }
 @end

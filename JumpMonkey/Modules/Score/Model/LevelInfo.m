@@ -10,6 +10,21 @@
 
 @implementation LevelInfo
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.level = [aDecoder decodeIntegerForKey:@"level"];
+        self.upgradeProgress = [aDecoder decodeFloatForKey:@"upgradeProgress"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
+    [aCoder encodeInteger:self.level forKey:@"level"];
+    [aCoder encodeFloat:self.upgradeProgress forKey:@"upgradeProgress"];
+}
+
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -30,8 +45,6 @@
     NSInteger currentLevelScore = [self scoreNeedForLevel:level];
     self.upgradeProgress = (CGFloat)(score - currentLevelScore) / (CGFloat)(nextLevelScore - currentLevelScore);
 }
-
-
 
 - (NSInteger)scoreNeedForLevel:(NSInteger)level {
     if (level < 2) {

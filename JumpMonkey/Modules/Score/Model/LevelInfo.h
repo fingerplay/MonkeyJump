@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LevelInfo : NSObject
+@interface LevelInfo : NSObject<NSCoding>
 @property (nonatomic, assign) NSInteger level; //等级 ,由scores计算得来
 @property (nonatomic, assign) CGFloat upgradeProgress; //升到下一级的经验百分比
 

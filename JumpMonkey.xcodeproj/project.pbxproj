@@ -183,6 +183,7 @@
 		AF65A9BD22DB49C000E666A6 /* EntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9BC22DB49C000E666A6 /* EntranceViewController.m */; };
 		AF65A9C122DB49F900E666A6 /* EntranceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9C022DB49F900E666A6 /* EntranceTableViewCell.m */; };
 		AF65A9C422DB799600E666A6 /* ViewUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9C322DB799600E666A6 /* ViewUtility.m */; };
+		AF6EB8402365978000527893 /* LifeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6EB83F2365978000527893 /* LifeInfo.m */; };
 		AF71276C22EC4FB60051C5E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF71276B22EC4FB60051C5E0 /* Assets.xcassets */; };
 		AF71276F22ED3CA90051C5E0 /* SCDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71276D22ED3CA90051C5E0 /* SCDevice.m */; };
 		AF71277F22ED3D100051C5E0 /* NSString+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71277222ED3D100051C5E0 /* NSString+Encryption.m */; };
@@ -565,6 +566,8 @@
 		AF65A9C022DB49F900E666A6 /* EntranceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntranceTableViewCell.m; sourceTree = "<group>"; };
 		AF65A9C222DB799600E666A6 /* ViewUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUtility.h; sourceTree = "<group>"; };
 		AF65A9C322DB799600E666A6 /* ViewUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtility.m; sourceTree = "<group>"; };
+		AF6EB83E2365978000527893 /* LifeInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LifeInfo.h; sourceTree = "<group>"; };
+		AF6EB83F2365978000527893 /* LifeInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LifeInfo.m; sourceTree = "<group>"; };
 		AF71276B22EC4FB60051C5E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF71276D22ED3CA90051C5E0 /* SCDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDevice.m; sourceTree = "<group>"; };
 		AF71276E22ED3CA90051C5E0 /* SCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCDevice.h; sourceTree = "<group>"; };
@@ -785,8 +788,8 @@
 		AF1B6D2B22E3FF6C005C1CB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AF1B6D2C22E3FF6C005C1CB5 /* UserAccount.m */,
 				AF1B6D2D22E3FF6C005C1CB5 /* UserAccount.h */,
+				AF1B6D2C22E3FF6C005C1CB5 /* UserAccount.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1076,6 +1079,8 @@
 				AF2C44F522D97FED003045B8 /* ScoreInfo.m */,
 				AF5DCCFD235AD90400B63F32 /* LevelInfo.h */,
 				AF5DCCFE235AD90400B63F32 /* LevelInfo.m */,
+				AF6EB83E2365978000527893 /* LifeInfo.h */,
+				AF6EB83F2365978000527893 /* LifeInfo.m */,
 				AF75DC7C22EDEFEB00B600CB /* GameRecord.h */,
 				AF75DC7D22EDEFEB00B600CB /* GameRecord.m */,
 			);
@@ -2052,6 +2057,7 @@
 				AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */,
 				AF4CB56222CE2C0D0090BFB4 /* UIImage+QMColor.m in Sources */,
 				AF4CB58722CE2C0D0090BFB4 /* NSMutableArray+safe.m in Sources */,
+				AF6EB8402365978000527893 /* LifeInfo.m in Sources */,
 				AFCA5A722312B793000A6EA0 /* ProfileTableViewCell.m in Sources */,
 				AF71278322ED3D100051C5E0 /* NSData+AES.m in Sources */,
 				AF1B6D3D22E41F1E005C1CB5 /* SHToastView.m in Sources */,
