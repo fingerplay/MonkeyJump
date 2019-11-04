@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         _levelInfo = [[LevelInfo alloc] init];
-        _lifeInfo = [[LifeInfo alloc] init];
+//        _lifeInfo = [[LifeInfo alloc] init];
     }
     return self;
 }
@@ -28,7 +28,7 @@
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.scores = [aDecoder decodeIntegerForKey:@"scores"];
         self.levelInfo = [aDecoder decodeObjectForKey:@"levelInfo"];
-        self.lifeInfo = [aDecoder decodeObjectForKey:@"lifeInfo"];
+//        self.lifeInfo = [aDecoder decodeObjectForKey:@"lifeInfo"];
     }
     return self;
 }
@@ -40,7 +40,7 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeInteger:self.scores forKey:@"scores"];
     [aCoder encodeObject:self.levelInfo forKey:@"levelInfo"];
-    [aCoder encodeObject:self.lifeInfo forKey:@"lifeInfo"];
+//    [aCoder encodeObject:self.lifeInfo forKey:@"lifeInfo"];
 }
 
 - (void)setScores:(NSInteger)scores {

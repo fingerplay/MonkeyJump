@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserAccount.h"
+#import "LifeInfo.h"
 
 typedef void(^UserAccountSuccCallback)(id userInfo);
 
@@ -16,6 +17,7 @@ typedef void(^UserAccountFailCallback)(NSInteger code, NSString *errorInfo);
 @interface UserAccountManager : NSObject
 
 @property (nonatomic, strong) UserAccount *currentAccount;
+@property (nonatomic, strong) LifeInfo *lifeInfo; //生命值相关信息
 
 + (instancetype)sharedManager;
 
@@ -30,6 +32,6 @@ typedef void(^UserAccountFailCallback)(NSInteger code, NSString *errorInfo);
 //从服务端获取账号最新信息，如积分、昵称等
 - (void)getUserInfoWithSuccCallback:(UserAccountSuccCallback)succBlock failCallback:(UserAccountFailCallback)failBlock;
 
-- (void)saveAccountToFileAsync;
+- (void)saveLifeInfoAsync;
 
 @end

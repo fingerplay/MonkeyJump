@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *password; //登录密码
 @property (nonatomic, assign) NSInteger scores; //用户得分
 @property (nonatomic, strong) LevelInfo *levelInfo; //等级相关信息
-@property (nonatomic, strong) LifeInfo *lifeInfo; //生命值相关信息
+
 @end
 
 NS_ASSUME_NONNULL_END

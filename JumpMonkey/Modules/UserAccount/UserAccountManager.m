@@ -11,6 +11,7 @@
 
 @implementation UserAccountManager
 @synthesize currentAccount = _currentAccount;
+@synthesize lifeInfo = _lifeInfo;
 
 static UserAccountManager *_sharedInstance = nil;
 + (instancetype)sharedManager {
@@ -24,7 +25,7 @@ static UserAccountManager *_sharedInstance = nil;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self loadAccountFromFile];
+//        [self loadAccountFromFile];
     }
     return self;
 }
@@ -114,29 +115,41 @@ static UserAccountManager *_sharedInstance = nil;
     }];
 }
 
+- (void)saveLifeInfoAsync {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NSKeyedArchiver archiveRootObject:self.lifeInfo toFile:[self filePathWithName:@"lifeInfo"]];
+    });
+}
+
+- (LifeInfo*)loadLifeInfo {
+    LifeInfo* lifeInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:[self filePathWithName:@"lifeInfo"]];
+    return lifeInfo;
+}
+
+#pragma mark - Private
+
+- (NSString*)filePathWithName:(NSString*)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:name];
+}
+
+- (BOOL)saveAccountToFile {
+    BOOL succ = [NSKeyedArchiver archiveRootObject:self.currentAccount toFile:[self filePathWithName:@"userAccount"]];
+    return succ;
+}
+
 - (void)saveAccountToFileAsync {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self saveAccountToFile];
     });
 }
 
-#pragma mark - Private
-
-- (NSString*)filePath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"userAccount"];
-}
-
-- (BOOL)saveAccountToFile {
-    BOOL succ = [NSKeyedArchiver archiveRootObject:self.currentAccount toFile:[self filePath]];
-    return succ;
-}
-
 - (UserAccount*)loadAccountFromFile {
-    UserAccount* account = [NSKeyedUnarchiver unarchiveObjectWithFile:[self filePath]];
+    UserAccount* account = [NSKeyedUnarchiver unarchiveObjectWithFile:[self filePathWithName:@"userAccount"]];
     return account;
 }
+
 
 #pragma mark - Property
 - (UserAccount *)currentAccount {
@@ -150,5 +163,19 @@ static UserAccountManager *_sharedInstance = nil;
 - (void)setCurrentAccount:(UserAccount *)currentAccount {
     _currentAccount = currentAccount;
     [self saveAccountToFileAsync];
+}
+
+- (LifeInfo *)lifeInfo {
+    if (_lifeInfo != nil) {
+        return _lifeInfo;
+    }
+    _lifeInfo = [self loadLifeInfo] ?: [[LifeInfo alloc] init];;
+    
+    return _lifeInfo;
+}
+
+- (void)setLifeInfo:(LifeInfo *)lifeInfo {
+    _lifeInfo = lifeInfo;
+    [self saveLifeInfoAsync];
 }
 @end

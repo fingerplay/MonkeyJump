@@ -60,7 +60,7 @@
         gameModel.mode = gameMode;
         self.gameModel = gameModel;
         [[UserAccountManager sharedManager].currentAccount.levelInfo addObserver:self forKeyPath:@"upgradeProgress" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
-        [[UserAccountManager sharedManager].currentAccount.lifeInfo addObserver:self forKeyPath:@"lifeCount" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        [[UserAccountManager sharedManager].lifeInfo addObserver:self forKeyPath:@"lifeCount" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
@@ -70,7 +70,7 @@
      NSLog(@"%@ dealloc",[self class]);
     [self removeChildNodes];
     [[UserAccountManager sharedManager].currentAccount.levelInfo removeObserver:self forKeyPath:@"upgradeProgress"];
-    [[UserAccountManager sharedManager].currentAccount.lifeInfo removeObserver:self forKeyPath:@"lifeCount"];
+    [[UserAccountManager sharedManager].lifeInfo removeObserver:self forKeyPath:@"lifeCount"];
 }
 
 - (void)didMoveToView:(SKView *)view {
@@ -161,7 +161,7 @@
 
 - (void)resetNodes {
 //    self.paused = YES;
-    [[UserAccountManager sharedManager].currentAccount.lifeInfo subtractLifeByDrop];
+    [[UserAccountManager sharedManager].lifeInfo subtractLifeByDrop];
     HookNode *currentHook = self.monkey.hookNode.preNode;
     currentHook.position = CGPointMake(MONKEY_MIN_X, TREE_POSITION_Y);
     HookNode *lastHook = currentHook;
@@ -194,7 +194,7 @@
         self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)userAccount.levelInfo.level];
         [self.levelProgressNode updateWithProgress:userAccount.levelInfo.upgradeProgress];
     }else if ([keyPath isEqualToString:@"lifeCount"]) {
-        NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].currentAccount.lifeInfo.lifeCount];
+        NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].lifeInfo.lifeCount];
         self.lifeCountLabel.text = str;
     }
 }
@@ -288,6 +288,7 @@
         }else{
             [self gameDidEnd];
         }
+        [[UserAccountManager sharedManager] saveLifeInfoAsync];
         return;
     }
     
@@ -429,7 +430,7 @@
 
 - (void)gameDidEnd {
     if (!self.gameModel.isGameOver) {
-        [[UserAccountManager sharedManager].currentAccount.lifeInfo subtractLifeByDrop];
+        [[UserAccountManager sharedManager].lifeInfo subtractLifeByDrop];
         [self.monkey removeDelayJump];
         [self.monkey removeFromParent];
         dispatch_suspend(self.velocityTimer);
@@ -654,7 +655,7 @@
 
 - (SKLabelNode *)lifeCountLabel {
     if (!_lifeCountLabel) {
-        NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].currentAccount.lifeInfo.lifeCount];
+        NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].lifeInfo.lifeCount];
         _lifeCountLabel = [SKLabelNode labelNodeWithText:str];
         _lifeCountLabel.fontSize = 12;
         _lifeCountLabel.fontName = @"Helvetica";
