@@ -23,6 +23,7 @@
 @interface GameScene ()<MonkeyDelegate,ScoreInfoDelegate>
 @property (nonatomic, strong) NSMutableArray *foregroundNodes;
 @property (nonatomic, strong) SKLabelNode *velocityLabel;
+@property (nonatomic, strong) SKSpriteNode *heartImageNode;
 @property (nonatomic, strong) SKLabelNode *lifeCountLabel;
 @property (nonatomic, strong) SKLabelNode *countDownLabel;
 @property (nonatomic, strong) NormalNode *backgroundNodeA;
@@ -90,7 +91,7 @@
     self.levelTitleNode.position = CGPointMake(20, self.size.height - 20);
 //    self.levelTitleNode.text = [NSString stringWithFormat:@"LV%ld",(long)self.self.userAccount.levelInfo.level];
     self.levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y+3);
-    self.lifeCountLabel.position = CGPointMake(self.frame.size.width - 20, self.frame.size.height - 25);
+    self.lifeCountLabel.position = CGPointMake(0, -self.heartImageNode.size.height/4);
 }
 
 - (void)addChildNodes {
@@ -144,7 +145,8 @@
     [self addChild:self.levelProgressNode];
     [self.levelProgressNode updateWithProgress:[UserAccountManager sharedManager].currentAccount.levelInfo.upgradeProgress];
     [self addChild:self.totalScoreNode];
-    [self addChild:self.lifeCountLabel];
+    [self addChild:self.heartImageNode];
+    [self.heartImageNode addChild:self.lifeCountLabel];
     [self addChild:self.velocityLabel];
     [self addChild:self.hopNode];
     [self addChild:[SoundManager sharedManger]];
@@ -176,7 +178,7 @@
 }
 
 - (void)removeChildNodes {
-    
+    [self.heartImageNode removeAllChildren];
     [self removeAllChildren];
     [self.treesList.nodes removeAllObjects];
     self.monkey = nil;
@@ -184,7 +186,6 @@
     self.backgroundNodeB = nil;
     [self.foregroundNodes removeAllObjects];
     self.treesList = nil;
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
@@ -655,9 +656,18 @@
     if (!_lifeCountLabel) {
         NSString *str = [NSString stringWithFormat:@"%ld",[UserAccountManager sharedManager].currentAccount.lifeInfo.lifeCount];
         _lifeCountLabel = [SKLabelNode labelNodeWithText:str];
-        _lifeCountLabel.fontSize = 16;
+        _lifeCountLabel.fontSize = 12;
         _lifeCountLabel.fontName = @"Helvetica";
     }
     return _lifeCountLabel;
+}
+
+- (SKSpriteNode *)heartImageNode {
+    if (!_heartImageNode) {
+        SKTexture* txr = [SKTexture textureWithImage:[UIImage imageNamed:@"icn_heart"]];
+        _heartImageNode = [[SKSpriteNode alloc] initWithTexture:txr];
+        _heartImageNode.position = CGPointMake(self.frame.size.width - 20, self.frame.size.height - 20);
+    }
+    return _heartImageNode;
 }
 @end
