@@ -24,6 +24,7 @@
 }
 
 - (void)updateWithProgress:(CGFloat)progress {
+
     if ( progress<0 || progress>1) {
         return;
     }
@@ -33,9 +34,12 @@
     _progress = progress;
 //    CGFloat minWidth = self.frame.size.height - 2;
 //    CGSize finishedProgressNodeSize = CGSizeMake( fmax(self.frame.size.width * progress, minWidth), self.frame.size.height-2);
-    CGSize finishedProgressNodeSize = CGSizeMake(self.frame.size.width * progress,10-2);
+    CGSize finishedProgressNodeSize = CGSizeMake(PROGRESS_WIDTH * progress,PROGRESS_HEIGHT -1);
+    if (finishedProgressNodeSize.width < finishedProgressNodeSize.height) {
+        return;
+    }
     if (finishedProgressNodeSize.width > 0 && finishedProgressNodeSize.height > 0) {
-        CGPathRef path = CGPathCreateWithRoundedRect(CGRectMake(0, 1, finishedProgressNodeSize.width, finishedProgressNodeSize.height), finishedProgressNodeSize.height/2, finishedProgressNodeSize.height/2, &CGAffineTransformIdentity);
+        CGPathRef path = CGPathCreateWithRoundedRect(CGRectMake(0, 0.5, finishedProgressNodeSize.width, finishedProgressNodeSize.height), finishedProgressNodeSize.height/2, finishedProgressNodeSize.height/2, &CGAffineTransformIdentity);
         self.finishedProgressNode.path = path;
     }
 }

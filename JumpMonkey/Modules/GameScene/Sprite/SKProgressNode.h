@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define PROGRESS_WIDTH 100
+#define PROGRESS_HEIGHT 10
+
 @interface SKProgressNode : SKShapeNode
 
 @property (nonatomic, assign, readonly) CGFloat progress;

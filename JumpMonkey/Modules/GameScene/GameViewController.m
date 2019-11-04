@@ -175,8 +175,21 @@
     }];
 }
 
+- (BOOL)checkLifeCountAndShowAdIfEmpty {
+    if ([UserAccountManager sharedManager].lifeInfo.lifeCount <= 0) {
+        //显示广告
+        [[SHToastView sharedInstance] showOnView:self.view withMessage:@"显示广告"];
+        return false;
+    }
+    return true;
+}
+
+
 #pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {
+    if (![self checkLifeCountAndShowAdIfEmpty]) {
+        return;
+    }
     [self.scene gameRestart];
 }
 

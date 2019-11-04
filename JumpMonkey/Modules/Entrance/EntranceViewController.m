@@ -62,6 +62,12 @@ static NSString *const kCellIdentifier = @"cell";
         NSString *msg = [NSString stringWithFormat:@"登录失败,%@",errorInfo];
         [[SHToastView sharedInstance] showErrorOnView:self.view withMessage:msg];
     }];
+    
+    if ([[UserAccountManager sharedManager].lifeInfo gainLifeByClockIn]) {
+        [[SHToastView sharedInstance] showOnView:self.view withMessage:@"今日签到获得生命值+10"];
+        [[UserAccountManager sharedManager] saveLifeInfoAsync];
+    }
+
 }
 
 - (void)setupView {
@@ -146,6 +152,16 @@ static NSString *const kCellIdentifier = @"cell";
     
 }
 
+- (BOOL)checkLifeCountAndShowAdIfEmpty {
+    if ([UserAccountManager sharedManager].lifeInfo.lifeCount <= 0) {
+        //显示广告
+        [[SHToastView sharedInstance] showOnView:self.view withMessage:@"显示广告"];
+        [[UserAccountManager sharedManager].lifeInfo gainLifeByReadAd];
+        return false;
+    }
+    return true;
+}
+
 #pragma mark - UITableView Datasource & Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -195,12 +211,18 @@ static NSString *const kCellIdentifier = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case MenuTypeChallenge:{
+            if (![self checkLifeCountAndShowAdIfEmpty]) {
+                return;
+            }
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
             vc.gameMode = GameModeFree;
             [self.navigationController pushViewController:vc animated:true];
         }break;
             
         case MenuTypeTimeLimit:{
+            if (![self checkLifeCountAndShowAdIfEmpty]) {
+                return;
+            }
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
             vc.gameMode = GameModeTimeLimit;
             [self.navigationController pushViewController:vc animated:true];

@@ -644,7 +644,7 @@
 
 - (SKProgressNode *)levelProgressNode {
     if (!_levelProgressNode) {
-        _levelProgressNode = [SKProgressNode shapeNodeWithRect:CGRectMake(0, 0, 100, 10) cornerRadius:5];
+        _levelProgressNode = [SKProgressNode shapeNodeWithRect:CGRectMake(0, 0, PROGRESS_WIDTH, PROGRESS_HEIGHT) cornerRadius:PROGRESS_HEIGHT/2];
         _levelProgressNode.fillColor = [UIColor blackColor];
 //        _levelProgressNode.strokeColor = [UIColor whiteColor];
 //        _levelProgressNode.position =  CGPointMake(self.levelTitleNode.frame.size.width + self.levelTitleNode.frame.origin.x + 10, self.levelTitleNode.position.y+3);

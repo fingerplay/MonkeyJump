@@ -10,7 +10,7 @@
 
 @interface LifeInfo ()
 @property (nonatomic, assign, readwrite) NSInteger lifeCount; //生命值
-@property (nonatomic, assign, readwrite) NSTimeInterval lastGainLifeTime; //上一次领取生命值的时间
+@property (nonatomic, assign, readwrite) NSTimeInterval lastGainLifeTime; //上一次签到领取生命值的时间
 @end
 
 @implementation LifeInfo
@@ -37,11 +37,18 @@
 }
 
 - (BOOL)gainLifeByClockIn {
-    if (self.lifeCount >=  INITIAL_LIFE_COUNT) {
+    if (self.lifeCount >=  INITIAL_LIFE_COUNT) { //超过100不能领取
+        return false;
+    }
+    
+    NSDate *currentDay = [NSDate date];
+    NSDate *lastGainDay = [NSDate dateWithTimeIntervalSince1970:_lastGainLifeTime];
+    if (currentDay.dateAtStartOfDay <= lastGainDay.dateAtStartOfDay) { //当天不能重复领取
         return false;
     }
     
     self.lifeCount = MIN(self.lifeCount + CLOCK_IN_LIFE_COUNT, INITIAL_LIFE_COUNT);
+    self.lastGainLifeTime = [currentDay timeIntervalSince1970];
     return true;
 }
 
