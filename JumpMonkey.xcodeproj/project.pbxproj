@@ -202,6 +202,7 @@
 		AF75DC7822EDCE8000B600CB /* iot_server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7622EDCE8000B600CB /* iot_server_public.pem */; };
 		AF75DC7B22EDEB1F00B600CB /* RecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */; };
 		AF75DC7E22EDEFEB00B600CB /* GameRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7D22EDEFEB00B600CB /* GameRecord.m */; };
+		AF7F6A67237318A0006B8139 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7F6A66237318A0006B8139 /* AdManager.m */; };
 		AFC3FED7234A3FC400A6E1FF /* RecordListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC3FED6234A3FC400A6E1FF /* RecordListView.m */; };
 		AFCA5A6B23128F39000A6EA0 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */; };
 		AFCA5A6F231292B0000A6EA0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */; };
@@ -672,6 +673,8 @@
 		AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordAPI.m; sourceTree = "<group>"; };
 		AF75DC7C22EDEFEB00B600CB /* GameRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameRecord.h; sourceTree = "<group>"; };
 		AF75DC7D22EDEFEB00B600CB /* GameRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameRecord.m; sourceTree = "<group>"; };
+		AF7F6A65237318A0006B8139 /* AdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
+		AF7F6A66237318A0006B8139 /* AdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
 		AFC3FED5234A3FC400A6E1FF /* RecordListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordListView.h; sourceTree = "<group>"; };
 		AFC3FED6234A3FC400A6E1FF /* RecordListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordListView.m; sourceTree = "<group>"; };
 		AFCA5A6923128F39000A6EA0 /* MyProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
@@ -852,6 +855,7 @@
 		AF2C448F22D97EB9003045B8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AF7F6A6423731891006B8139 /* Ad */,
 				AF65A9BA22DB49C000E666A6 /* Entrance */,
 				AF2C449022D97EB9003045B8 /* GameScene */,
 				AF2C44A922D97EBA003045B8 /* UserAccount */,
@@ -1783,6 +1787,15 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		AF7F6A6423731891006B8139 /* Ad */ = {
+			isa = PBXGroup;
+			children = (
+				AF7F6A65237318A0006B8139 /* AdManager.h */,
+				AF7F6A66237318A0006B8139 /* AdManager.m */,
+			);
+			path = Ad;
+			sourceTree = "<group>";
+		};
 		AFCA5A6C2312929A000A6EA0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1956,6 +1969,7 @@
 				AF65A9AF22DB434200E666A6 /* QMSegmentScrollview.m in Sources */,
 				AF2C44FE22D97FED003045B8 /* ScoreTableViewCell.m in Sources */,
 				AF4CB57F22CE2C0D0090BFB4 /* MJExtensionConst.m in Sources */,
+				AF7F6A67237318A0006B8139 /* AdManager.m in Sources */,
 				AF4CB57122CE2C0D0090BFB4 /* UITextField+QMSecure.m in Sources */,
 				AF2C44D022D97EBA003045B8 /* GameViewController.m in Sources */,
 				AF4CB57D22CE2C0D0090BFB4 /* MJProperty.m in Sources */,

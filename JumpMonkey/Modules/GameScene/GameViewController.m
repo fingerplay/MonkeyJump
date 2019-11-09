@@ -19,8 +19,9 @@
 #import "RecordAPI.h"
 #import "DBHelper.h"
 #import "UserAccountManager.h"
+#import "AdManager.h"
 
-@interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate>
+@interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate,GDTRewardedVideoAdDelegate>
 @property (nonatomic, strong) GameScene *scene;
 @property (nonatomic, strong) UIImageView *snapshotView;
 @property (nonatomic, strong) ScoreView *scoreView;
@@ -45,6 +46,7 @@
     [UMSocialUIManager setShareMenuViewDelegate:self];
     [self setupView];
     [self loadScoreFromServer];
+    [[AdManager sharedManager] loadVideoAd];
 }
 
 - (void)setupView {
@@ -129,8 +131,6 @@
     [self.darkMask removeFromParent];
 }
 
-
-
 - (void)saveScoreAndRecord {
     UpdateScoreAPI *scoreAPI = [[UpdateScoreAPI alloc] init];
     scoreAPI.score = self.scene.mScore.score;
@@ -175,19 +175,10 @@
     }];
 }
 
-- (BOOL)checkLifeCountAndShowAdIfEmpty {
-    if ([UserAccountManager sharedManager].lifeInfo.lifeCount <= 0) {
-        //显示广告
-        [[SHToastView sharedInstance] showOnView:self.view withMessage:@"显示广告"];
-        return false;
-    }
-    return true;
-}
-
 
 #pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {
-    if (![self checkLifeCountAndShowAdIfEmpty]) {
+    if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
         return;
     }
     [self.scene gameRestart];

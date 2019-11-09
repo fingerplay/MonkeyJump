@@ -22,6 +22,7 @@ target 'JumpMonkey' do
  pod 'FMDB/SQLCipher'
  pod 'LKDBHelper'
  pod 'IQKeyboardManager'
+ pod 'GDTMobSDK'
 end
 
 

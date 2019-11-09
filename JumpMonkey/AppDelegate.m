@@ -14,7 +14,6 @@
 #import <MTA.h>
 #import "APIManager.h"
 
-
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController *rootNavController;
 @end
@@ -25,7 +24,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self registerThirdPartySDK];
-    
     [APIManager sharedManager];
     //self.window.rootViewController = self.rootNavController;
     //[self.window makeKeyAndVisible];
@@ -86,4 +84,5 @@
     }
     return _rootNavController;
 }
+
 @end

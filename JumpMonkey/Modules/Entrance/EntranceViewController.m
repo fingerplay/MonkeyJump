@@ -14,6 +14,7 @@
 #import "MyProfileViewController.h"
 #import "ViewUtility.h"
 #import "UserAccountManager.h"
+#import "AdManager.h"
 
 @interface EntranceViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -47,6 +48,7 @@ static NSString *const kCellIdentifier = @"cell";
     [self setupView];
     [self setupLayout];
     [self autoLogin];
+    [[AdManager sharedManager] loadVideoAd];
 }
 
 - (void)autoLogin {
@@ -152,15 +154,6 @@ static NSString *const kCellIdentifier = @"cell";
     
 }
 
-- (BOOL)checkLifeCountAndShowAdIfEmpty {
-    if ([UserAccountManager sharedManager].lifeInfo.lifeCount <= 0) {
-        //显示广告
-        [[SHToastView sharedInstance] showOnView:self.view withMessage:@"显示广告"];
-        [[UserAccountManager sharedManager].lifeInfo gainLifeByReadAd];
-        return false;
-    }
-    return true;
-}
 
 #pragma mark - UITableView Datasource & Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -211,7 +204,7 @@ static NSString *const kCellIdentifier = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case MenuTypeChallenge:{
-            if (![self checkLifeCountAndShowAdIfEmpty]) {
+            if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
                 return;
             }
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
@@ -220,7 +213,7 @@ static NSString *const kCellIdentifier = @"cell";
         }break;
             
         case MenuTypeTimeLimit:{
-            if (![self checkLifeCountAndShowAdIfEmpty]) {
+            if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
                 return;
             }
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];

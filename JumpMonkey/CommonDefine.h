@@ -9,6 +9,7 @@
 #ifndef CommonDefine_h
 #define CommonDefine_h
 
+//游戏相关
 #define kDefaultTreeDistanceX  667.f/3  //([UIScreen mainScreen].bounds.size.width /3)
 
 typedef enum {
@@ -71,7 +72,9 @@ typedef enum {
 #define BaseDomain @"http://106.12.138.77:8080/JumpingMK/" 
 #define DomainURL(path) [BaseDomain stringByAppendingString:path]
 
-
+/*  第三方SDK   */
+#define kGDTMobSDKAppId  @"1105344611"
+#define kGDTVideoAdPlaceId  @"5040546242831432"
 
 // UIScreen related macros
 #define SCREEN_BOUNDS           [UIScreen mainScreen].bounds
