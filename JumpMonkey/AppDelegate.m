@@ -13,6 +13,10 @@
 #import "EntranceViewController.h"
 #import <MTA.h>
 #import "APIManager.h"
+#import "AdManager.h"
+#ifdef ABROAD
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#endif
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController *rootNavController;
@@ -74,6 +78,12 @@
 //    [[UMSocialManager defaultManager] setUmSocialAppkey:@"5d2201484ca357f954000029"];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx7939db732942a97a" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
     [MTA startWithAppkey:@"3204083092"];
+#ifdef ABROAD
+//    GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"78a19d582644fc0844dc640382e9a717" ];
+    [[GADMobileAds sharedInstance] startWithCompletionHandler:^(GADInitializationStatus * _Nonnull status) {
+        [[AdManager sharedManager] loadVideoAd];
+    }];
+#endif
 }
 
 - (UINavigationController *)rootNavController {

@@ -12,15 +12,18 @@
 #import "AccountViewController.h"
 #import "RecordListViewController.h"
 #import "MyProfileViewController.h"
+#import "SettingViewController.h"
 #import "ViewUtility.h"
 #import "UserAccountManager.h"
 #import "AdManager.h"
+
 
 @interface EntranceViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIButton *settingBtn;
 @property (nonatomic, strong) UIButton *accountBtn;
+
 //@property (nonatomic, strong) UIButton *soundMuteBtn;
 @end
 
@@ -48,7 +51,7 @@ static NSString *const kCellIdentifier = @"cell";
     [self setupView];
     [self setupLayout];
     [self autoLogin];
-    [[AdManager sharedManager] loadVideoAd];
+//    [[AdManager sharedManager] loadVideoAd];
 }
 
 - (void)autoLogin {
@@ -77,6 +80,7 @@ static NSString *const kCellIdentifier = @"cell";
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.accountBtn];
     [self.view addSubview:self.settingBtn];
+
 //    [self.view addSubview:self.soundMuteBtn];
 }
 
@@ -106,6 +110,45 @@ static NSString *const kCellIdentifier = @"cell";
     }];
 }
 
+- (void)addBannerViewToView:(UIView *)bannerView {
+    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:bannerView];
+    [self.view addConstraints:@[
+                                [NSLayoutConstraint constraintWithItem:bannerView
+                                                             attribute:NSLayoutAttributeBottom
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.bottomLayoutGuide
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1
+                                                              constant:0],
+                                [NSLayoutConstraint constraintWithItem:bannerView
+                                                             attribute:NSLayoutAttributeCenterX
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeCenterX
+                                                            multiplier:1
+                                                              constant:0]
+                                ]];
+    
+
+}
+
+- (void)accountBtnTapped:(UIButton*)sender {
+    if ([UserAccountManager sharedManager].currentAccount.userId == 0) {
+        AccountViewController *vc = [[AccountViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
+    }else {
+        MyProfileViewController *vc = [[MyProfileViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
+    }
+}
+
+- (void)settingBtnTapped:(UIButton*)sender {
+    SettingViewController *vc = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+#pragma mark - Property
 -(UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
@@ -138,20 +181,6 @@ static NSString *const kCellIdentifier = @"cell";
         _settingBtn = [UIButton buttonWithBackgroundImage:[UIImage imageNamed:@"icn_settings_normal"] highlightedBackgroundImage:[UIImage imageNamed:@"icn_settings_press"] disabledBackgroundImage:nil target:self action:@selector(settingBtnTapped:)];
     }
     return _settingBtn;
-}
-
-- (void)accountBtnTapped:(UIButton*)sender {
-    if ([UserAccountManager sharedManager].currentAccount.userId == 0) {
-        AccountViewController *vc = [[AccountViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:true];
-    }else {
-        MyProfileViewController *vc = [[MyProfileViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:true];
-    }
-}
-
-- (void)settingBtnTapped:(UIButton*)sender {
-    
 }
 
 
@@ -204,18 +233,18 @@ static NSString *const kCellIdentifier = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case MenuTypeChallenge:{
-            if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
-                return;
-            }
+//            if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
+//                return;
+//            }
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
             vc.gameMode = GameModeFree;
             [self.navigationController pushViewController:vc animated:true];
         }break;
             
         case MenuTypeTimeLimit:{
-            if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
-                return;
-            }
+//            if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
+//                return;
+//            }
             GameViewController *vc = (GameViewController*)[ViewUtility getViewControllerWithIdentifier:@"GameViewController" storyboard:@"Main"];
             vc.gameMode = GameModeTimeLimit;
             [self.navigationController pushViewController:vc animated:true];
@@ -235,13 +264,5 @@ static NSString *const kCellIdentifier = @"cell";
     }
 }
 
-//- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"GameViewController"])
-//    {
-//        GameViewController *gameVC = [segue destinationViewController];
-//    }
-//
-//}
 
 @end

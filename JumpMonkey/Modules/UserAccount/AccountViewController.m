@@ -14,7 +14,7 @@
 @interface AccountViewController ()<QMSegmentContainerDelegate,QMSegmentTopBarDelegate>
 @property (nonatomic, strong) QMSegmentContainer *segmentView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
-@property (nonatomic, strong) UIButton *backButton;
+
 @end
 
 typedef enum NSInteger {

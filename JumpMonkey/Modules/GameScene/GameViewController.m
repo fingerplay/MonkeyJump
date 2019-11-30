@@ -14,14 +14,14 @@
 #import "Hawk.h"
 #import "Tree.h"
 #import "Spider.h"
-#import <UShareUI/UShareUI.h>
+#import "ShareUtil.h"
 #import "ScoreAPI.h"
 #import "RecordAPI.h"
 #import "DBHelper.h"
 #import "UserAccountManager.h"
 #import "AdManager.h"
 
-@interface GameViewController ()<GameSceneDelegate,UMSocialShareMenuViewDelegate,GDTRewardedVideoAdDelegate>
+@interface GameViewController ()<GameSceneDelegate>
 @property (nonatomic, strong) GameScene *scene;
 @property (nonatomic, strong) UIImageView *snapshotView;
 @property (nonatomic, strong) ScoreView *scoreView;
@@ -43,10 +43,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UMSocialUIManager setShareMenuViewDelegate:self];
+//    [UMSocialUIManager setShareMenuViewDelegate:self];
     [self setupView];
     [self loadScoreFromServer];
-    [[AdManager sharedManager] loadVideoAd];
+//    [[AdManager sharedManager] loadVideoAd];
 }
 
 - (void)setupView {
@@ -68,6 +68,7 @@
     
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
+   
     skView.preferredFramesPerSecond = FPS;
     
     [self.view addSubview:self.countdownView];
@@ -178,34 +179,14 @@
 
 #pragma mark - Action
 - (void)restartBtnClick:(UIButton*)button {
-    if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
-        return;
-    }
+//    if (![[AdManager sharedManager] checkLifeCountAndShowAdInViewController:self]) {
+//        return;
+//    }
     [self.scene gameRestart];
 }
 
 - (void)shareBtnClick:(UIButton*)button {
-    //显示分享面板
-//    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession)]];
-//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        // 根据获取的platformType确定所选平台进行下一步操作
-    UMShareWebpageObject *object = [[UMShareWebpageObject alloc] init];
-    object.title = @"MonkeyRun";
-    object.descr = @"一款猴子在丛林间跳跃的游戏，由永动力工作室设计制作，力求打造一款快节奏、强竞技的酷跑游戏";
-    object.thumbImage = [UIImage imageNamed:@"monkeyicon"];
-    object.webpageUrl = @"http://www.baidu.com";
-    
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    messageObject.shareObject = object;
-    
-        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:self completion:^(id result, NSError *error) {
-        
-    }];
-//        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:object currentViewController:self completion:^(id result, NSError *error) {
-//
-//        }];
-//    }];
+    [ShareUtil shareToPlatform:UMSocialPlatformType_WechatSession onViewController:self withCompletion:nil];
 }
 
 - (void)exitBtnClick:(UIButton*)button {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661B02DDB99A0000EC2BECF6 /* Pods_JumpMonkey_abroad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF74C36B955FDC5C5C1F653 /* Pods_JumpMonkey_abroad.framework */; };
+		80767F2D9BDE6B7EA88B645E /* Pods_JumpMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A682F9261DC02681634DDE1 /* Pods_JumpMonkey.framework */; };
 		AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */; };
 		AF106C9122956B9B003ABD22 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */; };
 		AF151AE7234B385700D9400F /* RecordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF151AE6234B385700D9400F /* RecordViewModel.m */; };
@@ -203,18 +205,229 @@
 		AF75DC7B22EDEB1F00B600CB /* RecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */; };
 		AF75DC7E22EDEFEB00B600CB /* GameRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7D22EDEFEB00B600CB /* GameRecord.m */; };
 		AF7F6A67237318A0006B8139 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7F6A66237318A0006B8139 /* AdManager.m */; };
+		AF84B43A2376DEA8007F2780 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54722CE2C0C0090BFB4 /* MMDrawerVisualState.m */; };
+		AF84B43B2376DEA8007F2780 /* NSString+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71277222ED3D100051C5E0 /* NSString+Encryption.m */; };
+		AF84B43C2376DEA8007F2780 /* QMReqCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB43722CE27C50090BFB4 /* QMReqCacheManager.m */; };
+		AF84B43D2376DEA8007F2780 /* UIColor+ColorConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D4222E42265005C1CB5 /* UIColor+ColorConvert.m */; };
+		AF84B43E2376DEA8007F2780 /* QMSegmentDefaultItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9AC22DB434200E666A6 /* QMSegmentDefaultItemView.m */; };
+		AF84B43F2376DEA8007F2780 /* QMSegmentScrollview.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99D22DB434200E666A6 /* QMSegmentScrollview.m */; };
+		AF84B4402376DEA8007F2780 /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C44F922D97FED003045B8 /* ScoreTableViewCell.m */; };
+		AF84B4412376DEA8007F2780 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50722CE2C0C0090BFB4 /* MJExtensionConst.m */; };
+		AF84B4422376DEA8007F2780 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7F6A66237318A0006B8139 /* AdManager.m */; };
+		AF84B4432376DEA8007F2780 /* UITextField+QMSecure.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4E422CE2C0C0090BFB4 /* UITextField+QMSecure.m */; };
+		AF84B4442376DEA8007F2780 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449222D97EB9003045B8 /* GameViewController.m */; };
+		AF84B4452376DEA8007F2780 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50322CE2C0C0090BFB4 /* MJProperty.m */; };
+		AF84B4462376DEA8007F2780 /* QMListInput.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB45022CE27C50090BFB4 /* QMListInput.m */; };
+		AF84B4472376DEA8007F2780 /* NSDictionary+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB52922CE2C0C0090BFB4 /* NSDictionary+safe.m */; };
+		AF84B4482376DEA8007F2780 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50822CE2C0C0090BFB4 /* NSObject+MJProperty.m */; };
+		AF84B4492376DEA8007F2780 /* QMFileLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4F022CE2C0C0090BFB4 /* QMFileLogFormatter.m */; };
+		AF84B44A2376DEA8007F2780 /* QMReqLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB43522CE27C50090BFB4 /* QMReqLogger.m */; };
+		AF84B44B2376DEA8007F2780 /* QMRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51722CE2C0C0090BFB4 /* QMRuntimeHelper.m */; };
+		AF84B44C2376DEA8007F2780 /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB53122CE2C0C0090BFB4 /* NSObject+BeeNotification.m */; };
+		AF84B44D2376DEA8007F2780 /* QMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42122CE27C50090BFB4 /* QMRequestManager.m */; };
+		AF84B44E2376DEA8007F2780 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51022CE2C0C0090BFB4 /* MJFoundation.m */; };
+		AF84B44F2376DEA8007F2780 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71277822ED3D100051C5E0 /* NSString+Base64.m */; };
+		AF84B4502376DEA8007F2780 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE2A9232D226A006A3169 /* DBHelper.m */; };
+		AF84B4512376DEA8007F2780 /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4FA22CE2C0C0090BFB4 /* UIWebView+TS_JavaScriptContext.m */; };
+		AF84B4522376DEA8007F2780 /* QMDeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4A722CE2C0C0090BFB4 /* QMDeviceHelper.m */; };
+		AF84B4532376DEA8007F2780 /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50A22CE2C0C0090BFB4 /* NSObject+MJClass.m */; };
+		AF84B4542376DEA8007F2780 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54122CE2C0C0090BFB4 /* UIViewController+MMDrawerController.m */; };
+		AF84B4552376DEA8007F2780 /* RecordAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7A22EDEB1F00B600CB /* RecordAPI.m */; };
+		AF84B4562376DEA8007F2780 /* NSNumber+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB52A22CE2C0C0090BFB4 /* NSNumber+safe.m */; };
+		AF84B4572376DEA8007F2780 /* ViewUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9C322DB799600E666A6 /* ViewUtility.m */; };
+		AF84B4582376DEA8007F2780 /* QMLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4EE22CE2C0C0090BFB4 /* QMLogFileManager.m */; };
+		AF84B4592376DEA8007F2780 /* UILabel+htmlText.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4E622CE2C0C0090BFB4 /* UILabel+htmlText.m */; };
+		AF84B45A2376DEA8007F2780 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42D22CE27C50090BFB4 /* UIImage+Category.m */; };
+		AF84B45B2376DEA8007F2780 /* QMAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2E021822D0F6410076AD7F /* QMAppUtils.m */; };
+		AF84B45C2376DEA8007F2780 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449322D97EBA003045B8 /* GameScene.m */; };
+		AF84B45D2376DEA8007F2780 /* NSMutableDictionary+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51D22CE2C0C0090BFB4 /* NSMutableDictionary+safe.m */; };
+		AF84B45E2376DEA8007F2780 /* Hawk.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449722D97EBA003045B8 /* Hawk.m */; };
+		AF84B45F2376DEA8007F2780 /* NSObject+MultiParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4AB22CE2C0C0090BFB4 /* NSObject+MultiParam.m */; };
+		AF84B4602376DEA8007F2780 /* QMSegmentIconTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A622DB434200E666A6 /* QMSegmentIconTitleItem.m */; };
+		AF84B4612376DEA8007F2780 /* HookNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449822D97EBA003045B8 /* HookNode.m */; };
+		AF84B4622376DEA8007F2780 /* ChainList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449522D97EBA003045B8 /* ChainList.m */; };
+		AF84B4632376DEA8007F2780 /* PhysicsUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */; };
+		AF84B4642376DEA8007F2780 /* QMRingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1AD79D22D20A7300550D35 /* QMRingView.m */; };
+		AF84B4652376DEA8007F2780 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54222CE2C0C0090BFB4 /* MMDrawerController.m */; };
+		AF84B4662376DEA8007F2780 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */; };
+		AF84B4672376DEA8007F2780 /* UINavigationItem+margin.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4D722CE2C0C0090BFB4 /* UINavigationItem+margin.m */; };
+		AF84B4682376DEA8007F2780 /* UIView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4B422CE2C0C0090BFB4 /* UIView+Common.m */; };
+		AF84B4692376DEA8007F2780 /* SHKeyChainWapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71278622ED3D1B0051C5E0 /* SHKeyChainWapper.m */; };
+		AF84B46A2376DEA8007F2780 /* Monkey.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449A22D97EBA003045B8 /* Monkey.m */; };
+		AF84B46B2376DEA8007F2780 /* QMSegmentDoubleTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99C22DB434200E666A6 /* QMSegmentDoubleTitleItem.m */; };
+		AF84B46C2376DEA8007F2780 /* NSIndexPath+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB52D22CE2C0C0090BFB4 /* NSIndexPath+safe.m */; };
+		AF84B46D2376DEA8007F2780 /* NSArray+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB52C22CE2C0C0090BFB4 /* NSArray+safe.m */; };
+		AF84B46E2376DEA8007F2780 /* QMCustomLog.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4EF22CE2C0C0090BFB4 /* QMCustomLog.m */; };
+		AF84B46F2376DEA8007F2780 /* SKProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5DCD01235AE78800B63F32 /* SKProgressNode.m */; };
+		AF84B4702376DEA8007F2780 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */; };
+		AF84B4712376DEA8007F2780 /* ImageSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E06422A6487A008BBCCF /* ImageSequence.m */; };
+		AF84B4722376DEA8007F2780 /* NSMutableSet+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB52022CE2C0C0090BFB4 /* NSMutableSet+safe.m */; };
+		AF84B4732376DEA8007F2780 /* NSString+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51822CE2C0C0090BFB4 /* NSString+safe.m */; };
+		AF84B4742376DEA8007F2780 /* QMFoundationDataForwardTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51622CE2C0C0090BFB4 /* QMFoundationDataForwardTarget.m */; };
+		AF84B4752376DEA8007F2780 /* SHFloatingLayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D3722E41F1D005C1CB5 /* SHFloatingLayerViewManager.m */; };
+		AF84B4762376DEA8007F2780 /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D2C22E3FF6C005C1CB5 /* UserAccount.m */; };
+		AF84B4772376DEA8007F2780 /* ScoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C44F522D97FED003045B8 /* ScoreInfo.m */; };
+		AF84B4782376DEA8007F2780 /* QMRequestConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42522CE27C50090BFB4 /* QMRequestConfig.m */; };
+		AF84B4792376DEA8007F2780 /* QMJSONManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2E021122D0F0DF0076AD7F /* QMJSONManager.m */; };
+		AF84B47A2376DEA8007F2780 /* RecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32FB8922F5B51D00E1C71C /* RecordTableViewCell.m */; };
+		AF84B47B2376DEA8007F2780 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50C22CE2C0C0090BFB4 /* MJPropertyKey.m */; };
+		AF84B47C2376DEA8007F2780 /* SHLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D3622E41F1D005C1CB5 /* SHLoadingView.m */; };
+		AF84B47D2376DEA8007F2780 /* QMAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2E021B22D0F6C40076AD7F /* QMAttributedLabel.m */; };
+		AF84B47E2376DEA8007F2780 /* ScoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71278922ED40000051C5E0 /* ScoreAPI.m */; };
+		AF84B47F2376DEA8007F2780 /* RecordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF151AE6234B385700D9400F /* RecordViewModel.m */; };
+		AF84B4802376DEA8007F2780 /* QMBaseRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB43F22CE27C50090BFB4 /* QMBaseRequestFactory.m */; };
+		AF84B4812376DEA8007F2780 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42C22CE27C50090BFB4 /* ASIDataCompressor.m */; };
+		AF84B4822376DEA8007F2780 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */; };
+		AF84B4832376DEA8007F2780 /* NSString+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C622CE2C0C0090BFB4 /* NSString+UI.m */; };
+		AF84B4842376DEA8007F2780 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C44FC22D97FED003045B8 /* ScoreView.m */; };
+		AF84B4852376DEA8007F2780 /* CALayer+QMExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4D922CE2C0C0090BFB4 /* CALayer+QMExtention.m */; };
+		AF84B4862376DEA8007F2780 /* NormalNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C44A522D97EBA003045B8 /* NormalNode.m */; };
+		AF84B4872376DEA8007F2780 /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D3222E3FF82005C1CB5 /* RegisterView.m */; };
+		AF84B4882376DEA8007F2780 /* SecKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C522E4BF320017D733 /* SecKeyManager.m */; };
+		AF84B4892376DEA8007F2780 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36E05D22A5F445008BBCCF /* Bezier.m */; };
+		AF84B48A2376DEA8007F2780 /* UIBezierPath+AllPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2DD22A51E42005E6361 /* UIBezierPath+AllPoints.m */; };
+		AF84B48B2376DEA8007F2780 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF32FB8622F5AC8D00E1C71C /* RecordListViewController.m */; };
+		AF84B48C2376DEA8007F2780 /* UserAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C450A22D99EED003045B8 /* UserAccountManager.m */; };
+		AF84B48D2376DEA8007F2780 /* UILabel+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4D822CE2C0C0090BFB4 /* UILabel+Additions.m */; };
+		AF84B48E2376DEA8007F2780 /* QMNormalRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB44122CE27C50090BFB4 /* QMNormalRequestFactory.m */; };
+		AF84B48F2376DEA8007F2780 /* EntranceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9C022DB49F900E666A6 /* EntranceTableViewCell.m */; };
+		AF84B4902376DEA8007F2780 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
+		AF84B4912376DEA8007F2780 /* QMUploadDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB44922CE27C50090BFB4 /* QMUploadDataFactory.m */; };
+		AF84B4922376DEA8007F2780 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71277B22ED3D100051C5E0 /* NSData+Base64.m */; };
+		AF84B4932376DEA8007F2780 /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D2922E3FF6C005C1CB5 /* UserAPI.m */; };
+		AF84B4942376DEA8007F2780 /* RecordCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF4678522FFF5B200CD5992 /* RecordCellView.m */; };
+		AF84B4952376DEA8007F2780 /* Spider.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449D22D97EBA003045B8 /* Spider.m */; };
+		AF84B4962376DEA8007F2780 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50B22CE2C0C0090BFB4 /* NSString+MJExtension.m */; };
+		AF84B4972376DEA8007F2780 /* NSMutableString+QMExtand.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4AD22CE2C0C0090BFB4 /* NSMutableString+QMExtand.m */; };
+		AF84B4982376DEA8007F2780 /* BBSystemValue.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB53C22CE2C0C0090BFB4 /* BBSystemValue.m */; };
+		AF84B4992376DEA8007F2780 /* NSAttributedString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4E322CE2C0C0090BFB4 /* NSAttributedString+Category.m */; };
+		AF84B49A2376DEA8007F2780 /* UIColor+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D4122E42265005C1CB5 /* UIColor+CustomColor.m */; };
+		AF84B49B2376DEA8007F2780 /* QMCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB43A22CE27C50090BFB4 /* QMCommand.m */; };
+		AF84B49C2376DEA8007F2780 /* NSObject+swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51422CE2C0C0090BFB4 /* NSObject+swizzle.m */; };
+		AF84B49D2376DEA8007F2780 /* SHCommonTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D2022E3FBD8005C1CB5 /* SHCommonTextField.m */; };
+		AF84B49E2376DEA8007F2780 /* SXRSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71277622ED3D100051C5E0 /* SXRSAEncryptor.m */; };
+		AF84B49F2376DEA8007F2780 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4F622CE2C0C0090BFB4 /* NJKWebViewProgress.m */; };
+		AF84B4A02376DEA8007F2780 /* QMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB43B22CE27C50090BFB4 /* QMStatus.m */; };
+		AF84B4A12376DEA8007F2780 /* NSObject+QMExtand.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4BB22CE2C0C0090BFB4 /* NSObject+QMExtand.m */; };
+		AF84B4A22376DEA8007F2780 /* TimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AF40965923647E55005C432B /* TimeUtil.m */; };
+		AF84B4A32376DEA8007F2780 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2CE22A4BD9D005E6361 /* SoundManager.m */; };
+		AF84B4A42376DEA8007F2780 /* Tree.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C44A622D97EBA003045B8 /* Tree.m */; };
+		AF84B4A52376DEA8007F2780 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A99522DB40E900E666A6 /* AccountViewController.m */; };
+		AF84B4A62376DEA8007F2780 /* UIImage+QMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C322CE2C0C0090BFB4 /* UIImage+QMColor.m */; };
+		AF84B4A72376DEA8007F2780 /* NSMutableArray+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51522CE2C0C0090BFB4 /* NSMutableArray+safe.m */; };
+		AF84B4A82376DEA8007F2780 /* LifeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6EB83F2365978000527893 /* LifeInfo.m */; };
+		AF84B4A92376DEA8007F2780 /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */; };
+		AF84B4AA2376DEA8007F2780 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71277E22ED3D100051C5E0 /* NSData+AES.m */; };
+		AF84B4AB2376DEA8007F2780 /* SHToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D3922E41F1D005C1CB5 /* SHToastView.m */; };
+		AF84B4AC2376DEA8007F2780 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B6D2722E3FF6C005C1CB5 /* LoginView.m */; };
+		AF84B4AD2376DEA8007F2780 /* UIView+SHGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C930322E35E1900ED380C /* UIView+SHGradient.m */; };
+		AF84B4AE2376DEA8007F2780 /* QMSimpleRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB44222CE27C50090BFB4 /* QMSimpleRequestFactory.m */; };
+		AF84B4AF2376DEA8007F2780 /* TreesList.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449E22D97EBA003045B8 /* TreesList.m */; };
+		AF84B4B02376DEA8007F2780 /* QMInput.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42422CE27C50090BFB4 /* QMInput.m */; };
+		AF84B4B12376DEA8007F2780 /* QMSaveKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB53922CE2C0C0090BFB4 /* QMSaveKeyChain.m */; };
+		AF84B4B22376DEA8007F2780 /* LevelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AF5DCCFE235AD90400B63F32 /* LevelInfo.m */; };
+		AF84B4B32376DEA8007F2780 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C022CE2C0C0090BFB4 /* UIButton+Category.m */; };
+		AF84B4B42376DEA8007F2780 /* QMRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42222CE27C50090BFB4 /* QMRequester.m */; };
+		AF84B4B52376DEA8007F2780 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4F922CE2C0C0090BFB4 /* NJKWebViewProgressView.m */; };
+		AF84B4B62376DEA8007F2780 /* NSString+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4B622CE2C0C0090BFB4 /* NSString+Encryption.m */; };
+		AF84B4B72376DEA8007F2780 /* QMPushRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB44022CE27C50090BFB4 /* QMPushRequestFactory.m */; };
+		AF84B4B82376DEA8007F2780 /* UIColor+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4B222CE2C0C0090BFB4 /* UIColor+CustomColor.m */; };
+		AF84B4B92376DEA8007F2780 /* NSDate+QMExtand.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4BC22CE2C0C0090BFB4 /* NSDate+QMExtand.m */; };
+		AF84B4BA2376DEA8007F2780 /* QMSegmentGradualItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A522DB434200E666A6 /* QMSegmentGradualItemView.m */; };
+		AF84B4BB2376DEA8007F2780 /* QMListRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB44F22CE27C50090BFB4 /* QMListRequester.m */; };
+		AF84B4BC2376DEA8007F2780 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF58A2D422A50D91005E6361 /* UIImage+Crop.m */; };
+		AF84B4BD2376DEA8007F2780 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C122CE2C0C0090BFB4 /* NSDate+Utilities.m */; };
+		AF84B4BE2376DEA8007F2780 /* UIButton+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4D122CE2C0C0090BFB4 /* UIButton+Copy.m */; };
+		AF84B4BF2376DEA8007F2780 /* NSAttributedString+QMUI.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4D622CE2C0C0090BFB4 /* NSAttributedString+QMUI.m */; };
+		AF84B4C02376DEA8007F2780 /* QMLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4ED22CE2C0C0090BFB4 /* QMLogFormatter.m */; };
+		AF84B4C12376DEA8007F2780 /* NSString+QMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4B522CE2C0C0090BFB4 /* NSString+QMHelper.m */; };
+		AF84B4C22376DEA8007F2780 /* UILabel+QMTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4BD22CE2C0C0090BFB4 /* UILabel+QMTitle.m */; };
+		AF84B4C32376DEA8007F2780 /* GameRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = AF75DC7D22EDEFEB00B600CB /* GameRecord.m */; };
+		AF84B4C42376DEA8007F2780 /* QMStatisticsRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB43E22CE27C50090BFB4 /* QMStatisticsRequestFactory.m */; };
+		AF84B4C52376DEA8007F2780 /* UIImageView+QMAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4CB22CE2C0C0090BFB4 /* UIImageView+QMAnimation.m */; };
+		AF84B4C62376DEA8007F2780 /* NSString+QMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42E22CE27C50090BFB4 /* NSString+QMRequest.m */; };
+		AF84B4C72376DEA8007F2780 /* QMSegmentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9AB22DB434200E666A6 /* QMSegmentContainer.m */; };
+		AF84B4C82376DEA8007F2780 /* NSObject+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB51322CE2C0C0090BFB4 /* NSObject+Safe.m */; };
+		AF84B4C92376DEA8007F2780 /* RecordListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC3FED6234A3FC400A6E1FF /* RecordListView.m */; };
+		AF84B4CA2376DEA8007F2780 /* SKNumberNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C449922D97EBA003045B8 /* SKNumberNode.m */; };
+		AF84B4CB2376DEA8007F2780 /* QMDownloadRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB44A22CE27C50090BFB4 /* QMDownloadRequester.m */; };
+		AF84B4CC2376DEA8007F2780 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4FF22CE2C0C0090BFB4 /* MJPropertyType.m */; };
+		AF84B4CD2376DEA8007F2780 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4836C222E4BF320017D733 /* APIManager.m */; };
+		AF84B4CE2376DEA8007F2780 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23159122850E2D008522D0 /* main.m */; };
+		AF84B4CF2376DEA8007F2780 /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB42F22CE27C50090BFB4 /* NSString+Json.m */; };
+		AF84B4D02376DEA8007F2780 /* QMGlobalAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1AD76C22D1F72300550D35 /* QMGlobalAppearance.m */; };
+		AF84B4D12376DEA8007F2780 /* NSDateFormatter+QMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C922CE2C0C0090BFB4 /* NSDateFormatter+QMHelper.m */; };
+		AF84B4D22376DEA8007F2780 /* SCDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = AF71276D22ED3CA90051C5E0 /* SCDevice.m */; };
+		AF84B4D32376DEA8007F2780 /* UITableView+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB52722CE2C0C0090BFB4 /* UITableView+safe.m */; };
+		AF84B4D42376DEA8007F2780 /* EntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9BC22DB49C000E666A6 /* EntranceViewController.m */; };
+		AF84B4D52376DEA8007F2780 /* UIView+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C822CE2C0C0090BFB4 /* UIView+Copy.m */; };
+		AF84B4D62376DEA8007F2780 /* NSData+imagetype.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB53522CE2C0C0090BFB4 /* NSData+imagetype.m */; };
+		AF84B4D72376DEA8007F2780 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50522CE2C0C0090BFB4 /* NSObject+MJCoding.m */; };
+		AF84B4D82376DEA8007F2780 /* UIScrollView+QMPopToSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4D022CE2C0C0090BFB4 /* UIScrollView+QMPopToSuperVC.m */; };
+		AF84B4D92376DEA8007F2780 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF23157C22850E2C008522D0 /* AppDelegate.m */; };
+		AF84B4DA2376DEA8007F2780 /* NSArray+QMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4CE22CE2C0C0090BFB4 /* NSArray+QMCategory.m */; };
+		AF84B4DB2376DEA8007F2780 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB54022CE2C0C0090BFB4 /* MMDrawerBarButtonItem.m */; };
+		AF84B4DC2376DEA8007F2780 /* NSObject+QMSetConfigToUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4DD22CE2C0C0090BFB4 /* NSObject+QMSetConfigToUserDefaults.m */; };
+		AF84B4DD2376DEA8007F2780 /* NSObject+QMInput.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4E922CE2C0C0090BFB4 /* NSObject+QMInput.m */; };
+		AF84B4DE2376DEA8007F2780 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF565B6E2336116C0061A058 /* GameModel.m */; };
+		AF84B4DF2376DEA8007F2780 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
+		AF84B4E02376DEA8007F2780 /* RSAHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7127ED22ED9EAE0051C5E0 /* RSAHandler.m */; };
+		AF84B4E12376DEA8007F2780 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB50222CE2C0C0090BFB4 /* NSObject+MJKeyValue.m */; };
+		AF84B4E22376DEA8007F2780 /* QMSegmentMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A322DB434200E666A6 /* QMSegmentMenuModel.m */; };
+		AF84B4E32376DEA8007F2780 /* UIButton+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4CB4C222CE2C0C0090BFB4 /* UIButton+CustomColor.m */; };
+		AF84B4E42376DEA8007F2780 /* QMSegmentTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AF65A9A422DB434200E666A6 /* QMSegmentTopBar.m */; };
+		AF84B4E62376DEA8007F2780 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44CE22D97EBA003045B8 /* libSocialQQ.a */; };
+		AF84B4E72376DEA8007F2780 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD7A422D239D700550D35 /* libz.tbd */; };
+		AF84B4E82376DEA8007F2780 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7127E222ED9DAD0051C5E0 /* libssl.a */; };
+		AF84B4E92376DEA8007F2780 /* SecurityEnvSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44BA22D97EBA003045B8 /* SecurityEnvSDK.framework */; };
+		AF84B4EA2376DEA8007F2780 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44CA22D97EBA003045B8 /* libSocialSina.a */; };
+		AF84B4EB2376DEA8007F2780 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7127E122ED9DAD0051C5E0 /* libcrypto.a */; };
+		AF84B4EC2376DEA8007F2780 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD7A222D239A300550D35 /* CoreTelephony.framework */; };
+		AF84B4ED2376DEA8007F2780 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD7A022D2399E00550D35 /* SystemConfiguration.framework */; };
+		AF84B4EE2376DEA8007F2780 /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44C422D97EBA003045B8 /* UMShare.framework */; };
+		AF84B4EF2376DEA8007F2780 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD79B22D2017200550D35 /* CoreGraphics.framework */; };
+		AF84B4F02376DEA8007F2780 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1AD79922D2016A00550D35 /* libsqlite3.tbd */; };
+		AF84B4F12376DEA8007F2780 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF58A2C922A4B777005E6361 /* AVFoundation.framework */; };
+		AF84B4F22376DEA8007F2780 /* UMCommonLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44B522D97EBA003045B8 /* UMCommonLog.framework */; };
+		AF84B4F32376DEA8007F2780 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44C322D97EBA003045B8 /* UShareUI.framework */; };
+		AF84B4F42376DEA8007F2780 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44C722D97EBA003045B8 /* libSocialWeChat.a */; };
+		AF84B4F52376DEA8007F2780 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44BE22D97EBA003045B8 /* UMCommon.framework */; };
+		AF84B4F72376DEA8007F2780 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2C44B922D97EBA003045B8 /* UTDID.framework */; };
+		AF84B4F92376DEA8007F2780 /* sound_game_over.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C122A4B68D005E6361 /* sound_game_over.wav */; };
+		AF84B4FA2376DEA8007F2780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF23158822850E2C008522D0 /* Main.storyboard */; };
+		AF84B4FB2376DEA8007F2780 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AF71279222ED9DAD0051C5E0 /* LICENSE */; };
+		AF84B4FC2376DEA8007F2780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF71276B22EC4FB60051C5E0 /* Assets.xcassets */; };
+		AF84B4FD2376DEA8007F2780 /* sound_wolf.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C322A4B68D005E6361 /* sound_wolf.wav */; };
+		AF84B4FE2376DEA8007F2780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF23158D22850E2D008522D0 /* LaunchScreen.storyboard */; };
+		AF84B4FF2376DEA8007F2780 /* sound_catch_hook.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C022A4B68D005E6361 /* sound_catch_hook.wav */; };
+		AF84B5002376DEA8007F2780 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AF2C44C222D97EBA003045B8 /* UMSocialSDKResources.bundle */; };
+		AF84B5012376DEA8007F2780 /* error.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF71278B22ED5BB90051C5E0 /* error.plist */; };
+		AF84B5022376DEA8007F2780 /* iot_server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7622EDCE8000B600CB /* iot_server_public.pem */; };
+		AF84B5032376DEA8007F2780 /* sound_cock.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF58A2C222A4B68D005E6361 /* sound_cock.wav */; };
+		AF84B5042376DEA8007F2780 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF2C44A722D97EBA003045B8 /* GameScene.sks */; };
+		AF84B5052376DEA8007F2780 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF23158022850E2C008522D0 /* Actions.sks */; };
+		AF84B5062376DEA8007F2780 /* server_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = AF75DC7522EDCE8000B600CB /* server_public.pem */; };
+		AF84B5072376DEA8007F2780 /* UMCommonLog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AF2C44B622D97EBA003045B8 /* UMCommonLog.bundle */; };
+		AFA05F4C237FA0F8001597A5 /* ShareUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA05F4B237FA0F8001597A5 /* ShareUtil.m */; };
+		AFA05F4D237FA0F8001597A5 /* ShareUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA05F4B237FA0F8001597A5 /* ShareUtil.m */; };
 		AFC3FED7234A3FC400A6E1FF /* RecordListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC3FED6234A3FC400A6E1FF /* RecordListView.m */; };
 		AFCA5A6B23128F39000A6EA0 /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6A23128F39000A6EA0 /* MyProfileViewController.m */; };
 		AFCA5A6F231292B0000A6EA0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */; };
 		AFCA5A722312B793000A6EA0 /* ProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */; };
+		AFDB5D192378352B00E7FBAD /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDB5D182378352B00E7FBAD /* SettingViewController.m */; };
+		AFDB5D1A2378352B00E7FBAD /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDB5D182378352B00E7FBAD /* SettingViewController.m */; };
+		AFDB5D1E2378360200E7FBAD /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDB5D1D2378360200E7FBAD /* SettingTableViewCell.m */; };
+		AFDB5D1F2378360200E7FBAD /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDB5D1D2378360200E7FBAD /* SettingTableViewCell.m */; };
 		AFF080E022A1661700D180C4 /* ClockImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080DF22A1661700D180C4 /* ClockImageView.m */; };
 		AFF080E322A1682B00D180C4 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF080E222A1682B00D180C4 /* UIImage+Category.m */; };
 		AFF4678622FFF5B200CD5992 /* RecordCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF4678522FFF5B200CD5992 /* RecordCellView.m */; };
-		EE5690BE30E67D42D5DBB568 /* Pods_JumpMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D044EB4B00B7A1C568D94AA /* Pods_JumpMonkey.framework */; };
+		EE5690BE30E67D42D5DBB568 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D044EB4B00B7A1C568D94AA /* Pods_JumpMonkey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JumpMonkey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15F1F4153F8A9F063FD7C27C /* Pods-JumpMonkey_abroad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey_abroad.debug.xcconfig"; path = "Target Support Files/Pods-JumpMonkey_abroad/Pods-JumpMonkey_abroad.debug.xcconfig"; sourceTree = "<group>"; };
+		4A682F9261DC02681634DDE1 /* Pods_JumpMonkey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JumpMonkey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94546BD8625B2B82A838AF67 /* Pods-JumpMonkey_abroad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey_abroad.release.xcconfig"; path = "Target Support Files/Pods-JumpMonkey_abroad/Pods-JumpMonkey_abroad.release.xcconfig"; sourceTree = "<group>"; };
 		AF0E3ABD2291547F00C2CF7B /* PhysicsUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsUtil.h; sourceTree = "<group>"; };
 		AF0E3ABE2291547F00C2CF7B /* PhysicsUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhysicsUtil.m; sourceTree = "<group>"; };
 		AF106C8F22956B9B003ABD22 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
@@ -675,6 +888,10 @@
 		AF75DC7D22EDEFEB00B600CB /* GameRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameRecord.m; sourceTree = "<group>"; };
 		AF7F6A65237318A0006B8139 /* AdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
 		AF7F6A66237318A0006B8139 /* AdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
+		AF84B50C2376DEA8007F2780 /* JumpMonkey_abroad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpMonkey_abroad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF84B50D2376DEA8007F2780 /* JumpMonkey copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "JumpMonkey copy-Info.plist"; path = "/Users/luojin/Documents/project/Game/JumpMonkey/JumpMonkey copy-Info.plist"; sourceTree = "<absolute>"; };
+		AFA05F4A237FA0F8001597A5 /* ShareUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareUtil.h; sourceTree = "<group>"; };
+		AFA05F4B237FA0F8001597A5 /* ShareUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareUtil.m; sourceTree = "<group>"; };
 		AFC3FED5234A3FC400A6E1FF /* RecordListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordListView.h; sourceTree = "<group>"; };
 		AFC3FED6234A3FC400A6E1FF /* RecordListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordListView.m; sourceTree = "<group>"; };
 		AFCA5A6923128F39000A6EA0 /* MyProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
@@ -683,6 +900,10 @@
 		AFCA5A6E231292B0000A6EA0 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		AFCA5A702312B793000A6EA0 /* ProfileTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewCell.h; sourceTree = "<group>"; };
 		AFCA5A712312B793000A6EA0 /* ProfileTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewCell.m; sourceTree = "<group>"; };
+		AFDB5D172378352B00E7FBAD /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		AFDB5D182378352B00E7FBAD /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		AFDB5D1C2378360200E7FBAD /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
+		AFDB5D1D2378360200E7FBAD /* SettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		AFF080DE22A1661700D180C4 /* ClockImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClockImageView.h; sourceTree = "<group>"; };
 		AFF080DF22A1661700D180C4 /* ClockImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockImageView.m; sourceTree = "<group>"; };
 		AFF080E122A1682B00D180C4 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
@@ -691,6 +912,7 @@
 		AFF4678522FFF5B200CD5992 /* RecordCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordCellView.m; sourceTree = "<group>"; };
 		CF5FA2778345FFD09EC4A99F /* Pods-JumpMonkey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey.debug.xcconfig"; path = "Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BAD9152BBDDF0E614841C0 /* Pods-JumpMonkey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpMonkey.release.xcconfig"; path = "Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey.release.xcconfig"; sourceTree = "<group>"; };
+		DCF74C36B955FDC5C5C1F653 /* Pods_JumpMonkey_abroad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JumpMonkey_abroad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -714,8 +936,34 @@
 				AF2C44E522D97EBA003045B8 /* UShareUI.framework in Frameworks */,
 				AF2C44E722D97EBA003045B8 /* libSocialWeChat.a in Frameworks */,
 				AF2C44E322D97EBA003045B8 /* UMCommon.framework in Frameworks */,
-				EE5690BE30E67D42D5DBB568 /* Pods_JumpMonkey.framework in Frameworks */,
+				EE5690BE30E67D42D5DBB568 /* (null) in Frameworks */,
 				AF2C44E122D97EBA003045B8 /* UTDID.framework in Frameworks */,
+				80767F2D9BDE6B7EA88B645E /* Pods_JumpMonkey.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF84B4E52376DEA8007F2780 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF84B4E62376DEA8007F2780 /* libSocialQQ.a in Frameworks */,
+				AF84B4E72376DEA8007F2780 /* libz.tbd in Frameworks */,
+				AF84B4E82376DEA8007F2780 /* libssl.a in Frameworks */,
+				AF84B4E92376DEA8007F2780 /* SecurityEnvSDK.framework in Frameworks */,
+				AF84B4EA2376DEA8007F2780 /* libSocialSina.a in Frameworks */,
+				AF84B4EB2376DEA8007F2780 /* libcrypto.a in Frameworks */,
+				AF84B4EC2376DEA8007F2780 /* CoreTelephony.framework in Frameworks */,
+				AF84B4ED2376DEA8007F2780 /* SystemConfiguration.framework in Frameworks */,
+				AF84B4EE2376DEA8007F2780 /* UMShare.framework in Frameworks */,
+				AF84B4EF2376DEA8007F2780 /* CoreGraphics.framework in Frameworks */,
+				AF84B4F02376DEA8007F2780 /* libsqlite3.tbd in Frameworks */,
+				AF84B4F12376DEA8007F2780 /* AVFoundation.framework in Frameworks */,
+				AF84B4F22376DEA8007F2780 /* UMCommonLog.framework in Frameworks */,
+				AF84B4F32376DEA8007F2780 /* UShareUI.framework in Frameworks */,
+				AF84B4F42376DEA8007F2780 /* libSocialWeChat.a in Frameworks */,
+				AF84B4F52376DEA8007F2780 /* UMCommon.framework in Frameworks */,
+				AF84B4F72376DEA8007F2780 /* UTDID.framework in Frameworks */,
+				661B02DDB99A0000EC2BECF6 /* Pods_JumpMonkey_abroad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,6 +1070,7 @@
 			isa = PBXGroup;
 			children = (
 				AF23157822850E2C008522D0 /* JumpMonkey.app */,
+				AF84B50C2376DEA8007F2780 /* JumpMonkey_abroad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -847,6 +1096,7 @@
 				AF23158822850E2C008522D0 /* Main.storyboard */,
 				AF23158D22850E2D008522D0 /* LaunchScreen.storyboard */,
 				AF23159022850E2D008522D0 /* Info.plist */,
+				AF84B50D2376DEA8007F2780 /* JumpMonkey copy-Info.plist */,
 				AF23159122850E2D008522D0 /* main.m */,
 			);
 			path = JumpMonkey;
@@ -855,6 +1105,7 @@
 		AF2C448F22D97EB9003045B8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AFDB5D162378351100E7FBAD /* Setting */,
 				AF7F6A6423731891006B8139 /* Ad */,
 				AF65A9BA22DB49C000E666A6 /* Entrance */,
 				AF2C449022D97EB9003045B8 /* GameScene */,
@@ -939,6 +1190,8 @@
 			children = (
 				AF2C44B222D97EBA003045B8 /* umeng */,
 				AF2C44CF22D97EBA003045B8 /* SocialDefine.h */,
+				AFA05F4A237FA0F8001597A5 /* ShareUtil.h */,
+				AFA05F4B237FA0F8001597A5 /* ShareUtil.m */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -1558,7 +1811,8 @@
 				AF1AD79B22D2017200550D35 /* CoreGraphics.framework */,
 				AF1AD79922D2016A00550D35 /* libsqlite3.tbd */,
 				AF58A2C922A4B777005E6361 /* AVFoundation.framework */,
-				3D044EB4B00B7A1C568D94AA /* Pods_JumpMonkey.framework */,
+				DCF74C36B955FDC5C5C1F653 /* Pods_JumpMonkey_abroad.framework */,
+				4A682F9261DC02681634DDE1 /* Pods_JumpMonkey.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1805,6 +2059,25 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		AFDB5D162378351100E7FBAD /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				AFDB5D1B237835EA00E7FBAD /* View */,
+				AFDB5D172378352B00E7FBAD /* SettingViewController.h */,
+				AFDB5D182378352B00E7FBAD /* SettingViewController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		AFDB5D1B237835EA00E7FBAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AFDB5D1C2378360200E7FBAD /* SettingTableViewCell.h */,
+				AFDB5D1D2378360200E7FBAD /* SettingTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AFF080DD22A165FE00D180C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1833,6 +2106,8 @@
 			children = (
 				CF5FA2778345FFD09EC4A99F /* Pods-JumpMonkey.debug.xcconfig */,
 				D7BAD9152BBDDF0E614841C0 /* Pods-JumpMonkey.release.xcconfig */,
+				15F1F4153F8A9F063FD7C27C /* Pods-JumpMonkey_abroad.debug.xcconfig */,
+				94546BD8625B2B82A838AF67 /* Pods-JumpMonkey_abroad.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1859,6 +2134,25 @@
 			productReference = AF23157822850E2C008522D0 /* JumpMonkey.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AF84B4372376DEA8007F2780 /* JumpMonkey_abroad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF84B5092376DEA8007F2780 /* Build configuration list for PBXNativeTarget "JumpMonkey_abroad" */;
+			buildPhases = (
+				AF84B4382376DEA8007F2780 /* [CP] Check Pods Manifest.lock */,
+				AF84B4392376DEA8007F2780 /* Sources */,
+				AF84B4E52376DEA8007F2780 /* Frameworks */,
+				AF84B4F82376DEA8007F2780 /* Resources */,
+				AF84B5082376DEA8007F2780 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JumpMonkey_abroad;
+			productName = JumpMonkey;
+			productReference = AF84B50C2376DEA8007F2780 /* JumpMonkey_abroad.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1870,6 +2164,13 @@
 				TargetAttributes = {
 					AF23157722850E2C008522D0 = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					AF84B4372376DEA8007F2780 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1887,6 +2188,7 @@
 			projectRoot = "";
 			targets = (
 				AF23157722850E2C008522D0 /* JumpMonkey */,
+				AF84B4372376DEA8007F2780 /* JumpMonkey_abroad */,
 			);
 		};
 /* End PBXProject section */
@@ -1911,6 +2213,28 @@
 				AF23158122850E2C008522D0 /* Actions.sks in Resources */,
 				AF75DC7722EDCE8000B600CB /* server_public.pem in Resources */,
 				AF2C44E022D97EBA003045B8 /* UMCommonLog.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF84B4F82376DEA8007F2780 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF84B4F92376DEA8007F2780 /* sound_game_over.wav in Resources */,
+				AF84B4FA2376DEA8007F2780 /* Main.storyboard in Resources */,
+				AF84B4FB2376DEA8007F2780 /* LICENSE in Resources */,
+				AF84B4FC2376DEA8007F2780 /* Assets.xcassets in Resources */,
+				AF84B4FD2376DEA8007F2780 /* sound_wolf.wav in Resources */,
+				AF84B4FE2376DEA8007F2780 /* LaunchScreen.storyboard in Resources */,
+				AF84B4FF2376DEA8007F2780 /* sound_catch_hook.wav in Resources */,
+				AF84B5002376DEA8007F2780 /* UMSocialSDKResources.bundle in Resources */,
+				AF84B5012376DEA8007F2780 /* error.plist in Resources */,
+				AF84B5022376DEA8007F2780 /* iot_server_public.pem in Resources */,
+				AF84B5032376DEA8007F2780 /* sound_cock.wav in Resources */,
+				AF84B5042376DEA8007F2780 /* GameScene.sks in Resources */,
+				AF84B5052376DEA8007F2780 /* Actions.sks in Resources */,
+				AF84B5062376DEA8007F2780 /* server_public.pem in Resources */,
+				AF84B5072376DEA8007F2780 /* UMCommonLog.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1952,6 +2276,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JumpMonkey/Pods-JumpMonkey-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF84B4382376DEA8007F2780 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JumpMonkey_abroad-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF84B5082376DEA8007F2780 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JumpMonkey_abroad/Pods-JumpMonkey_abroad-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2004,6 +2365,7 @@
 				AF2C44D222D97EBA003045B8 /* ChainList.m in Sources */,
 				AF0E3ABF2291547F00C2CF7B /* PhysicsUtil.m in Sources */,
 				AF1AD79F22D20A7400550D35 /* QMRingView.m in Sources */,
+				AFDB5D1E2378360200E7FBAD /* SettingTableViewCell.m in Sources */,
 				AF4CB59822CE2C0D0090BFB4 /* MMDrawerController.m in Sources */,
 				AFCA5A6B23128F39000A6EA0 /* MyProfileViewController.m in Sources */,
 				AF4CB56C22CE2C0D0090BFB4 /* UINavigationItem+margin.m in Sources */,
@@ -2064,10 +2426,12 @@
 				AF71278022ED3D100051C5E0 /* SXRSAEncryptor.m in Sources */,
 				AF4CB57822CE2C0D0090BFB4 /* NJKWebViewProgress.m in Sources */,
 				AF4CB45D22CE27C50090BFB4 /* QMStatus.m in Sources */,
+				AFDB5D192378352B00E7FBAD /* SettingViewController.m in Sources */,
 				AF4CB55C22CE2C0D0090BFB4 /* NSObject+QMExtand.m in Sources */,
 				AF40965A23647E55005C432B /* TimeUtil.m in Sources */,
 				AF58A2CF22A4BD9D005E6361 /* SoundManager.m in Sources */,
 				AF2C44DA22D97EBA003045B8 /* Tree.m in Sources */,
+				AFA05F4C237FA0F8001597A5 /* ShareUtil.m in Sources */,
 				AF65A99622DB40E900E666A6 /* AccountViewController.m in Sources */,
 				AF4CB56222CE2C0D0090BFB4 /* UIImage+QMColor.m in Sources */,
 				AF4CB58722CE2C0D0090BFB4 /* NSMutableArray+safe.m in Sources */,
@@ -2132,6 +2496,187 @@
 				AF65A9B022DB434200E666A6 /* QMSegmentMenuModel.m in Sources */,
 				AF4CB56122CE2C0D0090BFB4 /* UIButton+CustomColor.m in Sources */,
 				AF65A9B122DB434200E666A6 /* QMSegmentTopBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF84B4392376DEA8007F2780 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF84B43A2376DEA8007F2780 /* MMDrawerVisualState.m in Sources */,
+				AF84B43B2376DEA8007F2780 /* NSString+Encryption.m in Sources */,
+				AF84B43C2376DEA8007F2780 /* QMReqCacheManager.m in Sources */,
+				AF84B43D2376DEA8007F2780 /* UIColor+ColorConvert.m in Sources */,
+				AF84B43E2376DEA8007F2780 /* QMSegmentDefaultItemView.m in Sources */,
+				AF84B43F2376DEA8007F2780 /* QMSegmentScrollview.m in Sources */,
+				AF84B4402376DEA8007F2780 /* ScoreTableViewCell.m in Sources */,
+				AF84B4412376DEA8007F2780 /* MJExtensionConst.m in Sources */,
+				AF84B4422376DEA8007F2780 /* AdManager.m in Sources */,
+				AF84B4432376DEA8007F2780 /* UITextField+QMSecure.m in Sources */,
+				AF84B4442376DEA8007F2780 /* GameViewController.m in Sources */,
+				AF84B4452376DEA8007F2780 /* MJProperty.m in Sources */,
+				AF84B4462376DEA8007F2780 /* QMListInput.m in Sources */,
+				AF84B4472376DEA8007F2780 /* NSDictionary+safe.m in Sources */,
+				AF84B4482376DEA8007F2780 /* NSObject+MJProperty.m in Sources */,
+				AF84B4492376DEA8007F2780 /* QMFileLogFormatter.m in Sources */,
+				AF84B44A2376DEA8007F2780 /* QMReqLogger.m in Sources */,
+				AF84B44B2376DEA8007F2780 /* QMRuntimeHelper.m in Sources */,
+				AF84B44C2376DEA8007F2780 /* NSObject+BeeNotification.m in Sources */,
+				AF84B44D2376DEA8007F2780 /* QMRequestManager.m in Sources */,
+				AF84B44E2376DEA8007F2780 /* MJFoundation.m in Sources */,
+				AF84B44F2376DEA8007F2780 /* NSString+Base64.m in Sources */,
+				AF84B4502376DEA8007F2780 /* DBHelper.m in Sources */,
+				AF84B4512376DEA8007F2780 /* UIWebView+TS_JavaScriptContext.m in Sources */,
+				AF84B4522376DEA8007F2780 /* QMDeviceHelper.m in Sources */,
+				AF84B4532376DEA8007F2780 /* NSObject+MJClass.m in Sources */,
+				AF84B4542376DEA8007F2780 /* UIViewController+MMDrawerController.m in Sources */,
+				AF84B4552376DEA8007F2780 /* RecordAPI.m in Sources */,
+				AF84B4562376DEA8007F2780 /* NSNumber+safe.m in Sources */,
+				AF84B4572376DEA8007F2780 /* ViewUtility.m in Sources */,
+				AF84B4582376DEA8007F2780 /* QMLogFileManager.m in Sources */,
+				AF84B4592376DEA8007F2780 /* UILabel+htmlText.m in Sources */,
+				AF84B45A2376DEA8007F2780 /* UIImage+Category.m in Sources */,
+				AF84B45B2376DEA8007F2780 /* QMAppUtils.m in Sources */,
+				AF84B45C2376DEA8007F2780 /* GameScene.m in Sources */,
+				AF84B45D2376DEA8007F2780 /* NSMutableDictionary+safe.m in Sources */,
+				AF84B45E2376DEA8007F2780 /* Hawk.m in Sources */,
+				AF84B45F2376DEA8007F2780 /* NSObject+MultiParam.m in Sources */,
+				AF84B4602376DEA8007F2780 /* QMSegmentIconTitleItem.m in Sources */,
+				AF84B4612376DEA8007F2780 /* HookNode.m in Sources */,
+				AF84B4622376DEA8007F2780 /* ChainList.m in Sources */,
+				AF84B4632376DEA8007F2780 /* PhysicsUtil.m in Sources */,
+				AF84B4642376DEA8007F2780 /* QMRingView.m in Sources */,
+				AFDB5D1F2378360200E7FBAD /* SettingTableViewCell.m in Sources */,
+				AF84B4652376DEA8007F2780 /* MMDrawerController.m in Sources */,
+				AF84B4662376DEA8007F2780 /* MyProfileViewController.m in Sources */,
+				AF84B4672376DEA8007F2780 /* UINavigationItem+margin.m in Sources */,
+				AF84B4682376DEA8007F2780 /* UIView+Common.m in Sources */,
+				AF84B4692376DEA8007F2780 /* SHKeyChainWapper.m in Sources */,
+				AF84B46A2376DEA8007F2780 /* Monkey.m in Sources */,
+				AF84B46B2376DEA8007F2780 /* QMSegmentDoubleTitleItem.m in Sources */,
+				AF84B46C2376DEA8007F2780 /* NSIndexPath+safe.m in Sources */,
+				AF84B46D2376DEA8007F2780 /* NSArray+safe.m in Sources */,
+				AF84B46E2376DEA8007F2780 /* QMCustomLog.m in Sources */,
+				AF84B46F2376DEA8007F2780 /* SKProgressNode.m in Sources */,
+				AF84B4702376DEA8007F2780 /* UIViewAdditions.m in Sources */,
+				AF84B4712376DEA8007F2780 /* ImageSequence.m in Sources */,
+				AF84B4722376DEA8007F2780 /* NSMutableSet+safe.m in Sources */,
+				AF84B4732376DEA8007F2780 /* NSString+safe.m in Sources */,
+				AF84B4742376DEA8007F2780 /* QMFoundationDataForwardTarget.m in Sources */,
+				AF84B4752376DEA8007F2780 /* SHFloatingLayerViewManager.m in Sources */,
+				AF84B4762376DEA8007F2780 /* UserAccount.m in Sources */,
+				AF84B4772376DEA8007F2780 /* ScoreInfo.m in Sources */,
+				AF84B4782376DEA8007F2780 /* QMRequestConfig.m in Sources */,
+				AF84B4792376DEA8007F2780 /* QMJSONManager.m in Sources */,
+				AF84B47A2376DEA8007F2780 /* RecordTableViewCell.m in Sources */,
+				AF84B47B2376DEA8007F2780 /* MJPropertyKey.m in Sources */,
+				AF84B47C2376DEA8007F2780 /* SHLoadingView.m in Sources */,
+				AF84B47D2376DEA8007F2780 /* QMAttributedLabel.m in Sources */,
+				AF84B47E2376DEA8007F2780 /* ScoreAPI.m in Sources */,
+				AF84B47F2376DEA8007F2780 /* RecordViewModel.m in Sources */,
+				AF84B4802376DEA8007F2780 /* QMBaseRequestFactory.m in Sources */,
+				AF84B4812376DEA8007F2780 /* ASIDataCompressor.m in Sources */,
+				AF84B4822376DEA8007F2780 /* BaseViewController.m in Sources */,
+				AF84B4832376DEA8007F2780 /* NSString+UI.m in Sources */,
+				AF84B4842376DEA8007F2780 /* ScoreView.m in Sources */,
+				AF84B4852376DEA8007F2780 /* CALayer+QMExtention.m in Sources */,
+				AF84B4862376DEA8007F2780 /* NormalNode.m in Sources */,
+				AF84B4872376DEA8007F2780 /* RegisterView.m in Sources */,
+				AF84B4882376DEA8007F2780 /* SecKeyManager.m in Sources */,
+				AF84B4892376DEA8007F2780 /* Bezier.m in Sources */,
+				AF84B48A2376DEA8007F2780 /* UIBezierPath+AllPoints.m in Sources */,
+				AF84B48B2376DEA8007F2780 /* RecordListViewController.m in Sources */,
+				AF84B48C2376DEA8007F2780 /* UserAccountManager.m in Sources */,
+				AF84B48D2376DEA8007F2780 /* UILabel+Additions.m in Sources */,
+				AF84B48E2376DEA8007F2780 /* QMNormalRequestFactory.m in Sources */,
+				AF84B48F2376DEA8007F2780 /* EntranceTableViewCell.m in Sources */,
+				AF84B4902376DEA8007F2780 /* UIImage+Category.m in Sources */,
+				AF84B4912376DEA8007F2780 /* QMUploadDataFactory.m in Sources */,
+				AF84B4922376DEA8007F2780 /* NSData+Base64.m in Sources */,
+				AF84B4932376DEA8007F2780 /* UserAPI.m in Sources */,
+				AF84B4942376DEA8007F2780 /* RecordCellView.m in Sources */,
+				AF84B4952376DEA8007F2780 /* Spider.m in Sources */,
+				AF84B4962376DEA8007F2780 /* NSString+MJExtension.m in Sources */,
+				AF84B4972376DEA8007F2780 /* NSMutableString+QMExtand.m in Sources */,
+				AF84B4982376DEA8007F2780 /* BBSystemValue.m in Sources */,
+				AF84B4992376DEA8007F2780 /* NSAttributedString+Category.m in Sources */,
+				AF84B49A2376DEA8007F2780 /* UIColor+CustomColor.m in Sources */,
+				AF84B49B2376DEA8007F2780 /* QMCommand.m in Sources */,
+				AF84B49C2376DEA8007F2780 /* NSObject+swizzle.m in Sources */,
+				AF84B49D2376DEA8007F2780 /* SHCommonTextField.m in Sources */,
+				AF84B49E2376DEA8007F2780 /* SXRSAEncryptor.m in Sources */,
+				AF84B49F2376DEA8007F2780 /* NJKWebViewProgress.m in Sources */,
+				AF84B4A02376DEA8007F2780 /* QMStatus.m in Sources */,
+				AFDB5D1A2378352B00E7FBAD /* SettingViewController.m in Sources */,
+				AF84B4A12376DEA8007F2780 /* NSObject+QMExtand.m in Sources */,
+				AF84B4A22376DEA8007F2780 /* TimeUtil.m in Sources */,
+				AF84B4A32376DEA8007F2780 /* SoundManager.m in Sources */,
+				AF84B4A42376DEA8007F2780 /* Tree.m in Sources */,
+				AFA05F4D237FA0F8001597A5 /* ShareUtil.m in Sources */,
+				AF84B4A52376DEA8007F2780 /* AccountViewController.m in Sources */,
+				AF84B4A62376DEA8007F2780 /* UIImage+QMColor.m in Sources */,
+				AF84B4A72376DEA8007F2780 /* NSMutableArray+safe.m in Sources */,
+				AF84B4A82376DEA8007F2780 /* LifeInfo.m in Sources */,
+				AF84B4A92376DEA8007F2780 /* ProfileTableViewCell.m in Sources */,
+				AF84B4AA2376DEA8007F2780 /* NSData+AES.m in Sources */,
+				AF84B4AB2376DEA8007F2780 /* SHToastView.m in Sources */,
+				AF84B4AC2376DEA8007F2780 /* LoginView.m in Sources */,
+				AF84B4AD2376DEA8007F2780 /* UIView+SHGradient.m in Sources */,
+				AF84B4AE2376DEA8007F2780 /* QMSimpleRequestFactory.m in Sources */,
+				AF84B4AF2376DEA8007F2780 /* TreesList.m in Sources */,
+				AF84B4B02376DEA8007F2780 /* QMInput.m in Sources */,
+				AF84B4B12376DEA8007F2780 /* QMSaveKeyChain.m in Sources */,
+				AF84B4B22376DEA8007F2780 /* LevelInfo.m in Sources */,
+				AF84B4B32376DEA8007F2780 /* UIButton+Category.m in Sources */,
+				AF84B4B42376DEA8007F2780 /* QMRequester.m in Sources */,
+				AF84B4B52376DEA8007F2780 /* NJKWebViewProgressView.m in Sources */,
+				AF84B4B62376DEA8007F2780 /* NSString+Encryption.m in Sources */,
+				AF84B4B72376DEA8007F2780 /* QMPushRequestFactory.m in Sources */,
+				AF84B4B82376DEA8007F2780 /* UIColor+CustomColor.m in Sources */,
+				AF84B4B92376DEA8007F2780 /* NSDate+QMExtand.m in Sources */,
+				AF84B4BA2376DEA8007F2780 /* QMSegmentGradualItemView.m in Sources */,
+				AF84B4BB2376DEA8007F2780 /* QMListRequester.m in Sources */,
+				AF84B4BC2376DEA8007F2780 /* UIImage+Crop.m in Sources */,
+				AF84B4BD2376DEA8007F2780 /* NSDate+Utilities.m in Sources */,
+				AF84B4BE2376DEA8007F2780 /* UIButton+Copy.m in Sources */,
+				AF84B4BF2376DEA8007F2780 /* NSAttributedString+QMUI.m in Sources */,
+				AF84B4C02376DEA8007F2780 /* QMLogFormatter.m in Sources */,
+				AF84B4C12376DEA8007F2780 /* NSString+QMHelper.m in Sources */,
+				AF84B4C22376DEA8007F2780 /* UILabel+QMTitle.m in Sources */,
+				AF84B4C32376DEA8007F2780 /* GameRecord.m in Sources */,
+				AF84B4C42376DEA8007F2780 /* QMStatisticsRequestFactory.m in Sources */,
+				AF84B4C52376DEA8007F2780 /* UIImageView+QMAnimation.m in Sources */,
+				AF84B4C62376DEA8007F2780 /* NSString+QMRequest.m in Sources */,
+				AF84B4C72376DEA8007F2780 /* QMSegmentContainer.m in Sources */,
+				AF84B4C82376DEA8007F2780 /* NSObject+Safe.m in Sources */,
+				AF84B4C92376DEA8007F2780 /* RecordListView.m in Sources */,
+				AF84B4CA2376DEA8007F2780 /* SKNumberNode.m in Sources */,
+				AF84B4CB2376DEA8007F2780 /* QMDownloadRequester.m in Sources */,
+				AF84B4CC2376DEA8007F2780 /* MJPropertyType.m in Sources */,
+				AF84B4CD2376DEA8007F2780 /* APIManager.m in Sources */,
+				AF84B4CE2376DEA8007F2780 /* main.m in Sources */,
+				AF84B4CF2376DEA8007F2780 /* NSString+Json.m in Sources */,
+				AF84B4D02376DEA8007F2780 /* QMGlobalAppearance.m in Sources */,
+				AF84B4D12376DEA8007F2780 /* NSDateFormatter+QMHelper.m in Sources */,
+				AF84B4D22376DEA8007F2780 /* SCDevice.m in Sources */,
+				AF84B4D32376DEA8007F2780 /* UITableView+safe.m in Sources */,
+				AF84B4D42376DEA8007F2780 /* EntranceViewController.m in Sources */,
+				AF84B4D52376DEA8007F2780 /* UIView+Copy.m in Sources */,
+				AF84B4D62376DEA8007F2780 /* NSData+imagetype.m in Sources */,
+				AF84B4D72376DEA8007F2780 /* NSObject+MJCoding.m in Sources */,
+				AF84B4D82376DEA8007F2780 /* UIScrollView+QMPopToSuperVC.m in Sources */,
+				AF84B4D92376DEA8007F2780 /* AppDelegate.m in Sources */,
+				AF84B4DA2376DEA8007F2780 /* NSArray+QMCategory.m in Sources */,
+				AF84B4DB2376DEA8007F2780 /* MMDrawerBarButtonItem.m in Sources */,
+				AF84B4DC2376DEA8007F2780 /* NSObject+QMSetConfigToUserDefaults.m in Sources */,
+				AF84B4DD2376DEA8007F2780 /* NSObject+QMInput.m in Sources */,
+				AF84B4DE2376DEA8007F2780 /* GameModel.m in Sources */,
+				AF84B4DF2376DEA8007F2780 /* ClockImageView.m in Sources */,
+				AF84B4E02376DEA8007F2780 /* RSAHandler.m in Sources */,
+				AF84B4E12376DEA8007F2780 /* NSObject+MJKeyValue.m in Sources */,
+				AF84B4E22376DEA8007F2780 /* QMSegmentMenuModel.m in Sources */,
+				AF84B4E32376DEA8007F2780 /* UIButton+CustomColor.m in Sources */,
+				AF84B4E42376DEA8007F2780 /* QMSegmentTopBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,7 +2820,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4SAW3YARN;
+				DEVELOPMENT_TEAM = 8C5483SAYM;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2361,7 +2906,7 @@
 					"\"UIKit\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.finger.JumpMonkey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.finger.monkeyJump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2373,7 +2918,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4SAW3YARN;
+				DEVELOPMENT_TEAM = 8C5483SAYM;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2459,7 +3004,225 @@
 					"\"UIKit\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.finger.JumpMonkey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.finger.monkeyJump;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AF84B50A2376DEA8007F2780 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15F1F4153F8A9F063FD7C27C /* Pods-JumpMonkey_abroad.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8C5483SAYM;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JumpMonkey/Share/third-party-SDK/TencentOpenAPI",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/thirdparties/thirdparties_ios_1.0.0.16",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/common",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/UMSocialUI",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/common/common_ios_2.1.0/normal",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/umcommonlog/umcommonlog_ios_1.0.0",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/UMSocialUI",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/thirdparties/thirdparties_ios_1.0.5",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/umcommonlog/umcommonlog_ios_1.0.0",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/thirdparties/thirdparties_ios_1.0.5",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/common/common_ios_2.1.0/normal",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/UMSocialUI",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"SQLITE_HAS_CODEC=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"ABROAD=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa/ReactiveCocoa.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TMCache/TMCache.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/QQ_MTA\"",
+					"\"$(SRCROOT)/JumpMonkey/BaseModule/Secure/Encrypt/RSA/openssl/include\"",
+				);
+				INFOPLIST_FILE = "JumpMonkey copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JumpMonkey/Vendor/WeChatSDK1.8.4_NoPay",
+					"$(PROJECT_DIR)/JumpMonkey/Share/Vendor/WeChatSDK1.8.4_NoPay",
+					"$(PROJECT_DIR)/JumpMonkey/Share/third-party-SDK/WeChatSDK_1.7.9",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/SMS",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/Email",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/BaseModule/Secure/Encrypt/RSA/openssl/lib",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"ReactiveCocoa\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TMCache\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.finger.monkeyJumpAbroad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF84B50B2376DEA8007F2780 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94546BD8625B2B82A838AF67 /* Pods-JumpMonkey_abroad.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8C5483SAYM;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JumpMonkey/Share/third-party-SDK/TencentOpenAPI",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/thirdparties/thirdparties_ios_1.0.0.16",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/common",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/UMSocialUI",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/common/common_ios_2.1.0/normal",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/umcommonlog/umcommonlog_ios_1.0.0",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/UMSocialUI",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/thirdparties/thirdparties_ios_1.0.5",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/umcommonlog/umcommonlog_ios_1.0.0",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/thirdparties/thirdparties_ios_1.0.5",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/common/common_ios_2.1.0/normal",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/UMSocialUI",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = JumpMonkey/PrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"SQLITE_HAS_CODEC=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"ABROAD=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa/ReactiveCocoa.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TMCache/TMCache.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/QQ_MTA\"",
+					"\"$(SRCROOT)/JumpMonkey/BaseModule/Secure/Encrypt/RSA/openssl/include\"",
+				);
+				INFOPLIST_FILE = "JumpMonkey copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JumpMonkey/Vendor/WeChatSDK1.8.4_NoPay",
+					"$(PROJECT_DIR)/JumpMonkey/Share/Vendor/WeChatSDK1.8.4_NoPay",
+					"$(PROJECT_DIR)/JumpMonkey/Share/third-party-SDK/WeChatSDK_1.7.9",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/SMS",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/Email",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/JumpMonkey/Share/umeng/share/share_ios_6.9.6/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/JumpMonkey/Modules/Share/umeng/share/share_ios_6.9.6/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/JumpMonkey/BaseModule/Secure/Encrypt/RSA/openssl/lib",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"ReactiveCocoa\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TMCache\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.finger.monkeyJumpAbroad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2482,6 +3245,15 @@
 			buildConfigurations = (
 				AF23159622850E2D008522D0 /* Debug */,
 				AF23159722850E2D008522D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF84B5092376DEA8007F2780 /* Build configuration list for PBXNativeTarget "JumpMonkey_abroad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF84B50A2376DEA8007F2780 /* Debug */,
+				AF84B50B2376DEA8007F2780 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

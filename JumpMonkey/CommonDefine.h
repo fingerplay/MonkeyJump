@@ -62,9 +62,12 @@ typedef enum {
 #define MAX_TIME_LIMIT  30 //总时长5分钟
 #define DROP_TIME_SUBTRACT  10 //掉落一次扣10秒
 
-#define INITIAL_LIFE_COUNT  100 //初始生命值
+#define INITIAL_LIFE_COUNT  2 //初始生命值
 #define CLOCK_IN_LIFE_COUNT 10 //每日打卡领取的生命
-#define AD_LIFE_COUNT 5 //点击广告领取的生命
+#define AD_LIFE_COUNT 1 //点击广告领取的生命
+
+#define SETTING_KEY_SOUND_SWITCH @"SETTING_KEY_SOUND_SWITCH" //声音开关设置的key
+
 
 /*  网络请求   */
 
@@ -73,8 +76,18 @@ typedef enum {
 #define DomainURL(path) [BaseDomain stringByAppendingString:path]
 
 /*  第三方SDK   */
+//腾讯广点通
 #define kGDTMobSDKAppId  @"1105344611"
 #define kGDTVideoAdPlaceId  @"5040546242831432"
+//google admob
+#define kGADMobSDKAppId @"ca-app-pub-1403704821044404~8468788829"
+//#define kGADMobLiftEmptyRewardAdUnitId @"ca-app-pub-1403704821044404/1580441681"
+//#define kGADMobLiftEmptyRewardAdUnitId @"ca-app-pub-3940256099942544/1712485313"
+#define kGADMobLifeEmptyInterstitialAdUnitId @"ca-app-pub-5404628920168891/4138430067"
+//#define kGADMobLifeEmptyInterstitialAdUnitId @"ca-app-pub-3940256099942544/4411468910" //test unit id
+//#define kGADMobLifeEmptyInterstitialAdUnitId @"ca-app-pub-1403704821044404/2825541912"
+
+#define kGADMobLifeEmptyBannerAdUnitId @"ca-app-pub-5404628920168891/6293959734"
 
 // UIScreen related macros
 #define SCREEN_BOUNDS           [UIScreen mainScreen].bounds

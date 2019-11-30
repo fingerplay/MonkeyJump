@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GDTRewardVideoAd.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 //点击广告回调
@@ -20,8 +20,8 @@ typedef void(^AdCloseCallback)(NSString*);
 typedef void(^AdWatchOverCallback)(NSString*);
 NS_ASSUME_NONNULL_END
 
-@interface AdManager : NSObject<GDTRewardedVideoAdDelegate>
-@property (nonatomic, strong) GDTRewardVideoAd *rewardVideoAd;
+@interface AdManager : NSObject
+
 
 + (instancetype)sharedManager;
 

@@ -149,8 +149,10 @@
     [self.heartImageNode addChild:self.lifeCountLabel];
     [self addChild:self.velocityLabel];
     [self addChild:self.hopNode];
-    [self addChild:[SoundManager sharedManger]];
-    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SETTING_KEY_SOUND_SWITCH] boolValue] == YES) {
+        [self addChild:[SoundManager sharedManger]];
+    }
+   
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.hawk.hidden = NO;
         [self.hawk startMoveWithLocation:CGPointMake(self.monkey.offsetX + SCREEN_W/5 - self.hawk.size.width/2, -self.hawk.size.height/2)];
